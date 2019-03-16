@@ -1,0 +1,651 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>CentraPos</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/responsive.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery.min.js"></script>
+    @*<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>*@
+    <script src="~/Scripts/jquery.formatCurrency.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+</head>
+<body style="background-color: ghostwhite;">
+    <div>
+        <div class="row" style="margin:10px;">
+            <div class="col-xs-6 form-group">
+                <br />
+                <input class="form-control" id="searchBar" type="text" placeholder="Busqueda" />
+            </div>
+            <div class="col-xs-6 form-group">
+                @{
+                    var deviceId = Request.UserHostName;
+                    try
+                    {
+                        string[] computer_name = System.Net.Dns.GetHostEntry(Request.ServerVariables["remote_addr"]).HostName.Split(new Char[] { '.' });
+                        deviceId = computer_name[0];
+                    }
+                    catch (Exception ex) { }
+
+                    var pos = WEBPOS.DataAccess.BusinessLayer.BlStorePos.ReadAllQueryable().FirstOrDefault(x => x.DeviceId == deviceId);
+                    if (pos != null)
+                    {
+                        <h2 style="text-align:left;float:left;">CentraPos</h2>
+                        <h2 style="text-align:right;float:right;">@pos.StorePosDescription</h2>
+                    }
+                }
+            </div>
+            <div class="col-xs-6">
+                <div class="row">
+
+                    <div style="width:100%; margin:0 auto; padding:0px;">
+                        <div style="width:100%; height:500px;">
+                            <table id="itemsGrid" class="table table-striped table-bordered dt-responsive nowrap" style="background-color:white;" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Articulo</th>
+                                        <th>Cantidad</th>
+                                        <th>Precio</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xs-6 form-group">
+                <div class="panel panel-default" style="width: 100%; padding: 10px; margin: 10px">
+                    <div id="Tabs" role="tabpanel" style="height:100%;">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="active">
+                                <a href="#info" aria-controls="info" role="tab" data-toggle="tab">
+                                    Información
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content" style="padding-top: 20px">
+                            <div role="tabpanel" class="tab-pane active" id="info">
+
+                                <header class="major">
+                                    <h4>Informacion General</h4>
+                                </header>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                @Html.Label("Lista de Precio"): <label id="generalPriceList" style="font-weight: normal !important;" />
+                                                <br />
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                @Html.Label("Total de Articulos"): <label id="generalTotalItems" style="font-weight: normal !important;" />
+                                                <br />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                @Html.Label("Cliente"): <label id="generalCustomer" style="font-weight: normal !important;" />
+                                                <br />
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                @Html.Label("Total a Pagar"): <label id="generalTotalSum" style="font-weight: normal !important;" />
+                                                <br />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+
+                                <div id="selectedItemInfo">
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="row">
+                    <div class="btn-group">
+                        <button onclick="clearAll()" type="button" class="button primary">
+                            LIMPIAR
+                        </button>
+
+                        <button onclick="getCustomer()" type="button" class="button">
+                            SELECCIONAR CLIENTE
+                        </button>
+
+                        <button onclick="getPriceList()" type="button" class="button">
+                            LISTA DE PRECIO
+                        </button>
+
+                        <button onclick="beginPayment()" type="button" class="button">
+                            PAGAR
+                        </button>
+
+                        <button onclick="removeItem()" type="button" class="button">
+                            REMOVER
+                        </button>
+
+                        <button onclick="changeQty()" type="button" class="button">
+                            CANTIDAD
+                        </button>
+
+                        <button onclick="discount()" type="button" class="button">
+                            DESCUENTO
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div id="modalContainer"></div>
+    </div>
+    <div class="modal fade" id="myCustomerModal" role="dialog">
+        <div id="CustomerModalContainer">
+            @using (Html.BeginForm("GetCustomers", "Pos", FormMethod.Post, new { id = "customerForm", onkeydown = "return (event.keyCode!=13);" }))
+            {
+                <div class="container form-group">
+                    <div class="modal-dialog modal-lg" style="width:50%;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <a class="close" data-dismiss="modal">&times;</a>
+                                <h4 class="modal-title">Selecciona Cliente</h4>
+                            </div>
+
+                            <div class="modal-body col-md-12">
+                                <table id="customerGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Cliente</th>
+                                            <th>Lista de Precio</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <a class="btn btn-default" data-dismiss="modal">Cerrar</a>
+                                <a class="btn btn-default" onclick=onCustomerFormSubmit();>Ok</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    var priceList = { PriceListCode: "01", PriceListDescription: "GENERAL" };
+    var customer = { BusinessPartnerCode: "", BusinessPartnerDescription: "" };
+    var selectedRow = null;
+    var selectedCustomer = null;
+
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            dataType: 'json',
+            url: '@Url.Action("GetPriceList", "Pos")',
+            data: {priceListCode: "0"},
+            success: function (data) {
+                priceList.PriceListCode = data.PriceListCode;
+                priceList.PriceListDescription = data.PriceListDescription;
+                $("#generalPriceList").text(priceList.PriceListDescription);
+                $("#generalTotalItems").text("0.00");
+                $("#generalTotalSum").text("RD$ 0.00");
+            },
+        });
+
+        $('.currency').formatCurrency();
+
+    });
+
+    $('#searchBar').keyup(function (e) {
+        if (e.keyCode === 13) {
+            var qty = 1;
+            var text = $('#searchBar').val();
+            if (text.includes('*')) {
+                qty = text.split('*')[0];
+                text = text.split('*')[1];
+            }
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("TextSearch", "Pos")',
+                data: { text: text, priceListCode: priceList.PriceListCode, quantity: qty },
+                success: function (data) {
+                    table.ajax.reload();
+                    $('#searchBar').val(null);
+                    $('#selectedItemInfo').html(null);
+                    $("#generalTotalItems").text(data.TotalItems.toFixed(2));
+                    $("#generalTotalSum").text("RD$ " + data.TotalValue.toFixed(2));
+                },
+            });
+        }
+    });
+
+    var customerTable = $("#customerGrid").DataTable({
+
+        "processing": true, // for show progress bar
+        "serverSide": true, // for process server side
+        "filter": true, // this is for disable filter (search box)
+        "orderMulti": false, // for disable multiple column at once
+        "pageLength": 5,
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+        },
+        "ajax": {
+            "url": "/Pos/CustomerLoadData",
+            "type": "POST",
+            "datatype": "json"
+        },
+
+        "columnDefs":
+            [{
+                "targets": [0],
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [1],
+                "searchable": false,
+                "orderable": false,
+            }],
+
+        "columns": [
+            { "data": "BusinessPartnerDescription", "name": "BusinessPartnerDescription", "autoWidth": true },
+            { "data": "PriceListDescription", "name": "PriceListDescription", "autoWidth": true }
+        ]
+    });
+
+    $('#customerGrid tbody').on('click', 'tr', function () {
+        if ($(this).hasClass('selected')) {
+            $(this).removeClass('selected');
+            selectedCustomer = null;
+        }
+        else {
+            customerTable.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+
+            selectedCustomer = customerTable.row(this).data();
+        }
+    });
+
+    var table = $("#itemsGrid").DataTable({
+        "scrollY": "450px",
+        "scrollCollapse": true,
+        "processing": false, // for show progress bar
+        "serverSide": false, // for process server side
+        "filter": false, // this is for disable filter (search box)
+        "orderMulti": false, // for disable multiple column at once
+        "paging": false,
+        "ordering": false,
+        "info": false,
+        "pageLength": 10,
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+        },
+        "ajax": {
+            "url": "/Pos/LoadData",
+            "type": "POST",
+            "datatype": "json"
+        },
+
+        "columnDefs":
+            [{
+                "targets": [0],
+                //"visible": false,
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [1],
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [2],
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [3],
+                "searchable": false,
+                "orderable": false
+            }],
+
+        "columns": [
+            { "data": "ItemDescription", "name": "ItemDescription", "autoWidth": true },
+            { "render": function (data, type, full, meta) { return full.Quantity.toFixed(2); } },
+            { "render": function (data, type, full, meta) { return "(RD$) " + full.VatPrice.toFixed(2); } },
+            { "render": function (data, type, full, meta) { return "(RD$) " + full.Total.toFixed(2); } },
+        ]
+    });
+
+    $('#itemsGrid tbody').on('click', 'tr', function () {
+        if ($(this).hasClass('selected')) {
+            $(this).removeClass('selected');
+            $('#selectedItemInfo').html(null);
+            selectedRow = null;
+        }
+        else {
+            table.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+            $.ajax({
+                url: "@Url.Action("ItemInfoPartial","Pos")",
+                async: false,
+                beforeSend: function () {
+
+                },
+                complete: function () {
+
+                },
+                success: function (result) {
+                    $('#selectedItemInfo').html(result);
+                }
+            });
+
+            selectedRow = table.row(this).data();
+
+            $("#selectedItemCode").text(selectedRow.ItemCode);
+            $("#selectedItemDescription").text(selectedRow.ItemDescription);
+            $("#selectedItemBarcode").text(selectedRow.Barcode);
+            $("#selectedItemPriceList").text(selectedRow.PriceListDescription);
+            $("#selectedItemQuantity").text(selectedRow.Quantity.toFixed(2));
+            $("#selectedItemSellPrice").text("(RD$) " + selectedRow.SellPrice.toFixed(2));
+            $("#selectedItemVatPrice").text("(RD$) " + selectedRow.VatPrice.toFixed(2));
+        }
+    });
+
+    function clearAll() {
+        //if (confirm("¿Esta seguro de limpiar todo?")) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ClearAll", "Pos")',
+                data: {},
+                success: function (data) {
+                    table.ajax.reload();
+                    $('#searchBar').val(null);
+                    $('#selectedItemInfo').html(null);
+                    customer = { BusinessPartnerCode: "", BusinessPartnerDescription: "" };
+                    $("#generalCustomer").text(customer.BusinessPartnerDescription);
+                    $("#generalTotalItems").text("0.00");
+                    $("#generalTotalSum").text("RD$ 0.00");
+
+                    selectedRow = null;
+                    selectedCustomer = null;
+
+                    $.ajax({
+                        type: "POST",
+                        dataType: 'json',
+                        url: '@Url.Action("GetPriceList", "Pos")',
+                        data: { priceListCode: "0" },
+                        success: function (data) {
+                            priceList.PriceListCode = data.PriceListCode;
+                            priceList.PriceListDescription = data.PriceListDescription;
+                            $("#generalPriceList").text(priceList.PriceListDescription);
+                        },
+                    });
+                },
+            });
+        //}
+    }
+
+    function onPriceListFormSubmit(s, e) {
+        if (confirm("Esto cambiara los precios de todos los articulos ¿Esta seguro de continuar?")) {
+            var form = $("#priceListForm")[0];
+            var data = $("#priceListForm").serialize();
+
+            $.ajax({
+                url: form.action,
+                type: form.method,
+                data: data,
+                beforeSend: function () {
+
+                },
+                complete: function () {
+
+                },
+                success: function (result) {
+                    if (result != null) {
+                        table.ajax.reload();
+                        priceList.PriceListCode = result.PriceListCode;
+                        priceList.PriceListDescription = result.PriceListDescription;
+                        $("#generalPriceList").text(priceList.PriceListDescription);
+                        $("#generalTotalItems").text(result.TotalItems);
+                        $("#generalTotalSum").text("RD$ " + result.TotalValue.toFixed(2));
+                        $('#myModal').modal('hide');
+
+                    }
+                }
+            });
+        }
+    }
+
+    function getPriceList()
+    {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("PriceListSelectPartial", "Pos")',
+            data: { },
+            success: function (data) {
+                $('#modalContainer').html(data);
+                $('#myModal').modal('show');
+            },
+        });
+    }
+
+    function onCustomerFormSubmit(s, e) {
+        if (selectedCustomer != null) {
+            if (confirm("Esto cambiara los precios de todos los articulos ¿Esta seguro de continuar?")) {
+                var form = $("#customerForm")[0];
+                var data = $("#customerForm").serialize();
+
+                $.ajax({
+                    url: form.action,
+                    type: form.method,
+                    data: { bpCode: selectedCustomer.BusinessPartnerCode },
+                    beforeSend: function () {
+
+                    },
+                    complete: function () {
+
+                    },
+                    success: function (result) {
+                        if (result != null) {
+                            table.ajax.reload();
+                            priceList.PriceListCode = result.PriceListCode;
+                            priceList.PriceListDescription = result.PriceListDescription;
+                            customer.BusinessPartnerCode = result.BusinessPartnerCode;
+                            customer.BusinessPartnerDescription = result.BusinessPartnerDescription;
+
+                            $("#generalPriceList").text(priceList.PriceListDescription);
+                            $("#generalCustomer").text(customer.BusinessPartnerDescription);
+                            $("#generalTotalItems").text(result.TotalItems);
+                            $("#generalTotalSum").text("RD$ " + result.TotalValue.toFixed(2));
+
+                            $('#myCustomerModal').modal('hide');
+                        }
+                    }
+                });
+            }
+        }
+        else
+            alert("Por favor, seleccione antes de continuar.");
+    }
+
+    function getCustomer() {
+        customerTable.ajax.reload();
+        $('#myCustomerModal').modal('show');
+    }
+
+    function beginPayment() {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("PaymentPartial", "Pos")',
+            data: { priceListCode: priceList.PriceListCode },
+            success: function (data) {
+                $('#modalContainer').html(data);
+                $('#myModal').modal('show');
+            },
+        });
+    }
+
+    function onPayedAmountChanged() {
+        $('#PayedAmount').val();
+        $('#Total').val();
+        $('#Rest').val($('#PayedAmount').val() - $('#Total').val());
+    }
+
+    function onPaymentTypeFormSubmit(s, e) {
+        var form = $("#paymentForm")[0];
+        var data = $("#paymentForm").serialize();
+        data = data.replace("CustomerCode=", "CustomerCode=" + customer.BusinessPartnerCode);
+        if ($("#Rest").val() >= 0) {
+            $.ajax({
+                url: form.action,
+                //type: form.method,
+                dataType: 'json',
+                data: data,
+                beforeSend: function () {
+
+                },
+                complete: function () {
+
+                },
+                success: function (result) {
+                    if (result != null) {
+                        clearAll();
+                        $('#myModal').modal('hide');
+
+                        var url = "WebForms/WebForm1.aspx?TransactionNumber=" + result.TransactionNumber + "&StoreCode=" + result.StoreCode + "&PosCode=" + result.PosCode;
+                        window.open(url, '_blank');
+                    }
+                }
+            });
+        } else {
+            alert("El pago debe superar el monto total. Verifique antes de continuar.");
+        }
+    }
+
+    function removeItem() {
+        if (selectedRow != null) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("RemoveItem", "Pos")',
+                data: { itemCode: selectedRow.ItemCode },
+                success: function (data) {
+                    table.ajax.reload();
+                    $('#selectedItemInfo').html(null);
+                    $("#generalTotalItems").text(data.TotalItems.toFixed(2));
+                    $("#generalTotalSum").text("RD$ " + data.TotalValue.toFixed(2));
+                }
+            });
+        }else
+            alert("Por favor, seleccione antes de continuar.");
+    }
+
+    function changeQty() {
+        if (selectedRow != null) {
+             $.ajax({
+                type: "POST",
+                url: '@Url.Action("NewQuantityPartial", "Pos")',
+                success: function (data) {
+                    $('#modalContainer').html(data);
+                    $('#myModal').modal('show');
+                }
+            });
+        } else
+            alert("Por favor, seleccione antes de continuar.");
+    }
+
+    function saveQty()
+    {
+        var qty = $("#NewQty").val();
+        $.ajax({
+                type: "POST",
+                url: '@Url.Action("ChangeQuantity", "Pos")',
+                data: { itemCode: selectedRow.ItemCode, quantity: qty },
+                success: function (data) {
+                    table.ajax.reload();
+                    $('#selectedItemInfo').html(null);
+                    $("#generalTotalItems").text(data.TotalItems.toFixed(2));
+                    $("#generalTotalSum").text("RD$ " + data.TotalValue.toFixed(2));
+                    $('#myModal').modal('hide');
+                }
+            });
+    }
+
+    function discount() {
+        if (selectedRow != null) {
+             $.ajax({
+                type: "POST",
+                 url: '@Url.Action("DiscountsPartial", "Pos")',
+                 data: {itemCode: selectedRow.ItemCode },
+                 success: function (data) {
+                    $('#modalContainer').html(data);
+                    $('#myModal').modal('show');
+                }
+            });
+        } else
+            alert("Por favor, seleccione antes de continuar.");
+    }
+
+    function saveDiscount()
+    {
+        var result = $("#Result").val();
+        $.ajax({
+                type: "POST",
+                url: '@Url.Action("SetDiscounts", "Pos")',
+                data: { itemCode: selectedRow.ItemCode, result: result },
+                success: function (data) {
+                    table.ajax.reload();
+                    $('#selectedItemInfo').html(null);
+                    $("#generalTotalItems").text(data.TotalItems.toFixed(2));
+                    $("#generalTotalSum").text("RD$ " + data.TotalValue.toFixed(2));
+                    $('#myModal').modal('hide');
+                }
+            });
+    }
+
+    function onDiscountAmountChanged() {
+        var discountType = $('#DiscountType').val();
+        var price = $('#ItemPrice').val();
+        var discountAmount = $('#DiscountAmount').val();
+
+        if (discountType == 0) {
+            var res = price - price * (discountAmount/100);
+            $('#Result').val(res);
+        } else {
+            $('#Result').val(price - discountAmount);
+        }
+    }
+</script>

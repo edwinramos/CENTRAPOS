@@ -1,0 +1,494 @@
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\ApplicationInsights.config
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\SqlServerTypes\x64\msvcr120.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\SqlServerTypes\x64\SqlServerSpatial140.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\SqlServerTypes\x86\msvcr120.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\SqlServerTypes\x86\SqlServerSpatial140.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\WEBPOS.dll.config
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\WEBPOS.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\WEBPOS.pdb
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\csc.exe
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\csc.exe.config
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\csc.rsp
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\csi.exe
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\csi.exe.config
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\csi.rsp
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.AppContext.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.Console.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.IO.Compression.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.IO.Pipes.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.Security.Claims.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.Threading.Thread.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.ValueTuple.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\vbc.exe
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\vbc.exe.config
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\vbc.rsp
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\VBCSCompiler.exe
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Antlr3.Runtime.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\EntityFramework.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\EntityFramework.SqlServer.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.AI.Web.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.AspNet.TelemetryCorrelation.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.ReportViewer.DataVisualization.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.ReportViewer.Design.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.ReportViewer.WebDesign.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.ReportViewer.WebForms.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.ReportViewer.WinForms.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.SqlServer.Types.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Newtonsoft.Json.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\System.Web.Helpers.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\System.Web.Mvc.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\System.Web.Optimization.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\System.Web.Razor.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\System.Web.WebPages.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\System.Web.WebPages.Razor.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\WebGrease.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\WEBPOS.DataAccess.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\EnvDTE.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Interop.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.14.0.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Design.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Interop.8.0.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\stdole.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.OLE.Interop.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.TextManager.Interop.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.VSHelp.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Utilities.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Immutable.10.0.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Immutable.14.0.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Threading.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Immutable.11.0.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Interop.9.0.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.ProjectAggregator.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Imaging.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Immutable.12.0.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.ComponentModelHost.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.ImageCatalog.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Designer.Interfaces.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.TemplateWizardInterface.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Text.Data.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Text.UI.Wpf.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Text.UI.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Package.LanguageService.14.0.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Debugger.InteropA.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\EnvDTE80.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Language.Intellisense.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.Build.Tasks.Core.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Data.Services.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\VSLangProj.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Interop.11.0.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Data.Core.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Interop.10.0.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\VSLangProj80.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.ManagedInterfaces.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.WCFReference.Interop.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Data.Framework.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Editor.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Debugger.Interop.11.0.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.GraphModel.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.CoreUtility.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.MSXML.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.Build.Utilities.Core.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Text.Logic.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.TextManager.Interop.10.0.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.Build.Framework.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\VSLangProj2.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\WEBPOS.DataAccess.pdb
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\WEBPOS.DataAccess.dll.config
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\EntityFramework.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\EntityFramework.SqlServer.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\System.Web.Helpers.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\System.Web.Mvc.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\System.Web.Optimization.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\System.Web.Razor.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\System.Web.WebPages.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\System.Web.WebPages.Razor.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Newtonsoft.Json.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Antlr3.Runtime.pdb
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\System.Diagnostics.DiagnosticSource.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.AspNet.TelemetryCorrelation.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.AI.Web.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.14.0.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Design.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Utilities.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Immutable.10.0.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Immutable.14.0.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Threading.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Immutable.11.0.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Imaging.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Immutable.12.0.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.ImageCatalog.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Designer.Interfaces.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.TemplateWizardInterface.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Text.Data.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Text.UI.Wpf.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Text.UI.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Package.LanguageService.14.0.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Language.Intellisense.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.WCFReference.Interop.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Data.Framework.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Editor.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.CoreUtility.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Text.Logic.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\de\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\es\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\fr\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\it\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\ja\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\ko\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\pt\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\ru\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\de\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\es\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\fr\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\it\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\ja\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\ko\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\pt\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\ru\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\de\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\es\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\fr\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\it\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\ja\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\ko\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\pt\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\ru\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\zh-CHS\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\zh-CHT\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\de\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\fr\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\it\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\ja\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\ko\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\pt\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\ru\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\zh-CHS\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\zh-CHT\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\de\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\es\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\fr\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\it\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\ja\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\ko\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\pt\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\ru\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\obj\Release\WEBPOS.csprojAssemblyReference.cache
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\obj\Release\WEBPOS.csproj.ResolveComReference.cache
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\obj\Release\WEBPOS.csproj.CoreCompileInputs.cache
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\obj\Release\WEBPOS.csproj.CopyComplete
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\obj\Release\WEBPOS.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\obj\Release\WEBPOS.pdb
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ApplicationInsights.config
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\SqlServerTypes\x64\msvcr120.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\SqlServerTypes\x64\SqlServerSpatial140.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\SqlServerTypes\x86\msvcr120.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\SqlServerTypes\x86\SqlServerSpatial140.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\WEBPOS.dll.config
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\WEBPOS.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\WEBPOS.pdb
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\csc.exe
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\csc.exe.config
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\csc.rsp
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\csi.exe
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\csi.exe.config
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\csi.rsp
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.AppContext.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Console.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.IO.Compression.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.IO.Pipes.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Security.Claims.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Threading.Thread.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.ValueTuple.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\vbc.exe
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\vbc.exe.config
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\vbc.rsp
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\VBCSCompiler.exe
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Antlr3.Runtime.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\EntityFramework.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\EntityFramework.SqlServer.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.AI.Web.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.AspNet.TelemetryCorrelation.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.ReportViewer.DataVisualization.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.ReportViewer.Design.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.ReportViewer.WebDesign.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.ReportViewer.WebForms.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.ReportViewer.WinForms.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.SqlServer.Types.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Newtonsoft.Json.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Helpers.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Mvc.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Optimization.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Razor.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.WebPages.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.WebPages.Razor.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\WebGrease.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\WEBPOS.DataAccess.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\EnvDTE.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Interop.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.14.0.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Design.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Interop.8.0.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\stdole.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.OLE.Interop.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.TextManager.Interop.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.VSHelp.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Utilities.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Immutable.10.0.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Immutable.14.0.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Threading.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Immutable.11.0.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Interop.9.0.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.ProjectAggregator.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Imaging.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Immutable.12.0.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.ComponentModelHost.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.ImageCatalog.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Designer.Interfaces.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.TemplateWizardInterface.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Text.Data.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Text.UI.Wpf.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Text.UI.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Package.LanguageService.14.0.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Debugger.InteropA.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\EnvDTE80.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Language.Intellisense.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.Build.Tasks.Core.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Data.Services.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\VSLangProj.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Interop.11.0.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Data.Core.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Interop.10.0.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\VSLangProj80.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.ManagedInterfaces.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.WCFReference.Interop.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Data.Framework.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Editor.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Debugger.Interop.11.0.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.GraphModel.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.CoreUtility.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.MSXML.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.Build.Utilities.Core.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Text.Logic.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.TextManager.Interop.10.0.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.Build.Framework.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\VSLangProj2.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\WEBPOS.DataAccess.pdb
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\WEBPOS.DataAccess.dll.config
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\EntityFramework.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\EntityFramework.SqlServer.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Helpers.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Mvc.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Optimization.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Razor.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.WebPages.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.WebPages.Razor.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Newtonsoft.Json.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Antlr3.Runtime.pdb
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Diagnostics.DiagnosticSource.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.AspNet.TelemetryCorrelation.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.AI.Web.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.14.0.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Design.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Utilities.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Immutable.10.0.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Immutable.14.0.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Threading.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Immutable.11.0.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Imaging.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Shell.Immutable.12.0.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.ImageCatalog.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Designer.Interfaces.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.TemplateWizardInterface.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Text.Data.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Text.UI.Wpf.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Text.UI.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Package.LanguageService.14.0.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Language.Intellisense.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.WCFReference.Interop.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Data.Framework.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Editor.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.CoreUtility.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.VisualStudio.Text.Logic.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\de\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\es\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\fr\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\it\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ja\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ko\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\pt\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ru\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\de\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\es\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\fr\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\it\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ja\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ko\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\pt\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ru\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\de\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\es\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\fr\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\it\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ja\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ko\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\pt\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ru\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\zh-CHS\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\zh-CHT\Microsoft.ReportViewer.WebDesign.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\de\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\fr\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\it\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ja\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ko\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\pt\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ru\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\zh-CHS\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\zh-CHT\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\de\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\es\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\fr\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\it\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ja\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ko\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\pt\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ru\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\obj\Release\WEBPOS.csprojAssemblyReference.cache
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\obj\Release\WEBPOS.csproj.ResolveComReference.cache
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\obj\Release\WEBPOS.csproj.CoreCompileInputs.cache
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\obj\Release\WEBPOS.csproj.CopyComplete
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\obj\Release\WEBPOS.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\obj\Release\WEBPOS.pdb
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ExcelDataReader.DataSet.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ExcelDataReader.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ExcelDataReader.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ExcelDataReader.DataSet.xml

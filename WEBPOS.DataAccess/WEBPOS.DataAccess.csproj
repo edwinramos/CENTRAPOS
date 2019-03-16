@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6A991101-6089-47C3-B0D4-9482FBF9E81F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WEBPOS.DataAccess</RootNamespace>
+    <AssemblyName>WEBPOS.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusinessLayer\BlBusinessPartnerContact.cs" />
+    <Compile Include="BusinessLayer\BlSellOrderDetail.cs" />
+    <Compile Include="BusinessLayer\BlSellTransactionDetail.cs" />
+    <Compile Include="BusinessLayer\BlSellOrder.cs" />
+    <Compile Include="BusinessLayer\BlSellTransactionPayment.cs" />
+    <Compile Include="BusinessLayer\BlStore.cs" />
+    <Compile Include="BusinessLayer\BlItem.cs" />
+    <Compile Include="BusinessLayer\BlDepartment.cs" />
+    <Compile Include="BusinessLayer\BlItemWarehouse.cs" />
+    <Compile Include="BusinessLayer\BlPrice.cs" />
+    <Compile Include="BusinessLayer\BlBusinessPartner.cs" />
+    <Compile Include="BusinessLayer\BlPaymentType.cs" />
+    <Compile Include="BusinessLayer\BlSellTransactionHead.cs" />
+    <Compile Include="BusinessLayer\BlStorePos.cs" />
+    <Compile Include="BusinessLayer\BlActivityLog.cs" />
+    <Compile Include="BusinessLayer\BlTable.cs" />
+    <Compile Include="BusinessLayer\BlUser.cs" />
+    <Compile Include="BusinessLayer\BlWarehouse.cs" />
+    <Compile Include="BusinessLayer\BlTax.cs" />
+    <Compile Include="BusinessLayer\BlUnitMeasure.cs" />
+    <Compile Include="BusinessLayer\BlPriceList.cs" />
+    <Compile Include="DataEntities\Base.cs" />
+    <Compile Include="DataEntities\DeBusinessPartnerContact.cs" />
+    <Compile Include="DataEntities\DeDepartment.cs" />
+    <Compile Include="DataEntities\DeBusinessPartner.cs" />
+    <Compile Include="DataEntities\DePaymentType.cs" />
+    <Compile Include="DataEntities\DeSellOrderDetail.cs" />
+    <Compile Include="DataEntities\DeSellTransactionDetail.cs" />
+    <Compile Include="DataEntities\DeSellOrder.cs" />
+    <Compile Include="DataEntities\DeSellTransactionPayment.cs" />
+    <Compile Include="DataEntities\DeStore.cs" />
+    <Compile Include="DataEntities\DeSellTransactionHead.cs" />
+    <Compile Include="DataEntities\DeStorePos.cs" />
+    <Compile Include="DataEntities\DeActivityLog.cs" />
+    <Compile Include="DataEntities\DeTable.cs" />
+    <Compile Include="DataEntities\DeUser.cs" />
+    <Compile Include="DataEntities\DeWarehouse.cs" />
+    <Compile Include="DataEntities\DeUnitMeasure.cs" />
+    <Compile Include="DataEntities\DeTax.cs" />
+    <Compile Include="DataEntities\DeItemWarehouse.cs" />
+    <Compile Include="DataEntities\DePrice.cs" />
+    <Compile Include="DataEntities\DeItem.cs" />
+    <Compile Include="DataEntities\DePriceList.cs" />
+    <Compile Include="DataLayer\DlSellOrderDetail.cs" />
+    <Compile Include="DataLayer\DlSellTransactionDetail.cs" />
+    <Compile Include="DataLayer\DlSellOrder.cs" />
+    <Compile Include="DataLayer\DlSellTransactionPayment.cs" />
+    <Compile Include="DataLayer\DlStore.cs" />
+    <Compile Include="DataLayer\DlItem.cs" />
+    <Compile Include="DataLayer\DlDepartment.cs" />
+    <Compile Include="DataLayer\DlBusinessPartnerContact.cs" />
+    <Compile Include="DataLayer\DlPrice.cs" />
+    <Compile Include="DataLayer\DlItemWarehouse.cs" />
+    <Compile Include="DataLayer\DlBusinessPartner.cs" />
+    <Compile Include="DataLayer\DlPaymentType.cs" />
+    <Compile Include="DataLayer\DlSellTransactionHead.cs" />
+    <Compile Include="DataLayer\DlStorePos.cs" />
+    <Compile Include="DataLayer\DlActivityLog.cs" />
+    <Compile Include="DataLayer\DlTable.cs" />
+    <Compile Include="DataLayer\DlUser.cs" />
+    <Compile Include="DataLayer\DlWarehouse.cs" />
+    <Compile Include="DataLayer\DlTax.cs" />
+    <Compile Include="DataLayer\DlUnitMeasure.cs" />
+    <Compile Include="DataLayer\DlPriceList.cs" />
+    <Compile Include="DataLayer\WEBPOSInitializer.cs" />
+    <Compile Include="Helpers\ActivityLogHelper.cs" />
+    <Compile Include="WEBPOSContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

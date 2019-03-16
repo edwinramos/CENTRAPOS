@@ -1,0 +1,86 @@
+﻿@{
+    Layout = null;
+    Page.Title = "CentraPos";
+}
+@model WEBPOS.DataAccess.DataEntities.UserType
+<head>
+    <title>CentraPos</title>
+    <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="../../Content/util.css" rel="stylesheet" />
+    <link href="../../Content/logInMain.css" rel="stylesheet" />
+</head>
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
+            @*<form class="login100-form validate-form">*@
+            <span class="login100-form-title p-b-33">
+                CentraPos
+            </span>
+            @{
+                if (!WEBPOS.DataAccess.BusinessLayer.BlStorePos.ReadAll().Where(x => string.IsNullOrEmpty(x.DeviceId)).Any())
+                {
+                    <div id="errorSpace" class="validate-input alert-validate" data-validate="No existen terminales disponibles"></div>
+                }
+            }
+
+            <br />
+            <div class="wrap-input100 validate-input" data-validate="Nombre de usuario invalido">
+                @Html.Label("Seleccione Terminal")
+                @{
+                    
+
+                    List<SelectListItem> list = new List<SelectListItem>();
+                    foreach (var ob in WEBPOS.DataAccess.BusinessLayer.BlStorePos.ReadAll().Where(x=> string.IsNullOrEmpty(x.DeviceId)))
+                    {
+                        list.Add(new SelectListItem { Text = ob.StorePosCode + " | " + ob.StorePosDescription, Value = ob.StorePosCode });
+                    }
+                }
+                @Html.DropDownList("PosCode", list, new { htmlAttributes = new { @class = "form-control" } })
+                <span class="focus-input100-1"></span>
+                <span class="focus-input100-2"></span>
+            </div>
+
+            @*<div class="wrap-input100 rs1 validate-input" data-validate="Contraseña invalida">
+            <input class="input100" type="password" id="pass" placeholder="Contraseña">
+            <span class="focus-input100-1"></span>
+            <span class="focus-input100-2"></span>
+        </div>*@
+
+            <div class="container-login100-form-btn m-t-20">
+                <a class="login100-form-btn" href="@Url.Action("LogIn", "User")">
+                    Atrás
+                </a>
+            </div>
+
+            <div class="container-login100-form-btn m-t-20">
+                <Button class="login100-form-btn" onclick='onSignIn()'>
+                    Entrar
+                </Button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="../../Scripts/jquery-3.3.1.min.js"></script>
+<script src="../../Scripts/bootstrap.min.js"></script>
+<script src="../../Scripts/moment.js"></script>
+<script src="../../Scripts/loginMain.js"></script>
+<script>
+    function onSignIn() {
+        if ($("#PosCode").val()) {
+            $.ajax({
+                type: "GET",
+                dataType: 'json',
+                url: '@Url.Action("UserSelectTerminal", "User")',
+                data: { posCode: $("#PosCode").val(), userType: '@Model' },
+                success: function (data) {
+                        window.location.replace(data.url);
+                },
+            });
+        }
+    }
+</script>

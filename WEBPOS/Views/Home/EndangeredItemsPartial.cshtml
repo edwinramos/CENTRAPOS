@@ -1,0 +1,34 @@
+﻿@using (Html.BeginForm("", "", FormMethod.Post, new { id = "dataEndangeredItemsForm" }))
+{
+    <div class="container form-group">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal">&times;</a>
+                    <h4 class="modal-title">Articulos Escasos</h4>
+                </div>
+
+                <div class="modal-body col-md-12">
+                    <table>
+                        @{
+                            var list = WEBPOS.DataAccess.BusinessLayer.BlItemWarehouse.ReadAllQueryable().Where(x => x.QuantityOnHand <= 10);
+                            foreach (var obj in list)
+                            {
+                                var item = WEBPOS.DataAccess.BusinessLayer.BlItem.ReadAllQueryable().FirstOrDefault(x => x.ItemCode == obj.ItemCode);
+                                var warehouse = obj.Warehouse;
+
+                                <tr>
+                                    <td><a href="@Url.Action("ItemDetail", "Item", new { id = obj.ItemCode })" target="_blank"><strong><h4>@item.ItemDescription</h4></strong></a></td>
+                                    <td><p>*@obj.QuantityOnHand en existencia en almacen @warehouse.WarehouseDescription</p></td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-default" data-dismiss="modal">Cerrar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

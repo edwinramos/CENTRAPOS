@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2018
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WEBPOS", "WEBPOS\WEBPOS.csproj", "{65417330-0BC7-4F51-B4B9-CEFFA0D576FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WEBPOS.DataAccess", "WEBPOS.DataAccess\WEBPOS.DataAccess.csproj", "{6A991101-6089-47C3-B0D4-9482FBF9E81F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65417330-0BC7-4F51-B4B9-CEFFA0D576FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65417330-0BC7-4F51-B4B9-CEFFA0D576FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65417330-0BC7-4F51-B4B9-CEFFA0D576FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65417330-0BC7-4F51-B4B9-CEFFA0D576FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A991101-6089-47C3-B0D4-9482FBF9E81F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A991101-6089-47C3-B0D4-9482FBF9E81F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A991101-6089-47C3-B0D4-9482FBF9E81F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A991101-6089-47C3-B0D4-9482FBF9E81F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {11FAD676-31A6-4269-BA1B-3417D06417B8}
+	EndGlobalSection
+EndGlobal

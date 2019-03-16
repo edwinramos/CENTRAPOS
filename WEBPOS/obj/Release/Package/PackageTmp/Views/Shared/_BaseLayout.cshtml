@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>CentraPos</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/responsive.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+
+                <!-- Header -->
+                <header id="header">
+                    <strong>CentraPOS</strong>
+                    <ul class="icons">
+                        <li><a href="@Url.Action("UserLogout", "User")" class="icon fa-sign-out"><span class="label">Salir</span></a></li>
+                        @*<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                        <li><a href="#" class="icon fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+                        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+                        <li><a href="#" class="icon fa-medium"><span class="label">Medium</span></a></li>*@
+                    </ul>
+                </header>
+                <div id="mainBody">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <div class="inner">
+
+                <!-- Search -->
+                <section id="search" class="alt">
+                    @*<form method="post" action="#">
+                        <input type="text" name="query" id="query" placeholder="Buscar" />
+                    </form>*@
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a href="#" onclick="endangeredItemsModal()"><i class="icon fa-exclamation-triangle" style="color:goldenrod;"></i> Articulos Escasos</a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Menu -->
+                <nav id="menu" style="
+    border-bottom: none;
+    margin: 0;
+    padding: 0;
+">
+                    <header class="major">
+                        <h2>Menu</h2>
+                    </header>
+                    <ul>
+                        <li><a href="#" onclick=onActionClick('@Url.Action("Charts", "Home")');>Inicio</a></li>
+                        <li>
+                            <span class="opener">Administración</span>
+                            <ul>
+                                <li><a href='#' onclick=onActionClick('@Url.Action("Index", "Store" )');>Tienda</a></li>
+                                <li><a href='#' onclick=onActionClick('@Url.Action("Index", "PaymentType" )');>Tipos de Pago</a></li>
+                                <li><a href='#' onclick=onActionClick('@Url.Action("Index", "User" )');>Usuarios</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="opener">Inventario</span>
+                            <ul>
+                                <li><a href='#' onclick=onActionClick('@Url.Action("Index", "Item" )');>Articulos</a></li>
+                                <li><a href='#' onclick=onActionClick('@Url.Action("Index", "PriceList" )');>Listas de Precio</a></li>
+                                <li><a href='#' onclick=onActionClick('@Url.Action("Index", "Warehouse" )');>Almacenes</a></li>
+                                <li><a href='#' onclick=onActionClick('@Url.Action("Index", "Tax" )');>Impuestos</a></li>
+                                <li><a href='#' onclick=onActionClick('@Url.Action("Index", "Department" )');>Departamentos</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="opener">Compras</span>
+                            <ul>
+                                <li><a href="#" onclick=onActionClick('@Url.Action("Index", "BusinessPartner" , new { bsType="S" })');>Suplidores</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="opener">Ventas</span>
+                            <ul>
+                                <li><a href="#" onclick=onActionClick('@Url.Action("Index", "BusinessPartner" , new { bsType="C" })');>Clientes</a></li>
+                                <li><a href="#" onclick=onActionClick('@Url.Action("Index", "StorePos" )')>Terminales</a></li>
+                                <li><a href="#" onclick=onActionClick('@Url.Action("Index", "SellTransaction" )')>Ventas Efectuadas</a></li>
+                                <li><a href="#" onclick=onActionClick('@Url.Action("Index", "SellOrder" )')>Cotizaciones</a></li>
+                                <li><a href="@Url.Action("Index", "Pos" )" target="_blank">Punto de Venta</a></li>
+                            </ul>
+                        </li>
+                        <li></li>
+                    </ul>
+                </nav>
+
+                <!-- Section -->
+                <section>
+                    
+                </section>
+
+                <!-- Section -->
+                @*<section>
+                    <header class="major">
+                        <h2>Get in touch</h2>
+                    </header>
+                    <p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+                    <ul class="contact">
+                        <li class="fa-envelope-o"><a href="#">information@untitled.tld</a></li>
+                        <li class="fa-phone">(000) 000-0000</li>
+                        <li class="fa-home">
+                            1234 Somewhere Road #8254<br />
+                            Nashville, TN 00000-0000
+                        </li>
+                    </ul>
+                </section>*@
+
+                <!-- Footer -->
+                @*<footer id="footer">
+                    <p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+                </footer>*@
+
+            </div>
+        </div>
+
+    </div>
+    <div class="modal fade" id="myItemsModal" role="dialog">
+        <div id="itemsModalContainer">
+            @Html.Partial("EndangeredItemsPartial")
+        </div>
+    </div>
+    <!-- Scripts -->
+    @*<script src="~/Scripts/jquery.min.js"></script>*@
+    <script src="~/Scripts/browser.min.js"></script>
+    <script src="~/Scripts/breakpoints.min.js"></script>
+    <script src="~/Scripts/util.js"></script>
+    <script src="~/Scripts/main.js"></script>
+</body>
+</html>
+<script>
+    function onActionClick(url) {
+        $.ajax({
+            url: url,
+            async: false,
+            beforeSend: function () {
+
+            },
+            complete: function () {
+
+            },
+            success: function (result) {
+                $('#mainBody').html(result);
+            }
+        });
+    }
+    $("form").keypress(function (e) {
+        // Check if it is the enter key
+
+        if (e.which == 13) {
+            var n = $("input:text").length;
+            // If so, prevent the default behavior
+            $(':focus').blur();
+            // If so, prevent the default behavior
+            e.preventDefault();
+        }
+    });
+
+    function endangeredItemsModal()
+    {
+        $.ajax({
+            url: '@Url.Action("EndangeredItemsPartial", "Home")',
+            async: false,
+            beforeSend: function () {
+
+            },
+            complete: function () {
+
+            },
+            success: function (result) {
+                $('#itemsModalContainer').html(result);
+                $('#myItemsModal').modal('show');
+            }
+        });
+        
+    }
+</script>

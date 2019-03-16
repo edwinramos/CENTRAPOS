@@ -1,0 +1,62 @@
+﻿@using WEBPOS.DataAccess.DataEntities
+
+@model WEBPOS.Models.PaymentModel
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("SaveTransaction", "Pos", FormMethod.Post, new { id = "paymentForm", onkeydown = "return (event.keyCode!=13);" }))
+{
+    <div class="container form-group">
+        <div class="modal-dialog modal-lg" style="width:50%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal">&times;</a>
+                    <h4 class="modal-title">Pagar</h4>
+                </div>
+                @Html.HiddenFor(x => x.CustomerCode)
+                @Html.HiddenFor(x => x.StoreCode)
+                @Html.HiddenFor(x => x.PriceListCode)
+                @Html.HiddenFor(x => x.PosCode)
+                <div class="modal-body col-md-12">
+                    @Html.Label("Tipo de Pago")
+                    @{
+                        List<SelectListItem> list = new List<SelectListItem>();
+                        foreach (var ob in WEBPOS.DataAccess.BusinessLayer.BlPaymentType.ReadAll())
+                        {
+                            list.Add(new SelectListItem { Text = ob.PaymentTypeCode + " | " + ob.PaymentTypeDescription, Value = ob.PaymentTypeCode });
+                        }
+                    }
+                    @Html.DropDownListFor(m => m.PaymentTypeCode, list, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="form-group col-md-6">
+                    @Html.Label("Monto de Pago(RD$)"):
+                </div>
+                <div class="form-group col-md-6">
+                    @Html.TextBoxFor(m => m.PayedAmount, new { @class = "form-control currency", @type = "number", @onchange = "onPayedAmountChanged();" })
+                </div>
+                <div class="form-group col-md-6">
+                    @Html.Label("Total a Pagar(RD$)"):
+                </div>
+                <div class="form-group col-md-6">
+                    @Html.TextBoxFor(m => m.Total, new { @class = "form-control currency", @readonly = "readonly", @type = "number" })
+                </div>
+                <div class="form-group col-md-6">
+                    @Html.Label("Resto(RD$)"):
+                </div>
+                <div class="form-group col-md-6">
+                    @Html.TextBoxFor(m => m.Rest, new { @class = "form-control currency", @readonly = "readonly", @type = "number" })
+                </div>
+                <div class="modal-body col-md-12">
+                    @Html.Label("Tipo de Documento")
+                    @Html.EnumDropDownListFor(m => m.DocType, "", new { @class = "form-control" })
+                </div>
+
+                <div class="modal-footer">
+                    <a class="btn btn-default" data-dismiss="modal">Cerrar</a>
+                    <a class="btn btn-default" onclick=onPaymentTypeFormSubmit();>Ok</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

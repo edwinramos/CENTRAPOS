@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBWEBPOSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="srSellTransactionDetail">
+    <Key>
+      <PropertyRef Name="StoreCode" />
+      <PropertyRef Name="PosCode" />
+      <PropertyRef Name="TransactionDateTime" />
+      <PropertyRef Name="TransactionNumber" />
+      <PropertyRef Name="RowNumber" />
+    </Key>
+    <Property Name="StoreCode" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="PosCode" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="TransactionDateTime" Type="datetime" Nullable="false" />
+    <Property Name="TransactionNumber" Type="float" Nullable="false" />
+    <Property Name="RowNumber" Type="float" Nullable="false" />
+    <Property Name="ItemCode" Type="nvarchar" MaxLength="128" />
+    <Property Name="ItemDescription" Type="nvarchar(max)" />
+    <Property Name="Barcode" Type="nvarchar(max)" />
+    <Property Name="TaxCode" Type="nvarchar(max)" />
+    <Property Name="TaxPercent" Type="float" Nullable="false" />
+    <Property Name="BasePrice" Type="float" Nullable="false" />
+    <Property Name="SellPrice" Type="float" Nullable="false" />
+    <Property Name="Quantity" Type="float" Nullable="false" />
+    <Property Name="RowValue" Type="float" Nullable="false" />
+    <Property Name="PriceListCode" Type="nvarchar" MaxLength="128" />
+    <Property Name="TotalValue" Type="float" Nullable="false" />
+    <Property Name="IsPrinted" Type="bit" Nullable="false" />
+    <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+    <Property Name="UpdateUser" Type="nvarchar(max)" />
+    <Property Name="StorePos_StoreCode" Type="nvarchar" MaxLength="128" />
+    <Property Name="StorePos_StorePosCode" Type="nvarchar" MaxLength="128" />
+  </EntityType>
+  <EntityContainer Name="DBWEBPOSModelStoreContainer">
+    <EntitySet Name="srSellTransactionDetail" EntityType="Self.srSellTransactionDetail" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,135 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Listas de Precio";
+}
+
+
+
+<div>
+    <br />
+    <div style="width:90%; margin:0 auto;">
+        <a href='#' class='btn btn-primary new' onclick=onItemDetail('0');>Nuevo</a>
+        <table id="itemsGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Descripción</th>
+                    <th>Ultima Fecha</th>
+                    <th>Detalles</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+@using (Html.BeginForm("ImportExcel", "Item", FormMethod.Post, new { id = "importForm", enctype = "multipart/form-data" }))
+{
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse1">Carga Masiva</a>
+                </h4>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse">
+                &nbsp;
+                <input type="file" name="excelFile" id="Files" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
+                <input type="submit" value="Subir" />
+                @*<table>
+            <tr>
+                <td>Carga masiva:</td>
+                <td><input type="file" name="excelFile" id="Files" /></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><input type="submit" value="Subir" /></td>
+            </tr>
+        </table>*@
+            </div>
+        </div>
+    </div>
+}
+<script>
+
+
+    var table = $("#itemsGrid").DataTable({
+
+        "processing": true, // for show progress bar
+        "serverSide": true, // for process server side
+        "filter": true, // this is for disable filter (search box)
+        "orderMulti": false, // for disable multiple column at once
+        "pageLength": 5,
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+        },
+        "ajax": {
+            "url": "/Item/LoadData",
+            "type": "POST",
+            "datatype": "json"
+        },
+
+        "columnDefs":
+            [{
+                "targets": [0],
+                //"visible": false,
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [1],
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [2],
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [3],
+                "searchable": false,
+                "orderable": false
+                }],
+
+        "columns": [
+            { "data": "ItemCode", "name": "ItemCode", "autoWidth": true },
+            { "data": "ItemDescription", "name": "ItemDescription", "autoWidth": true },
+            {
+                "data": "LastUpdate", render: function (d) {
+                    return moment(d).format("DD/MM/YYYY hh:mm A");
+                }
+            },
+            //{ "data": "ContactTitle", "name": "ContactTitle", "autoWidth": true },
+            //{ "data": "City", "name": "City", "autoWidth": true },
+            //{ "data": "PostalCode", "name": "PostalCode", "autoWidth": true },
+            //{ "data": "Country", "name": "Country", "autoWidth": true },
+            //{ "data": "Phone", "name": "Phone", "title": "Status", "autoWidth": true },
+            {
+                "render": function (data, type, full, meta) { return "<a class='btn btn-info' href='#' onclick=onItemDetail('" + full.ItemCode + "'); >Ver</a>"; }
+            },
+        ]
+    });
+
+    function onItemDelete(id) {
+        if (confirm("¿Desea eliminar '" + id + "'?")) {
+            var url = '@Url.Action("ItemDelete", "Item", new { id = "XXX" })';
+            url = url.replace("XXX", id);
+            $.get(url, function (data) {
+                table.ajax.reload();
+            });
+        }
+    }
+
+    //$('#importForm').submit(function () {
+    //    alert("Carga completa.");
+    //    table.ajax.reload();
+    //    return true;
+    //});
+
+    function onItemDetail(id) {
+        var url = '@Url.Action("ItemDetail","Item", new { id = "XXX" })';
+        url = url.replace("XXX", id);
+        window.open(url, '_blank');
+    }
+</script>

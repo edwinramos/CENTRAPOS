@@ -1,0 +1,346 @@
+﻿@model WEBPOS.DataAccess.DataEntities.DeSellOrder
+@{
+    Layout = "~/Views/Shared/_ActionLayout.cshtml";
+    ViewBag.Title = "Orden de Venta";
+}
+@using (Html.BeginForm("SellOrderManage", "SellOrder", FormMethod.Post, new { id = "itemForm" }))
+{
+    @Html.HiddenFor(m => m.SellOrderId)
+    @Html.HiddenFor(m => m.StoreCode)
+    @Html.HiddenFor(m => m.ClosedDateTime)
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.Label("Lista de Precio")
+                    @{
+                        List<SelectListItem> dptList = new List<SelectListItem>();
+                        foreach (var ob in WEBPOS.DataAccess.BusinessLayer.BlPriceList.ReadAll())
+                        {
+                            dptList.Add(new SelectListItem { Text = ob.PriceListDescription, Value = ob.PriceListCode });
+                        }
+                    }
+                    @Html.DropDownListFor(model => model.PriceListCode, dptList, new { htmlAttributes = new { @class = "form-control" } })
+                    <br />
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.Label("Almacén")
+                    @{
+                        List<SelectListItem> unitMeasureList = new List<SelectListItem>();
+                        foreach (var ob in WEBPOS.DataAccess.BusinessLayer.BlWarehouse.ReadAll())
+                        {
+                            unitMeasureList.Add(new SelectListItem { Text = ob.WarehouseDescription, Value = ob.WarehouseCode });
+                        }
+                    }
+                    @Html.DropDownListFor(model => model.WarehouseCode, unitMeasureList, new { htmlAttributes = new { @class = "form-control" } })
+                    <br />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="col-md-9">
+                    @Html.Label("Referencia Externa")
+                    @Html.EditorFor(model => model.ExternalReference, new { htmlAttributes = new { @class = "form-control" } })
+                    <br />
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group">
+                <div class="col-md-9">
+                    @Html.Label("Fecha de Cotización")
+                    @Html.EditorFor(model => model.DocDateTime, new { htmlAttributes = new { @class = "form-control datepicker", data_format = "dd/mm/yyyy" } })
+                    <br />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.Label("Cliente")
+                    @{
+                        List<SelectListItem> clientList = new List<SelectListItem>();
+                        foreach (var ob in WEBPOS.DataAccess.BusinessLayer.BlBusinessPartner.ReadAll().Where(x => x.BusinessPartnerType == "C"))
+                        {
+                            clientList.Add(new SelectListItem { Text = ob.BusinessPartnerDescription, Value = ob.BusinessPartnerCode });
+                        }
+                    }
+                    @Html.DropDownListFor(model => model.ClientCode, clientList, new { htmlAttributes = new { @class = "form-control" } })
+                    <br />
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.Label("Terminal")
+                    @{
+                        List<SelectListItem> terminalList = new List<SelectListItem>();
+                        foreach (var ob in WEBPOS.DataAccess.BusinessLayer.BlStorePos.ReadAll())
+                        {
+                            terminalList.Add(new SelectListItem { Text = ob.StorePosDescription, Value = ob.StorePosCode });
+                        }
+                    }
+                    @Html.DropDownListFor(model => model.StorePosCode, terminalList, new { htmlAttributes = new { @class = "form-control" } })
+                    <br />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.Label("Tipo de Pago")
+                    @{
+                        List<SelectListItem> taxList = new List<SelectListItem>();
+                        foreach (var ob in WEBPOS.DataAccess.BusinessLayer.BlPaymentType.ReadAll())
+                        {
+                            taxList.Add(new SelectListItem { Text = ob.PaymentTypeDescription, Value = ob.PaymentTypeCode });
+                        }
+                    }
+                    @Html.DropDownListFor(model => model.PaymentTypeCode, taxList, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="col-md-9">
+                    @{ if (Model.SellOrderId != 0 && !Model.IsClosed)
+                        {
+                            <button class="btn btn-default" type="submit">Guardar</button>
+                            <button class="btn btn-default" type="button" onclick="onCloseOrder();">Cerrar Orden</button>
+                        }
+                    }
+                    <br />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <div class="col-md-12">
+                    @{ if (Model.SellOrderId != 0 && !Model.IsClosed)
+                        {
+                            <a href='#' class='btn btn-primary new' onclick=onDetailEdit('0');>Nuevo</a>
+                        }
+                    }
+                    <table id="sellOrderDetailGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Articulo</th>
+                                <th>Cantidad</th>
+                                <th>Descuento Total</th>
+                                <th>Precio Final</th>
+                                <th>Ver</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <br />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.Label("Comentarios")
+                    @Html.EditorFor(model => model.Comments, new { htmlAttributes = new { @class = "form-control" } })
+                    <br />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("Impuesto Total")
+                    @Html.EditorFor(model => model.VatSum, new { htmlAttributes = new { @class = "form-control", @type = "number", @readonly = "readonly" } })
+                </div>
+                <div class="col-md-12">
+                    @Html.Label("Descuento Total")
+                    @Html.EditorFor(model => model.TotalDiscount, new { htmlAttributes = new { @class = "form-control", @type = "number", @readonly = "readonly" } })
+                </div>
+                <div class="col-md-12">
+                    @Html.Label("Total")
+                    @Html.EditorFor(model => model.DocTotal, new { htmlAttributes = new { @class = "form-control", @type = "number", @readonly = "readonly" } })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="modal fade" id="myModal" role="dialog">
+    <div id="modalContainer"></div>
+</div>
+<script>
+    var detailTable = $("#sellOrderDetailGrid").DataTable({
+
+        "processing": true, // for show progress bar
+        "serverSide": true, // for process server side
+        "filter": true, // this is for disable filter (search box)
+        "orderMulti": false, // for disable multiple column at once
+        "pageLength": 5,
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+        },
+        "ajax": {
+            "url": "/SellOrder/SellOrderDetailLoadData/@Model.SellOrderId",
+            "type": "POST",
+            "datatype": "json"
+        },
+
+        "columnDefs":
+            [{
+                "targets": [0],
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [1],
+                "searchable": false,
+                "orderable": false,
+                "type": "num-fmt"
+            },
+            {
+                "targets": [2],
+                "searchable": false,
+                "orderable": false,
+            },
+            {
+                "targets": [3],
+                "searchable": false,
+                "orderable": false,
+            },
+            {
+                "targets": [4],
+                "searchable": false,
+                "orderable": false,
+            },
+            {
+                "targets": [5],
+                "searchable": false,
+                "orderable": false,
+            }],
+
+        "columns": [
+            { "data": "ItemDescription", "name": "ItemDescription", "autoWidth": true },
+            { "data": "Quantity", "name": "Quantity", "autoWidth": true },
+            { "render": function (data, type, full, meta) { return "(RD$)" + full.DiscountValue.toFixed(2); } },
+            { "render": function (data, type, full, meta) { return "(RD$)" + full.TotalRowValue.toFixed(2); } },
+            {
+                "render": function (data, type, full, meta) { return "<a class='btn btn-info' href='#' onclick=onDetailEdit('" + full.LineNumber + "'); >Ver</a>"; }
+            },
+            {
+                "render": function (data, type, full, meta) { return "<a class='btn btn-danger' href='#' onclick=onDetailDelete('" + full.LineNumber + "'); >Eliminar</a>"; }
+            }
+        ]
+    });
+
+    function onDetailEdit(ids) {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("SellOrderDetailPartial", "SellOrder")',
+            data: { sellOrderId: '@Model.SellOrderId', lineNumber: ids, whsCode: $('#WarehouseCode').val(), plCode: $('#PriceListCode').val() },
+            success: function (data) {
+                $('#modalContainer').html(data);
+                $('#myModal').modal('show');
+                //if (ids != "0")
+                //    $('#PriceListCode').prop('readonly', true);
+            },
+        });
+    }
+    function onDetailDelete(ids) {
+        if (confirm("¿Seguro que desea eliminar?")) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SellOrderDetailDelete", "SellOrder")',
+                data: { sellOrderId: '@Model.SellOrderId', lineNumber: ids },
+                success: function (data) {
+                    detailTable.ajax.reload();
+                },
+            });
+        }
+    }
+
+    function onDetailSubmit() {
+        var form = $("#dataForm")[0];
+        var data = $("#dataForm").serialize();
+
+        $.ajax({
+            url: form.action,
+            type: form.method,
+            data: data,
+            beforeSend: function () {
+
+            },
+            complete: function () {
+
+            },
+            success: function (result) {
+                $('#myModal').modal('hide');
+                detailTable.ajax.reload();
+
+                $.ajax({
+                    type: "POST",
+                    dataType: 'json',
+                    url: '@Url.Action("GetOrderTotals", "SellOrder")',
+                    data: { sellOrderId: '@Model.SellOrderId' },
+                    success: function (data) {
+                        $('#TotalDiscount').val(data.totalDiscount);
+                        $('#VatSum').val(data.taxSum);
+                        $('#DocTotal').val(data.docTotal);
+
+                        itemCalculation();
+                    },
+                });
+            }
+        });
+    }
+
+    function onItemChange() {
+        $.ajax({
+            type: "POST",
+            dataType: 'json',
+                url: '@Url.Action("PriceItemInfo", "SellOrder")',
+                data: { itemCode: $('#ItemCode').val(), priceListCode: $('#PriceListCode').val() },
+                success: function (data) {
+                    $('#PriceBefDiscounts').val(data.priceBefDiscount);
+                    $('#PriceAftVat').val(data.priceAftTax);
+                    $('#VatCode').val(data.taxCode);
+
+                    itemCalculation();
+                },
+            });
+    }
+
+    function itemCalculation() {
+        var priceBefDiscount = $('#PriceAftVat').val();
+        var discount = $('#DiscountValue').val();
+        var qty = $('#Quantity').val();
+        var price = priceBefDiscount - discount;
+
+        $('#Price').val(price);
+        $('#TotalRowValue').val(price * qty);
+    }
+
+    function onCloseOrder() {
+        $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("CloseSellOrder", "SellOrder")',
+                    data: { id: '@Model.SellOrderId' },
+            success: function (data) {
+                location.reload();
+                    },
+                });
+    }
+
+    $(function () { // will trigger when the document is ready
+        $('.datepicker').datepicker({ dateFormat: 'dd/mm/yy' }); //Initialise any date pickers
+    });
+</script>

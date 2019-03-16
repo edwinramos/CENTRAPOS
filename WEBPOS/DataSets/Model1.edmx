@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBWEBPOSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="srSellTransactionDetail">
+          <Key>
+            <PropertyRef Name="StoreCode" />
+            <PropertyRef Name="PosCode" />
+            <PropertyRef Name="TransactionDateTime" />
+            <PropertyRef Name="TransactionNumber" />
+            <PropertyRef Name="RowNumber" />
+          </Key>
+          <Property Name="StoreCode" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PosCode" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="TransactionDateTime" Type="datetime" Nullable="false" />
+          <Property Name="TransactionNumber" Type="float" Nullable="false" />
+          <Property Name="RowNumber" Type="float" Nullable="false" />
+          <Property Name="ItemCode" Type="nvarchar" MaxLength="128" />
+          <Property Name="ItemDescription" Type="nvarchar(max)" />
+          <Property Name="Barcode" Type="nvarchar(max)" />
+          <Property Name="TaxCode" Type="nvarchar(max)" />
+          <Property Name="TaxPercent" Type="float" Nullable="false" />
+          <Property Name="BasePrice" Type="float" Nullable="false" />
+          <Property Name="SellPrice" Type="float" Nullable="false" />
+          <Property Name="Quantity" Type="float" Nullable="false" />
+          <Property Name="RowValue" Type="float" Nullable="false" />
+          <Property Name="PriceListCode" Type="nvarchar" MaxLength="128" />
+          <Property Name="TotalValue" Type="float" Nullable="false" />
+          <Property Name="IsPrinted" Type="bit" Nullable="false" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+          <Property Name="UpdateUser" Type="nvarchar(max)" />
+          <Property Name="StorePos_StoreCode" Type="nvarchar" MaxLength="128" />
+          <Property Name="StorePos_StorePosCode" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityContainer Name="DBWEBPOSModelStoreContainer">
+          <EntitySet Name="srSellTransactionDetail" EntityType="Self.srSellTransactionDetail" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBWEBPOSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="srSellTransactionDetail">
+          <Key>
+            <PropertyRef Name="StoreCode" />
+            <PropertyRef Name="PosCode" />
+            <PropertyRef Name="TransactionDateTime" />
+            <PropertyRef Name="TransactionNumber" />
+            <PropertyRef Name="RowNumber" />
+          </Key>
+          <Property Name="StoreCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PosCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TransactionDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TransactionNumber" Type="Double" Nullable="false" />
+          <Property Name="RowNumber" Type="Double" Nullable="false" />
+          <Property Name="ItemCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ItemDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Barcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TaxCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TaxPercent" Type="Double" Nullable="false" />
+          <Property Name="BasePrice" Type="Double" Nullable="false" />
+          <Property Name="SellPrice" Type="Double" Nullable="false" />
+          <Property Name="Quantity" Type="Double" Nullable="false" />
+          <Property Name="RowValue" Type="Double" Nullable="false" />
+          <Property Name="PriceListCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="TotalValue" Type="Double" Nullable="false" />
+          <Property Name="IsPrinted" Type="Boolean" Nullable="false" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateUser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StorePos_StoreCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="StorePos_StorePosCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="DBWEBPOSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="srSellTransactionDetail" EntityType="Self.srSellTransactionDetail" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBWEBPOSModelStoreContainer" CdmEntityContainer="DBWEBPOSEntities">
+          <EntitySetMapping Name="srSellTransactionDetail">
+            <EntityTypeMapping TypeName="DBWEBPOSModel.srSellTransactionDetail">
+              <MappingFragment StoreEntitySet="srSellTransactionDetail">
+                <ScalarProperty Name="StoreCode" ColumnName="StoreCode" />
+                <ScalarProperty Name="PosCode" ColumnName="PosCode" />
+                <ScalarProperty Name="TransactionDateTime" ColumnName="TransactionDateTime" />
+                <ScalarProperty Name="TransactionNumber" ColumnName="TransactionNumber" />
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+                <ScalarProperty Name="TaxCode" ColumnName="TaxCode" />
+                <ScalarProperty Name="TaxPercent" ColumnName="TaxPercent" />
+                <ScalarProperty Name="BasePrice" ColumnName="BasePrice" />
+                <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="RowValue" ColumnName="RowValue" />
+                <ScalarProperty Name="PriceListCode" ColumnName="PriceListCode" />
+                <ScalarProperty Name="TotalValue" ColumnName="TotalValue" />
+                <ScalarProperty Name="IsPrinted" ColumnName="IsPrinted" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="StorePos_StoreCode" ColumnName="StorePos_StoreCode" />
+                <ScalarProperty Name="StorePos_StorePosCode" ColumnName="StorePos_StorePosCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

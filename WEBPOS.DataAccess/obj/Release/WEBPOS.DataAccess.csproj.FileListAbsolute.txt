@@ -1,0 +1,24 @@
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS.DataAccess\bin\Release\WEBPOS.DataAccess.dll.config
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS.DataAccess\bin\Release\WEBPOS.DataAccess.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS.DataAccess\bin\Release\WEBPOS.DataAccess.pdb
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS.DataAccess\bin\Release\EntityFramework.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS.DataAccess\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS.DataAccess\bin\Release\EntityFramework.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS.DataAccess\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.csprojAssemblyReference.cache
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.csproj.CopyComplete
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.dll
+C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.pdb
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\bin\Release\WEBPOS.DataAccess.dll.config
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\bin\Release\WEBPOS.DataAccess.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\bin\Release\WEBPOS.DataAccess.pdb
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\bin\Release\EntityFramework.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\bin\Release\EntityFramework.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.csprojAssemblyReference.cache
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.csproj.CopyComplete
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.pdb
