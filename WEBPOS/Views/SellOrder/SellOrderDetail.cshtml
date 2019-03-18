@@ -116,6 +116,11 @@
                             <button class="btn btn-default" type="submit">Guardar</button>
                             <button class="btn btn-default" type="button" onclick="onCloseOrder();">Cerrar Orden</button>
                         }
+                        else
+                        {
+                            <button class="btn btn-default" type="submit">Guardar</button>
+                            <button class="btn btn-default" type="button" onclick="onPrintOrder();">Imprimir Orden</button>
+                        }
                     }
                     <br />
                 </div>
@@ -338,6 +343,11 @@
                 location.reload();
                     },
                 });
+    }
+
+    function onPrintOrder() {
+        var url = "WebForms/WebForm1.aspx?SellOrderId=@Model.SellOrderId&StoreCode=@Model.StoreCode&PosCode=@Model.StorePosCode&isSellTransaction=false";
+        window.open(url, '_blank');
     }
 
     $(function () { // will trigger when the document is ready

@@ -102,7 +102,7 @@
     function onSellTransactionPrint(ids) {
         var tNumber = ids.split('|')[0];
         var posCode = ids.split('|')[1];
-        var url = "WebForms/WebForm1.aspx?TransactionNumber=" + tNumber + "&StoreCode=0000001&PosCode=" + posCode;
+        var url = "WebForms/WebForm1.aspx?TransactionNumber=" + tNumber + "&StoreCode=0000001&PosCode=" + posCode + "&isSellTransaction=true";
         window.open(url, '_blank');
     }
 

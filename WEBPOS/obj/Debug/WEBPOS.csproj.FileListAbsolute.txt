@@ -277,9 +277,7 @@ C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Diagnostics.FileV
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Diagnostics.Process.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Diagnostics.StackTrace.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.IO.Compression.dll
-C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.IO.FileSystem.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
-C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.IO.FileSystem.Primitives.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.IO.Pipes.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Security.AccessControl.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Security.Claims.dll
@@ -492,3 +490,5 @@ C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\obj\Debug\WEBPOS.csproj.CoreCompile
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\obj\Debug\WEBPOS.csproj.CopyComplete
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\obj\Debug\WEBPOS.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\obj\Debug\WEBPOS.pdb
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.IO.FileSystem.Primitives.dll

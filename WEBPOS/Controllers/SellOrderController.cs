@@ -72,6 +72,11 @@ namespace WEBPOS.Controllers
         {
             model.ClientDescription = BlBusinessPartner.ReadAllQueryable().FirstOrDefault(x => x.BusinessPartnerCode == model.ClientCode).BusinessPartnerDescription;
 
+            var detail = BlSellOrderDetail.ReadAllQueryable().Where(x => x.SellOrderId == model.SellOrderId);
+            model.VatSum = detail.Sum(x => x.VatValue);
+            model.TotalDiscount = detail.Sum(x => x.DiscountValue);
+            model.DocTotal = detail.Sum(x => x.TotalRowValue);
+
             BlSellOrder.Save(model);
             
             return RedirectToAction("SellOrderDetail", new { id = model.SellOrderId });
@@ -111,7 +116,7 @@ namespace WEBPOS.Controllers
 
                 foreach (var item in list)
                 {
-                    var detail = new DeSellTransactionDetail
+                    var ob = new DeSellTransactionDetail
                     {
                         ItemCode = item.ItemCode,
                         ItemDescription = item.ItemDescription,
@@ -130,7 +135,7 @@ namespace WEBPOS.Controllers
                         DiscountOnItem = item.DiscountValue,
                         RowNumber = BlSellTransactionDetail.GetNextRowNumberNumber(head.StoreCode, head.PosCode, head.TransactionNumber, head.TransactionDateTime)
                     };
-                    BlSellTransactionDetail.Save(detail);
+                    BlSellTransactionDetail.Save(ob);
                 }
 
                 var payment = new DeSellTransactionPayment
@@ -160,6 +165,10 @@ namespace WEBPOS.Controllers
                 }
 
                 obj.IsClosed = true;
+                var detail = BlSellOrderDetail.ReadAllQueryable().Where(x => x.SellOrderId == obj.SellOrderId);
+                obj.VatSum = detail.Sum(x => x.VatValue);
+                obj.TotalDiscount = detail.Sum(x => x.DiscountValue);
+                obj.DocTotal = detail.Sum(x => x.TotalRowValue);
                 BlSellOrder.Save(obj);
             }
             catch (Exception e)
