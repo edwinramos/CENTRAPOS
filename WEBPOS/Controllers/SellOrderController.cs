@@ -75,7 +75,7 @@ namespace WEBPOS.Controllers
             var detail = BlSellOrderDetail.ReadAllQueryable().Where(x => x.SellOrderId == model.SellOrderId);
             model.VatSum = detail.Sum(x => x.VatValue);
             model.TotalDiscount = detail.Sum(x => x.DiscountValue);
-            model.DocTotal = detail.Sum(x => x.TotalRowValue);
+            model.DocTotal = detail.Sum(x => x.TotalRowValue - x.DiscountValue);
 
             BlSellOrder.Save(model);
             
@@ -262,7 +262,7 @@ namespace WEBPOS.Controllers
 
             BlSellOrderDetail.Delete(list.FirstOrDefault());
 
-            return Json(new { VatSum = list.Sum(x => x.VatValue), DiscSum = list.Sum(x => x.DiscountValue), TotalSum = list.Sum(x=>x.TotalRowValue) }, JsonRequestBehavior.AllowGet);
+            return Json(new { VatSum = list.Sum(x => x.VatValue), DiscSum = list.Sum(x => x.DiscountValue), TotalSum = list.Sum(x=>x.TotalRowValue - x.DiscountValue) }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult PriceItemInfo(string itemCode, string priceListCode)

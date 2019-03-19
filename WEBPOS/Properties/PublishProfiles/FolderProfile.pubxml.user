@@ -534,8 +534,17 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/System.Diagnostics.DiagnosticSource.dll">
       <publishTime>07/19/2017 10:01:30</publishTime>
     </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>01/28/2015 04:02:42</publishTime>
+    </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>02/01/2018 12:20:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>01/28/2015 04:02:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>01/28/2015 04:03:46</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
       <publishTime>02/01/2018 12:16:32</publishTime>
@@ -577,10 +586,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/15/2019 20:40:04</publishTime>
     </File>
     <File Include="bin/WEBPOS.dll">
-      <publishTime>03/15/2019 20:40:23</publishTime>
+      <publishTime>03/19/2019 12:47:48</publishTime>
     </File>
     <File Include="bin/WEBPOS.pdb">
-      <publishTime>03/15/2019 20:40:23</publishTime>
+      <publishTime>03/19/2019 12:47:48</publishTime>
     </File>
     <File Include="bin/zh-CHS/Microsoft.ReportViewer.Common.resources.dll">
       <publishTime>09/17/2018 17:37:48</publishTime>
@@ -1269,6 +1278,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/util.css">
       <publishTime>11/14/2018 21:29:51</publishTime>
     </File>
+    <File Include="DataSet1.xsc">
+      <publishTime>03/17/2019 22:04:04</publishTime>
+    </File>
+    <File Include="DataSet1.xss">
+      <publishTime>03/17/2019 22:04:04</publishTime>
+    </File>
     <File Include="DataSets/Model1.edmx.diagram">
       <publishTime>11/19/2018 11:59:39</publishTime>
     </File>
@@ -1322,6 +1337,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Reports/InvoiceReport.rdlc">
       <publishTime>02/17/2019 21:33:08</publishTime>
+    </File>
+    <File Include="Reports/SellOrderReport.rdlc">
+      <publishTime>03/19/2019 09:52:53</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>10/26/2018 13:18:21</publishTime>
@@ -1726,13 +1744,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/11/2019 21:04:16</publishTime>
     </File>
     <File Include="Views/SellOrder/SellOrderDetail.cshtml">
-      <publishTime>02/17/2019 21:16:44</publishTime>
+      <publishTime>03/17/2019 23:00:47</publishTime>
     </File>
     <File Include="Views/SellOrder/SellOrderDetailPartial.cshtml">
       <publishTime>02/08/2019 21:10:55</publishTime>
     </File>
     <File Include="Views/SellTransaction/Index.cshtml">
-      <publishTime>01/13/2019 21:19:29</publishTime>
+      <publishTime>03/17/2019 21:37:57</publishTime>
     </File>
     <File Include="Views/SellTransaction/SellTransactionPartial.cshtml">
       <publishTime>12/12/2018 21:07:53</publishTime>
@@ -1786,7 +1804,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/03/2018 00:25:47</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/13/2019 22:10:23</publishTime>
+      <publishTime>03/19/2019 10:26:46</publishTime>
     </File>
     <File Include="WebForms/WebForm1.aspx">
       <publishTime>01/13/2019 20:20:58</publishTime>

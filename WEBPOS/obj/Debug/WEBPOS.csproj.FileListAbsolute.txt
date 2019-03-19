@@ -492,3 +492,9 @@ C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\obj\Debug\WEBPOS.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\obj\Debug\WEBPOS.pdb
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.IO.FileSystem.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Net.Http.Formatting.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Http.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Http.WebHost.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Net.Http.Formatting.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Http.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Http.WebHost.xml

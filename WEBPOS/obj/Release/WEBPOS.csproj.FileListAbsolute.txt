@@ -492,3 +492,9 @@ C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ExcelDataReader.DataSet.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ExcelDataReader.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ExcelDataReader.xml
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ExcelDataReader.DataSet.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Net.Http.Formatting.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Http.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Http.WebHost.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Net.Http.Formatting.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Http.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Http.WebHost.xml

@@ -49,9 +49,9 @@ namespace WEBPOS.WebForms
                     res.Add(new DeSellOrderDetail
                     {
                         ItemCode = obj.ItemCode,
-                        ItemDescription = "   ",
+                        ItemDescription = "("+obj.ItemDescription+")",
                         Quantity = -1,
-                        Price = 0,
+                        Price = (-1) * obj.DiscountValue,
                         PriceBefDiscounts = obj.PriceBefDiscounts,
                         TotalRowValue = (-1) * obj.DiscountValue
                     });
@@ -68,7 +68,7 @@ namespace WEBPOS.WebForms
             var store = BlStore.ReadAll().FirstOrDefault();
 
             var transactionDate = new ReportParameter("DocDateTime", sellOrder.DocDateTime.ToString("dd/MM/yyyy"), true);
-            var transactionNumber = new ReportParameter("SellOrderId", sellOrder.SellOrderId.ToString().PadRight(7,'0'), true);
+            var transactionNumber = new ReportParameter("SellOrderId", sellOrder.SellOrderId.ToString().PadLeft(7,'0'), true);
             var storeName = new ReportParameter("StoreName", store.StoreDescription, true);
             var storeAddress = new ReportParameter("StoreAddress", $"{store.Address}, {store.City}", true);
             var rnc = new ReportParameter("RNC", store.RNC, true);
@@ -82,6 +82,7 @@ namespace WEBPOS.WebForms
             reportParameters.Add(storeAddress);
             reportParameters.Add(rnc);
             reportParameters.Add(tel);
+            reportParameters.Add(clientName);
 
             ReportViewer1.LocalReport.SetParameters(reportParameters);
 
