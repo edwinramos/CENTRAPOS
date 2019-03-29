@@ -19,9 +19,7 @@ namespace WEBPOS.Controllers
         public ActionResult Index()
         {
             if (Session["UserCode"] == null)
-            {
-                return RedirectToAction("LogIn","User");
-            }
+                return RedirectToAction("LogIn", "User");
 
             var deviceId = Request.UserHostName;
             try
@@ -44,6 +42,9 @@ namespace WEBPOS.Controllers
 
         public ActionResult TextSearch(string text, string priceListCode, double quantity)
         {
+            if (Session["UserCode"] == null)
+                return RedirectToAction("LogIn", "User");
+
             var list = Session["PosGridList"] as List<PosGridModel>;
 
             var item = BlItem.ReadAllQueryable().FirstOrDefault(x => x.ItemCode == text || x.ItemDescription.ToUpper() == text.ToUpper() || x.Barcode == text);
@@ -157,7 +158,7 @@ namespace WEBPOS.Controllers
             {
                 var item = BlItem.ReadByCode(obj.ItemCode);
                 var store = BlStore.ReadAll().FirstOrDefault();
-                var itemWarehouses = BlItemWarehouse.ReadAllQueryable().Where(x=>x.ItemCode == obj.ItemCode && x.WarehouseCode == store.WarehouseCode);
+                var itemWarehouses = BlItemWarehouse.ReadAllQueryable().Where(x => x.ItemCode == obj.ItemCode && x.WarehouseCode == store.WarehouseCode);
                 foreach (var iw in itemWarehouses)
                 {
                     //if (iw.QuantityOnHand - obj.Quantity >= 0)
@@ -172,13 +173,16 @@ namespace WEBPOS.Controllers
             }
 
             #endregion
-            return Json(new { TransactionNumber = head.TransactionNumber, StoreCode = head.StoreCode, PosCode = head.PosCode  }, JsonRequestBehavior.AllowGet);
+            return Json(new { TransactionNumber = head.TransactionNumber, StoreCode = head.StoreCode, PosCode = head.PosCode }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult LoadData()
         {
             try
             {
+                if (Session["UserCode"] == null)
+                    return RedirectToAction("LogIn", "User");
+
                 var model = Session["PosGridList"] as List<PosGridModel>;
 
                 foreach (var obj in model)
@@ -202,12 +206,18 @@ namespace WEBPOS.Controllers
 
         public ActionResult ClearAll()
         {
+            if (Session["UserCode"] == null)
+                return RedirectToAction("LogIn", "User");
+
             Session["PosGridList"] = new List<PosGridModel>();
             return null;
         }
 
         public ActionResult ItemInfoPartial()
         {
+            if (Session["UserCode"] == null)
+                return RedirectToAction("LogIn", "User");
+
             return PartialView();
         }
 
@@ -240,6 +250,9 @@ namespace WEBPOS.Controllers
 
         public ActionResult PriceListSelectPartial()
         {
+            if (Session["UserCode"] == null)
+                return RedirectToAction("LogIn", "User");
+
             var list = BlPriceList.ReadAllQueryable();
             return PartialView(list);
         }
@@ -255,7 +268,7 @@ namespace WEBPOS.Controllers
                 client = BlBusinessPartner.ReadAllQueryable().FirstOrDefault(x => x.BusinessPartnerType == "C");
 
             var priceList = BlPriceList.ReadAllQueryable().FirstOrDefault(x => x.PriceListCode == client.PriceListCode);
-            
+
             foreach (var obj in list)
             {
                 obj.SellPrice = BlPrice.ReadByCode(obj.ItemCode, priceList.PriceListCode)?.SellPrice ?? 0;
@@ -269,6 +282,9 @@ namespace WEBPOS.Controllers
 
         public ActionResult CustomerSelectPartial()
         {
+            if (Session["UserCode"] == null)
+                return RedirectToAction("LogIn", "User");
+
             var list = BlBusinessPartner.ReadAllQueryable().Where(x => x.BusinessPartnerType == "C");
             return PartialView(list);
         }
@@ -277,6 +293,9 @@ namespace WEBPOS.Controllers
         {
             try
             {
+                if (Session["UserCode"] == null)
+                    return RedirectToAction("LogIn", "User");
+
                 var draw = Request.Form.GetValues("draw").FirstOrDefault();
                 var start = Request.Form.GetValues("start").FirstOrDefault();
                 var length = Request.Form.GetValues("length").FirstOrDefault();
@@ -319,6 +338,9 @@ namespace WEBPOS.Controllers
 
         public ActionResult PaymentPartial(string priceListCode)
         {
+            if (Session["UserCode"] == null)
+                return RedirectToAction("LogIn", "User");
+
             var viewer = new ReportViewer();
             var list = Session["PosGridList"] as List<PosGridModel>;
             var posCode = Session["PosCode"]?.ToString() ?? "";
@@ -327,6 +349,9 @@ namespace WEBPOS.Controllers
 
         public ActionResult NewQuantityPartial()
         {
+            if (Session["UserCode"] == null)
+                return RedirectToAction("LogIn", "User");
+
             return PartialView();
         }
 
@@ -357,6 +382,9 @@ namespace WEBPOS.Controllers
 
         public ActionResult DiscountsPartial(string itemCode)
         {
+            if (Session["UserCode"] == null)
+                return RedirectToAction("LogIn", "User");
+
             var list = Session["PosGridList"] as List<PosGridModel>;
             var item = list.FirstOrDefault(x => x.ItemCode == itemCode);
             var model = new DiscountsModel

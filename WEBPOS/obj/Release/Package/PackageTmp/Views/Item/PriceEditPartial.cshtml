@@ -33,7 +33,10 @@
                 </div>
                 <div class="modal-footer">
                     <a class="btn btn-default" data-dismiss="modal">Cerrar</a>
-                    <a class="btn btn-default" onclick=onFormSubmit();>Guardar</a>
+                    @if ((bool)ViewBag.IsEditing)
+                    {
+                        <a class="btn btn-default" onclick=onFormSubmit();>Guardar</a>
+                    }
                 </div>
             </div>
         </div>

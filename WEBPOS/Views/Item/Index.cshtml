@@ -22,33 +22,25 @@
     </div>
 </div>
 
-
-@using (Html.BeginForm("ImportExcel", "Item", FormMethod.Post, new { id = "importForm", enctype = "multipart/form-data" }))
+@if ((bool)ViewBag.IsEditing)
 {
-    <div class="panel-group">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#collapse1">Carga Masiva</a>
-                </h4>
-            </div>
-            <div id="collapse1" class="panel-collapse collapse">
-                &nbsp;
-                <input type="file" name="excelFile" id="Files" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
-                <input type="submit" value="Subir" />
-                @*<table>
-            <tr>
-                <td>Carga masiva:</td>
-                <td><input type="file" name="excelFile" id="Files" /></td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td><input type="submit" value="Subir" /></td>
-            </tr>
-        </table>*@
+    using (Html.BeginForm("ImportExcel", "Item", FormMethod.Post, new { id = "importForm", enctype = "multipart/form-data" }))
+    {
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse1">Carga Masiva</a>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                    &nbsp;
+                    <input type="file" name="excelFile" id="Files" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                    <input type="submit" value="Subir" />
+                </div>
             </div>
         </div>
-    </div>
+    }
 }
 <script>
 

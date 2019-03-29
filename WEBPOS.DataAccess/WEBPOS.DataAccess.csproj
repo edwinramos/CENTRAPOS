@@ -114,10 +114,33 @@
     <Compile Include="DataLayer\DlPriceList.cs" />
     <Compile Include="DataLayer\WEBPOSInitializer.cs" />
     <Compile Include="Helpers\ActivityLogHelper.cs" />
+    <Compile Include="Migrations\201902180236199_InitialCreate.cs" />
+    <Compile Include="Migrations\201902180236199_InitialCreate.Designer.cs">
+      <DependentUpon>201902180236199_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903270207068_StoreSecurity.cs" />
+    <Compile Include="Migrations\201903270207068_StoreSecurity.Designer.cs">
+      <DependentUpon>201903270207068_StoreSecurity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903281945543_SistemLocks.cs" />
+    <Compile Include="Migrations\201903281945543_SistemLocks.Designer.cs">
+      <DependentUpon>201903281945543_SistemLocks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="WEBPOSContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201902180236199_InitialCreate.resx">
+      <DependentUpon>201902180236199_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903270207068_StoreSecurity.resx">
+      <DependentUpon>201903270207068_StoreSecurity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903281945543_SistemLocks.resx">
+      <DependentUpon>201903281945543_SistemLocks.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

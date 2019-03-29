@@ -22,3 +22,7 @@ C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataA
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.csproj.CopyComplete
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.pdb
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.Migrations.InitialCreate.resources
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.Migrations.StoreSecurity.resources
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.csproj.GenerateResource.cache
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.Migrations.SistemLocks.resources

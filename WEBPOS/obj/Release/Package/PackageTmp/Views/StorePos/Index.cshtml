@@ -129,6 +129,7 @@
             },
             success: function (result) {
                 $('#myModal').modal('hide');
+                toastr.success('', 'Guardado');
                 table.ajax.reload();
             }
         });

@@ -1,4 +1,5 @@
-﻿using ExcelDataReader;
+﻿using AutoMapper;
+using ExcelDataReader;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,6 +18,8 @@ namespace WEBPOS.Controllers
         // GET: Item
         public ActionResult Index()
         {
+            var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == Session["UserCode"].ToString());
+            ViewBag.IsEditing = user.IsEditing;
             return PartialView();
         }
         #region Items
@@ -39,11 +42,8 @@ namespace WEBPOS.Controllers
                 int recordsTotal = 0;
 
                 // Getting all Customer data    
-                var model = new List<ItemModel>();
-                foreach (var item in BlItem.ReadAllQueryable())
-                {
-                    model.Add(new ItemModel { ItemCode = item.ItemCode, ItemDescription = item.ItemDescription, LastUpdate = item.LastUpdate });
-                }
+                var model = BlItem.ReadAllQueryable().Select(x=> new { x.ItemCode, x.ItemDescription, x.LastUpdate });
+                
                 //Sorting    
                 //if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
                 //{
@@ -71,11 +71,15 @@ namespace WEBPOS.Controllers
 
         public ActionResult ItemDetail(string id)
         {
+            var model = new ItemModel();
+
             if (id == "0")
-            {
-                return View(new DeItem { ItemCode = BlItem.GetNextItemCode() });
-            }
-            var model = BlItem.Read(new DeItem { ItemCode = id }).FirstOrDefault();
+                model = Mapper.Map<ItemModel>(new DeItem { ItemCode = BlItem.GetNextItemCode() });
+             
+            model = Mapper.Map<ItemModel>(BlItem.Read(new DeItem { ItemCode = id }).FirstOrDefault());
+
+            var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == Session["UserCode"].ToString());
+            model.canEdit = user.IsEditing;
             return View(model);
         }
 
@@ -288,6 +292,8 @@ namespace WEBPOS.Controllers
 
             var pl = BlPrice.Read(new DePrice { PriceListCode = priceListCode, ItemCode = itemCode });
 
+            var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == Session["UserCode"].ToString());
+            ViewBag.IsEditing = user.IsEditing;
             return PartialView(pl.FirstOrDefault());
         }
 
@@ -356,6 +362,8 @@ namespace WEBPOS.Controllers
 
             var pl = BlItemWarehouse.Read(new DeItemWarehouse { WarehouseCode = warehouseCode, ItemCode = itemCode });
 
+            var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == Session["UserCode"].ToString());
+            ViewBag.IsEditing = user.IsEditing;
             return PartialView(pl.FirstOrDefault());
         }
 

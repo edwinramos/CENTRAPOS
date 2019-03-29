@@ -69,12 +69,41 @@ namespace WEBPOS.Controllers.WebApi
         [Route("mob/authenticateUser")]
         public IHttpActionResult AuthenticateUser(string userCode, string userPassword)
         {
-            var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == userCode);
+            var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserType == DataAccess.DataEntities.UserType.MOVIL && x.UserCode == userCode);
+            var res = new Response { IsSuccess = false, Message = RequestStateMessage.FAILURE.ToString(), ResponseData = null };
+
+            if (user == null)
+                return Ok(res);
 
             if (userPassword == BlUser.DecryptString(user.Password, userCode))
-                return Ok(true);
+                res = new Response
+                {
+                    IsSuccess = true,
+                    Message = RequestStateMessage.SUCCESS.ToString(),
+                    ResponseData = JsonConvert.SerializeObject(new
+                    {
+                        UserCode = user.UserCode,
+                        Password = userPassword,
+                        user.Name,
+                        user.LastName,
+                        user.Gender
+                    }).ToString()
+                };
 
-            return Ok(false);
+            return Ok(res);
         }
+    }
+
+    public class Response
+    {
+        public bool IsSuccess { get; set; }
+        public string Message { get; set; }
+        public string ResponseData { get; set; }
+    }
+
+    enum RequestStateMessage
+    {
+        SUCCESS = 0,
+        FAILURE = 1
     }
 }

@@ -31,6 +31,10 @@ namespace WEBPOS.DataAccess.DataEntities
 
         public int NCFSequence2 { get; set; }
 
+        public double MaxDiscAmount { get; set; }
+
+        public double MaxDiscPercent { get; set; }
+
         public DateTime SequenceDueDate { get; set; }
 
         [ForeignKey("PriceListCode")]

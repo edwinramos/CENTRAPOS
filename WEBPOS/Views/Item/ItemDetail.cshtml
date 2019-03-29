@@ -1,4 +1,4 @@
-﻿@model WEBPOS.DataAccess.DataEntities.DeItem
+﻿@model WEBPOS.Models.ItemModel
 
 @{
     ViewBag.Title = "Detalle de Articulo";
@@ -125,9 +125,12 @@
             <div role="tabpanel" class="tab-pane active" id="prices">
 
                 <div style="width:90%; margin:0 auto;">
-                    @{ if (!string.IsNullOrEmpty(Model.ItemCode))
+                    @{ if (!string.IsNullOrEmpty(Model.ItemDescription))
                         {
-                            <a href='#' class='btn btn-primary new' onclick=onPriceNew('0');>Nuevo Precio</a>
+                            if (Model.canEdit)
+                            {
+                                <a href='#' class='btn btn-primary new' onclick=onPriceNew('0');>Nuevo Precio</a>
+                            }
                         }
                     }
                     <table id="priceGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
@@ -146,11 +149,14 @@
             <div role="tabpanel" class="tab-pane" id="warehouses">
 
                 <div style="width:90%; margin:0 auto;">
-                    @{ if (!string.IsNullOrEmpty(Model.ItemCode))
+                    @{ if (!string.IsNullOrEmpty(Model.ItemDescription))
                         {
-                    <a href='#' class='btn btn-primary new' onclick=onWarehouseNew('0');>Nuevo Almacen</a>
+                            if (Model.canEdit)
+                            {
+                                <a href='#' class='btn btn-primary new' onclick=onWarehouseNew('0');>Nuevo Almacen</a>
+                            }
                         }
-                    }                    
+                    }
                     <table id="warehouseGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
                         <thead>
                             <tr>
@@ -172,12 +178,12 @@
     <div id="modalContainer"></div>
 </div>
 <script>
-    $(document).ready(function () { 
+    $(document).ready(function () {
         $("#ItemCode").prop('readonly', true);
             @*if (@Model.ItemCode!="")
             {
                 $("#ItemCode").prop('readonly', true);
-            }*@        
+            }*@
     });
     var priceTable = $("#priceGrid").DataTable({
 
@@ -279,6 +285,7 @@
             },
             success: function (result) {
                 $('#myModal').modal('hide');
+                toastr.success('Datos guardados', 'Guardado');
                 priceTable.ajax.reload();
                 warehouseTable.ajax.reload();
             }

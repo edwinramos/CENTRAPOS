@@ -20,12 +20,16 @@ namespace WEBPOS.DataAccess.DataEntities
 
         [Required]
         public Gender Gender { get; set; }
+
+        public bool IsEditing { get; set; }
     }
 
     public enum UserType
     {
         ADMINISTRADOR = 0,
-        CAJERO = 1
+        CAJERO = 1,
+        GERENTE = 2,
+        MOVIL = 3
     }
 
     public enum Gender

@@ -243,13 +243,6 @@ C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\pt\Micros
 C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\ru\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\Edwin\Documents\Visual Studio 2017\Projects\WEBPOS\WEBPOS\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
-C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Collections.Immutable.dll
-C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Reflection.Metadata.dll
-C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\VBCSCompiler.exe
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ApplicationInsights.config
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\SqlServerTypes\x64\msvcr120.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\SqlServerTypes\x64\SqlServerSpatial140.dll
@@ -265,20 +258,28 @@ C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\csi.exe
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\csi.exe.config
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\csi.rsp
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.CodeAnalysis.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.VisualBasic.Core.targets
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\Microsoft.Win32.Primitives.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.AppContext.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Collections.Immutable.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Console.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Diagnostics.Process.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Diagnostics.StackTrace.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.IO.Compression.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.IO.FileSystem.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.IO.FileSystem.Primitives.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.IO.Pipes.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Reflection.Metadata.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Security.AccessControl.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Security.Claims.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Security.Cryptography.Algorithms.dll
@@ -296,6 +297,7 @@ C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.Xml.XPath.XDocume
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\vbc.exe
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\vbc.exe.config
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\vbc.rsp
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\VBCSCompiler.exe
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Antlr3.Runtime.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\EntityFramework.dll
@@ -322,7 +324,10 @@ C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.SqlServer.Types.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\Newtonsoft.Json.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Net.Http.Formatting.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Helpers.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Http.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Http.WebHost.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Mvc.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Optimization.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Razor.dll
@@ -387,6 +392,9 @@ C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\EntityFramework.xml
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\EntityFramework.SqlServer.xml
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ExcelDataReader.xml
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\ExcelDataReader.DataSet.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Net.Http.Formatting.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Http.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Http.WebHost.xml
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Helpers.xml
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Mvc.xml
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Optimization.xml
@@ -490,11 +498,8 @@ C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\obj\Debug\WEBPOS.csproj.CoreCompile
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\obj\Debug\WEBPOS.csproj.CopyComplete
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\obj\Debug\WEBPOS.dll
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\obj\Debug\WEBPOS.pdb
-C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.IO.FileSystem.dll
-C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\roslyn\System.IO.FileSystem.Primitives.dll
-C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Net.Http.Formatting.dll
-C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Http.dll
-C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Http.WebHost.dll
-C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Net.Http.Formatting.xml
-C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Http.xml
-C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.Web.Http.WebHost.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\AutoMapper.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.ValueTuple.dll
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\AutoMapper.pdb
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\AutoMapper.xml
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS\bin\System.ValueTuple.xml

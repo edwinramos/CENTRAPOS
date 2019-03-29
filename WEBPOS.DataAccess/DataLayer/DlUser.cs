@@ -42,6 +42,7 @@ namespace WEBPOS.DataAccess.DataLayer
                 val.UserType = obj.UserType;
                 val.Name = obj.Name;
                 val.LastName = obj.LastName;
+                val.IsEditing = obj.IsEditing;
 
                 activity = new DeActivityLog
                 {

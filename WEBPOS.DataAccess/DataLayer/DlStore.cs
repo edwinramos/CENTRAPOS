@@ -53,6 +53,8 @@ namespace WEBPOS.DataAccess.DataLayer
                 val.City = obj.City;
                 val.Address = obj.Address;
                 val.SequenceDueDate = obj.SequenceDueDate;
+                val.MaxDiscAmount = obj.MaxDiscAmount;
+                val.MaxDiscPercent = obj.MaxDiscPercent;
 
                 var activity = new DeActivityLog
                 {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,6 +7,7 @@ using System.Web.Mvc;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
+using WEBPOS.Models;
 
 namespace WEBPOS.Controllers
 {
@@ -68,6 +70,8 @@ namespace WEBPOS.Controllers
                 {
                     case UserType.ADMINISTRADOR:
                         return Json(new { url = Url.Action("Index", "Home") }, JsonRequestBehavior.AllowGet);
+                    case UserType.GERENTE:
+                        return Json(new { url = Url.Action("Index", "Home") }, JsonRequestBehavior.AllowGet);
                     case UserType.CAJERO:
                         if (terminal == null)
                             return Json(new { url = Url.Action("SelectTerminal", "User", new { userType = usr.UserType }) }, JsonRequestBehavior.AllowGet);
@@ -112,6 +116,11 @@ namespace WEBPOS.Controllers
             switch (type)
             {
                 case UserType.ADMINISTRADOR:
+                    if (forPos)
+                        return Json(new { url = Url.Action("Index", "Pos") }, JsonRequestBehavior.AllowGet);
+                    else
+                        return Json(new { url = Url.Action("Index", "Home") }, JsonRequestBehavior.AllowGet);
+                case UserType.GERENTE:
                     if (forPos)
                         return Json(new { url = Url.Action("Index", "Pos") }, JsonRequestBehavior.AllowGet);
                     else
@@ -186,9 +195,23 @@ namespace WEBPOS.Controllers
             }
         }
 
-        public ActionResult UserManage(DeUser model)
-        {
-            BlUser.Save(model);
+        public ActionResult UserManage(UserModel model)
+        {            
+
+            var user = Mapper.Map<DeUser>(model);
+            user.IsEditing = model.IsEditingString == "Si";
+
+            //var user = new DeUser {
+            //    UserCode = model.UserCode,
+            //    Gender=model.Gender,
+            //    Password=model.Password,
+            //    Name =model.Name,
+            //    LastName = model.LastName,
+            //    IsEditing = model.IsEditing == "Si",
+            //    UserType = model.UserType
+            //};
+
+            BlUser.Save(user);
 
             return null;
         }
@@ -197,11 +220,18 @@ namespace WEBPOS.Controllers
         {
             var pl = BlUser.Read(new DeUser { UserCode = id });
             var user = pl.FirstOrDefault();
-            if (id == "0")
-                return PartialView(new DeUser { UserCode = "", UserType = UserType.CAJERO, Gender = Gender.HOMBRE });
 
-            user.Password = BlUser.DecryptString(user.Password, user.UserCode);
-            return PartialView(user);
+            var model = new UserModel();
+            if (id == "0")
+                model = new UserModel { UserCode = "", UserType = UserType.CAJERO, Gender = Gender.HOMBRE, IsEditingString = "Si" };
+            else
+            {
+                model = Mapper.Map<UserModel>(user);
+                model.IsEditingString = user.IsEditing ? "Si" : "No";
+            }
+
+            model.Password = BlUser.DecryptString(user.Password, user.UserCode);
+            return PartialView(model);
         }
 
         public ActionResult UserDelete(string id)
