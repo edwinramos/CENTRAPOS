@@ -3,8 +3,6 @@
     ViewBag.Title = "Listas de Precio";
 }
 
-
-
 <div>
     <br />
     <div style="width:90%; margin:0 auto;">
@@ -35,6 +33,30 @@
                 </div>
                 <div id="collapse1" class="panel-collapse collapse">
                     &nbsp;
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            @Html.Label("Almacen")
+                            @{
+                                List<SelectListItem> whslist = new List<SelectListItem>();
+                                foreach (var ob in WEBPOS.DataAccess.BusinessLayer.BlWarehouse.ReadAll())
+                                {
+                                    whslist.Add(new SelectListItem { Text = ob.WarehouseCode + " | " + ob.WarehouseDescription, Value = ob.WarehouseCode });
+                                }
+                            }
+                            @Html.DropDownList("WarehouseCode", whslist, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            @Html.Label("Lista de Precio")
+                            @{
+                                List<SelectListItem> list = new List<SelectListItem>();
+                                foreach (var ob in WEBPOS.DataAccess.BusinessLayer.BlPriceList.ReadAll())
+                                {
+                                    list.Add(new SelectListItem { Text = ob.PriceListCode + " | " + ob.PriceListDescription, Value = ob.PriceListCode });
+                                }
+                            }
+                            @Html.DropDownList("PriceListCode", list, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
                     <input type="file" name="excelFile" id="Files" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
                     <input type="submit" value="Subir" />
                 </div>
@@ -43,15 +65,13 @@
     }
 }
 <script>
-
-
     var table = $("#itemsGrid").DataTable({
 
         "processing": true, // for show progress bar
         "serverSide": true, // for process server side
         "filter": true, // this is for disable filter (search box)
         "orderMulti": false, // for disable multiple column at once
-        "pageLength": 5,
+        "pageLength": 100,
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
         },

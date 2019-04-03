@@ -10,11 +10,9 @@
     <link href="~/Content/DataTables/css/responsive.bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
     @Styles.Render("~/Content/css")
-    
-    @Scripts.Render("~/bundles/modernizr")
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/toastr")
-    <script src="~/Scripts/toastr.js"></script>
     <script src="~/Scripts/Chart.min.js"></script>
     <script src="~/Scripts/jquery.min.js"></script>
     <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
@@ -88,7 +86,13 @@
                             <ul>
                                 <li><a href='#' onclick=onActionClick('@Url.Action("Index", "Store" )');>Tienda</a></li>
                                 <li><a href='#' onclick=onActionClick('@Url.Action("Index", "PaymentType" )');>Tipos de Pago</a></li>
-                                <li><a href='#' onclick=onActionClick('@Url.Action("Index", "User" )');>Usuarios</a></li>
+                                @{
+                                    if ((bool)ViewBag.IsEditing)
+                                    {
+                                        <li><a href='#' onclick=onActionClick('@Url.Action("Index", "User" )');>Usuarios</a></li>
+                                    }
+                                }
+
                             </ul>
                         </li>
                         <li>

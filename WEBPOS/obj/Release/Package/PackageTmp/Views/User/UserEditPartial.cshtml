@@ -1,4 +1,6 @@
-﻿@model WEBPOS.Models.UserModel
+﻿@using WEBPOS.DataAccess.BusinessLayer
+
+@model WEBPOS.Models.UserModel
 @{
     Layout = null;
 }
@@ -36,10 +38,30 @@
                     </div>
                     <div class="form-group col-md-4">
                         @Html.Label("Tipo de Usuario")
-                        @Html.EnumDropDownListFor(model => model.UserType, "Tipo de Usuario", new { htmlAttributes = new { @class = "form-control" } })
+
+                        @{
+                            var usr = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == Session["UserCode"].ToString());
+                            if (usr.UserType == WEBPOS.DataAccess.DataEntities.UserType.GERENTE)
+                            {
+                                var selectList = Enum.GetValues(typeof(WEBPOS.DataAccess.DataEntities.UserType))
+                                                     .Cast<WEBPOS.DataAccess.DataEntities.UserType>()
+                                                     .Where(e => e != WEBPOS.DataAccess.DataEntities.UserType.ADMINISTRADOR)
+                                                     .Select(e => new SelectListItem
+                                                     {
+                                                         Value = ((int)e).ToString(),
+                                                         Text = e.ToString()
+                                                     });
+
+                                @Html.DropDownListFor(m => m.UserType, selectList);
+                            }
+                            else
+                            {
+                                @Html.EnumDropDownListFor(model => model.UserType, "Tipo de Usuario", new { htmlAttributes = new { @class = "form-control" } });
+                            }
+                        }
                     </div>
                     <div class="form-group col-md-4">
-                        @Html.Label("Habilitar entrada a almacenes")
+                        @Html.Label("Habilitar privilegios")
                         @Html.DropDownListFor(m => m.IsEditingString, new SelectList(new List<string> { "Si", "No" }))
                     </div>
                 </div>

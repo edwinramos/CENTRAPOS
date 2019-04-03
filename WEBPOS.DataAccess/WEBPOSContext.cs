@@ -38,6 +38,8 @@ namespace WEBPOS.DataAccess
         public DbSet<DeTable> Tables { get; set; }
         public DbSet<DeSellOrder> SellOrders { get; set; }
         public DbSet<DeSellOrderDetail> SellOrderDetails { get; set; }
+        public DbSet<DePosClosureHead> PosClosureHeads { get; set; }
+        public DbSet<DePosClosureDetail> PosClosureDetails { get; set; }
 
         public override int SaveChanges()
         {

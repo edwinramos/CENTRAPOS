@@ -239,12 +239,17 @@
     });
 
     function onPriceDelete(priceListCode) {
-        if (confirm("¿Seguro que desea eliminar?")) {
-            var url = '@Url.Action("PriceDelete","Item", new { itemCode = Model.ItemCode, priceListCode = "XX" })';
-            url = url.replace("XX", priceListCode);
-            $.get(url, function (data) {
-                priceTable.ajax.reload();
-            });
+        if ('@Model.canEdit' == 'True') {
+            if (confirm("¿Seguro que desea eliminar?")) {
+                var url = '@Url.Action("PriceDelete","Item", new { itemCode = Model.ItemCode, priceListCode = "XX" })';
+                url = url.replace("XX", priceListCode);
+                $.get(url, function (data) {
+                    priceTable.ajax.reload();
+                });
+            }
+        }
+        else {
+            alert('Usted no tiene los permisos requeridos para esta funcion. Contacte con su Administrador');
         }
     }
 
@@ -285,7 +290,7 @@
             },
             success: function (result) {
                 $('#myModal').modal('hide');
-                toastr.success('Datos guardados', 'Guardado');
+                //toastr.success('Datos guardados', 'Guardado');
                 priceTable.ajax.reload();
                 warehouseTable.ajax.reload();
             }
@@ -346,12 +351,17 @@
     });
 
     function onWarehouseDelete(warehouseCode) {
-        if (confirm("¿Seguro que desea eliminar?")) {
-            var url = '@Url.Action("WarehouseDelete","Item", new { itemCode = Model.ItemCode, warehouseCode = "XX" })';
-            url = url.replace("XX", warehouseCode);
-            $.get(url, function (data) {
-                warehouseTable.ajax.reload();
-            });
+        if ('@Model.canEdit' == 'True') {
+            if (confirm("¿Seguro que desea eliminar?")) {
+                var url = '@Url.Action("WarehouseDelete","Item", new { itemCode = Model.ItemCode, warehouseCode = "XX" })';
+                url = url.replace("XX", warehouseCode);
+                $.get(url, function (data) {
+                    warehouseTable.ajax.reload();
+                });
+            }
+        }
+        else {
+            alert('Usted no tiene los permisos requeridos para esta funcion. Contacte con su Administrador');
         }
     }
 

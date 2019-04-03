@@ -106,11 +106,11 @@ namespace WEBPOS.WebForms
 
         private void PrintSellTransaction(string[] queryString)
         {
-            var tNumber = queryString[0].Split('=')[1];
+            var ncf = queryString[0].Split('=')[1];
             var storeCode = queryString[1].Split('=')[1];
             var posCode = queryString[2].Split('=')[1];
 
-            var head = BlSellTransactionHead.ReadAll().FirstOrDefault(x => x.TransactionNumber.ToString() == tNumber && x.StoreCode == storeCode && x.PosCode == posCode);
+            var head = BlSellTransactionHead.ReadAll().FirstOrDefault(x => x.NCF == ncf && x.StoreCode == storeCode && x.PosCode == posCode);
             var detail = BlSellTransactionDetail.ReadAll().Where(x => x.TransactionNumber == head.TransactionNumber && x.StoreCode == head.StoreCode && x.PosCode == head.PosCode);
             var headPayment = BlSellTransactionPayment.ReadByCode(head.TransactionNumber, head.TransactionDateTime, head.StoreCode, head.PosCode);
             var client = BlBusinessPartner.ReadAllQueryable().FirstOrDefault(x => x.BusinessPartnerCode == head.CustomerCode);
@@ -134,6 +134,7 @@ namespace WEBPOS.WebForms
             }
 
             ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/InvoiceReport.rdlc");
+            //ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/InvoiceReportLogo.rdlc");
 
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportDataSource RDS = new ReportDataSource("DataSet1", res);
@@ -148,7 +149,7 @@ namespace WEBPOS.WebForms
             var storeAddress = new ReportParameter("StoreAddress", $"{store.Address}, {store.City}", true);
             var rnc = new ReportParameter("RNC", store.RNC, true);
             var nif = new ReportParameter("NIF", store.NIF, true);
-            var ncf = new ReportParameter("NCF", head.NCF, true);
+            var pNcf = new ReportParameter("NCF", head.NCF, true);
             var tel = new ReportParameter("Telephone", store.Telephone ?? "", true);
             var total = new ReportParameter("Total", "RD$" + detail.Sum(x => x.TotalValue - x.DiscountOnItem).ToString("n2"), true);
             var paymentType = new ReportParameter("PaymentType", BlPaymentType.ReadAll().FirstOrDefault(x => x.PaymentTypeCode == headPayment.PaymentTypeCode).PaymentTypeDescription, true);
@@ -166,7 +167,7 @@ namespace WEBPOS.WebForms
             reportParameters.Add(storeAddress);
             reportParameters.Add(rnc);
             reportParameters.Add(nif);
-            reportParameters.Add(ncf);
+            reportParameters.Add(pNcf);
             reportParameters.Add(tel);
             reportParameters.Add(total);
             reportParameters.Add(paymentType);

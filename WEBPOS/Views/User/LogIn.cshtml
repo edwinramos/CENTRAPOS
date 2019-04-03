@@ -8,6 +8,9 @@
     <link href="../../Content/font-awesome.min.css" rel="stylesheet" />
     <link href="../../Content/util.css" rel="stylesheet" />
     <link href="../../Content/logInMain.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+
+
 </head>
 
 <div class="limiter">
@@ -17,7 +20,7 @@
             <span class="login100-form-title p-b-33">
                 CentraPos
             </span>
-            <div id="errorSpace" class="validate-input" data-validate="Nombre de usuario o contraseña invalidos"></div>
+            @*<div id="errorSpace" class="validate-input" data-validate="Nombre de usuario o contraseña invalidos"></div>*@
             <br />
             <div class="wrap-input100 validate-input" data-validate="Nombre de usuario invalido">
                 <input class="input100" type="text" id="userName" placeholder="Nombre de Usuario">
@@ -62,8 +65,9 @@
 </div>
 
 
-
-<script src="../../Scripts/jquery-3.3.1.min.js"></script>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/toastr")
+@*<script src="../../Scripts/jquery-3.3.1.min.js"></script>*@
 <script src="../../Scripts/bootstrap.min.js"></script>
 <script src="../../Scripts/moment.js"></script>
 <script src="../../Scripts/loginMain.js"></script>
@@ -77,8 +81,21 @@
             success: function (data) {
 
                 if (data.userType == "null") {
-                    $("#errorSpace").addClass("alert-validate");
-                    //$("#passwordDiv").addClass("alert-validate");
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "positionClass": "toast-top-full-width",
+                        "onclick": null,
+                        "showDuration": "200",
+                        "hideDuration": "1500",
+                        "timeOut": "6000",
+                        "extendedTimeOut": "1200",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                    toastr.error('Nombre de usuario o contraseña invalidos', 'Datos invalidos');
                 } else
                     window.location.replace(data.url);
             },

@@ -21,6 +21,11 @@ namespace WEBPOS.Controllers
             if(usr.UserType == DataAccess.DataEntities.UserType.CAJERO)
                 return RedirectToAction("LogIn", "User");
 
+            ViewBag.IsEditing = true;
+            if (usr.UserType != UserType.ADMINISTRADOR)
+            {
+                ViewBag.IsEditing = usr.IsEditing;
+            }
             return View();
         }
 
@@ -45,7 +50,7 @@ namespace WEBPOS.Controllers
 
             var actualWeek = from record in list
                       where record.TransactionDateTime >= start // include start
-                       && record.TransactionDateTime < end // exclude end
+                       && record.TransactionDateTime <= end // exclude end
                       select record;
 
             var dataByDay = actualWeek

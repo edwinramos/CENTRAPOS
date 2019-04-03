@@ -8,8 +8,7 @@
 @using (Html.BeginForm("StoreManage", "Store", FormMethod.Post, new { id = "storeForm", onkeydown = "return (event.keyCode!=13);" }))
 {
     @Html.HiddenFor(m => m.StoreCode)
-    @Html.HiddenFor(m => m.MaxDiscAmount)
-    @Html.HiddenFor(m => m.MaxDiscPercent)
+    
     <br />
     <div class="panel-group">
         <div class="panel panel-default">

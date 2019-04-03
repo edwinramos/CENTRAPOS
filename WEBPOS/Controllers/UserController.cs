@@ -170,6 +170,9 @@ namespace WEBPOS.Controllers
                     a.Name
                 });
 
+                var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == Session["UserCode"].ToString());
+                if (user.UserType != UserType.ADMINISTRADOR)
+                    model = model.Where(x=>x.UserType != UserType.ADMINISTRADOR.ToString());
                 //Sorting    
                 //if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
                 //{
@@ -228,9 +231,9 @@ namespace WEBPOS.Controllers
             {
                 model = Mapper.Map<UserModel>(user);
                 model.IsEditingString = user.IsEditing ? "Si" : "No";
+                model.Password = BlUser.DecryptString(user.Password, user.UserCode);
             }
-
-            model.Password = BlUser.DecryptString(user.Password, user.UserCode);
+            
             return PartialView(model);
         }
 

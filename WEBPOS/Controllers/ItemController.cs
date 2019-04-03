@@ -71,12 +71,12 @@ namespace WEBPOS.Controllers
 
         public ActionResult ItemDetail(string id)
         {
-            var model = new ItemModel();
+            var model = new ItemModel { ItemCode = BlItem.GetNextItemCode() };
 
-            if (id == "0")
-                model = Mapper.Map<ItemModel>(new DeItem { ItemCode = BlItem.GetNextItemCode() });
-             
-            model = Mapper.Map<ItemModel>(BlItem.Read(new DeItem { ItemCode = id }).FirstOrDefault());
+            //if (id == "0")
+            //    model = Mapper.Map<ItemModel>(new DeItem { ItemCode = BlItem.GetNextItemCode() });
+            if (id != "0")
+                model = Mapper.Map<ItemModel>(BlItem.Read(new DeItem { ItemCode = id }).FirstOrDefault());
 
             var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == Session["UserCode"].ToString());
             model.canEdit = user.IsEditing;
@@ -93,7 +93,7 @@ namespace WEBPOS.Controllers
         }
 
         [HttpPost]
-        public ActionResult ImportExcel(HttpPostedFileBase excelFile)
+        public ActionResult ImportExcel(HttpPostedFileBase excelFile, string WarehouseCode, string PriceListCode)
         {
             if (excelFile.ContentLength != 0)
             {
@@ -125,18 +125,16 @@ namespace WEBPOS.Controllers
                             {
                                 var m = rows[row];
                                 var item = new ImportedItem();
+
+                                if (m.ItemArray[1].ToString().Trim().ToUpper() == "Total".ToUpper())
+                                    break;
+
                                 item.Producto = m.ItemArray[1].ToString();
                                 item.Cantidad = m.ItemArray[2].ToString();
-                                item.Devolucion = m.ItemArray[3].ToString();
-                                item.DescCaja = m.ItemArray[4].ToString();
-                                item.VentaUni = m.ItemArray[5].ToString();
-                                item.PrecioList = m.ItemArray[6].ToString();
-                                item.VentasRDS = m.ItemArray[7].ToString();
-                                item.Barcode = m.ItemArray[8].ToString();
-                                item.TaxPercent = m.ItemArray[9].ToString();
-
-                                if (item.Producto == "Total")
-                                    break;
+                                item.PrecioList = m.ItemArray[3].ToString();
+                                item.Barcode = m.ItemArray[4].ToString();
+                                item.TaxPercent = m.ItemArray[5].ToString();
+                                                            
 
                                 list.Add(item);
                             }
@@ -186,12 +184,12 @@ namespace WEBPOS.Controllers
                             BlItem.Save(dbItem);
                         }
 
-                        var warehouses = BlItemWarehouse.Read(new DeItemWarehouse { ItemCode = dbItem.ItemCode });
+                        var warehouses = BlItemWarehouse.Read(new DeItemWarehouse { ItemCode = dbItem.ItemCode, WarehouseCode = WarehouseCode });
                         if (warehouses.Any())
                         {
                             foreach (var warehouse in warehouses)
                             {
-                                if (warehouse.WarehouseCode == BlWarehouse.ReadAll().FirstOrDefault().WarehouseCode)
+                                if (warehouse.WarehouseCode == WarehouseCode)
                                 {
                                     warehouse.QuantityOnHand += Convert.ToDouble(item.Cantidad);
                                     BlItemWarehouse.Save(warehouse);
@@ -203,17 +201,17 @@ namespace WEBPOS.Controllers
                             BlItemWarehouse.Save(new DeItemWarehouse
                             {
                                 ItemCode = dbItem.ItemCode,
-                                WarehouseCode = BlWarehouse.ReadAll().FirstOrDefault().WarehouseCode,
-                                QuantityOnHand = Convert.ToDouble(item.VentaUni)
+                                WarehouseCode = WarehouseCode,
+                                QuantityOnHand = Convert.ToDouble(item.Cantidad)
                             });
                         }
 
-                        var prices = BlPrice.Read(new DePrice { ItemCode = dbItem.ItemCode });
+                        var prices = BlPrice.Read(new DePrice { ItemCode = dbItem.ItemCode, PriceListCode = PriceListCode });
                         if (prices.Any())
                         {
                             foreach (var price in prices)
                             {
-                                if (price.PriceListCode == BlPriceList.ReadAll().FirstOrDefault().PriceListCode)
+                                if (price.PriceListCode == PriceListCode)
                                 {
                                     price.SellPrice = Convert.ToDouble(item.PrecioList);
                                     BlPrice.Save(price);
@@ -225,7 +223,7 @@ namespace WEBPOS.Controllers
                             BlPrice.Save(new DePrice
                             {
                                 ItemCode = dbItem.ItemCode,
-                                PriceListCode = BlPriceList.ReadAll().FirstOrDefault().PriceListCode,
+                                PriceListCode = PriceListCode,
                                 SellPrice = Convert.ToDouble(item.PrecioList)
                             });
                         }
@@ -287,13 +285,15 @@ namespace WEBPOS.Controllers
 
         public ActionResult PriceEditPartial(string itemCode, string priceListCode)
         {
+            var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == Session["UserCode"].ToString());
+            ViewBag.IsEditing = user.IsEditing;
+
             if (string.IsNullOrEmpty(priceListCode) || priceListCode == "0")
                 return PartialView(new DePrice { ItemCode = itemCode, PriceListCode = "", SellPrice = 0 });
 
             var pl = BlPrice.Read(new DePrice { PriceListCode = priceListCode, ItemCode = itemCode });
 
-            var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == Session["UserCode"].ToString());
-            ViewBag.IsEditing = user.IsEditing;
+            
             return PartialView(pl.FirstOrDefault());
         }
 
@@ -357,13 +357,14 @@ namespace WEBPOS.Controllers
 
         public ActionResult WarehouseEditPartial(string itemCode, string warehouseCode)
         {
+            var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == Session["UserCode"].ToString());
+            ViewBag.IsEditing = user.IsEditing;
+
             if (string.IsNullOrEmpty(warehouseCode) || warehouseCode == "0")
                 return PartialView(new DeItemWarehouse { ItemCode = itemCode, WarehouseCode = "", QuantityOnHand = 0 });
 
             var pl = BlItemWarehouse.Read(new DeItemWarehouse { WarehouseCode = warehouseCode, ItemCode = itemCode });
 
-            var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == Session["UserCode"].ToString());
-            ViewBag.IsEditing = user.IsEditing;
             return PartialView(pl.FirstOrDefault());
         }
 

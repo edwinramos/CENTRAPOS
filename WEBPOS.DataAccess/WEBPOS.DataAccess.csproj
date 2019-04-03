@@ -49,9 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLayer\BlBusinessPartnerContact.cs" />
+    <Compile Include="BusinessLayer\BlPosClosureDetail.cs" />
     <Compile Include="BusinessLayer\BlSellOrderDetail.cs" />
     <Compile Include="BusinessLayer\BlSellTransactionDetail.cs" />
     <Compile Include="BusinessLayer\BlSellOrder.cs" />
+    <Compile Include="BusinessLayer\BlPosClosureHead.cs" />
     <Compile Include="BusinessLayer\BlSellTransactionPayment.cs" />
     <Compile Include="BusinessLayer\BlStore.cs" />
     <Compile Include="BusinessLayer\BlItem.cs" />
@@ -75,6 +77,7 @@
     <Compile Include="DataEntities\DeBusinessPartner.cs" />
     <Compile Include="DataEntities\DePaymentType.cs" />
     <Compile Include="DataEntities\DeSellOrderDetail.cs" />
+    <Compile Include="DataEntities\DePosClosureDetail.cs" />
     <Compile Include="DataEntities\DeSellTransactionDetail.cs" />
     <Compile Include="DataEntities\DeSellOrder.cs" />
     <Compile Include="DataEntities\DeSellTransactionPayment.cs" />
@@ -83,6 +86,7 @@
     <Compile Include="DataEntities\DeStorePos.cs" />
     <Compile Include="DataEntities\DeActivityLog.cs" />
     <Compile Include="DataEntities\DeTable.cs" />
+    <Compile Include="DataEntities\DePosClosureHead.cs" />
     <Compile Include="DataEntities\DeUser.cs" />
     <Compile Include="DataEntities\DeWarehouse.cs" />
     <Compile Include="DataEntities\DeUnitMeasure.cs" />
@@ -91,9 +95,11 @@
     <Compile Include="DataEntities\DePrice.cs" />
     <Compile Include="DataEntities\DeItem.cs" />
     <Compile Include="DataEntities\DePriceList.cs" />
+    <Compile Include="DataLayer\DlPosClosureDetail.cs" />
     <Compile Include="DataLayer\DlSellOrderDetail.cs" />
     <Compile Include="DataLayer\DlSellTransactionDetail.cs" />
     <Compile Include="DataLayer\DlSellOrder.cs" />
+    <Compile Include="DataLayer\DlPosClosureHead.cs" />
     <Compile Include="DataLayer\DlSellTransactionPayment.cs" />
     <Compile Include="DataLayer\DlStore.cs" />
     <Compile Include="DataLayer\DlItem.cs" />
@@ -126,6 +132,14 @@
     <Compile Include="Migrations\201903281945543_SistemLocks.Designer.cs">
       <DependentUpon>201903281945543_SistemLocks.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904021607076_PosClosure.cs" />
+    <Compile Include="Migrations\201904021607076_PosClosure.Designer.cs">
+      <DependentUpon>201904021607076_PosClosure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904021741001_PosClosureDetail_TransactionNumber.cs" />
+    <Compile Include="Migrations\201904021741001_PosClosureDetail_TransactionNumber.Designer.cs">
+      <DependentUpon>201904021741001_PosClosureDetail_TransactionNumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="WEBPOSContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -139,6 +153,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903281945543_SistemLocks.resx">
       <DependentUpon>201903281945543_SistemLocks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904021607076_PosClosure.resx">
+      <DependentUpon>201904021607076_PosClosure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904021741001_PosClosureDetail_TransactionNumber.resx">
+      <DependentUpon>201904021741001_PosClosureDetail_TransactionNumber.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

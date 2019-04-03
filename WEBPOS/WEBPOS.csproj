@@ -246,6 +246,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBWEBPOSDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DBWEBPOSDataSetPosClosure.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBWEBPOSDataSetPosClosure.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -259,6 +264,7 @@
     <Compile Include="Models\SecurityModel.cs" />
     <Compile Include="Models\SellOrderDetailModel.cs" />
     <Compile Include="Models\PriceModel.cs" />
+    <Compile Include="Models\PosModel.cs" />
     <Compile Include="Models\StorePosModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -270,6 +276,13 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Utils\CookiesUtility.cs" />
     <Compile Include="Utils\EncryptionUtility.cs" />
+    <Compile Include="WebForms\ClosureWebForm.aspx.cs">
+      <DependentUpon>ClosureWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\ClosureWebForm.aspx.designer.cs">
+      <DependentUpon>ClosureWebForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -503,6 +516,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\OpenSans\OpenSans-Regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
@@ -539,6 +553,19 @@
     <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\Pos\OpenPosQuantity.cshtml" />
+    <Content Include="DBWEBPOSDataSetPosClosure.xsc">
+      <DependentUpon>DBWEBPOSDataSetPosClosure.xsd</DependentUpon>
+    </Content>
+    <None Include="DBWEBPOSDataSetPosClosure.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DBWEBPOSDataSetPosClosure.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="DBWEBPOSDataSetPosClosure.xss">
+      <DependentUpon>DBWEBPOSDataSetPosClosure.xsd</DependentUpon>
+    </Content>
+    <Content Include="WebForms\ClosureWebForm.aspx" />
     <Content Include="WebForms\WebForm1.aspx" />
     <EntityDeploy Include="DataSets\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -568,6 +595,9 @@
     <Content Include="DBWEBPOSDataSet.xss">
       <DependentUpon>DBWEBPOSDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="fonts\OpenSans\OpenSans-Regular.eot" />
+    <Content Include="fonts\OpenSans\OpenSans-Regular.ttf" />
+    <Content Include="fonts\OpenSans\OpenSans-Regular.woff" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -726,6 +756,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Docs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -783,6 +814,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Reports\SellOrderReport.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reports\InvoiceReportLogo.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reports\PosClosureReport.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,4 +1,4 @@
-﻿
+﻿@model WEBPOS.Models.PosModel
 @{
     Layout = null;
 }
@@ -15,9 +15,10 @@
     <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/DataTables/css/responsive.bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
 
-    <script src="~/Scripts/jquery.min.js"></script>
-    @*<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>*@
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/toastr")
     <script src="~/Scripts/jquery.formatCurrency.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
@@ -32,22 +33,8 @@
                 <input class="form-control" id="searchBar" type="text" placeholder="Busqueda" />
             </div>
             <div class="col-xs-6 form-group">
-                @{
-                    var deviceId = Request.UserHostName;
-                    try
-                    {
-                        string[] computer_name = System.Net.Dns.GetHostEntry(Request.ServerVariables["remote_addr"]).HostName.Split(new Char[] { '.' });
-                        deviceId = computer_name[0];
-                    }
-                    catch (Exception ex) { }
-
-                    var pos = WEBPOS.DataAccess.BusinessLayer.BlStorePos.ReadAllQueryable().FirstOrDefault(x => x.DeviceId == deviceId);
-                    if (pos != null)
-                    {
-                        <h2 style="text-align:left;float:left;">CentraPos</h2>
-                        <h2 style="text-align:right;float:right;">@pos.StorePosDescription</h2>
-                    }
-                }
+                <h2 style="text-align:left;float:left;">CentraPos</h2>
+                <h2 style="text-align:right;float:right;">@Model.StorePosDescription</h2>
             </div>
             <div class="col-xs-6">
                 <div class="row">
@@ -134,33 +121,46 @@
             <div class="col-xs-6">
                 <div class="row">
                     <div class="btn-group">
-                        <button onclick="clearAll()" type="button" class="button primary">
-                            LIMPIAR
-                        </button>
+                        @if (Model.IsOpenPos)
+                        {
+                            <button onclick="clearAll()" type="button" class="button primary">
+                                LIMPIAR
+                            </button>
 
-                        <button onclick="getCustomer()" type="button" class="button">
-                            SELECCIONAR CLIENTE
-                        </button>
+                            <button onclick="getCustomer()" type="button" class="button">
+                                SELECCIONAR CLIENTE
+                            </button>
 
-                        <button onclick="getPriceList()" type="button" class="button">
-                            LISTA DE PRECIO
-                        </button>
+                            <button onclick="getPriceList()" type="button" class="button">
+                                LISTA DE PRECIO
+                            </button>
 
-                        <button onclick="beginPayment()" type="button" class="button">
-                            PAGAR
-                        </button>
+                            <button onclick="beginPayment()" type="button" class="button">
+                                PAGAR
+                            </button>
 
-                        <button onclick="removeItem()" type="button" class="button">
-                            REMOVER
-                        </button>
+                            <button onclick="removeItem()" type="button" class="button">
+                                REMOVER
+                            </button>
 
-                        <button onclick="changeQty()" type="button" class="button">
-                            CANTIDAD
-                        </button>
+                            <button onclick="changeQty()" type="button" class="button">
+                                CANTIDAD
+                            </button>
 
-                        <button onclick="discount()" type="button" class="button">
-                            DESCUENTO
-                        </button>
+                            <button onclick="discount()" type="button" class="button">
+                                DESCUENTO
+                            </button>
+
+                            <button onclick="posClosure()" type="button" class="button">
+                                CERRAR TURNO
+                            </button>
+                        }
+                        else
+                        {
+                            <button onclick="posClosure()" type="button" class="button">
+                                ABRIR TURNO
+                            </button>
+                        }
                     </div>
 
                 </div>
@@ -499,7 +499,7 @@
             }
         }
         else
-            alert("Por favor, seleccione antes de continuar.");
+            toastr.warning('', "Por favor, seleccione antes de continuar.");
     }
 
     function getCustomer() {
@@ -511,7 +511,7 @@
         $.ajax({
             type: "POST",
             url: '@Url.Action("PaymentPartial", "Pos")',
-            data: { priceListCode: priceList.PriceListCode },
+            data: { priceListCode: priceList.PriceListCode, storeCode: '@Model.StoreCode' },
             success: function (data) {
                 $('#modalContainer').html(data);
                 $('#myModal').modal('show');
@@ -546,7 +546,10 @@
                         clearAll();
                         $('#myModal').modal('hide');
 
-                        var url = "WebForms/WebForm1.aspx?TransactionNumber=" + result.TransactionNumber + "&StoreCode=" + result.StoreCode + "&PosCode=" + result.PosCode;
+                        var str = "@Model.StoreCode" + 1
+                        var pad = "0000000"
+                        var ans = pad.substring(0, pad.length - str.length) + str
+                        var url = "WebForms/WebForm1.aspx?TransactionNumber=" + result.NCF + "&StoreCode=" + '@Model.StoreCode' + "&PosCode=" + result.PosCode + "&isSellTransaction=true";
                         window.open(url, '_blank');
                     }
                 }
@@ -640,12 +643,67 @@
         var discountType = $('#DiscountType').val();
         var price = $('#ItemPrice').val();
         var discountAmount = $('#DiscountAmount').val();
+        var maxDiscAmt = @Model.MaxDiscAmount;
+        var maxDiscPer = @Model.MaxDiscPercent;
 
         if (discountType == 0) {
-            var res = price - price * (discountAmount/100);
+            if (maxDiscPer > 0 && discountAmount > maxDiscPer) {
+                toastr.info('El limite de descuento porcentual de la tienda es: ' + maxDiscPer + '%', 'Descuento excedido');
+                $('#DiscountAmount').val(0);
+                discountAmount = 0
+            }
+
+            var res = price - price * (discountAmount / 100);
             $('#Result').val(res);
+
         } else {
+            if (maxDiscAmt > 0 && discountAmount > maxDiscAmt) {
+                toastr.info('El limite de descuento de la tienda es: ' + maxDiscAmt, 'Descuento excedido');
+                $('#DiscountAmount').val(0);
+                discountAmount = 0;
+            }
+
             $('#Result').val(price - discountAmount);
         }
+    }
+
+    function savePosClosureQty() {
+        var qty = $("#OpenPosQuantity").val();
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("SavePosOpenQuantity", "Pos")',
+            data: { storeCode: '@Model.StoreCode', storePosCode: '@Model.StorePosCode', quantity: qty },
+            success: function (data) {
+                location.reload();
+                $('#myModal').modal('hide');
+            }
+        });
+    }
+
+    function posClosure() {
+        var isClosing = false;
+        if ('@Model.IsOpenPos' == 'True')
+            isClosing = true;
+
+        $.ajax({
+            type: "POST",
+            //dataType: 'json',
+            url: '@Url.Action("PosClosureManage", "Pos")',
+            data: { storeCode: '@Model.StoreCode', storePosCode: '@Model.StorePosCode', posClosureId: '@Model.PosClosureId', isClosing: isClosing },
+            success: function (data) {
+                if (data.posClosureId) {
+                    var url = "WebForms/ClosureWebForm.aspx?StoreCode=" + '@Model.StoreCode' + "&PosCode=" + '@Model.StorePosCode' + "&posClosureId=" + data.posClosureId;
+                    window.open(url, '_blank');
+                    location.reload();
+                }
+                else {
+                    $('#modalContainer').html(data);
+                    $('#myModal').modal('show');
+                }
+            },
+            //error: function (data) {
+
+            //}
+        });
     }
 </script>

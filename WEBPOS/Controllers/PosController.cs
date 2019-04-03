@@ -37,7 +37,27 @@ namespace WEBPOS.Controllers
                 return RedirectToAction("SelectTerminal", "User", new { userType = usr.UserType, forPos = true });
 
             Session["PosGridList"] = new List<PosGridModel>();
-            return View();
+            var store = BlStore.ReadByCode(terminal.StoreCode);
+
+            var posClosure = BlPosClosureHead.Read(new DePosClosureHead
+            {
+                StoreCode = store.StoreCode,
+                StorePosCode = terminal.StorePosCode,
+                UserCode = usr.UserCode
+            }).FirstOrDefault(x => x.StartDateTime.Date == DateTime.Today.Date && x.EndDateTime == new DateTime(1900, 1, 1));
+
+            var model = new PosModel
+            {
+                StoreCode = terminal.StoreCode,
+                StoreDescription = store.StoreDescription,
+                StorePosCode = terminal.StorePosCode,
+                StorePosDescription = terminal.StorePosDescription,
+                MaxDiscAmount = store.MaxDiscAmount,
+                MaxDiscPercent = store.MaxDiscPercent,
+                PosClosureId = posClosure != null ? posClosure.PosClosureHeadId : 0,
+                IsOpenPos = posClosure != null
+            };
+            return View(model);
         }
 
         public ActionResult TextSearch(string text, string priceListCode, double quantity)
@@ -173,7 +193,7 @@ namespace WEBPOS.Controllers
             }
 
             #endregion
-            return Json(new { TransactionNumber = head.TransactionNumber, StoreCode = head.StoreCode, PosCode = head.PosCode }, JsonRequestBehavior.AllowGet);
+            return Json(new { NCF = head.NCF,TransactionNumber = head.TransactionNumber, StoreCode = head.StoreCode, PosCode = head.PosCode }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult LoadData()
@@ -336,7 +356,7 @@ namespace WEBPOS.Controllers
             }
         }
 
-        public ActionResult PaymentPartial(string priceListCode)
+        public ActionResult PaymentPartial(string priceListCode, string storeCode)
         {
             if (Session["UserCode"] == null)
                 return RedirectToAction("LogIn", "User");
@@ -344,7 +364,7 @@ namespace WEBPOS.Controllers
             var viewer = new ReportViewer();
             var list = Session["PosGridList"] as List<PosGridModel>;
             var posCode = Session["PosCode"]?.ToString() ?? "";
-            return PartialView(new PaymentModel { StoreCode = BlStore.ReadAllQueryable().FirstOrDefault().StoreCode, PosCode = posCode, PriceListCode = priceListCode, PaymentTypeCode = BlPaymentType.ReadAllQueryable().FirstOrDefault().PaymentTypeCode, PayedAmount = list.Sum(x => x.Total), Rest = 0, Total = list.Sum(x => x.Total), DocType = DocType.ConsumidorFinal });
+            return PartialView(new PaymentModel { StoreCode = storeCode, PosCode = posCode, PriceListCode = priceListCode, PaymentTypeCode = BlPaymentType.ReadAllQueryable().FirstOrDefault().PaymentTypeCode, PayedAmount = list.Sum(x => x.Total), Rest = 0, Total = list.Sum(x => x.Total), DocType = DocType.ConsumidorFinal });
         }
 
         public ActionResult NewQuantityPartial()
@@ -426,6 +446,68 @@ namespace WEBPOS.Controllers
 
             Session["PosGridList"] = list;
             return Json(new { TotalItems = list.Sum(x => x.Quantity), TotalValue = list.Sum(x => x.Total) }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult PosClosureManage(string storeCode, string storePosCode, int posClosureId, bool isClosing)
+        {
+            if (isClosing)
+            {
+                var deviceId = Request.UserHostName;
+                try
+                {
+                    string[] computer_name = System.Net.Dns.GetHostEntry(Request.ServerVariables["remote_addr"]).HostName.Split(new Char[] { '.' });
+                    deviceId = computer_name[0];
+                }
+                catch (Exception ex) { }
+
+                var usr = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == Session["UserCode"].ToString());
+                var terminal = BlStorePos.ReadAllQueryable().FirstOrDefault(x => x.DeviceId == deviceId);
+                var store = BlStore.ReadByCode(terminal.StoreCode);
+
+                var posClosure = BlPosClosureHead.ReadAllQueryable().FirstOrDefault(x => x.PosClosureHeadId == posClosureId);
+
+                posClosure.EndDateTime = DateTime.Now;
+
+                var sales = BlSellTransactionHead.ReadAllQueryable().Where(x=> x.TransactionDateTime.Date == DateTime.Now.Date && x.UpdateUser == usr.UserCode);
+
+                foreach (var sale in sales)
+                {
+                    BlPosClosureDetail.Save(new DePosClosureDetail
+                    {
+                        PosClosureHeadId = posClosure.PosClosureHeadId,
+                        StoreCode = sale.StoreCode,
+                        StorePosCode = sale.PosCode,
+                        TransactionNumber = sale.TransactionNumber,
+                        TransactionDateTime = sale.TransactionDateTime,
+                        NCF = sale.NCF,
+                        TotalValue = sale.TotalValue
+                    });
+                    posClosure.Total += sale.TotalValue;
+                }
+
+                BlPosClosureHead.Save(posClosure);
+
+                Session["UserCode"] = null;
+                return Json(new { posClosureId = posClosure.PosClosureHeadId }, JsonRequestBehavior.AllowGet);
+            }
+
+            return PartialView("OpenPosQuantity");
+        }
+
+        public ActionResult SavePosOpenQuantity(string storeCode, string storePosCode, double quantity)
+        {
+            var posClosure = new DePosClosureHead
+            {
+                BeginAmount = quantity,
+                StartDateTime = DateTime.Now,
+                EndDateTime = new DateTime(1900,1,1),
+                StoreCode = storeCode,
+                StorePosCode = storePosCode,
+                UserCode = Session["UserCode"].ToString()
+            };
+            
+            BlPosClosureHead.Save(posClosure);
+            return null;
         }
     }
 }

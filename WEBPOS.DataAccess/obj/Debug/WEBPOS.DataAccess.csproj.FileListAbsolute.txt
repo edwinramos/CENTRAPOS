@@ -26,3 +26,5 @@ C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Debug\WEBPOS.DataAcc
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Debug\WEBPOS.DataAccess.csproj.GenerateResource.cache
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Debug\WEBPOS.DataAccess.Migrations.StoreSecurity.resources
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Debug\WEBPOS.DataAccess.Migrations.SistemLocks.resources
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Debug\WEBPOS.DataAccess.Migrations.PosClosure.resources
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Debug\WEBPOS.DataAccess.Migrations.PosClosureDetail_TransactionNumber.resources
