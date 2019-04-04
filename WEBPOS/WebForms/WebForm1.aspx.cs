@@ -133,8 +133,8 @@ namespace WEBPOS.WebForms
                 }
             }
 
-            ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/InvoiceReport.rdlc");
-            //ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/InvoiceReportLogo.rdlc");
+            //ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/InvoiceReport.rdlc");
+            ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/InvoiceReportLogo.rdlc");
 
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportDataSource RDS = new ReportDataSource("DataSet1", res);

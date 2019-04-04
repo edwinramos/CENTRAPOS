@@ -468,7 +468,7 @@ namespace WEBPOS.Controllers
 
                 posClosure.EndDateTime = DateTime.Now;
 
-                var sales = BlSellTransactionHead.ReadAllQueryable().Where(x=> x.TransactionDateTime.Date == DateTime.Now.Date && x.UpdateUser == usr.UserCode);
+                var sales = BlSellTransactionHead.ReadAllQueryable().Where(x=> x.TransactionDateTime >= posClosure.StartDateTime && x.UpdateUser == usr.UserCode);
 
                 foreach (var sale in sales)
                 {

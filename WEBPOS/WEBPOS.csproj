@@ -598,6 +598,7 @@
     <Content Include="fonts\OpenSans\OpenSans-Regular.eot" />
     <Content Include="fonts\OpenSans\OpenSans-Regular.ttf" />
     <Content Include="fonts\OpenSans\OpenSans-Regular.woff" />
+    <Content Include="Docs\Test\ClosureWebForm.pdf" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -756,7 +757,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Docs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

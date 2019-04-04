@@ -103,7 +103,13 @@
         var tNumber = ids.split('|')[0];
         var posCode = ids.split('|')[1];
         var url = "WebForms/WebForm1.aspx?TransactionNumber=" + tNumber + "&StoreCode=0000001&PosCode=" + posCode + "&isSellTransaction=true";
-        window.open(url, '_blank');
+        var windowObj = window.open(url, '_blank');
+        windowObj.focus();
+        windowObj.print();
+        //var frame = $('#printIFrame');
+        //frame.attr('src', url);
+        //frame[0].contentWindow.focus();
+        //setTimeout(function () { frame[0].contentWindow.print(); }, 5000)
     }
 
     function onFormSubmit(s, e)
