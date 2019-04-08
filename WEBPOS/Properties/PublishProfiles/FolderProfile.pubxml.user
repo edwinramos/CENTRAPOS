@@ -586,19 +586,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2014 13:57:34</publishTime>
     </File>
     <File Include="bin/WEBPOS.DataAccess.dll">
-      <publishTime>04/02/2019 21:55:24</publishTime>
+      <publishTime>04/05/2019 18:01:59</publishTime>
     </File>
     <File Include="bin/WEBPOS.DataAccess.dll.config">
       <publishTime>10/26/2018 15:00:19</publishTime>
     </File>
     <File Include="bin/WEBPOS.DataAccess.pdb">
-      <publishTime>04/02/2019 21:55:24</publishTime>
+      <publishTime>04/05/2019 18:01:59</publishTime>
     </File>
     <File Include="bin/WEBPOS.dll">
-      <publishTime>04/02/2019 21:55:32</publishTime>
+      <publishTime>04/07/2019 17:10:59</publishTime>
     </File>
     <File Include="bin/WEBPOS.pdb">
-      <publishTime>04/02/2019 21:55:32</publishTime>
+      <publishTime>04/07/2019 17:10:59</publishTime>
     </File>
     <File Include="bin/zh-CHS/Microsoft.ReportViewer.Common.resources.dll">
       <publishTime>09/17/2018 17:37:48</publishTime>
@@ -1320,6 +1320,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="DBWEBPOSDataSetPosClosure.xss">
       <publishTime>04/02/2019 19:23:23</publishTime>
     </File>
+    <File Include="Docs/Test/ClosureWebForm.pdf">
+      <publishTime>04/04/2019 18:43:44</publishTime>
+    </File>
+    <File Include="Docs/Test/ClosureWebForm2.pdf">
+      <publishTime>04/05/2019 18:12:05</publishTime>
+    </File>
     <File Include="favicon.ico">
       <publishTime>10/26/2018 13:16:27</publishTime>
     </File>
@@ -1375,13 +1381,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/09/2019 19:40:37</publishTime>
     </File>
     <File Include="Reports/InvoiceReport.rdlc">
-      <publishTime>02/17/2019 21:33:08</publishTime>
+      <publishTime>04/04/2019 18:30:18</publishTime>
     </File>
     <File Include="Reports/InvoiceReportLogo.rdlc">
-      <publishTime>03/29/2019 23:50:08</publishTime>
+      <publishTime>04/04/2019 18:30:18</publishTime>
     </File>
     <File Include="Reports/PosClosureReport.rdlc">
-      <publishTime>04/02/2019 21:47:49</publishTime>
+      <publishTime>04/04/2019 18:30:18</publishTime>
     </File>
     <File Include="Reports/SellOrderReport.rdlc">
       <publishTime>03/19/2019 09:52:53</publishTime>
@@ -1771,7 +1777,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/18/2019 23:20:45</publishTime>
     </File>
     <File Include="Views/Pos/Index.cshtml">
-      <publishTime>04/02/2019 21:52:25</publishTime>
+      <publishTime>04/07/2019 16:52:32</publishTime>
     </File>
     <File Include="Views/Pos/ItemInfoPartial.cshtml">
       <publishTime>01/08/2019 19:47:10</publishTime>
@@ -1787,6 +1793,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Views/Pos/PriceListSelectPartial.cshtml">
       <publishTime>11/10/2018 21:37:33</publishTime>
+    </File>
+    <File Include="Views/PosClosure/Index.cshtml">
+      <publishTime>04/07/2019 16:54:21</publishTime>
+    </File>
+    <File Include="Views/PosClosure/PosClosurePartial.cshtml">
+      <publishTime>04/07/2019 16:33:29</publishTime>
     </File>
     <File Include="Views/PriceList/Index.cshtml">
       <publishTime>03/27/2019 19:14:24</publishTime>
@@ -1807,7 +1819,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/08/2019 21:10:55</publishTime>
     </File>
     <File Include="Views/SellTransaction/Index.cshtml">
-      <publishTime>04/02/2019 14:54:25</publishTime>
+      <publishTime>04/04/2019 18:11:51</publishTime>
     </File>
     <File Include="Views/SellTransaction/SellTransactionPartial.cshtml">
       <publishTime>12/12/2018 21:07:53</publishTime>
@@ -1819,7 +1831,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/01/2019 22:05:54</publishTime>
     </File>
     <File Include="Views/Shared/_BaseLayout.cshtml">
-      <publishTime>03/29/2019 21:16:27</publishTime>
+      <publishTime>04/07/2019 16:41:21</publishTime>
     </File>
     <File Include="Views/Store/Index.cshtml">
       <publishTime>03/29/2019 20:08:16</publishTime>
@@ -1867,7 +1879,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/02/2019 20:20:55</publishTime>
     </File>
     <File Include="WebForms/WebForm1.aspx">
-      <publishTime>01/13/2019 20:20:58</publishTime>
+      <publishTime>04/04/2019 15:54:17</publishTime>
     </File>
   </ItemGroup>
 </Project>

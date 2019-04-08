@@ -130,8 +130,8 @@ namespace WEBPOS.Controllers
                                     break;
 
                                 item.Producto = m.ItemArray[1].ToString();
-                                item.Cantidad = m.ItemArray[2].ToString();
-                                item.PrecioList = m.ItemArray[3].ToString();
+                                item.Cantidad = string.IsNullOrEmpty(m.ItemArray[2].ToString()) ? "0" : m.ItemArray[2].ToString();
+                                item.PrecioList = string.IsNullOrEmpty(m.ItemArray[3].ToString()) ? "0" : m.ItemArray[3].ToString();
                                 item.Barcode = m.ItemArray[4].ToString();
                                 item.TaxPercent = m.ItemArray[5].ToString();
                                                             

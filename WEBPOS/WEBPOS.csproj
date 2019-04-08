@@ -210,6 +210,7 @@
     <Compile Include="Controllers\PosController.cs" />
     <Compile Include="Controllers\PaymentTypeController.cs" />
     <Compile Include="Controllers\SellOrderController.cs" />
+    <Compile Include="Controllers\PosClosureController.cs" />
     <Compile Include="Controllers\SellTransactionController.cs" />
     <Compile Include="Controllers\StorePosController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
@@ -754,6 +755,8 @@
     <Content Include="Views\SellOrder\Index.cshtml" />
     <Content Include="Views\SellOrder\SellOrderDetail.cshtml" />
     <Content Include="Views\SellOrder\SellOrderDetailPartial.cshtml" />
+    <Content Include="Views\PosClosure\Index.cshtml" />
+    <Content Include="Views\PosClosure\PosClosurePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

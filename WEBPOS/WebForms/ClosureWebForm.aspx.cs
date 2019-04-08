@@ -26,13 +26,11 @@ namespace WEBPOS.WebForms
 
         private void PrintPosClosure(string[] queryString)
         {
-            var storeCode = queryString[0].Split('=')[1];
-            var storePosCode = queryString[1].Split('=')[1];
-            var posClosureId = Convert.ToInt32(queryString[2].Split('=')[1]);
+            var posClosureId = Convert.ToInt32(queryString[0].Split('=')[1]);
 
             var closure = BlPosClosureHead.ReadAllQueryable().FirstOrDefault(x => x.PosClosureHeadId == posClosureId);
             var closureDetail = BlPosClosureDetail.ReadAllQueryable().Where(x => x.PosClosureHeadId == posClosureId);
-            var terminal = BlStorePos.ReadAllQueryable().FirstOrDefault(x => x.StorePosCode == storePosCode);
+            var terminal = BlStorePos.ReadAllQueryable().FirstOrDefault(x => x.StorePosCode == closure.StorePosCode);
 
             ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/PosClosureReport.rdlc");
 

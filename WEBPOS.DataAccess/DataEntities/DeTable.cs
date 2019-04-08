@@ -16,5 +16,7 @@ namespace WEBPOS.DataAccess.DataEntities
 
         [Required]
         public string KeyVariable { get; set; }
+
+        public string Value { get; set; }
     }
 }

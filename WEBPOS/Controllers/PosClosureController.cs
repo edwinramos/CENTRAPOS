@@ -8,7 +8,7 @@ using WEBPOS.DataAccess.DataEntities;
 
 namespace WEBPOS.Controllers
 {
-    public class SellTransactionController : Controller
+    public class PosClosureController : Controller
     {
         // GET: PriceList
         public ActionResult Index()
@@ -33,14 +33,15 @@ namespace WEBPOS.Controllers
                 int recordsTotal = 0;
 
                 // Getting all Customer data    
-                var model = BlSellTransactionHead.ReadAllQueryable().OrderByDescending(x=>x.TransactionDateTime).Select(x=> new
+                var model = BlPosClosureHead.ReadAllQueryable().OrderByDescending(x=>x.StartDateTime).Select(x=> new
                 {
-                    x.TransactionNumber,
-                    x.NCF,
-                    x.TransactionDateTime,
-                    Customer = BlBusinessPartner.ReadAllQueryable().FirstOrDefault(p=>p.BusinessPartnerCode == x.CustomerCode)?.BusinessPartnerDescription ?? "",
-                    StorePosCode = x.PosCode,//BlStorePos.ReadAllQueryable().FirstOrDefault(p=>p.StorePosCode == x.PosCode)?.StorePosDescription ?? "",
-                    x.TotalValue
+                    x.PosClosureHeadId,
+                    x.StartDateTime,
+                    x.EndDateTime,
+                    x.BeginAmount,
+                    x.UserCode,
+                    Terminal = BlStorePos.ReadAllQueryable().FirstOrDefault(m=>m.StorePosCode== x.StorePosCode).StorePosDescription,
+                    x.Total
                 });
 
                 //Sorting    
@@ -51,7 +52,7 @@ namespace WEBPOS.Controllers
                 //Search
                 if (!string.IsNullOrEmpty(searchValue))
                 {
-                    model = model.Where(m => m.NCF.ToUpper().Contains(searchValue.ToUpper()));
+                    model = model.Where(m => m.UserCode.ToUpper().Contains(searchValue.ToUpper()));
                 }
 
                 //total number of rows count     
@@ -66,32 +67,6 @@ namespace WEBPOS.Controllers
             {
                 throw;
             }
-        }
-
-        public ActionResult SellTransactionDetail(int id)
-        {
-            BlSellTransactionHead.ReadAllQueryable().FirstOrDefault(x=>x.TransactionNumber == id);
-
-            return null;
-        }
-
-        public ActionResult SellTransactionPartial(string id)
-        {
-            var pl = BlPriceList.Read(new DePriceList { PriceListCode = id });
-
-            if (id == "0")
-                return PartialView(new DePriceList { PriceListCode = "", PriceListDescription = "" });
-
-            return PartialView(pl.FirstOrDefault());
-        }
-
-        public ActionResult PriceListDelete(string id)
-        {
-            var pl = BlPriceList.Read(new DePriceList { PriceListCode = id });
-
-            BlPriceList.Delete(pl.FirstOrDefault());
-
-            return null;
         }
     }
 }

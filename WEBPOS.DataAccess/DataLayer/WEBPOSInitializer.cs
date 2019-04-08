@@ -65,7 +65,7 @@ namespace WEBPOS.DataAccess.DataLayer
             itemWarehouses.ForEach(s => context.BusinessPartners.Add(s));
             context.SaveChanges();
 
-            context.Users.Add(new DeUser { UserCode = "admin", Password = "984sMmyYExc2ccrPpZjbEA==", Gender = Gender.HOMBRE, UserType = UserType.ADMINISTRADOR });
+            context.Users.Add(new DeUser { UserCode = "admin", Password = "984sMmyYExc2ccrPpZjbEA==", Gender = Gender.HOMBRE, UserType = UserType.ADMINISTRADOR, IsEditing = true });
             context.SaveChanges();
         }
     }

@@ -67,9 +67,10 @@ namespace WEBPOS.Controllers
 
             var list = Session["PosGridList"] as List<PosGridModel>;
 
-            var item = BlItem.ReadAllQueryable().FirstOrDefault(x => x.ItemCode == text || x.ItemDescription.ToUpper() == text.ToUpper() || x.Barcode == text);
-            if (item != null)
+            var items = BlItem.ReadAllQueryable().Where(x => x.ItemCode == text || x.ItemDescription.ToUpper() == text.ToUpper() || x.Barcode == text);
+            if (items.Count() == 1)
             {
+                var item = items.FirstOrDefault();
                 var itemPrice = BlPrice.ReadByCode(item.ItemCode, priceListCode);
                 double vatPrice = 0;
                 if (itemPrice != null)
@@ -108,7 +109,7 @@ namespace WEBPOS.Controllers
                 }
             }
             Session["PosGridList"] = list;
-            return Json(new { TotalItems = list.Sum(x => x.Quantity), TotalValue = list.Sum(x => x.Total) }, JsonRequestBehavior.AllowGet);
+            return Json(new { TotalItems = list.Sum(x => x.Quantity), TotalValue = list.Sum(x => x.Total), isSingle = (items.ToList().Count() == 1) }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult SaveTransaction(PaymentModel model)
@@ -509,5 +510,58 @@ namespace WEBPOS.Controllers
             BlPosClosureHead.Save(posClosure);
             return null;
         }
+
+        #region ItemsSearch
+
+        public ActionResult ItemsLoadData(string id, string storeCode)
+        {
+            try
+            {
+                var draw = Request.Form.GetValues("draw").FirstOrDefault();
+                var start = Request.Form.GetValues("start").FirstOrDefault();
+                var length = Request.Form.GetValues("length").FirstOrDefault();
+                var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+                var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+                var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+
+                int pageSize = length != null ? Convert.ToInt32(length) : 0;
+                int skip = start != null ? Convert.ToInt32(start) : 0;
+
+                var warehouseCode = BlStore.ReadByCode(storeCode)?.WarehouseCode ?? "";
+
+                if (Session["UserCode"] == null)
+                    return RedirectToAction("LogIn", "User");
+
+                var list = BlItem.ReadAllQueryable();
+
+                var model = list.Select(x=> new
+                {
+                    x.ItemCode,
+                    x.ItemDescription,
+                    AvailableQty = BlItemWarehouse.ReadAllQueryable().FirstOrDefault(m=>m.ItemCode == x.ItemCode && m.WarehouseCode == warehouseCode)?.QuantityOnHand ?? 0,
+                    Price = BlPrice.ReadByCode(x.ItemCode, id)?.SellPrice ?? 0
+                }).ToList();
+
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    model = model.Where(m => m.ItemDescription.ToUpper().Contains(searchValue.ToUpper())).ToList();
+                }
+
+                var data = model.Skip(skip).Take(pageSize).ToList();
+
+                return Json(new { draw = model, recordsFiltered = model.Count(), recordsTotal = model.Count(), data = data });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public ActionResult ItemSearchPartial()
+        {
+            return PartialView();
+        }
+
+        #endregion
     }
 }

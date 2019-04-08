@@ -15,7 +15,7 @@
                 
                 <div class="modal-body col-md-12">
                     @Html.Label("Cantidad")
-                    @Html.TextBox("NewQty", null, new { @class = "form-control currency", @type = "number" })
+                    @Html.TextBox("NewQty", null, new { @class = "form-control currency", @type = "number", min = "0" })
                 </div>
                 
                 <div class="modal-footer">

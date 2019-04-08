@@ -140,6 +140,10 @@
     <Compile Include="Migrations\201904021741001_PosClosureDetail_TransactionNumber.Designer.cs">
       <DependentUpon>201904021741001_PosClosureDetail_TransactionNumber.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904051440427_srTable.cs" />
+    <Compile Include="Migrations\201904051440427_srTable.Designer.cs">
+      <DependentUpon>201904051440427_srTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="WEBPOSContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -159,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904021741001_PosClosureDetail_TransactionNumber.resx">
       <DependentUpon>201904021741001_PosClosureDetail_TransactionNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904051440427_srTable.resx">
+      <DependentUpon>201904051440427_srTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
