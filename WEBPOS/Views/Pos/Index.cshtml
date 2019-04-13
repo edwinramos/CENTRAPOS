@@ -33,7 +33,7 @@
                 <input class="form-control" id="searchBar" type="text" placeholder="Busqueda" />
             </div>
             <div class="col-xs-6 form-group">
-                <h2 style="text-align:left;float:left;">CentraPos</h2>
+                <h2 style="text-align:left;float:left;">@ViewBag.UserName</h2>
                 <h2 style="text-align:right;float:right;">@Model.StorePosDescription</h2>
             </div>
             <div class="col-xs-6">
@@ -259,9 +259,6 @@
                 $("#generalPriceList").text(priceList.PriceListDescription);
                 $("#generalTotalItems").text("0.00");
                 $("#generalTotalSum").text("RD$ 0.00");
-
-                //var frame = $('#printIFrame');
-                //setTimeout(function () { frame.attr('src', "/Docs/Test/ClosureWebForm2.pdf"); }, 1000);
             },
         });
 
@@ -487,20 +484,7 @@
             },
         ]
     });
-
-    //$('#itemSearchGrid tbody').on('click', 'tr', function () {
-    //    if ($(this).hasClass('selected')) {
-    //        $(this).removeClass('selected');
-    //        selectedCustomer = null;
-    //    }
-    //    else {
-    //        customerTable.$('tr.selected').removeClass('selected');
-    //        $(this).addClass('selected');
-
-    //        selectedCustomer = customerTable.row(this).data();
-    //    }
-    //});
-
+    
     function clearAll() {
         //if (confirm("¿Esta seguro de limpiar todo?")) {
             $.ajax({
@@ -666,7 +650,7 @@
                         var windowObj = window.open(url, '_blank');
                         windowObj.focus();
                         windowObj.print();
-                        setTimeout(function () { windowObj.close(); }, 20000);
+                        //setTimeout(function () { windowObj.close(); }, 20000);
                         //var frame = $('#printIFrame');
                         //frame.attr('src', url);
                         //frame[0].contentWindow.focus();

@@ -15,12 +15,12 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <a class="close" data-dismiss="modal">&times;</a>
-                    <h4 class="modal-title">Editar</h4>
+                    <h4 class="modal-title" id="itemDescription">Manejo de Articulo</h4>
                 </div>
 
                 <div class="modal-body col-md-12">
                     <div class="form-group col-md-4">
-                        @Html.Label("Articulo")
+                        <label>Articulo</label>
                         @{
                             List<SelectListItem> list = new List<SelectListItem>();
                             list.Add(new SelectListItem { Text = "", Value = "" });
@@ -29,7 +29,15 @@
                                 list.Add(new SelectListItem { Text = ob.ItemDescription, Value = ob.ItemCode });
                             }
                         }
-                        @Html.DropDownListFor(model => model.ItemCode, list, new { @class = "form-control", @onchange = "onItemChange();" })
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-9">
+                                @*<input type="text" name="ItemCode" id="ItemCode" class="form-control" onkeydown="onItemCodeKeyPress(event)"/>*@
+                                @Html.TextBoxFor(model => model.ItemCode, new { @class = "form-control", onkeydown = "onItemCodeKeyPress(event)" })
+                            </div>
+                            <div class="col-xs-12 col-sm-3">
+                                <button type="button" class="form-control fa fa-search" onclick="onItemSearchPopUp()" />
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group col-md-4">
                         @Html.Label("Precio Antes de descuento")

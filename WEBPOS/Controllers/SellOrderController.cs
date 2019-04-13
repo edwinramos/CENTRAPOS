@@ -265,16 +265,20 @@ namespace WEBPOS.Controllers
             return Json(new { VatSum = list.Sum(x => x.VatValue), DiscSum = list.Sum(x => x.DiscountValue), TotalSum = list.Sum(x=>x.TotalRowValue - x.DiscountValue) }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult PriceItemInfo(string itemCode, string priceListCode)
+        public JsonResult PriceItemInfo(string code, string priceListCode)
         {
-            var item = BlItem.ReadByCode(itemCode);
-            var itemPrice = BlPrice.ReadAllQueryable().FirstOrDefault(x => x.ItemCode == itemCode && x.PriceListCode == priceListCode);
+            var item = BlItem.ReadAllQueryable().FirstOrDefault(x=>x.ItemCode == code || x.Barcode == code);
+            if (item != null)
+            {
+                var itemPrice = BlPrice.ReadAllQueryable().FirstOrDefault(x => x.PriceListCode == priceListCode && (x.ItemCode == item.ItemCode));
 
-            double vatPrice = 0;
-            if (itemPrice != null)
-                vatPrice = itemPrice.SellPrice + (itemPrice.SellPrice * (item.Tax.TaxPercent / 100));
+                double vatPrice = 0;
+                if (itemPrice != null)
+                    vatPrice = itemPrice.SellPrice + (itemPrice.SellPrice * (item.Tax.TaxPercent / 100));
 
-            return Json(new { priceBefDiscount = itemPrice.SellPrice, priceAftTax = vatPrice, taxCode = item.TaxCode }, JsonRequestBehavior.AllowGet);
+                return Json(new { itemDescription = item.ItemDescription, priceBefDiscount = itemPrice.SellPrice, priceAftTax = vatPrice, taxCode = item.TaxCode, isSuccess = true }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { isSuccess = false }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetOrderTotals(int sellOrderId)
@@ -284,5 +288,47 @@ namespace WEBPOS.Controllers
             return Json(new { totalDiscount = list.Sum(x=>x.DiscountValue), docTotal = list.Sum(x=>x.TotalRowValue), taxSum = list.Sum(x=>x.VatValue) }, JsonRequestBehavior.AllowGet);
         }
         #endregion
+
+        public ActionResult ItemsLoadData(string id, string warehouseCode)
+        {
+            try
+            {
+                var draw = Request.Form.GetValues("draw").FirstOrDefault();
+                var start = Request.Form.GetValues("start").FirstOrDefault();
+                var length = Request.Form.GetValues("length").FirstOrDefault();
+                var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+                var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+                var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+
+                int pageSize = length != null ? Convert.ToInt32(length) : 0;
+                int skip = start != null ? Convert.ToInt32(start) : 0;
+
+                if (Session["UserCode"] == null)
+                    return RedirectToAction("LogIn", "User");
+
+                var list = BlItem.ReadAllQueryable();
+
+                var model = list.Select(x => new
+                {
+                    x.ItemCode,
+                    x.ItemDescription,
+                    AvailableQty = BlItemWarehouse.ReadAllQueryable().FirstOrDefault(m => m.ItemCode == x.ItemCode && m.WarehouseCode == warehouseCode)?.QuantityOnHand ?? 0,
+                    Price = BlPrice.ReadByCode(x.ItemCode, id)?.SellPrice ?? 0
+                }).ToList();
+
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    model = model.Where(m => m.ItemDescription.ToUpper().Contains(searchValue.ToUpper())).ToList();
+                }
+
+                var data = model.Skip(skip).Take(pageSize).ToList();
+
+                return Json(new { draw = model, recordsFiltered = model.Count(), recordsTotal = model.Count(), data = data });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

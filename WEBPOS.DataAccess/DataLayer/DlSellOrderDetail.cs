@@ -20,10 +20,7 @@ namespace WEBPOS.DataAccess.DataLayer
         }
         public IEnumerable<DeSellOrderDetail> Read(DeSellOrderDetail obj)
         {
-            var data = context.SellOrderDetails.ToList();
-
-            if (obj.SellOrderId != 0)
-                data = data.Where(x => x.SellOrderId == obj.SellOrderId).ToList();
+            var data = context.SellOrderDetails.Where(x=>x.SellOrderId == obj.SellOrderId).ToList();
 
             if (obj.LineNumber != 0)
                 data = data.Where(x => x.LineNumber == obj.LineNumber).ToList();

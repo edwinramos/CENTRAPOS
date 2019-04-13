@@ -33,7 +33,7 @@
                 <input class="form-control" id="searchBar" type="text" placeholder="Busqueda" />
             </div>
             <div class="col-xs-6 form-group">
-                <h2 style="text-align:left;float:left;">CentraPos</h2>
+                <h2 style="text-align:left;float:left;">@ViewBag.UserName</h2>
                 <h2 style="text-align:right;float:right;">@Model.StorePosDescription</h2>
             </div>
             <div class="col-xs-6">
@@ -202,6 +202,42 @@
             }
         </div>
     </div>
+
+    <div class="modal fade" id="myItemSearchModal" role="dialog">
+        <div id="ItemSearchModalContainer">
+            @using (Html.BeginForm("ItemsSearch", "Pos", FormMethod.Post, new { id = "customerForm", onkeydown = "return (event.keyCode!=13);" }))
+            {
+                <div class="container form-group">
+                    <div class="modal-dialog modal-lg" style="width:80%;">
+                        <div class="modal-content" >
+                            <div class="modal-header">
+                                <a class="close" data-dismiss="modal">&times;</a>
+                                <h4 class="modal-title">Busqueda de Articulos</h4>
+                            </div>
+
+                            <div class="modal-body col-md-12">
+                                <table id="itemSearchGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Codigo</th>
+                                            <th>Descripcion</th>
+                                            <th>Cantidad Disponible</th>
+                                            <th>Precio</th>
+                                            <th>Cantidad a Insertar</th>
+                                            <th>Insertar</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <a class="btn btn-default" data-dismiss="modal">Cerrar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </body>
 </html>
 <iframe id="printIFrame" src="~/Docs/Test/ClosureWebForm.pdf" width="0" height="0"></iframe>
@@ -223,9 +259,6 @@
                 $("#generalPriceList").text(priceList.PriceListDescription);
                 $("#generalTotalItems").text("0.00");
                 $("#generalTotalSum").text("RD$ 0.00");
-
-                //var frame = $('#printIFrame');
-                //setTimeout(function () { frame.attr('src', "/Docs/Test/ClosureWebForm2.pdf"); }, 1000);
             },
         });
 
@@ -246,11 +279,18 @@
                 url: '@Url.Action("TextSearch", "Pos")',
                 data: { text: text, priceListCode: priceList.PriceListCode, quantity: qty },
                 success: function (data) {
-                    table.ajax.reload();
-                    $('#searchBar').val(null);
-                    $('#selectedItemInfo').html(null);
-                    $("#generalTotalItems").text(data.TotalItems.toFixed(2));
-                    $("#generalTotalSum").text("RD$ " + data.TotalValue.toFixed(2));
+                    if (data.isSingle) {
+                        table.ajax.reload();
+                        $('#searchBar').val(null);
+                        $('#selectedItemInfo').html(null);
+                        $("#generalTotalItems").text(data.TotalItems.toFixed(2));
+                        $("#generalTotalSum").text("RD$ " + data.TotalValue.toFixed(2));
+                    } else {
+                        $("input[aria-controls='itemSearchGrid']").val($('#searchBar').val());
+                        $("#InsertQty").val(qty);
+                        itemSearchTable.ajax.reload();
+                        $('#myItemSearchModal').modal('show');
+                    }
                 },
             });
         }
@@ -389,6 +429,62 @@
         }
     });
 
+    var itemSearchTable = $("#itemSearchGrid").DataTable({
+
+        "processing": true, // for show progress bar
+        "serverSide": true, // for process server side
+        "filter": true, // this is for disable filter (search box)
+        "orderMulti": false, // for disable multiple column at once
+        "pageLength": 5,
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+        },
+        "ajax": {
+            "url": "/Pos/ItemsLoadData/" + priceList.PriceListCode + "?storeCode=" + '@Model.StoreCode',
+            "type": "POST",
+            "datatype": "json"
+        },
+
+        "columnDefs":
+            [{
+                "targets": [0],
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [1],
+                "searchable": false,
+                "orderable": false,
+            },
+            {
+                "targets": [2],
+                "searchable": false,
+                "orderable": false,
+            },
+            {
+                "targets": [3],
+                "searchable": false,
+                "orderable": false,
+            }],
+
+        "columns": [
+            { "data": "ItemCode", "name": "ItemCode", "autoWidth": true },
+            { "data": "ItemDescription", "name": "ItemDescription", "autoWidth": true },
+            { "render": function (data, type, full, meta) { return full.AvailableQty.toFixed(2); } },
+            { "render": function (data, type, full, meta) { return "(RD$)" + full.Price.toFixed(2); } },
+            {
+                data: null, render: function (data, type, row) {
+                    return "<input class='form-control' id='qty" + row.ItemCode +"' type='number' min='0' value='0' />";
+                }
+            },
+            {
+                data: null, render: function (data, type, row) {
+                    return "<a href='#' class='btn btn-info' onclick=onItemSearchInsert('" + row.ItemCode + "'); >Insertar</a>";
+                }
+            },
+        ]
+    });
+    
     function clearAll() {
         //if (confirm("¿Esta seguro de limpiar todo?")) {
             $.ajax({
@@ -554,7 +650,7 @@
                         var windowObj = window.open(url, '_blank');
                         windowObj.focus();
                         windowObj.print();
-                        setTimeout(function () { windowObj.close(); }, 20000);
+                        //setTimeout(function () { windowObj.close(); }, 20000);
                         //var frame = $('#printIFrame');
                         //frame.attr('src', url);
                         //frame[0].contentWindow.focus();
@@ -722,5 +818,29 @@
 
             }
         });
+    }
+
+    function onItemSearchInsert(itemCode) {
+        var qty = $('#qty' + itemCode + '').val();
+        if (qty == "0") {
+            toastr.warning('', "La cantidad debe ser mayor a 0.");
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("TextSearch", "Pos")',
+            data: { text: itemCode, priceListCode: priceList.PriceListCode, quantity: qty },
+            success: function (data) {
+                table.ajax.reload();
+                $('#searchBar').val(null);
+                $('#selectedItemInfo').html(null);
+                $("#generalTotalItems").text(data.TotalItems.toFixed(2));
+                $("#generalTotalSum").text("RD$ " + data.TotalValue.toFixed(2));
+            },
+        });
+    }
+
+    function onItemsFormSubmit() {
+
     }
 </script>

@@ -22,6 +22,7 @@ namespace WEBPOS.Controllers
                 return RedirectToAction("LogIn", "User");
 
             ViewBag.IsEditing = true;
+            ViewBag.UserName = usr.Name + " " + usr.LastName;
             if (usr.UserType != UserType.ADMINISTRADOR)
             {
                 ViewBag.IsEditing = usr.IsEditing;

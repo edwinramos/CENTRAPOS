@@ -34,7 +34,7 @@
                 <header id="header">
                     <strong>CentraPOS</strong>
                     <ul class="icons">
-                        <li><a href="@Url.Action("UserLogout", "User")" class="icon fa-sign-out"><span class="label">Salir</span></a></li>
+                        <li><a href="@Url.Action("UserLogout", "User")" class="icon fa-user-circle"> @ViewBag.UserName</a></li>
                         @*<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
                         <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
                         <li><a href="#" class="icon fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
@@ -77,7 +77,7 @@
     padding: 0;
 ">
                     <header class="major">
-                        <h2>Menu</h2>
+                        <h2>CentraPOS</h2>
                     </header>
                     <ul>
                         <li><a href="#" onclick=onActionClick('@Url.Action("Charts", "Home")');>Inicio</a></li>

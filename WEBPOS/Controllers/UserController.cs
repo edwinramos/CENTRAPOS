@@ -47,6 +47,7 @@ namespace WEBPOS.Controllers
             if (usr != null)
             {
                 Session["UserCode"] = usr.UserCode;
+                
                 var activity = new DeActivityLog
                 {
                     ActivityMessage = string.Format(ActivityLogHelper.GetActivityText(LogActivities.SIGNIN))

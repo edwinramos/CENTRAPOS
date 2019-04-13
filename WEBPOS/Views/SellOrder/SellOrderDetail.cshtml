@@ -114,12 +114,15 @@
                     @{ if (Model.SellOrderId != 0 && !Model.IsClosed)
                         {
                             <button class="btn btn-default" type="submit">Guardar</button>
+                            <button class="btn btn-default" type="button" onclick="onPrintOrder();">Imprimir Orden</button>
                             <button class="btn btn-default" type="button" onclick="onCloseOrder();">Cerrar Orden</button>
                         }
                         else
                         {
-                            <button class="btn btn-default" type="submit">Guardar</button>
-                            <button class="btn btn-default" type="button" onclick="onPrintOrder();">Imprimir Orden</button>
+                            if (!Model.IsClosed)
+                            {
+                                <button class="btn btn-default" type="submit">Guardar</button>
+                            }
                         }
                     }
                     <br />
@@ -156,7 +159,7 @@
             <div class="form-group">
                 <div class="col-md-10">
                     @Html.Label("Comentarios")
-                    @Html.EditorFor(model => model.Comments, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextAreaFor(model => model.Comments, new { htmlAttributes = new { @class = "form-control" } })
                     <br />
                 </div>
             </div>
@@ -182,6 +185,40 @@
 }
 <div class="modal fade" id="myModal" role="dialog">
     <div id="modalContainer"></div>
+</div>
+<div class="modal fade" id="myItemSearchModal" role="dialog">
+    <div id="ItemSearchModalContainer">
+        @using (Html.BeginForm("ItemsSearch", "Pos", FormMethod.Post, new { id = "customerForm", onkeydown = "return (event.keyCode!=13);" }))
+        {
+            <div class="container form-group">
+                <div class="modal-dialog modal-lg" style="width:80%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <a class="close" data-dismiss="modal">&times;</a>
+                            <h4 class="modal-title">Busqueda de Articulos</h4>
+                        </div>
+
+                        <div class="modal-body col-md-12">
+                            <table id="itemSearchGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Codigo</th>
+                                        <th>Descripcion</th>
+                                        <th>Cantidad Disponible</th>
+                                        <th>Precio</th>
+                                        <th>Insertar</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-default" data-dismiss="modal">Cerrar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>
 <script>
     var detailTable = $("#sellOrderDetailGrid").DataTable({
@@ -248,19 +285,29 @@
     });
 
     function onDetailEdit(ids) {
+        if ('@Model.IsClosed' == 'True')
+        {
+            toastr.error("No puede utilizar esta opcion", "Orden cerrada");
+            return;
+        }
         $.ajax({
-            type: "POST",
+                type: "POST",
             url: '@Url.Action("SellOrderDetailPartial", "SellOrder")',
             data: { sellOrderId: '@Model.SellOrderId', lineNumber: ids, whsCode: $('#WarehouseCode').val(), plCode: $('#PriceListCode').val() },
             success: function (data) {
                 $('#modalContainer').html(data);
                 $('#myModal').modal('show');
-                //if (ids != "0")
-                //    $('#PriceListCode').prop('readonly', true);
-            },
+                    //if (ids != "0")
+                    //    $('#PriceListCode').prop('readonly', true);
+                },
         });
-    }
+        }
     function onDetailDelete(ids) {
+        if ('@Model.IsClosed' == 'True')
+        {
+            toastr.error("No puede utilizar esta opcion", "Orden cerrada");
+            return;
+        }
         if (confirm("¿Seguro que desea eliminar?")) {
             $.ajax({
                 type: "POST",
@@ -308,20 +355,36 @@
         });
     }
 
-    function onItemChange() {
+    function onItemSearch() {
         $.ajax({
             type: "POST",
             dataType: 'json',
-                url: '@Url.Action("PriceItemInfo", "SellOrder")',
-                data: { itemCode: $('#ItemCode').val(), priceListCode: $('#PriceListCode').val() },
-                success: function (data) {
+            url: '@Url.Action("PriceItemInfo", "SellOrder")',
+            data: { code: $('#ItemCode').val(), priceListCode: $('#PriceListCode').val() },
+            success: function (data) {
+                if (data.isSuccess) {
                     $('#PriceBefDiscounts').val(data.priceBefDiscount);
                     $('#PriceAftVat').val(data.priceAftTax);
                     $('#VatCode').val(data.taxCode);
+                    $('#itemDescription').text("Manejo de Articulo - " + data.itemDescription);
 
                     itemCalculation();
-                },
-            });
+                }
+                else {
+                    $('#myItemSearchModal').modal('show');
+                    toastr.info("Pruebe con la busqueda avanzada", "Articulo no encontrdo")
+                }
+            },
+        });
+    }
+
+    function onItemCodeKeyPress(e) {
+
+        var code = e.keyCode ? e.keyCode : e.which;
+        if (code == 13) {
+            onItemSearch();
+        }
+
     }
 
     function itemCalculation() {
@@ -335,22 +398,94 @@
     }
 
     function onCloseOrder() {
+        var formData = $('#itemForm').serialize();
+
         $.ajax({
+            type: "POST",
+            url: '@Url.Action("SellOrderManage", "SellOrder")',
+            data: formData,
+            success: function (data) {
+                $.ajax({
                     type: "POST",
                     url: '@Url.Action("CloseSellOrder", "SellOrder")',
                     data: { id: '@Model.SellOrderId' },
-            success: function (data) {
-                location.reload();
+                    success: function (data) {
+                        location.reload();
                     },
                 });
+            },
+        });
     }
 
     function onPrintOrder() {
-        var url = "WebForms/WebForm1.aspx?SellOrderId=@Model.SellOrderId&StoreCode=@Model.StoreCode&PosCode=@Model.StorePosCode&isSellTransaction=false";
+        var url = "/WebForms/WebForm1.aspx?SellOrderId=@Model.SellOrderId&StoreCode=@Model.StoreCode&PosCode=@Model.StorePosCode&isSellTransaction=false";
         window.open(url, '_blank');
     }
 
     $(function () { // will trigger when the document is ready
         $('.datepicker').datepicker({ dateFormat: 'dd/mm/yy' }); //Initialise any date pickers
     });
+
+    function onItemSearchPopUp() {
+        onItemSearch();
+    }
+
+    var itemSearchTable = $("#itemSearchGrid").DataTable({
+
+        "processing": true, // for show progress bar
+        "serverSide": true, // for process server side
+        "filter": true, // this is for disable filter (search box)
+        "orderMulti": false, // for disable multiple column at once
+        "pageLength": 5,
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+        },
+        "ajax": {
+            "url": "/SellOrder/ItemsLoadData/" + $('#PriceListCode').val() + "?warehouseCode=" + $('#WarehouseCode').val(),
+            "type": "POST",
+            "datatype": "json"
+        },
+
+        "columnDefs":
+            [{
+                "targets": [0],
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [1],
+                "searchable": false,
+                "orderable": false,
+            },
+            {
+                "targets": [2],
+                "searchable": false,
+                "orderable": false,
+            },
+            {
+                "targets": [3],
+                "searchable": false,
+                "orderable": false,
+            }],
+
+        "columns": [
+            { "data": "ItemCode", "name": "ItemCode", "autoWidth": true },
+            { "data": "ItemDescription", "name": "ItemDescription", "autoWidth": true },
+            { "render": function (data, type, full, meta) { return full.AvailableQty.toFixed(2); } },
+            { "render": function (data, type, full, meta) { return "(RD$)" + full.Price.toFixed(2); } },
+            {
+                data: null, render: function (data, type, row) {
+                    return "<a href='#' class='btn btn-info' onclick=onItemSearchInsert('" + row.ItemCode + "'); >Insertar</a>";
+                }
+            },
+        ]
+    });
+
+    function onItemSearchInsert(itemCode) {
+        $('#ItemCode').val(itemCode);
+        onItemSearch();
+        $('#myItemSearchModal').modal('hide');
+    }
+
+
 </script>

@@ -32,6 +32,7 @@ namespace WEBPOS.Controllers
             var terminal = BlStorePos.ReadAllQueryable().FirstOrDefault(x => x.DeviceId == deviceId);
             var usr = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == Session["UserCode"].ToString());
 
+            ViewBag.UserName = usr.Name + " " + usr.LastName;
 
             if (terminal == null)
                 return RedirectToAction("SelectTerminal", "User", new { userType = usr.UserType, forPos = true });
