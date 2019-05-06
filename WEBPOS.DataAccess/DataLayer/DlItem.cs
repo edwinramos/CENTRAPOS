@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
+using WEBPOS.DataAccess.Models;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
@@ -19,6 +20,15 @@ namespace WEBPOS.DataAccess.DataLayer
         public IEnumerable<DeItem> ReadAllQueryable()
         {
             return context.Items;
+        }
+        public IEnumerable<ItemSearchResult> ReadSearch(string param, string plCode, string whCode)
+        {
+            var queryString = $@"SELECT A.ItemCode, A.ItemDescription, ISNULL(C.QuantityOnHand, 0) AvailableQty, ISNULL(B.SellPrice, 0) Price
+FROM srItem A
+INNER JOIN srPrice B ON A.ItemCode = B.ItemCode
+INNER JOIN srItemWarehouse C ON A.ItemCode = C.ItemCode
+WHERE (A.ItemCode like '%{param}%' OR A.ItemDescription like '%{param}%') AND (B.PriceListCode = '{whCode}' AND C.WarehouseCode = '{plCode}')";
+            return context.Database.SqlQuery<ItemSearchResult>(queryString);
         }
         public DeItem ReadByCode(string itemCode)
         {

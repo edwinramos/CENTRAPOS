@@ -13,10 +13,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/26/2018 13:20:35</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
-      <publishTime>10/09/2013 16:29:20</publishTime>
+      <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.pdb">
-      <publishTime>10/09/2013 16:29:20</publishTime>
+      <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/ApplicationInsights.config">
       <publishTime>10/26/2018 13:20:35</publishTime>
@@ -52,10 +52,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/23/2017 13:15:20</publishTime>
     </File>
     <File Include="bin/EnvDTE.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/EnvDTE80.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/es/Microsoft.ReportViewer.Common.resources.dll">
       <publishTime>09/17/2018 17:37:48</publishTime>
@@ -190,7 +190,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/16/2017 14:14:32</publishTime>
     </File>
     <File Include="bin/Microsoft.MSXML.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.Common.dll">
       <publishTime>09/17/2018 17:37:46</publishTime>
@@ -214,7 +214,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/17/2018 17:37:46</publishTime>
     </File>
     <File Include="bin/Microsoft.SqlServer.Types.dll">
-      <publishTime>10/12/2016 15:26:34</publishTime>
+      <publishTime>12/10/2016 15:26:34</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.ComponentModelHost.dll">
       <publishTime>06/20/2016 14:45:20</publishTime>
@@ -223,22 +223,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/06/2016 22:24:20</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Data.Core.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Data.Framework.dll">
       <publishTime>06/06/2016 22:24:20</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Data.Services.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Debugger.Interop.11.0.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Debugger.InteropA.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Designer.Interfaces.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Editor.dll">
       <publishTime>06/06/2016 22:24:20</publishTime>
@@ -256,16 +256,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/06/2016 22:24:20</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.ManagedInterfaces.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.OLE.Interop.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Package.LanguageService.14.0.dll">
       <publishTime>06/06/2016 22:24:20</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.ProjectAggregator.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Shell.14.0.dll">
       <publishTime>06/06/2016 22:24:20</publishTime>
@@ -286,22 +286,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/06/2016 22:24:20</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Shell.Interop.10.0.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Shell.Interop.11.0.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Shell.Interop.8.0.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Shell.Interop.9.0.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Shell.Interop.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.TemplateWizardInterface.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Text.Data.dll">
       <publishTime>06/06/2016 22:24:20</publishTime>
@@ -316,13 +316,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/06/2016 22:24:20</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.TextManager.Interop.10.0.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.TextManager.Interop.8.0.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.TextManager.Interop.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Threading.dll">
       <publishTime>02/19/2016 22:28:06</publishTime>
@@ -331,10 +331,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/06/2016 22:24:20</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.VSHelp.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.WCFReference.Interop.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>07/25/2012 11:48:56</publishTime>
@@ -535,7 +535,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/19/2018 14:32:58</publishTime>
     </File>
     <File Include="bin/stdole.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/System.Diagnostics.DiagnosticSource.dll">
       <publishTime>07/19/2017 10:01:30</publishTime>
@@ -547,7 +547,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/15/2018 13:29:52</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
-      <publishTime>01/02/2018 12:20:56</publishTime>
+      <publishTime>02/01/2018 12:20:56</publishTime>
     </File>
     <File Include="bin/System.Web.Http.dll">
       <publishTime>01/28/2015 04:02:54</publishTime>
@@ -556,49 +556,49 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/28/2015 04:03:46</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
-      <publishTime>01/02/2018 12:16:32</publishTime>
+      <publishTime>02/01/2018 12:16:32</publishTime>
     </File>
     <File Include="bin/System.Web.Optimization.dll">
-      <publishTime>11/02/2014 15:26:04</publishTime>
+      <publishTime>02/11/2014 15:26:04</publishTime>
     </File>
     <File Include="bin/System.Web.Razor.dll">
-      <publishTime>01/02/2018 12:16:56</publishTime>
+      <publishTime>02/01/2018 12:16:56</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Deployment.dll">
-      <publishTime>01/02/2018 12:20:56</publishTime>
+      <publishTime>02/01/2018 12:20:56</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.dll">
-      <publishTime>01/02/2018 12:20:56</publishTime>
+      <publishTime>02/01/2018 12:20:56</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Razor.dll">
-      <publishTime>01/02/2018 12:20:56</publishTime>
+      <publishTime>02/01/2018 12:20:56</publishTime>
     </File>
     <File Include="bin/VSLangProj.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/VSLangProj2.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/VSLangProj80.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>11/01/2018 16:34:59</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/23/2014 13:57:34</publishTime>
     </File>
     <File Include="bin/WEBPOS.DataAccess.dll">
-      <publishTime>04/11/2019 19:50:19</publishTime>
+      <publishTime>05/05/2019 18:15:15</publishTime>
     </File>
     <File Include="bin/WEBPOS.DataAccess.dll.config">
       <publishTime>10/26/2018 15:00:19</publishTime>
     </File>
     <File Include="bin/WEBPOS.DataAccess.pdb">
-      <publishTime>04/11/2019 19:50:19</publishTime>
+      <publishTime>05/05/2019 18:15:15</publishTime>
     </File>
     <File Include="bin/WEBPOS.dll">
-      <publishTime>04/13/2019 00:20:55</publishTime>
+      <publishTime>05/05/2019 18:15:31</publishTime>
     </File>
     <File Include="bin/WEBPOS.pdb">
-      <publishTime>04/13/2019 00:20:55</publishTime>
+      <publishTime>05/05/2019 18:15:31</publishTime>
     </File>
     <File Include="bin/zh-CHS/Microsoft.ReportViewer.Common.resources.dll">
       <publishTime>09/17/2018 17:37:48</publishTime>
@@ -1147,142 +1147,142 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/27/2018 02:39:36</publishTime>
     </File>
     <File Include="Content/font-awesome.css">
-      <publishTime>02/11/2018 23:54:26</publishTime>
+      <publishTime>11/02/2018 23:54:26</publishTime>
     </File>
     <File Include="Content/font-awesome.min.css">
-      <publishTime>02/11/2018 23:54:26</publishTime>
+      <publishTime>11/02/2018 23:54:26</publishTime>
     </File>
     <File Include="Content/logInMain.css">
       <publishTime>03/29/2019 18:22:23</publishTime>
     </File>
     <File Include="Content/main.css">
-      <publishTime>03/11/2018 00:10:25</publishTime>
+      <publishTime>11/03/2018 00:10:25</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>10/26/2018 13:16:27</publishTime>
     </File>
     <File Include="Content/themes/base/accordion.css">
-      <publishTime>05/12/2018 20:18:23</publishTime>
+      <publishTime>12/05/2018 20:18:23</publishTime>
     </File>
     <File Include="Content/themes/base/all.css">
-      <publishTime>05/12/2018 20:18:23</publishTime>
+      <publishTime>12/05/2018 20:18:23</publishTime>
     </File>
     <File Include="Content/themes/base/autocomplete.css">
-      <publishTime>05/12/2018 20:18:22</publishTime>
+      <publishTime>12/05/2018 20:18:22</publishTime>
     </File>
     <File Include="Content/themes/base/base.css">
-      <publishTime>05/12/2018 20:18:22</publishTime>
+      <publishTime>12/05/2018 20:18:22</publishTime>
     </File>
     <File Include="Content/themes/base/button.css">
-      <publishTime>05/12/2018 20:18:22</publishTime>
+      <publishTime>12/05/2018 20:18:22</publishTime>
     </File>
     <File Include="Content/themes/base/core.css">
-      <publishTime>05/12/2018 20:18:22</publishTime>
+      <publishTime>12/05/2018 20:18:22</publishTime>
     </File>
     <File Include="Content/themes/base/datepicker.css">
-      <publishTime>05/12/2018 20:18:22</publishTime>
+      <publishTime>12/05/2018 20:18:22</publishTime>
     </File>
     <File Include="Content/themes/base/dialog.css">
-      <publishTime>05/12/2018 20:18:22</publishTime>
+      <publishTime>12/05/2018 20:18:22</publishTime>
     </File>
     <File Include="Content/themes/base/draggable.css">
-      <publishTime>05/12/2018 20:18:22</publishTime>
+      <publishTime>12/05/2018 20:18:22</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
-      <publishTime>05/12/2018 20:18:21</publishTime>
+      <publishTime>12/05/2018 20:18:21</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_flat_75_ffffff_40x100.png">
-      <publishTime>05/12/2018 20:18:21</publishTime>
+      <publishTime>12/05/2018 20:18:21</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_glass_55_fbf9ee_1x400.png">
-      <publishTime>05/12/2018 20:18:21</publishTime>
+      <publishTime>12/05/2018 20:18:21</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_glass_65_ffffff_1x400.png">
-      <publishTime>05/12/2018 20:18:21</publishTime>
+      <publishTime>12/05/2018 20:18:21</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_glass_75_dadada_1x400.png">
-      <publishTime>05/12/2018 20:18:21</publishTime>
+      <publishTime>12/05/2018 20:18:21</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png">
-      <publishTime>05/12/2018 20:18:21</publishTime>
+      <publishTime>12/05/2018 20:18:21</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_glass_95_fef1ec_1x400.png">
-      <publishTime>05/12/2018 20:18:21</publishTime>
+      <publishTime>12/05/2018 20:18:21</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png">
-      <publishTime>05/12/2018 20:18:21</publishTime>
+      <publishTime>12/05/2018 20:18:21</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-icons_222222_256x240.png">
-      <publishTime>05/12/2018 20:18:21</publishTime>
+      <publishTime>12/05/2018 20:18:21</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-icons_2e83ff_256x240.png">
-      <publishTime>05/12/2018 20:18:21</publishTime>
+      <publishTime>12/05/2018 20:18:21</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-icons_444444_256x240.png">
-      <publishTime>05/12/2018 20:18:21</publishTime>
+      <publishTime>12/05/2018 20:18:21</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-icons_454545_256x240.png">
-      <publishTime>05/12/2018 20:18:21</publishTime>
+      <publishTime>12/05/2018 20:18:21</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-icons_555555_256x240.png">
-      <publishTime>05/12/2018 20:18:21</publishTime>
+      <publishTime>12/05/2018 20:18:21</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-icons_777620_256x240.png">
-      <publishTime>05/12/2018 20:18:20</publishTime>
+      <publishTime>12/05/2018 20:18:20</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-icons_777777_256x240.png">
-      <publishTime>05/12/2018 20:18:20</publishTime>
+      <publishTime>12/05/2018 20:18:20</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-icons_888888_256x240.png">
-      <publishTime>05/12/2018 20:18:20</publishTime>
+      <publishTime>12/05/2018 20:18:20</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-icons_cc0000_256x240.png">
-      <publishTime>05/12/2018 20:18:20</publishTime>
+      <publishTime>12/05/2018 20:18:20</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-icons_cd0a0a_256x240.png">
-      <publishTime>05/12/2018 20:18:20</publishTime>
+      <publishTime>12/05/2018 20:18:20</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-icons_ffffff_256x240.png">
-      <publishTime>05/12/2018 20:18:20</publishTime>
+      <publishTime>12/05/2018 20:18:20</publishTime>
     </File>
     <File Include="Content/themes/base/jquery-ui.css">
-      <publishTime>05/12/2018 20:18:20</publishTime>
+      <publishTime>12/05/2018 20:18:20</publishTime>
     </File>
     <File Include="Content/themes/base/jquery-ui.min.css">
-      <publishTime>05/12/2018 20:18:20</publishTime>
+      <publishTime>12/05/2018 20:18:20</publishTime>
     </File>
     <File Include="Content/themes/base/menu.css">
-      <publishTime>05/12/2018 20:18:19</publishTime>
+      <publishTime>12/05/2018 20:18:19</publishTime>
     </File>
     <File Include="Content/themes/base/progressbar.css">
-      <publishTime>05/12/2018 20:18:19</publishTime>
+      <publishTime>12/05/2018 20:18:19</publishTime>
     </File>
     <File Include="Content/themes/base/resizable.css">
-      <publishTime>05/12/2018 20:18:19</publishTime>
+      <publishTime>12/05/2018 20:18:19</publishTime>
     </File>
     <File Include="Content/themes/base/selectable.css">
-      <publishTime>05/12/2018 20:18:19</publishTime>
+      <publishTime>12/05/2018 20:18:19</publishTime>
     </File>
     <File Include="Content/themes/base/selectmenu.css">
-      <publishTime>05/12/2018 20:18:19</publishTime>
+      <publishTime>12/05/2018 20:18:19</publishTime>
     </File>
     <File Include="Content/themes/base/slider.css">
-      <publishTime>05/12/2018 20:18:19</publishTime>
+      <publishTime>12/05/2018 20:18:19</publishTime>
     </File>
     <File Include="Content/themes/base/sortable.css">
-      <publishTime>05/12/2018 20:18:18</publishTime>
+      <publishTime>12/05/2018 20:18:18</publishTime>
     </File>
     <File Include="Content/themes/base/spinner.css">
-      <publishTime>05/12/2018 20:18:18</publishTime>
+      <publishTime>12/05/2018 20:18:18</publishTime>
     </File>
     <File Include="Content/themes/base/tabs.css">
-      <publishTime>05/12/2018 20:18:18</publishTime>
+      <publishTime>12/05/2018 20:18:18</publishTime>
     </File>
     <File Include="Content/themes/base/theme.css">
-      <publishTime>05/12/2018 20:18:18</publishTime>
+      <publishTime>12/05/2018 20:18:18</publishTime>
     </File>
     <File Include="Content/themes/base/tooltip.css">
-      <publishTime>05/12/2018 20:18:17</publishTime>
+      <publishTime>12/05/2018 20:18:17</publishTime>
     </File>
     <File Include="Content/toastr.css">
       <publishTime>03/27/2019 18:45:59</publishTime>
@@ -1315,10 +1315,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/19/2018 11:55:08</publishTime>
     </File>
     <File Include="DBWEBPOSDataSetPosClosure.xsc">
-      <publishTime>02/04/2019 19:23:23</publishTime>
+      <publishTime>04/02/2019 19:23:23</publishTime>
     </File>
     <File Include="DBWEBPOSDataSetPosClosure.xss">
-      <publishTime>02/04/2019 19:23:23</publishTime>
+      <publishTime>04/02/2019 19:23:23</publishTime>
     </File>
     <File Include="Docs/Test/ClosureWebForm.pdf">
       <publishTime>04/04/2019 18:43:44</publishTime>
@@ -1330,22 +1330,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/26/2018 13:16:27</publishTime>
     </File>
     <File Include="fonts/fontawesome-webfont.eot">
-      <publishTime>02/11/2018 23:54:25</publishTime>
+      <publishTime>11/02/2018 23:54:25</publishTime>
     </File>
     <File Include="fonts/fontawesome-webfont.svg">
-      <publishTime>02/11/2018 23:54:25</publishTime>
+      <publishTime>11/02/2018 23:54:25</publishTime>
     </File>
     <File Include="fonts/fontawesome-webfont.ttf">
-      <publishTime>02/11/2018 23:54:25</publishTime>
+      <publishTime>11/02/2018 23:54:25</publishTime>
     </File>
     <File Include="fonts/fontawesome-webfont.woff">
-      <publishTime>02/11/2018 23:54:25</publishTime>
+      <publishTime>11/02/2018 23:54:25</publishTime>
     </File>
     <File Include="fonts/fontawesome-webfont.woff2">
-      <publishTime>02/11/2018 23:54:25</publishTime>
+      <publishTime>11/02/2018 23:54:25</publishTime>
     </File>
     <File Include="fonts/FontAwesome.otf">
-      <publishTime>02/11/2018 23:54:25</publishTime>
+      <publishTime>11/02/2018 23:54:25</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
       <publishTime>10/26/2018 13:18:22</publishTime>
@@ -1654,10 +1654,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/26/2018 13:18:26</publishTime>
     </File>
     <File Include="Scripts/jquery-ui-1.12.1.js">
-      <publishTime>05/12/2018 20:18:17</publishTime>
+      <publishTime>12/05/2018 20:18:17</publishTime>
     </File>
     <File Include="Scripts/jquery-ui-1.12.1.min.js">
-      <publishTime>05/12/2018 20:18:17</publishTime>
+      <publishTime>12/05/2018 20:18:17</publishTime>
     </File>
     <File Include="Scripts/jquery.formatCurrency.js">
       <publishTime>11/17/2018 20:04:52</publishTime>
@@ -1723,13 +1723,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/19/2018 14:32:58</publishTime>
     </File>
     <File Include="Views/BusinessPartner/BusinessPartnerContactEditPartial.cshtml">
-      <publishTime>03/11/2018 12:28:32</publishTime>
+      <publishTime>11/03/2018 12:28:32</publishTime>
     </File>
     <File Include="Views/BusinessPartner/BusinessPartnerDetail.cshtml">
       <publishTime>03/27/2019 19:14:24</publishTime>
     </File>
     <File Include="Views/BusinessPartner/Index.cshtml">
-      <publishTime>02/11/2018 19:51:13</publishTime>
+      <publishTime>11/02/2018 19:51:13</publishTime>
     </File>
     <File Include="Views/Department/DepartmentEditPartial.cshtml">
       <publishTime>10/29/2018 13:04:35</publishTime>
@@ -1747,13 +1747,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/26/2018 13:16:27</publishTime>
     </File>
     <File Include="Views/Home/EndangeredItemsPartial.cshtml">
-      <publishTime>12/05/2018 22:07:46</publishTime>
+      <publishTime>05/12/2018 22:07:46</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>12/16/2018 14:27:35</publishTime>
     </File>
     <File Include="Views/Item/Index.cshtml">
-      <publishTime>04/01/2019 08:06:25</publishTime>
+      <publishTime>01/04/2019 08:06:25</publishTime>
     </File>
     <File Include="Views/Item/ItemDetail.cshtml">
       <publishTime>03/31/2019 10:29:02</publishTime>
@@ -1786,13 +1786,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/08/2019 08:47:14</publishTime>
     </File>
     <File Include="Views/Pos/OpenPosQuantity.cshtml">
-      <publishTime>02/04/2019 12:04:00</publishTime>
+      <publishTime>04/02/2019 12:04:00</publishTime>
     </File>
     <File Include="Views/Pos/PaymentPartial.cshtml">
       <publishTime>01/13/2019 16:12:58</publishTime>
     </File>
     <File Include="Views/Pos/PriceListSelectPartial.cshtml">
-      <publishTime>10/11/2018 21:37:33</publishTime>
+      <publishTime>11/10/2018 21:37:33</publishTime>
     </File>
     <File Include="Views/PosClosure/Index.cshtml">
       <publishTime>04/07/2019 16:54:21</publishTime>
@@ -1861,7 +1861,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/29/2019 22:24:28</publishTime>
     </File>
     <File Include="Views/Warehouse/Index.cshtml">
-      <publishTime>02/11/2018 20:02:49</publishTime>
+      <publishTime>11/02/2018 20:02:49</publishTime>
     </File>
     <File Include="Views/Warehouse/WarehouseEditPartial.cshtml">
       <publishTime>10/29/2018 00:18:45</publishTime>
@@ -1870,13 +1870,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/25/2019 07:51:28</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
-      <publishTime>03/11/2018 00:25:47</publishTime>
+      <publishTime>11/03/2018 00:25:47</publishTime>
     </File>
     <File Include="Web.config">
       <publishTime>03/29/2019 18:41:01</publishTime>
     </File>
     <File Include="WebForms/ClosureWebForm.aspx">
-      <publishTime>02/04/2019 20:20:55</publishTime>
+      <publishTime>04/02/2019 20:20:55</publishTime>
     </File>
     <File Include="WebForms/WebForm1.aspx">
       <publishTime>04/04/2019 15:54:17</publishTime>

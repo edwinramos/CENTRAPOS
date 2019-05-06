@@ -6,12 +6,56 @@ using System.Net.Http;
 using System.Web.Http;
 using Newtonsoft.Json;
 using WEBPOS.DataAccess.BusinessLayer;
+using System.Threading.Tasks;
+using WEBPOS.DataAccess.DataEntities;
+using WEBPOS.DataAccess.DataLayer;
+using System;
 
 namespace WEBPOS.Controllers.WebApi
 {
     public class MobilePortController : ApiController
     {
-        private string _password = "CentraPass"; 
+        private string _password = "CentraPass";
+
+
+        [HttpPost]
+        [Route("mob/save_sell_order")]
+        public async Task<IHttpActionResult> SaveSellOrder([FromUri] string password)
+        {
+            if (password == _password)
+            {
+                try
+                {
+                    var jsonObject = await Request.Content.ReadAsStringAsync();
+                    var model = JsonConvert.DeserializeObject<Tuple<DeSellOrder, List<DeSellOrderDetail>>>(jsonObject);
+                    var dlSellOrder = new DlSellOrder();
+                    var dlSellOrderDetail = new DlSellOrderDetail();
+
+                    var head = model.Item1;
+                    var detail = model.Item2;
+
+                    head.SellOrderId = 0;
+                    dlSellOrder.Save(head);
+
+                    foreach (var item in detail)
+                    {
+                        item.SellOrderId = head.SellOrderId;
+                        item.VatCode = BlTax.ReadByValue(item.VatPercent).TaxCode;
+                        dlSellOrderDetail.Save(item);
+                    }
+                }
+                catch
+                {
+                    return BadRequest("Failure");
+                }
+            }
+            else
+            {
+                return BadRequest("Failure");
+            }
+            return Ok("Ok-Success");
+        }
+
         [HttpGet]
         [Route("mob/test")]
         public IHttpActionResult Get([FromUri] string password)
@@ -52,7 +96,7 @@ namespace WEBPOS.Controllers.WebApi
                     x.ItemCode,
                     x.ItemDescription,
                     x.Barcode,
-                    TaxValue = BlTax.ReadAllQueryable().FirstOrDefault(m=>m.TaxCode == x.TaxCode)?.TaxPercent ?? 0,
+                    TaxValue = BlTax.ReadAllQueryable().FirstOrDefault(m => m.TaxCode == x.TaxCode)?.TaxPercent ?? 0,
                     x.DepartmentCode
                 })).ToString()
             };

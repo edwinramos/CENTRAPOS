@@ -20,6 +20,14 @@ namespace WEBPOS.DataAccess.DataLayer
         {
             return context.Taxes;
         }
+        public DeTax ReadByCode(string taxCode)
+        {
+            return context.Taxes.FirstOrDefault(x => x.TaxCode == taxCode);
+        }
+        public DeTax ReadByValue(double value)
+        {
+            return context.Taxes.FirstOrDefault(x => x.TaxPercent == value);
+        }
         public IEnumerable<DeTax> Read(DeTax obj)
         {
             var data = context.Taxes.ToList();

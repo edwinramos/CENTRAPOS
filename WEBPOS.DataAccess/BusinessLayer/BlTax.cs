@@ -20,6 +20,16 @@ namespace WEBPOS.DataAccess.BusinessLayer
             var dl = new DlTax();
             return dl.ReadAll();
         }
+        public static DeTax ReadByValue(double value)
+        {
+            var dl = new DlTax();
+            return dl.ReadByValue(value);
+        }
+        public static DeTax ReadByCode(string taxCode)
+        {
+            var dl = new DlTax();
+            return dl.ReadByCode(taxCode);
+        }
         public static IEnumerable<DeTax> Read(DeTax obj)
         {
             var dl = new DlTax();

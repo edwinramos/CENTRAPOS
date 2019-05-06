@@ -145,6 +145,7 @@
       <DependentUpon>201904051440427_srTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ItemSearchResult.cs" />
     <Compile Include="WEBPOSContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

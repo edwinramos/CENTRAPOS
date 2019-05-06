@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.DataLayer;
+using WEBPOS.DataAccess.Models;
 
 namespace WEBPOS.DataAccess.BusinessLayer
 {
@@ -19,6 +20,11 @@ namespace WEBPOS.DataAccess.BusinessLayer
         {
             var dl = new DlItem();
             return dl.ReadAll();
+        }
+        public static IEnumerable<ItemSearchResult> ReadSearch(string param, string priceListCode, string warehouseCode)
+        {
+            var dl = new DlItem();
+            return dl.ReadSearch(param, priceListCode, warehouseCode);
         }
         public static DeItem ReadByCode(string itemCode)
         {

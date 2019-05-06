@@ -306,20 +306,9 @@ namespace WEBPOS.Controllers
                 if (Session["UserCode"] == null)
                     return RedirectToAction("LogIn", "User");
 
-                var list = BlItem.ReadAllQueryable();
+                var list = BlItem.ReadSearch(searchValue, id, warehouseCode);
 
-                var model = list.Select(x => new
-                {
-                    x.ItemCode,
-                    x.ItemDescription,
-                    AvailableQty = BlItemWarehouse.ReadAllQueryable().FirstOrDefault(m => m.ItemCode == x.ItemCode && m.WarehouseCode == warehouseCode)?.QuantityOnHand ?? 0,
-                    Price = BlPrice.ReadByCode(x.ItemCode, id)?.SellPrice ?? 0
-                }).ToList();
-
-                if (!string.IsNullOrEmpty(searchValue))
-                {
-                    model = model.Where(m => m.ItemDescription.ToUpper().Contains(searchValue.ToUpper())).ToList();
-                }
+                var model = list.ToList();
 
                 var data = model.Skip(skip).Take(pageSize).ToList();
 
