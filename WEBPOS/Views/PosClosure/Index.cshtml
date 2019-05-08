@@ -16,9 +16,10 @@
                     <th>Fecha Final</th>
                     <th>Monto Inicio</th>
                     <th>Usuario</th>
-                    <th>Terminal</th>
+                    <th>Estado</th>
                     <th>Total</th>
                     <th>Imprimir</th>
+                    <th>Cerrar Turno</th>
                 </tr>
             </thead>
         </table>
@@ -73,7 +74,7 @@
                 "searchable": false,
                 "orderable": false
             },
-                {
+            {
                 "targets": [6],
                 "searchable": false,
                 "orderable": false
@@ -93,11 +94,16 @@
             },
             { "render": function (data, type, full, meta) { return "(RD$)" + full.BeginAmount.toFixed(2); } },
             { "data": "UserCode", "name": "UserCode", "autoWidth": true },
-            { "data": "Terminal", "name": "Terminal", "autoWidth": true },
+            { "data": "Estado", "name": "Estado", "autoWidth": true },
             { "render": function (data, type, full, meta) { return "(RD$)" + full.Total.toFixed(2); } },
             {
                 data: null, render: function (data, type, row) {
                     return "<a href='#' class='btn btn-danger' onclick=onSellTransactionPrint('" + row.PosClosureHeadId + "'); >Imprimir</a>";
+                }
+            },
+            {
+                data: null, render: function (data, type, row) {
+                    return "<a href='#' class='btn btn-info' onclick=onPosClosureClose('" + row.PosClosureHeadId + "|" + moment(row.EndDateTime).format("DD/MM/YYYY") +"'); >Cerrar Turno</a>";
                 }
             },
 
@@ -105,8 +111,28 @@
 
     });
 
+    function onPosClosureClose(ids) {
+        var posClosureId = ids.split('|')[0];
+        var date = ids.split('|')[1];
+        if (date.includes('1899')) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("CloseTurn", "PosClosure")',
+                data: { posClosureId: posClosureId },
+                success: function (data) {
+                    $('#myModal').modal('hide');
+                    toastr.success('Ha sido cerrado', 'Turno: ' + posClosureId);
+                    table.ajax.reload();
+                }
+            });
+        } else {
+            toastr.warning('Ya ha sido cerrado anteriormente', 'Turno: ' + posClosureId);
+        }
+    }
+
     function onSellTransactionPrint(ids) {
         var posClosureId = ids.split('|')[0];
+        
         var url = "WebForms/ClosureWebForm.aspx?posClosureId=" + posClosureId;
         var windowObj = window.open(url, '_blank');
         windowObj.focus();

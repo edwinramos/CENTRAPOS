@@ -18,7 +18,8 @@ namespace WEBPOS.DataAccess.DataLayer
         }
         public IEnumerable<DeSellTransactionHead> ReadAllQueryable()
         {
-            return context.SellTransactionHeads;
+            var queryString = $@"SELECT * FROM srSellTransactionHead";
+            return context.Database.SqlQuery<DeSellTransactionHead>(queryString);
         }
         public IEnumerable<DeSellTransactionHead> Read(DeSellTransactionHead obj)
         {

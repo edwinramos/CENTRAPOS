@@ -18,7 +18,8 @@ namespace WEBPOS.DataAccess.DataLayer
         }
         public IEnumerable<DePosClosureHead> ReadAllQueryable()
         {
-            return context.PosClosureHeads;
+            var queryString = $@"SELECT * FROM srPosClosureHead";
+            return context.Database.SqlQuery<DePosClosureHead>(queryString);
         }
         public IEnumerable<DePosClosureHead> Read(DePosClosureHead obj)
         {

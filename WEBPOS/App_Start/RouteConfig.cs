@@ -28,6 +28,10 @@ namespace WEBPOS
                 cfg.CreateMap<DeUser, UserModel>();
                 cfg.CreateMap<DeItem, ItemModel>();
                 cfg.CreateMap<ItemModel, DeItem>();
+                cfg.CreateMap<DeSellOrderDetail, SellOrderDetailModel>();
+                cfg.CreateMap<SellOrderDetailModel, DeSellOrderDetail>();
+                cfg.CreateMap<DeSellOrder, SellOrderModel>();
+                cfg.CreateMap<SellOrderModel, DeSellOrder>();
             });
         }
     }

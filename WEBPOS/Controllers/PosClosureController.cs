@@ -40,7 +40,7 @@ namespace WEBPOS.Controllers
                     x.EndDateTime,
                     x.BeginAmount,
                     x.UserCode,
-                    Terminal = BlStorePos.ReadAllQueryable().FirstOrDefault(m=>m.StorePosCode== x.StorePosCode).StorePosDescription,
+                    Estado = (x.EndDateTime.Date == new DateTime(1900, 1, 1)) ? "Abierto" : "Cerrado",
                     x.Total
                 });
 
@@ -67,6 +67,45 @@ namespace WEBPOS.Controllers
             {
                 throw;
             }
+        }
+
+        public ActionResult CloseTurn(int posClosureId)
+        {
+            var deviceId = Request.UserHostName;
+            try
+            {
+                string[] computer_name = System.Net.Dns.GetHostEntry(Request.ServerVariables["remote_addr"]).HostName.Split(new Char[] { '.' });
+                deviceId = computer_name[0];
+            }
+            catch (Exception ex) { }
+
+            var usr = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == Session["UserCode"].ToString());
+            var terminal = BlStorePos.ReadAllQueryable().FirstOrDefault(x => x.DeviceId == deviceId);
+            var store = BlStore.ReadByCode(terminal.StoreCode);
+
+            var posClosure = BlPosClosureHead.ReadAllQueryable().FirstOrDefault(x => x.PosClosureHeadId == posClosureId);
+
+            posClosure.EndDateTime = new DateTime(posClosure.StartDateTime.Year, posClosure.StartDateTime.Month, posClosure.StartDateTime.Day, 23, 59, 50);
+
+            var sales = BlSellTransactionHead.ReadAllQueryable().Where(x => x.TransactionDateTime >= posClosure.StartDateTime && x.TransactionDateTime <= posClosure.EndDateTime && x.UpdateUser == usr.UserCode);
+
+            foreach (var sale in sales)
+            {
+                BlPosClosureDetail.Save(new DePosClosureDetail
+                {
+                    PosClosureHeadId = posClosure.PosClosureHeadId,
+                    StoreCode = sale.StoreCode,
+                    StorePosCode = sale.PosCode,
+                    TransactionNumber = sale.TransactionNumber,
+                    TransactionDateTime = sale.TransactionDateTime,
+                    NCF = sale.NCF,
+                    TotalValue = sale.TotalValue
+                });
+                posClosure.Total += sale.TotalValue;
+            }
+
+            BlPosClosureHead.Save(posClosure);
+            return null;
         }
     }
 }

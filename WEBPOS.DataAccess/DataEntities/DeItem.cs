@@ -27,6 +27,7 @@ namespace WEBPOS.DataAccess.DataEntities
         public string UnitMeasureCode { get; set; }
         public string DepartmentCode { get; set; }
         public string Barcode { get; set; }
+        public ShotageLevels ShotageLevel { get; set; }
 
         [ForeignKey("TaxCode")]
         public virtual DeTax Tax { get; set; }
@@ -46,5 +47,14 @@ namespace WEBPOS.DataAccess.DataEntities
 
         //[ForeignKey("ItemCode")]
         //public virtual IEnumerable<DeSellTransactionDetail> SellTransactionDetails { get; set; }
+    }
+
+    public enum ShotageLevels
+    {
+        NONE = 0,
+        ALERT = 1,
+        RED = 2,
+        YELLOW = 3,
+        GREEN = 4
     }
 }

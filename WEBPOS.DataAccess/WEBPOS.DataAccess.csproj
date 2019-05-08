@@ -144,6 +144,10 @@
     <Compile Include="Migrations\201904051440427_srTable.Designer.cs">
       <DependentUpon>201904051440427_srTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905080100129_Item_ShortageLevel.cs" />
+    <Compile Include="Migrations\201905080100129_Item_ShortageLevel.Designer.cs">
+      <DependentUpon>201905080100129_Item_ShortageLevel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ItemSearchResult.cs" />
     <Compile Include="WEBPOSContext.cs" />
@@ -167,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904051440427_srTable.resx">
       <DependentUpon>201904051440427_srTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905080100129_Item_ShortageLevel.resx">
+      <DependentUpon>201905080100129_Item_ShortageLevel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

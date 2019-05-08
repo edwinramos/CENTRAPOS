@@ -54,8 +54,11 @@ namespace WEBPOS.DataAccess
                 if (entity is Base)
                 {
                     var track = entity as Base;
+                    var user = track.UpdateUser;
+                    try { user = (string)HttpContext.Current.Session["UserCode"]; } catch { }
+                    
                     track.LastUpdate = DateTime.Now;
-                    track.UpdateUser = (string)HttpContext.Current.Session["UserCode"];
+                    track.UpdateUser = user;
                 }
             }
 
@@ -69,8 +72,11 @@ namespace WEBPOS.DataAccess
                 if (entity is Base)
                 {
                     var track = entity as Base;
+                    var user = track.UpdateUser;
+                    try { user = (string)HttpContext.Current.Session["UserCode"]; } catch { }
+
                     track.LastUpdate = DateTime.Now;
-                    track.UpdateUser = (string)HttpContext.Current.Session["UserCode"];
+                    track.UpdateUser = user;
                 }
             }
             return base.SaveChanges();

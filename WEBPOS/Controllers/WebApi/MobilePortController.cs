@@ -10,13 +10,14 @@ using System.Threading.Tasks;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.DataLayer;
 using System;
+using WEBPOS.Models;
+using AutoMapper;
 
 namespace WEBPOS.Controllers.WebApi
 {
     public class MobilePortController : ApiController
     {
         private string _password = "CentraPass";
-
 
         [HttpPost]
         [Route("mob/save_sell_order")]
@@ -27,7 +28,8 @@ namespace WEBPOS.Controllers.WebApi
                 try
                 {
                     var jsonObject = await Request.Content.ReadAsStringAsync();
-                    var model = JsonConvert.DeserializeObject<Tuple<DeSellOrder, List<DeSellOrderDetail>>>(jsonObject);
+                    var model = JsonConvert.DeserializeObject<Tuple<SellOrderModel, List<SellOrderDetailModel>>>(jsonObject);
+                    
                     var dlSellOrder = new DlSellOrder();
                     var dlSellOrderDetail = new DlSellOrderDetail();
 
@@ -35,23 +37,27 @@ namespace WEBPOS.Controllers.WebApi
                     var detail = model.Item2;
 
                     head.SellOrderId = 0;
-                    dlSellOrder.Save(head);
+                    
+                    var objHead = Mapper.Map<DeSellOrder>(head);
+                    dlSellOrder.Save(objHead);
 
                     foreach (var item in detail)
                     {
-                        item.SellOrderId = head.SellOrderId;
+                        item.SellOrderId = objHead.SellOrderId;
                         item.VatCode = BlTax.ReadByValue(item.VatPercent).TaxCode;
-                        dlSellOrderDetail.Save(item);
+                        item.WarehouseCode = BlWarehouse.ReadAllQueryable().FirstOrDefault().WarehouseCode;
+                        var obj = Mapper.Map<DeSellOrderDetail>(item);
+                        dlSellOrderDetail.Save(obj);
                     }
                 }
-                catch
+                catch(Exception ex)
                 {
-                    return BadRequest("Failure");
+                    return BadRequest(ex.Message);
                 }
             }
             else
             {
-                return BadRequest("Failure");
+                return BadRequest("Incorrect Password");
             }
             return Ok("Ok-Success");
         }

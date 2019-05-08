@@ -19,7 +19,8 @@ namespace WEBPOS.DataAccess.DataLayer
         }
         public IEnumerable<DeItem> ReadAllQueryable()
         {
-            return context.Items;
+            var queryString = $@"SELECT * FROM srItem";
+            return context.Database.SqlQuery<DeItem>(queryString);
         }
         public IEnumerable<ItemSearchResult> ReadSearch(string param, string plCode, string whCode)
         {

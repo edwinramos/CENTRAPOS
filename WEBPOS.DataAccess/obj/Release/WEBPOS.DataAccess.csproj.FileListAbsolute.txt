@@ -29,3 +29,4 @@ C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataA
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.Migrations.PosClosure.resources
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.Migrations.PosClosureDetail_TransactionNumber.resources
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.Migrations.srTable.resources
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.Migrations.Item_ShortageLevel.resources

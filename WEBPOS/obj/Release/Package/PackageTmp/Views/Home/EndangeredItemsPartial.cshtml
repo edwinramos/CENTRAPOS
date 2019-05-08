@@ -11,15 +11,12 @@
                 <div class="modal-body col-md-12">
                     <table>
                         @{
-                            var list = WEBPOS.DataAccess.BusinessLayer.BlItemWarehouse.ReadAllQueryable().Where(x => x.QuantityOnHand <= 10);
+                            var list = WEBPOS.DataAccess.BusinessLayer.BlItem.ReadAllQueryable().Where(x=>x.ShotageLevel != WEBPOS.DataAccess.DataEntities.ShotageLevels.NONE);
                             foreach (var obj in list)
                             {
-                                var item = WEBPOS.DataAccess.BusinessLayer.BlItem.ReadAllQueryable().FirstOrDefault(x => x.ItemCode == obj.ItemCode);
-                                var warehouse = obj.Warehouse;
-
                                 <tr>
-                                    <td><a href="@Url.Action("ItemDetail", "Item", new { id = obj.ItemCode })" target="_blank"><strong><h4>@item.ItemDescription</h4></strong></a></td>
-                                    <td><p>*@obj.QuantityOnHand en existencia en almacen @warehouse.WarehouseDescription</p></td>
+                                    <td><a href="@Url.Action("ItemDetail", "Item", new { id = obj.ItemCode })" target="_blank"><strong><h4>@obj.ItemDescription</h4></strong></a></td>
+                                    <td><p>*Este producto esta escaso con nivel de prioridad: @Convert.ToInt32(obj.ShotageLevel)</p></td>
                                 </tr>
                             }
                         }

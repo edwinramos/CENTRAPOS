@@ -13,7 +13,8 @@
             <thead>
                 <tr>
                     <th>Tienda</th>
-                    <th>Termianal</th>
+                    <th>Codigo</th>
+                    <th>Terminal</th>
                     <th>Dispositivo</th>
                     <th>Ultima Fecha</th>
                     <th>Detalles</th>
@@ -45,13 +46,13 @@
 
         "columnDefs":
             [{
-                "targets": [0],
-                //"visible": false,
-                "searchable": false,
-                "orderable": false
+                    "targets": [0],
+                    "searchable": false,
+                    "orderable": false
             },
             {
                 "targets": [1],
+                //"visible": false,
                 "searchable": false,
                 "orderable": false
             },
@@ -64,15 +65,21 @@
                 "targets": [3],
                 "searchable": false,
                 "orderable": false
+            },
+            {
+                "targets": [4],
+                "searchable": false,
+                "orderable": false
                 },
                 {
-                    "targets": [4],
+                    "targets": [5],
                     "searchable": false,
                     "orderable": false
                 }],
 
         "columns": [
             { "data": "StoreDescription", "name": "StoreDescription", "autoWidth": true },
+            { "data": "StorePosCode", "name": "StorePosCode", "autoWidth": true },
             { "data": "StorePosDescription", "name": "StorePosDescription", "autoWidth": true },
             { "data": "DeviceId", "name": "DeviceId", "autoWidth": true },
             {
@@ -102,13 +109,26 @@
         var storeCode = id.split('|')[0];
         var storePosCode = id.split('|')[1];
         if (confirm("¿Desea eliminar este Terminal?")) {
-            var url = '@Url.Action("StorePosDelete","StorePos", new { storeCode = "XXX", storePosCode = "XXXX" })';
-            url = url.replace("XXX", storeCode);
-            url = url.replace("XXXX", storePosCode);
+            var url = '@Url.Action("StorePosDelete","StorePos")';
+            
 
-            $.get(url, function (data) {
-                table.ajax.reload();
+            $.ajax({
+                url: url,
+                data: { storeCode: storeCode, storePosCode: storePosCode },
+                beforeSend: function () {
+
+                },
+                complete: function () {
+
+                },
+                success: function (result) {
+                    table.ajax.reload();
+                }
             });
+
+            //$.get(url, function (data) {
+            //    table.ajax.reload();
+            //});
         }
     }
 
