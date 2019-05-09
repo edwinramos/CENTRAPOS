@@ -40,7 +40,8 @@ namespace WEBPOS.DataAccess.BusinessLayer
             else
             {
                 var detail = dl.ReadAll().FirstOrDefault(x => x.SellOrderId == obj.SellOrderId && x.LineNumber == obj.LineNumber);
-                dl.Delete(detail.SellOrderId, detail.LineNumber);
+                if (detail != null)
+                    dl.Delete(detail.SellOrderId, detail.LineNumber);
             }
 
             dl.Save(obj);

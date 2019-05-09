@@ -21,17 +21,14 @@ namespace WEBPOS.Controllers.WebApi
 
         [HttpPost]
         [Route("mob/save_sell_order")]
-        public async Task<IHttpActionResult> SaveSellOrder([FromUri] string password)
+        public async Task<IHttpActionResult> SaveSellOrder([FromUri] string password, [FromUri] string userCode)
         {
             if (password == _password)
             {
                 try
                 {
                     var jsonObject = await Request.Content.ReadAsStringAsync();
-                    var model = JsonConvert.DeserializeObject<Tuple<SellOrderModel, List<SellOrderDetailModel>>>(jsonObject);
-                    
-                    var dlSellOrder = new DlSellOrder();
-                    var dlSellOrderDetail = new DlSellOrderDetail();
+                    var model = JsonConvert.DeserializeObject<Tuple<SellOrderModel, List<SellOrderDetailModel>>>(jsonObject); 
 
                     var head = model.Item1;
                     var detail = model.Item2;
@@ -39,7 +36,8 @@ namespace WEBPOS.Controllers.WebApi
                     head.SellOrderId = 0;
                     
                     var objHead = Mapper.Map<DeSellOrder>(head);
-                    dlSellOrder.Save(objHead);
+                    objHead.UpdateUser = userCode;
+                    BlSellOrder.Save(objHead);
 
                     foreach (var item in detail)
                     {
@@ -47,7 +45,8 @@ namespace WEBPOS.Controllers.WebApi
                         item.VatCode = BlTax.ReadByValue(item.VatPercent).TaxCode;
                         item.WarehouseCode = BlWarehouse.ReadAllQueryable().FirstOrDefault().WarehouseCode;
                         var obj = Mapper.Map<DeSellOrderDetail>(item);
-                        dlSellOrderDetail.Save(obj);
+                        obj.UpdateUser = userCode;
+                        BlSellOrderDetail.Save(obj);
                     }
                 }
                 catch(Exception ex)
