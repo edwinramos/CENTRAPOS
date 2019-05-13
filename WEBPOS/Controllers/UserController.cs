@@ -8,6 +8,7 @@ using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
 using WEBPOS.Models;
+using WEBPOS.Utils;
 
 namespace WEBPOS.Controllers
 {
@@ -21,6 +22,9 @@ namespace WEBPOS.Controllers
 
         public ActionResult LogIn()
         {
+            if (!string.IsNullOrEmpty(CookiesUtility.ReadCookieAsString("UserCode")))
+                return RedirectToAction("Index", "Home");
+
             var obj = BlTable.ReadAllQueryable().FirstOrDefault(x => x.KeyFixed == "ServerName");
             var serverId = System.Environment.MachineName;
             
@@ -43,10 +47,11 @@ namespace WEBPOS.Controllers
 
         public JsonResult UserLogin(string userCode, string userPassword)
         {
-            var usr = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == userCode && x.Password == BlUser.EncryptString(userPassword, userCode));
+            var dpass = BlUser.EncryptString(userPassword, userCode);
+            var usr = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == userCode && x.Password == dpass);
             if (usr != null)
             {
-                Session["UserCode"] = usr.UserCode;
+                CookiesUtility.SaveCookieAsString("UserCode", usr.UserCode);
                 
                 var activity = new DeActivityLog
                 {
@@ -65,7 +70,7 @@ namespace WEBPOS.Controllers
                 var terminal = BlStorePos.ReadAllQueryable().FirstOrDefault(x => x.DeviceId == deviceId && x.DeviceType == deviceType);
 
                 if(terminal != null)
-                    Session["PosCode"] = terminal.StorePosCode;
+                    CookiesUtility.SaveCookieAsString("PosCode", terminal.StorePosCode);
 
                 switch (usr.UserType)
                 {
@@ -87,14 +92,14 @@ namespace WEBPOS.Controllers
 
         public ActionResult SelectTerminal(UserType userType, bool forPos = false)
         {
-            Session["forPos"] = forPos;
+            CookiesUtility.SaveCookieAsString("forPos", forPos.ToString());
             return View(userType);
         }
 
         public JsonResult UserSelectTerminal(string posCode, string userType)
         {
-            Session["PosCode"] = posCode;
-            bool forPos = Convert.ToBoolean(Session["forPos"]);
+            CookiesUtility.SaveCookieAsString("PosCode", posCode);
+            bool forPos = Convert.ToBoolean(CookiesUtility.ReadCookieAsString("forPos"));
             var type = (UserType)System.Enum.Parse(typeof(UserType), userType);
 
             var deviceId = Request.UserHostName;
@@ -141,7 +146,7 @@ namespace WEBPOS.Controllers
                 ActivityMessage = string.Format(ActivityLogHelper.GetActivityText(LogActivities.SIGNOUT))
             };
             BlActivityLog.Save(activity);
-            Session["UserCode"] = null;
+            CookiesUtility.SaveCookieAsString("UserCode", "");
 
             return RedirectToAction("LogIn");
         }
@@ -171,7 +176,7 @@ namespace WEBPOS.Controllers
                     a.Name
                 });
 
-                var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == Session["UserCode"].ToString());
+                var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == CookiesUtility.ReadCookieAsString("UserCode").ToString());
                 if (user.UserType != UserType.ADMINISTRADOR)
                     model = model.Where(x=>x.UserType != UserType.ADMINISTRADOR.ToString());
                 //Sorting    
@@ -204,17 +209,7 @@ namespace WEBPOS.Controllers
 
             var user = Mapper.Map<DeUser>(model);
             user.IsEditing = model.IsEditingString == "Si";
-
-            //var user = new DeUser {
-            //    UserCode = model.UserCode,
-            //    Gender=model.Gender,
-            //    Password=model.Password,
-            //    Name =model.Name,
-            //    LastName = model.LastName,
-            //    IsEditing = model.IsEditing == "Si",
-            //    UserType = model.UserType
-            //};
-
+            
             BlUser.Save(user);
 
             return null;

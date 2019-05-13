@@ -586,19 +586,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2014 13:57:34</publishTime>
     </File>
     <File Include="bin/WEBPOS.DataAccess.dll">
-      <publishTime>05/09/2019 13:00:30</publishTime>
+      <publishTime>05/13/2019 10:54:33</publishTime>
     </File>
     <File Include="bin/WEBPOS.DataAccess.dll.config">
       <publishTime>10/26/2018 15:00:19</publishTime>
     </File>
     <File Include="bin/WEBPOS.DataAccess.pdb">
-      <publishTime>05/09/2019 13:00:30</publishTime>
+      <publishTime>05/13/2019 10:54:33</publishTime>
     </File>
     <File Include="bin/WEBPOS.dll">
-      <publishTime>05/09/2019 13:05:52</publishTime>
+      <publishTime>05/13/2019 11:49:30</publishTime>
     </File>
     <File Include="bin/WEBPOS.pdb">
-      <publishTime>05/09/2019 13:05:52</publishTime>
+      <publishTime>05/13/2019 11:49:30</publishTime>
     </File>
     <File Include="bin/zh-CHS/Microsoft.ReportViewer.Common.resources.dll">
       <publishTime>09/17/2018 17:37:48</publishTime>
@@ -1858,7 +1858,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/17/2018 18:26:02</publishTime>
     </File>
     <File Include="Views/User/UserEditPartial.cshtml">
-      <publishTime>03/29/2019 22:24:28</publishTime>
+      <publishTime>05/13/2019 09:16:21</publishTime>
     </File>
     <File Include="Views/Warehouse/Index.cshtml">
       <publishTime>02/11/2018 20:02:49</publishTime>
@@ -1873,7 +1873,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/11/2018 00:25:47</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/29/2019 18:41:01</publishTime>
+      <publishTime>05/13/2019 11:49:33</publishTime>
     </File>
     <File Include="WebForms/ClosureWebForm.aspx">
       <publishTime>02/04/2019 20:20:55</publishTime>

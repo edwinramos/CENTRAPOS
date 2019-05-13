@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using WEBPOS.DataAccess.DataEntities;
+using WEBPOS.Utils;
 
 namespace WEBPOS.DataAccess
 {
@@ -54,8 +55,7 @@ namespace WEBPOS.DataAccess
                 if (entity is Base)
                 {
                     var track = entity as Base;
-                    var user = track.UpdateUser;
-                    try { user = (string)HttpContext.Current.Session["UserCode"]; } catch { }
+                    var user = track.UpdateUser ?? CookiesUtilityDL.ReadCookieAsString("UserCode");
                     
                     track.LastUpdate = DateTime.Now;
                     track.UpdateUser = user;
@@ -72,8 +72,7 @@ namespace WEBPOS.DataAccess
                 if (entity is Base)
                 {
                     var track = entity as Base;
-                    var user = track.UpdateUser;
-                    try { user = (string)HttpContext.Current.Session["UserCode"]; } catch { }
+                    var user = track.UpdateUser ?? CookiesUtilityDL.ReadCookieAsString("UserCode");
 
                     track.LastUpdate = DateTime.Now;
                     track.UpdateUser = user;

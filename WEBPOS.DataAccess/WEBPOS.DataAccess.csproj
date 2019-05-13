@@ -150,6 +150,8 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ItemSearchResult.cs" />
+    <Compile Include="Utils\CookiesUtilityDL.cs" />
+    <Compile Include="Utils\EncryptionUtility.cs" />
     <Compile Include="WEBPOSContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

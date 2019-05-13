@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
+using WEBPOS.Utils;
 
 namespace WEBPOS.Controllers
 {
@@ -14,12 +15,12 @@ namespace WEBPOS.Controllers
     {
         public ActionResult Index()
         {
-            if (Session["UserCode"] == null)
+            if (CookiesUtility.ReadCookieAsString("UserCode") == null || string.IsNullOrEmpty(CookiesUtility.ReadCookieAsString("UserCode")))
                 return RedirectToAction("LogIn", "User");
             
-            var usr = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == Session["UserCode"].ToString());
-            if(usr.UserType == DataAccess.DataEntities.UserType.CAJERO)
-                return RedirectToAction("LogIn", "User");
+            var usr = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == CookiesUtility.ReadCookieAsString("UserCode").ToString());
+            if(usr.UserType == UserType.CAJERO)
+                return RedirectToAction("Index", "Pos");
 
             ViewBag.IsEditing = true;
             ViewBag.UserName = usr.Name + " " + usr.LastName;

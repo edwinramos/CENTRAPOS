@@ -57,7 +57,7 @@ namespace WEBPOS.WebForms
             var finalCount = new ReportParameter("FinalCount", (closure.BeginAmount + closure.Total).ToString("N2"), true);
             var difference = new ReportParameter("TotalDifference", (closure.BeginAmount - closure.Total).ToString("N2"), true);
 
-            var resultText = (closure.BeginAmount - closure.Total) < 0 ? "cuadre INCORRECTO" : "cuadre CORRECTO";
+            var resultText = (closure.BeginAmount - closure.Total) < 0 ? "cuadre CORRECTO" : "cuadre INCORRECTO";
 
             var result = new ReportParameter("FinalResult", resultText, true);
 

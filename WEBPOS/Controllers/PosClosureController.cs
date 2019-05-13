@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
+using WEBPOS.Utils;
 
 namespace WEBPOS.Controllers
 {
@@ -13,6 +14,9 @@ namespace WEBPOS.Controllers
         // GET: PriceList
         public ActionResult Index()
         {
+            if (CookiesUtility.ReadCookieAsString("UserCode") == null || string.IsNullOrEmpty(CookiesUtility.ReadCookieAsString("UserCode")))
+                return RedirectToAction("LogIn", "User");
+
             return PartialView();
         }
 
@@ -79,7 +83,7 @@ namespace WEBPOS.Controllers
             }
             catch (Exception ex) { }
 
-            var usr = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == Session["UserCode"].ToString());
+            var usr = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == CookiesUtility.ReadCookieAsString("UserCode").ToString());
             var terminal = BlStorePos.ReadAllQueryable().FirstOrDefault(x => x.DeviceId == deviceId);
             var store = BlStore.ReadByCode(terminal.StoreCode);
 

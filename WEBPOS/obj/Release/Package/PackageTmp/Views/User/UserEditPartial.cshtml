@@ -1,4 +1,5 @@
 ﻿@using WEBPOS.DataAccess.BusinessLayer
+@using WEBPOS.Utils
 
 @model WEBPOS.Models.UserModel
 @{
@@ -40,7 +41,7 @@
                         @Html.Label("Tipo de Usuario")
 
                         @{
-                            var usr = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == Session["UserCode"].ToString());
+                            var usr = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == CookiesUtility.ReadCookieAsString("UserCode").ToString());
                             if (usr.UserType == WEBPOS.DataAccess.DataEntities.UserType.GERENTE)
                             {
                                 var selectList = Enum.GetValues(typeof(WEBPOS.DataAccess.DataEntities.UserType))

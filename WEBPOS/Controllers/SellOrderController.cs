@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.Models;
+using WEBPOS.Utils;
 
 namespace WEBPOS.Controllers
 {
@@ -293,6 +294,9 @@ namespace WEBPOS.Controllers
         {
             try
             {
+                if (CookiesUtility.ReadCookieAsString("UserCode") == null || string.IsNullOrEmpty(CookiesUtility.ReadCookieAsString("UserCode")))
+                    return RedirectToAction("LogIn", "User");
+
                 var draw = Request.Form.GetValues("draw").FirstOrDefault();
                 var start = Request.Form.GetValues("start").FirstOrDefault();
                 var length = Request.Form.GetValues("length").FirstOrDefault();
@@ -302,10 +306,7 @@ namespace WEBPOS.Controllers
 
                 int pageSize = length != null ? Convert.ToInt32(length) : 0;
                 int skip = start != null ? Convert.ToInt32(start) : 0;
-
-                if (Session["UserCode"] == null)
-                    return RedirectToAction("LogIn", "User");
-
+                
                 var list = BlItem.ReadSearch(searchValue, id, warehouseCode);
 
                 var model = list.ToList();
