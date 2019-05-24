@@ -1,8 +1,9 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>CentraPos</title>
     <meta charset="utf-8" />
+    <title>CentraPos</title>
+    <link href='@Url.Content("~/Content/Images/logo.png")' rel="icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link href="~/Content/main.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
@@ -80,7 +81,7 @@
                         <h2>CentraPOS</h2>
                     </header>
                     <ul>
-                        <li><a href="#" onclick=onActionClick('@Url.Action("Charts", "Home")');>Inicio</a></li>
+                        <li><a href="#" onclick=onActionClick('@Url.Action("Charts", "Home" )');>Inicio</a></li>
                         <li>
                             <span class="opener">Administración</span>
                             <ul>
@@ -119,10 +120,17 @@
                                 <li><a href="#" onclick=onActionClick('@Url.Action("Index", "SellTransaction" )')>Ventas Efectuadas</a></li>
                                 <li><a href="#" onclick=onActionClick('@Url.Action("Index", "PosClosure" )')>Cierres de Caja</a></li>
                                 <li><a href="#" onclick=onActionClick('@Url.Action("Index", "SellOrder" )')>Cotizaciones</a></li>
-                                <li><a href="@Url.Action("Index", "Pos" )" target="_blank">Punto de Venta</a></li>
+                                <li><a href="@Url.Action(" Index", "Pos" )" target="_blank">Punto de Venta</a></li>
                             </ul>
                         </li>
                         <li></li>
+                        <li>
+                            <span class="opener">Opciones para Moviles</span>
+                            <ul>
+                                <li><a href='#' onclick=onActionClick('@Url.Action("Index", "UserMobileProfile" )');>Configuración Movil</a></li>
+                                <li><a href='#' onclick=onActionClick('@Url.Action("Index", "UserSellOrder" )');>Asignar ordenes</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
 

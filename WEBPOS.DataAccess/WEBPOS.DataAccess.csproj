@@ -50,6 +50,8 @@
   <ItemGroup>
     <Compile Include="BusinessLayer\BlBusinessPartnerContact.cs" />
     <Compile Include="BusinessLayer\BlPosClosureDetail.cs" />
+    <Compile Include="BusinessLayer\BlUserSellOrder.cs" />
+    <Compile Include="BusinessLayer\BlUserMobileProfile.cs" />
     <Compile Include="BusinessLayer\BlSellOrderDetail.cs" />
     <Compile Include="BusinessLayer\BlSellTransactionDetail.cs" />
     <Compile Include="BusinessLayer\BlSellOrder.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="DataEntities\DeDepartment.cs" />
     <Compile Include="DataEntities\DeBusinessPartner.cs" />
     <Compile Include="DataEntities\DePaymentType.cs" />
+    <Compile Include="DataEntities\DeUserSellOrder.cs" />
     <Compile Include="DataEntities\DeSellOrderDetail.cs" />
     <Compile Include="DataEntities\DePosClosureDetail.cs" />
     <Compile Include="DataEntities\DeSellTransactionDetail.cs" />
@@ -87,6 +90,7 @@
     <Compile Include="DataEntities\DeActivityLog.cs" />
     <Compile Include="DataEntities\DeTable.cs" />
     <Compile Include="DataEntities\DePosClosureHead.cs" />
+    <Compile Include="DataEntities\DeUserMobileProfile.cs" />
     <Compile Include="DataEntities\DeUser.cs" />
     <Compile Include="DataEntities\DeWarehouse.cs" />
     <Compile Include="DataEntities\DeUnitMeasure.cs" />
@@ -96,6 +100,8 @@
     <Compile Include="DataEntities\DeItem.cs" />
     <Compile Include="DataEntities\DePriceList.cs" />
     <Compile Include="DataLayer\DlPosClosureDetail.cs" />
+    <Compile Include="DataLayer\DlUserSellOrder.cs" />
+    <Compile Include="DataLayer\DlUserMobileProfile.cs" />
     <Compile Include="DataLayer\DlSellOrderDetail.cs" />
     <Compile Include="DataLayer\DlSellTransactionDetail.cs" />
     <Compile Include="DataLayer\DlSellOrder.cs" />
@@ -148,6 +154,26 @@
     <Compile Include="Migrations\201905080100129_Item_ShortageLevel.Designer.cs">
       <DependentUpon>201905080100129_Item_ShortageLevel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905210043175_UserMobileProfile.cs" />
+    <Compile Include="Migrations\201905210043175_UserMobileProfile.Designer.cs">
+      <DependentUpon>201905210043175_UserMobileProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905210207307_UserMobileProfile_StoreCode.cs" />
+    <Compile Include="Migrations\201905210207307_UserMobileProfile_StoreCode.Designer.cs">
+      <DependentUpon>201905210207307_UserMobileProfile_StoreCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905210213352_UserMobileProfile_Update.cs" />
+    <Compile Include="Migrations\201905210213352_UserMobileProfile_Update.Designer.cs">
+      <DependentUpon>201905210213352_UserMobileProfile_Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905212341101_UserSellOrder.cs" />
+    <Compile Include="Migrations\201905212341101_UserSellOrder.Designer.cs">
+      <DependentUpon>201905212341101_UserSellOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905221210238_UserSellOrder_State.cs" />
+    <Compile Include="Migrations\201905221210238_UserSellOrder_State.Designer.cs">
+      <DependentUpon>201905221210238_UserSellOrder_State.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ItemSearchResult.cs" />
     <Compile Include="Utils\CookiesUtilityDL.cs" />
@@ -176,6 +202,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905080100129_Item_ShortageLevel.resx">
       <DependentUpon>201905080100129_Item_ShortageLevel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905210043175_UserMobileProfile.resx">
+      <DependentUpon>201905210043175_UserMobileProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905210207307_UserMobileProfile_StoreCode.resx">
+      <DependentUpon>201905210207307_UserMobileProfile_StoreCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905210213352_UserMobileProfile_Update.resx">
+      <DependentUpon>201905210213352_UserMobileProfile_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905212341101_UserSellOrder.resx">
+      <DependentUpon>201905212341101_UserSellOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905221210238_UserSellOrder_State.resx">
+      <DependentUpon>201905221210238_UserSellOrder_State.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -143,7 +143,7 @@ namespace WEBPOS.WebForms
 
             var store = BlStore.ReadAll().FirstOrDefault();
 
-            var transactionDate = new ReportParameter("TransactionDate", head.TransactionDateTime.ToString("dd/MM/yyyy"), true);
+            var transactionDate = new ReportParameter("TransactionDate", head.TransactionDateTime.ToString("dd/MM/yyyy hh:mm:ss tt").ToUpper(), true);
             var transactionNumber = new ReportParameter("TransactionNumber", head.TransactionNumber.ToString(), true);
             var storeName = new ReportParameter("StoreName", store.StoreDescription, true);
             var storeAddress = new ReportParameter("StoreAddress", $"{store.Address}, {store.City}", true);

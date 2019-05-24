@@ -9,6 +9,7 @@
 <head>
     <title>CentraPos</title>
     <meta charset="utf-8" />
+    <link href='@Url.Content("~/Content/Images/logo.png")' rel="icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link href="~/Content/main.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
@@ -33,7 +34,7 @@
                 <input class="form-control" id="searchBar" type="text" placeholder="Busqueda" />
             </div>
             <div class="col-xs-6 form-group">
-                <h2 style="text-align:left;float:left;">@ViewBag.UserName</h2>
+                <a href="#" onclick="logOut()"><h2 style="text-align:left;float:left;">@ViewBag.UserName</h2></a>
                 <h2 style="text-align:right;float:right;">@Model.StorePosDescription</h2>
             </div>
             <div class="col-xs-6">
@@ -630,6 +631,7 @@
         var data = $("#paymentForm").serialize();
         data = data.replace("CustomerCode=", "CustomerCode=" + customer.BusinessPartnerCode);
         if ($("#Rest").val() >= 0) {
+            $("#btnPaymentOk").css("display", "none");
             $.ajax({
                 url: form.action,
                 async: true,
@@ -842,5 +844,11 @@
 
     function onItemsFormSubmit() {
 
+    }
+
+    function logOut() {
+        if (confirm("¿Seguro que desea salir?")) {
+            window.open('@Url.Action("UserLogout", "User")', '_self');
+        }
     }
 </script>

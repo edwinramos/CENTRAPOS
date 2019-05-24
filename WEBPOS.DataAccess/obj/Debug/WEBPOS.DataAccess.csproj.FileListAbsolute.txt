@@ -30,3 +30,8 @@ C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Debug\WEBPOS.DataAcc
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Debug\WEBPOS.DataAccess.Migrations.PosClosureDetail_TransactionNumber.resources
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Debug\WEBPOS.DataAccess.Migrations.srTable.resources
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Debug\WEBPOS.DataAccess.Migrations.Item_ShortageLevel.resources
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Debug\WEBPOS.DataAccess.Migrations.UserMobileProfile.resources
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Debug\WEBPOS.DataAccess.Migrations.UserMobileProfile_StoreCode.resources
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Debug\WEBPOS.DataAccess.Migrations.UserMobileProfile_Update.resources
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Debug\WEBPOS.DataAccess.Migrations.UserSellOrder.resources
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Debug\WEBPOS.DataAccess.Migrations.UserSellOrder_State.resources

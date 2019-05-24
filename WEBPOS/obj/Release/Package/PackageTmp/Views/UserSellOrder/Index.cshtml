@@ -1,0 +1,260 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Listas de Precio";
+}
+
+
+
+<div>
+    <br />
+    <div class="panel panel-default" style="width: 100%; padding: 10px; margin: 10px">
+        <div id="Tabs" role="tabpanel">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active"><a href="#orders" aria-controls="orders" role="tab" data-toggle="tab">Ordenes</a></li>
+                <li>
+                    <a href="#completed" aria-controls="completed" role="tab" data-toggle="tab">
+                        Ordenes Completadas
+                    </a>
+                </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content" style="padding-top: 20px">
+                <div role="tabpanel" class="tab-pane" id="completed">
+                    <div style="width:90%; margin:0 auto;">
+                        <table id="completedOrdersGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Usuario</th>
+                                    <th>No. Orden</th>
+                                    <th>Total Orden</th>
+                                    <th>Estado</th>
+                                    <th>Fecha</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane active" id="orders">
+                    <div style="width:90%; margin:0 auto;">
+                        <a href='#' class='btn btn-primary new' onclick=onUserSellOrderNew('0');>Nuevo</a>
+                        <table id="userSellOrderGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Usuario</th>
+                                    <th>No. Orden</th>
+                                    <th>Total Orden</th>
+                                    <th>Estado</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal" role="dialog">
+    <div id="modalContainer"></div>
+</div>
+<script>
+    var table2 = $("#completedOrdersGrid").DataTable({
+
+        "processing": true, // for show progress bar
+        "serverSide": true, // for process server side
+        "filter": true, // this is for disable filter (search box)
+        "orderMulti": false, // for disable multiple column at once
+        "pageLength": 5,
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+        },
+        "ajax": {
+            "url": "/UserSellOrder/LoadDataCompleted",
+            "type": "POST",
+            "datatype": "json"
+        },
+
+        "columnDefs":
+            [{
+                "targets": [0],
+                //"visible": false,
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [1],
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [2],
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [3],
+                "searchable": false,
+                "orderable": false
+                },
+            {
+                "targets": [4],
+                "searchable": false,
+                "orderable": false
+                },
+            {
+                "targets": [5],
+                "searchable": false,
+                "orderable": false
+                }],
+
+        "columns": [
+            { "data": "UserCode", "name": "UserCode", "autoWidth": true },
+            { "data": "SellOrderId", "name": "SellOrderId", "autoWidth": true },
+            { "render": function (data, type, full, meta) { return "(RD$)" + full.Total.toFixed(2); } },
+            { "data": "State", "name": "State", "autoWidth": true },
+            {
+                "data": "LastUpdate", render: function (d) {
+                    return moment(d).format("DD/MM/YYYY hh:mm A");
+                }
+            },
+            {
+                data: null, render: function (data, type, row) {
+                    return "<a href='#' class='btn btn-danger' onclick=onUserSellOrderDelete('" + row.UserCode + "|" + row.SellOrderId + "'); >Eliminar</a>";
+                }
+            },
+
+        ]
+
+    });
+    var table = $("#userSellOrderGrid").DataTable({
+
+        "processing": true, // for show progress bar
+        "serverSide": true, // for process server side
+        "filter": true, // this is for disable filter (search box)
+        "orderMulti": false, // for disable multiple column at once
+        "pageLength": 5,
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+        },
+        "ajax": {
+            "url": "/UserSellOrder/LoadData",
+            "type": "POST",
+            "datatype": "json"
+        },
+
+        "columnDefs":
+            [{
+                "targets": [0],
+                //"visible": false,
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [1],
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [2],
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [3],
+                "searchable": false,
+                "orderable": false
+                },
+            {
+                "targets": [4],
+                "searchable": false,
+                "orderable": false
+                }],
+
+        "columns": [
+            { "data": "UserCode", "name": "UserCode", "autoWidth": true },
+            { "data": "SellOrderId", "name": "SellOrderId", "autoWidth": true },
+            { "render": function (data, type, full, meta) { return "(RD$)" + full.Total.toFixed(2); } },
+            { "data": "State", "name": "State", "autoWidth": true },
+            {
+                data: null, render: function (data, type, row) {
+                    return "<a href='#' class='btn btn-danger' onclick=onUserSellOrderDelete('" + row.UserCode + "|" + row.SellOrderId + "'); >Eliminar</a>";
+                }
+            },
+
+        ]
+
+    });
+
+    function onUserSellOrderDelete(id) {
+        if (confirm("¿Desea eliminar '" + id + "'?")) {
+            var userCode = id.split('|')[0];
+            var sellOrderId = id.split('|')[1];
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("UserSellOrderDelete", "UserSellOrder")',
+                data: { userCode: userCode, sellOrderId: sellOrderId },
+                success: function (data) {
+                    table.ajax.reload();
+                    table2.ajax.reload();
+                },
+            });
+        }
+    }
+
+    function onFormSubmit(s, e)
+    {
+        if (!$('#SellOrderId').val() || !$('#UserCode').val()) {
+            $('#myModal').modal('hide');
+            toastr.error('La operacion ha sido cancelada', 'Valores invalidos');
+            return;
+        }
+
+        var form = $("#dataForm")[0];
+        var data = $("#dataForm").serialize();
+
+        $.ajax({
+            url: form.action,
+            type: form.method,
+            data: data,
+            error: function () {
+                toastr.error('Favor verifique los datos antes de continuar.', 'Error al guardar');
+            },
+            complete: function () {
+
+            },
+            success: function (result) {
+                $('#myModal').modal('hide');
+                toastr.success('', 'Guardado');
+                table.ajax.reload();
+                table2.ajax.reload();
+            }
+        });
+    }
+    
+    function onUserSellOrderNew(id) {
+        var url = '@Url.Action("UserSellOrderEditPartial", "UserSellOrder", new { id = "XXX" })';
+        url = url.replace("XXX", id);
+        $('#modalContainer').load(url, function () {
+            $('#myModal').modal('show');
+        });
+    }
+
+    function onOrderChange(value) {
+        $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetSellOrderInfo", "UserSellOrder")',
+                data: { sellOrderId: value },
+                success: function (data) {
+                    $('#OrderTotal').val(data.orderTotal);
+                },
+            });
+    }
+
+    function onOrderInfoSearch() {
+
+    }
+</script>

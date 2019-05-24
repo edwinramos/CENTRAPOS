@@ -1,0 +1,74 @@
+﻿@model WEBPOS.DataAccess.DataEntities.DeUserMobileProfile
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("UserMobileProfileManage", "UserMobileProfile", FormMethod.Post, new { id = "dataFormDetail" }))
+{
+    <div class="container form-group">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal">&times;</a>
+                    <h4 class="modal-title">Editar Lista de Precio</h4>
+                </div>
+
+                <div class="modal-body col-md-12">
+                    <div class="form-group col-md-4">
+                        @Html.Label("Tienda")
+                        @{
+                            List<SelectListItem> list = new List<SelectListItem>();
+                            foreach (var ob in WEBPOS.DataAccess.BusinessLayer.BlStore.ReadAll())
+                            {
+                                list.Add(new SelectListItem { Text = ob.StoreCode + " | " + ob.StoreDescription, Value = ob.StoreCode });
+                            }
+                        }
+                        @Html.DropDownListFor(model => model.StoreCode, list, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.Label("Usuario")
+                        @{
+                            List<SelectListItem> userList = new List<SelectListItem>();
+                            if (string.IsNullOrEmpty(Model.UserCode))
+                            {
+                                var upList = WEBPOS.DataAccess.BusinessLayer.BlUserMobileProfile.ReadAll().Select(x => x.UserCode);
+                                var uList = WEBPOS.DataAccess.BusinessLayer.BlUser.ReadAll().Where(x => !upList.Contains(x.UserCode));
+                                foreach (var ob in uList)
+                                {
+                                    userList.Add(new SelectListItem { Text = ob.UserCode + " | " + ob.Name + " " + ob.LastName, Value = ob.UserCode });
+                                }
+                            }
+                            else
+                            {
+                                var uList = WEBPOS.DataAccess.BusinessLayer.BlUser.ReadAll().Where(x => x.UserCode == Model.UserCode);
+                                foreach (var ob in uList)
+                                {
+                                    userList.Add(new SelectListItem { Text = ob.UserCode + " | " + ob.Name + " " + ob.LastName, Value = ob.UserCode });
+                                }
+                            }
+                        }
+                        @Html.DropDownListFor(model => model.UserCode, userList, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.Label("Tipo de Perfil")
+                        @{
+                            var selectList = Enum.GetValues(typeof(WEBPOS.DataAccess.DataEntities.MobileProfileType))
+                                                     .Cast<WEBPOS.DataAccess.DataEntities.MobileProfileType>()
+                                                     .Select(e => new SelectListItem
+                                                     {
+                                                         Value = ((int)e).ToString(),
+                                                         Text = e.ToString()
+                                                     });
+
+                            @Html.DropDownListFor(m => m.MobileProfileType, selectList);
+                        }
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-default" data-dismiss="modal">Cerrar</a>
+                    <a class="btn btn-default" onclick=onDetailFormSubmit();>Guardar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
