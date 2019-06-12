@@ -75,7 +75,7 @@ namespace WEBPOS.Controllers.WebApi
 
                     var objHead = Mapper.Map<DeSellOrder>(head);
                     objHead.UpdateUser = userCode;
-                    //BlSellOrder.Save(objHead);
+                    BlSellOrder.Save(objHead);
 
                     foreach (var item in BlSellOrderDetail.ReadAllQueryable().Where(x=>x.SellOrderId == objHead.SellOrderId))
                     {
@@ -99,6 +99,8 @@ namespace WEBPOS.Controllers.WebApi
                         order.UserOrderState = UserOrderState.CONCLUIDO;
                         BlUserSellOrder.Save(order);
                     }
+
+                    //CloseSellOrder(objHead.SellOrderId);
                 }
                 catch (Exception ex)
                 {
@@ -279,13 +281,56 @@ namespace WEBPOS.Controllers.WebApi
                 var aOrders = BlUserSellOrder.ReadAllQueryable().Where(x => x.UserCode == userCode && x.UserOrderState == UserOrderState.ASIGNADA);
                 var orderIds = aOrders.Select(x => x.SellOrderId);
 
+                var orders = BlSellOrder.ReadAllQueryable().Where(x => orderIds.Contains(x.SellOrderId));
+                var headList = new List<SellOrderModel>();
+                var detailList = new List<SellOrderDetailModel>();
+                foreach (var item in orders)
+                {
+                    var obj = Mapper.Map<SellOrderModel>(item);
+                    headList.Add(obj);
+
+                    foreach (var detail in BlSellOrderDetail.ReadAllQueryable().Where(x => x.SellOrderId == item.SellOrderId))
+                    {
+                        var objDetail = Mapper.Map<SellOrderDetailModel>(detail);
+                        detailList.Add(objDetail);
+                    }
+                }
+
+                var model = new Tuple<List<SellOrderModel>, List<SellOrderDetailModel>>(headList, detailList);
+                res = new Response
+                {
+                    IsSuccess = true,
+                    Message = RequestStateMessage.SUCCESS.ToString(),
+                    ResponseData = JsonConvert.SerializeObject(model).ToString()
+                };
+
                 foreach (var order in aOrders)
                 {
                     order.UserOrderState = UserOrderState.TRABAJANDO;
                     BlUserSellOrder.Save(order);
                 }
+            }
+            else
+            {
+                res = new Response
+                {
+                    IsSuccess = false,
+                    Message = RequestStateMessage.FAILURE.ToString(),
+                    ResponseData = null
+                };
+            }
 
-                var orders = BlSellOrder.ReadAllQueryable().Where(x => orderIds.Contains(x.SellOrderId));
+            return Ok(res);
+        }
+
+        [HttpGet]
+        [Route("mob/ordersbyUser")]
+        public IHttpActionResult GetOrdersByUser([FromUri] string password, [FromUri] string userCode)
+        {
+            var res = new Response();
+            if (password == BlTable.Read(new DeTable { KeyFixed = "ServerPassword" }).FirstOrDefault().KeyVariable)
+            {
+                var orders = BlSellOrder.ReadAllQueryable().Where(x => x.UpdateUser == userCode);
                 var headList = new List<SellOrderModel>();
                 var detailList = new List<SellOrderDetailModel>();
                 foreach (var item in orders)
@@ -361,6 +406,94 @@ namespace WEBPOS.Controllers.WebApi
                 res = new Response { IsSuccess = false, Message = RequestStateMessage.FAILURE.ToString(), ResponseData = null };
 
             return Ok(res);
+        }
+
+        private void CloseSellOrder(int id)
+        {
+            try
+            {
+                var obj = BlSellOrder.ReadAllQueryable().FirstOrDefault(x => x.SellOrderId == id);
+                var list = BlSellOrderDetail.ReadAllQueryable().Where(x => x.SellOrderId == obj.SellOrderId);
+
+                var head = new DeSellTransactionHead
+                {
+                    CustomerCode = obj.ClientCode,
+                    PosCode = obj.StorePosCode,
+                    PriceListCode = obj.PriceListCode,
+                    StoreCode = BlStore.ReadAll().FirstOrDefault().StoreCode,
+                    TotalValue = obj.DocTotal,
+                    TransactionNumber = BlSellTransactionHead.GetNextTransactionNumber(obj.StoreCode, obj.StorePosCode),
+                    NCF = BlSellTransactionHead.GetNextNCF(DocType.ConsumidorFinal),
+                    TransactionDateTime = DateTime.Now,
+                    DocType = DocType.ConsumidorFinal,
+                    IsPrinted = false,
+                    TotalDiscount = obj.TotalDiscount,
+                    SellOrderId = id
+                };
+
+                BlSellTransactionHead.Save(head);
+
+                foreach (var item in list)
+                {
+                    var ob = new DeSellTransactionDetail
+                    {
+                        ItemCode = item.ItemCode,
+                        ItemDescription = item.ItemDescription,
+                        BasePrice = item.PriceBefDiscounts,
+                        SellPrice = item.Price,
+                        Quantity = item.Quantity,
+                        RowValue = item.TotalRowValue - item.DiscountValue,
+                        TaxCode = item.VatCode,
+                        PriceListCode = head.PriceListCode,
+                        TotalValue = item.TotalRowValue,
+                        Barcode = item.Barcode,
+                        TransactionNumber = head.TransactionNumber,
+                        TransactionDateTime = head.TransactionDateTime,
+                        StoreCode = head.StoreCode,
+                        PosCode = head.PosCode,
+                        DiscountOnItem = item.DiscountValue,
+                        RowNumber = BlSellTransactionDetail.GetNextRowNumberNumber(head.StoreCode, head.PosCode, head.TransactionNumber, head.TransactionDateTime)
+                    };
+                    BlSellTransactionDetail.Save(ob);
+                }
+
+                var payment = new DeSellTransactionPayment
+                {
+                    PaymentTypeCode = obj.PaymentTypeCode,
+                    PaymentValue = obj.DocTotal - obj.TotalDiscount,
+                    PosCode = head.PosCode,
+                    StoreCode = head.StoreCode,
+                    TransactionNumber = head.TransactionNumber,
+                    TransactionDateTime = head.TransactionDateTime,
+                    RowNumber = 0
+                };
+
+                BlSellTransactionPayment.Save(payment);
+
+                foreach (var ob in list)
+                {
+                    var item = BlItem.ReadByCode(ob.ItemCode);
+                    var store = BlStore.ReadAll().FirstOrDefault();
+                    var itemWarehouses = BlItemWarehouse.ReadAllQueryable().Where(x => x.ItemCode == ob.ItemCode && x.WarehouseCode == store.WarehouseCode);
+                    foreach (var iw in itemWarehouses)
+                    {
+                        iw.QuantityOnHand = iw.QuantityOnHand - ob.Quantity;
+
+                        BlItemWarehouse.Save(iw);
+                    }
+                }
+
+                obj.IsClosed = true;
+                var detail = BlSellOrderDetail.ReadAllQueryable().Where(x => x.SellOrderId == obj.SellOrderId);
+                obj.VatSum = detail.Sum(x => x.VatValue);
+                obj.TotalDiscount = detail.Sum(x => x.DiscountValue);
+                obj.DocTotal = detail.Sum(x => x.TotalRowValue);
+                BlSellOrder.Save(obj);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
         }
     }
 

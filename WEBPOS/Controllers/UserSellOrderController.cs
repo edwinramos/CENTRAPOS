@@ -34,12 +34,64 @@ namespace WEBPOS.Controllers
                 int recordsTotal = 0;
 
                 // Getting all Customer data    
-                var model = BlUserSellOrder.ReadAllQueryable().Where(x => x.UserOrderState != UserOrderState.CONCLUIDO).OrderByDescending(x=>x.LastUpdate).Select(x => new
+                var model = BlUserSellOrder.ReadAllQueryable().Where(x => x.UserOrderState == UserOrderState.ASIGNADA).OrderByDescending(x=>x.LastUpdate).Select(x => new
                 {
                     x.UserCode,
                     x.SellOrderId,
                     Total = BlSellOrder.ReadAllQueryable().FirstOrDefault(p => p.SellOrderId == x.SellOrderId).DocTotal,
                     State = BlUserSellOrder.ReadByCode(x.UserCode, x.SellOrderId).UserOrderState.ToString()
+                });
+
+                //Sorting    
+                //if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
+                //{
+                //    model = model.OrderBy(sortColumn + " " + sortColumnDir);
+                //}
+                //Search    
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    model = model.Where(m => m.SellOrderId.ToString().ToUpper().Contains(searchValue.ToUpper()) || m.UserCode.ToUpper().Contains(searchValue.ToUpper()) || m.State.ToUpper().Contains(searchValue.ToUpper()));
+                }
+
+                //total number of rows count     
+                recordsTotal = model.Count();
+                //Paging     
+                var data = model.Skip(skip).Take(pageSize).ToList();
+                //Returning Json Data    
+                return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public ActionResult LoadDataInProgress()
+        {
+            try
+            {
+                var draw = Request.Form.GetValues("draw").FirstOrDefault();
+                var start = Request.Form.GetValues("start").FirstOrDefault();
+                var length = Request.Form.GetValues("length").FirstOrDefault();
+                var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+                var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+                var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+
+
+                //Paging Size (10,20,50,100)    
+                int pageSize = length != null ? Convert.ToInt32(length) : 0;
+                int skip = start != null ? Convert.ToInt32(start) : 0;
+                int recordsTotal = 0;
+
+                // Getting all Customer data    
+                var model = BlUserSellOrder.ReadAllQueryable().Where(x=>x.UserOrderState == UserOrderState.TRABAJANDO).OrderByDescending(x => x.LastUpdate).Select(x => new
+                {
+                    x.UserCode,
+                    x.SellOrderId,
+                    Total = BlSellOrder.ReadAllQueryable().FirstOrDefault(p => p.SellOrderId == x.SellOrderId).DocTotal,
+                    State = BlUserSellOrder.ReadByCode(x.UserCode, x.SellOrderId).UserOrderState.ToString(),
+                    x.LastUpdate
                 });
 
                 //Sorting    

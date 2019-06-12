@@ -241,7 +241,7 @@
     </div>
 </body>
 </html>
-<iframe id="printIFrame" src="~/Docs/Test/ClosureWebForm.pdf" width="0" height="0"></iframe>
+@*<iframe id="printIFrame" src="~/Docs/Test/ClosureWebForm.pdf" width="0" height="0"></iframe>*@
 <script>
     var priceList = { PriceListCode: "01", PriceListDescription: "GENERAL" };
     var customer = { BusinessPartnerCode: "", BusinessPartnerDescription: "" };
@@ -753,6 +753,7 @@
 
     function onDiscountAmountChanged() {
         var discountType = $('#DiscountType').val();
+        var qty = $('#Quantity').val();
         var price = $('#ItemPrice').val();
         var discountAmount = $('#DiscountAmount').val();
         var maxDiscAmt = @Model.MaxDiscAmount;
@@ -764,8 +765,8 @@
                 $('#DiscountAmount').val(0);
                 discountAmount = 0
             }
-
-            var res = price - price * (discountAmount / 100);
+            var m = price * ((discountAmount/qty) / 100);
+            var res = price - (m);
             $('#Result').val(res);
 
         } else {
@@ -774,7 +775,7 @@
                 $('#DiscountAmount').val(0);
                 discountAmount = 0;
             }
-
+            discountAmount = discountAmount/qty;
             $('#Result').val(price - discountAmount);
         }
     }

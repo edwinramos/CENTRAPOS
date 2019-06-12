@@ -351,7 +351,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Quantity.Value &amp; " x RD$" &amp; Fields!BasePrice.Value</Value>
+                                  <Value>=Fields!Quantity.Value &amp; " x " &amp; Fields!BasePrice.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -387,7 +387,7 @@
                                   <Value>=Fields!SellPrice.Value - Fields!BasePrice.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
-                                    <Format>'RD$'#,0.00;('$'#,0.00)</Format>
+                                    <Format>n2</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -421,7 +421,7 @@
                                   <Value>=Fields!TotalValue.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
-                                    <Format>'RD$'#,0.00;('$'#,0.00)</Format>
+                                    <Format>n2</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -466,7 +466,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>8.48896cm</Top>
+            <Top>9.1146cm</Top>
             <Left>0.37842cm</Left>
             <Height>1.2cm</Height>
             <Width>8.56068cm</Width>
@@ -491,7 +491,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox31</rd:DefaultName>
-            <Top>9.75952cm</Top>
+            <Top>10.38516cm</Top>
             <Left>3.55013cm</Left>
             <Height>0.6cm</Height>
             <Width>2.33539cm</Width>
@@ -525,7 +525,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox31</rd:DefaultName>
-            <Top>9.75952cm</Top>
+            <Top>10.38516cm</Top>
             <Left>6.02663cm</Left>
             <Height>0.6cm</Height>
             <Width>2.87924cm</Width>
@@ -557,7 +557,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox31</rd:DefaultName>
-            <Top>10.43007cm</Top>
+            <Top>11.05571cm</Top>
             <Left>3.55013cm</Left>
             <Height>0.6cm</Height>
             <Width>2.37067cm</Width>
@@ -592,7 +592,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox34</rd:DefaultName>
-            <Top>10.43007cm</Top>
+            <Top>11.05571cm</Top>
             <Left>6.02663cm</Left>
             <Height>0.6cm</Height>
             <Width>2.87924cm</Width>
@@ -622,7 +622,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox34</rd:DefaultName>
-            <Top>11.06535cm</Top>
+            <Top>11.69099cm</Top>
             <Left>3.55013cm</Left>
             <Height>0.6cm</Height>
             <Width>2.37067cm</Width>
@@ -656,7 +656,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox34</rd:DefaultName>
-            <Top>11.06535cm</Top>
+            <Top>11.69099cm</Top>
             <Left>6.02663cm</Left>
             <Height>0.6cm</Height>
             <Width>2.87924cm</Width>
@@ -690,7 +690,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox38</rd:DefaultName>
-            <Top>11.99935cm</Top>
+            <Top>12.62499cm</Top>
             <Left>0.36181cm</Left>
             <Height>0.6cm</Height>
             <Width>8.54406cm</Width>
@@ -727,7 +727,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox39</rd:DefaultName>
-            <Top>12.64521cm</Top>
+            <Top>13.27085cm</Top>
             <Left>0.36181cm</Left>
             <Height>0.6cm</Height>
             <Width>8.56067cm</Width>
@@ -880,7 +880,7 @@
             </Style>
           </Textbox>
           <Line Name="Line1">
-            <Top>6.88529cm</Top>
+            <Top>7.51093cm</Top>
             <Left>0.3452cm</Left>
             <Height>0cm</Height>
             <Width>8.56067cm</Width>
@@ -907,7 +907,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox38</rd:DefaultName>
-            <Top>6.92207cm</Top>
+            <Top>7.54771cm</Top>
             <Left>0.3452cm</Left>
             <Height>0.6cm</Height>
             <Width>8.56067cm</Width>
@@ -941,7 +941,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox39</rd:DefaultName>
-            <Top>7.53618cm</Top>
+            <Top>8.16182cm</Top>
             <Left>0.3452cm</Left>
             <Height>0.6cm</Height>
             <Width>8.56067cm</Width>
@@ -1013,7 +1013,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox21</rd:DefaultName>
-            <Top>4.8955cm</Top>
+            <Top>5.52114cm</Top>
             <Left>0.32859cm</Left>
             <Height>0.6cm</Height>
             <Width>8.54406cm</Width>
@@ -1047,7 +1047,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox38</rd:DefaultName>
-            <Top>4.27164cm</Top>
+            <Top>4.89728cm</Top>
             <Left>0.32859cm</Left>
             <Height>0.6cm</Height>
             <Width>8.54406cm</Width>
@@ -1084,7 +1084,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox21</rd:DefaultName>
-            <Top>5.54136cm</Top>
+            <Top>6.167cm</Top>
             <Left>0.32859cm</Left>
             <Height>0.6cm</Height>
             <Width>8.54406cm</Width>
@@ -1136,12 +1136,6 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>FECHA DE VENCIMIENTO: </Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
                     <Value>=Parameters!SequenceDueDate.Value</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
@@ -1154,7 +1148,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox21</rd:DefaultName>
-            <Top>6.17664cm</Top>
+            <Top>6.80228cm</Top>
             <Left>0.32859cm</Left>
             <Height>0.6cm</Height>
             <Width>8.54406cm</Width>
@@ -1170,7 +1164,7 @@
             </Style>
           </Textbox>
           <Line Name="Line2">
-            <Top>8.31257cm</Top>
+            <Top>8.93821cm</Top>
             <Left>0.3452cm</Left>
             <Height>0cm</Height>
             <Width>8.56067cm</Width>
@@ -1181,8 +1175,72 @@
               </Border>
             </Style>
           </Line>
+          <Textbox Name="Textbox46">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!TransactionDate.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox39</rd:DefaultName>
+            <Top>4.262cm</Top>
+            <Left>0.32606cm</Left>
+            <Height>0.6cm</Height>
+            <Width>8.56067cm</Width>
+            <ZIndex>23</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox42">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Le Atendio : </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Parameters!OperatorName.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox39</rd:DefaultName>
+            <Top>13.98544cm</Top>
+            <Left>0.32606cm</Left>
+            <Height>0.6cm</Height>
+            <Width>8.56067cm</Width>
+            <ZIndex>24</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>5.33171in</Height>
+        <Height>5.83171in</Height>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1225,6 +1283,8 @@
   <ReportParameters>
     <ReportParameter Name="StoreName">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="RNC">
@@ -1236,31 +1296,37 @@
     <ReportParameter Name="Telephone">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="Total">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="PaymentType">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="PaymentValue">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="PaymentRest">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="StoreAddress">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="NCF">
@@ -1272,6 +1338,7 @@
     <ReportParameter Name="TransactionNumber">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="ClientRNC">
@@ -1288,6 +1355,8 @@
     </ReportParameter>
     <ReportParameter Name="TransactionDate">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="NIF">
@@ -1298,17 +1367,27 @@
     </ReportParameter>
     <ReportParameter Name="SequenceDueDate">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="Header">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="OperatorName">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>4</NumberOfRows>
+      <NumberOfRows>5</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -1389,6 +1468,11 @@
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>3</RowIndex>
           <ParameterName>Header</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>4</RowIndex>
+          <ParameterName>OperatorName</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

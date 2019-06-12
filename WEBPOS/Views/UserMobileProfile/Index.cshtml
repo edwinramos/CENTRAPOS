@@ -18,7 +18,15 @@
         <!-- Tab panes -->
         <div class="tab-content" style="padding-top: 20px">
             <div role="tabpanel" class="tab-pane" id="settings">
-
+                @*@{
+                    IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName()); // `Dns.Resolve()` method is deprecated.
+                    IPAddress ipAddresses = ipHostInfo.AddressList[1];
+                    var port = HttpContext.Current.Request.ServerVariables["SERVER_PORT"];
+                }
+                <label>Direccion Ethernet: http://@ipHostInfo.AddressList[1].ToString():@port/</label>
+                <br />
+                <label>Direccion WiFi: http://@ipHostInfo.AddressList.LastOrDefault().ToString():@port/</label>
+                <br />*@
                 <div class="modal-body col-md-12">
                     <div class="form-group col-md-4">
                         @Html.Label("Contraseña para moviles")

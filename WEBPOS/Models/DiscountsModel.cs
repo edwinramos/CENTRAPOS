@@ -12,6 +12,7 @@ namespace WEBPOS.Models
         public double ItemPrice { get; set; }
         public double DiscountAmount { get; set; }
         public double Result { get; set; }
+        public double Quantity { get; set; }
         public DiscountType DiscountType { get; set; }
     }
 

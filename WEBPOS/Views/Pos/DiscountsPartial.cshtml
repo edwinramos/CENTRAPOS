@@ -13,6 +13,7 @@
                     <h4 class="modal-title">Descuentos</h4>
                 </div>
                 @Html.HiddenFor(x => x.ItemCode)
+                @Html.HiddenFor(x => x.Quantity)
                 <div class="modal-body col-md-12">
                     @Html.Label("Tipo de Descuento")
                     @Html.EnumDropDownListFor(m => m.DiscountType, "", new { @class = "form-control", @onchange = "onDiscountAmountChanged();" })

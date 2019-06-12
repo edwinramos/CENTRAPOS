@@ -114,6 +114,7 @@ namespace WEBPOS.WebForms
             var detail = BlSellTransactionDetail.ReadAll().Where(x => x.TransactionNumber == head.TransactionNumber && x.StoreCode == head.StoreCode && x.PosCode == head.PosCode);
             var headPayment = BlSellTransactionPayment.ReadByCode(head.TransactionNumber, head.TransactionDateTime, head.StoreCode, head.PosCode);
             var client = BlBusinessPartner.ReadAllQueryable().FirstOrDefault(x => x.BusinessPartnerCode == head.CustomerCode);
+            var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == head.UpdateUser);
 
             var res = new List<DeSellTransactionDetail>();
             foreach (var obj in detail)
@@ -133,8 +134,8 @@ namespace WEBPOS.WebForms
                 }
             }
 
-            //ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/InvoiceReport.rdlc");
-            ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/InvoiceReportLogo.rdlc");
+            ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/InvoiceReport.rdlc");
+            //ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/InvoiceReportLogo.rdlc");
 
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportDataSource RDS = new ReportDataSource("DataSet1", res);
@@ -143,7 +144,8 @@ namespace WEBPOS.WebForms
 
             var store = BlStore.ReadAll().FirstOrDefault();
 
-            var transactionDate = new ReportParameter("TransactionDate", head.TransactionDateTime.ToString("dd/MM/yyyy hh:mm:ss tt").ToUpper(), true);
+            var posOperator = new ReportParameter("OperatorName", (user.Name + " " + user.LastName), true);
+            var transactionDate = new ReportParameter("TransactionDate", head.TransactionDateTime.ToString("dd/MM/yyyy hh:mm:ss").ToUpper(), true);
             var transactionNumber = new ReportParameter("TransactionNumber", head.TransactionNumber.ToString(), true);
             var storeName = new ReportParameter("StoreName", store.StoreDescription, true);
             var storeAddress = new ReportParameter("StoreAddress", $"{store.Address}, {store.City}", true);
@@ -155,12 +157,13 @@ namespace WEBPOS.WebForms
             var paymentType = new ReportParameter("PaymentType", BlPaymentType.ReadAll().FirstOrDefault(x => x.PaymentTypeCode == headPayment.PaymentTypeCode).PaymentTypeDescription, true);
             var paymentValue = new ReportParameter("PaymentValue", "RD$" + headPayment.PaymentValue.ToString("n2"), true);
             var paymentRest = new ReportParameter("PaymentRest", "RD$" + (headPayment.PaymentValue - head.TotalValue).ToString("n2"), true);
-            var sequenceDueDate = new ReportParameter("SequenceDueDate", store.SequenceDueDate.ToString("dd/MM/yyyy"), true);
+            var sequenceDueDate = new ReportParameter("SequenceDueDate", head.NCF.Contains("B02") ? "" : ("FECHA DE VENCIMIENTO: " + store.SequenceDueDate.ToString("dd/MM/yyyy")), true);
             var clientRNC = new ReportParameter("ClientRNC", client?.RNC != null ? ("RNC CLIENTE: " + client.RNC) : "", true);
             var clientName = new ReportParameter("ClientName", client?.BusinessPartnerDescription != null ? ("NOMBRE: " + client.BusinessPartnerDescription) : "", true);
             var header = new ReportParameter("Header", head.NCF.Contains("B02") ? "FACTURA PARA CONSUMIDOR FINAL" : "FACTURA PARA CREDITO FISCAL", true);
 
             ReportParameterCollection reportParameters = new ReportParameterCollection();
+            reportParameters.Add(posOperator);
             reportParameters.Add(transactionDate);
             reportParameters.Add(transactionNumber);
             reportParameters.Add(storeName);

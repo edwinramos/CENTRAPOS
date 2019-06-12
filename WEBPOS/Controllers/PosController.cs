@@ -415,6 +415,7 @@ namespace WEBPOS.Controllers
                 ItemCode = itemCode,
                 ItemPrice = item.VatPrice,
                 DiscountAmount = 0,
+                Quantity = item.Quantity,
                 Result = item.VatPrice
             };
             return PartialView(model);
