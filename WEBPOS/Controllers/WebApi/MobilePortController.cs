@@ -330,7 +330,7 @@ namespace WEBPOS.Controllers.WebApi
             var res = new Response();
             if (password == BlTable.Read(new DeTable { KeyFixed = "ServerPassword" }).FirstOrDefault().KeyVariable)
             {
-                var orders = BlSellOrder.ReadAllQueryable().Where(x => x.UpdateUser == userCode);
+                var orders = BlSellOrder.ReadAllQueryable().Where(x => x.UpdateUser == userCode && x.DocDateTime.Date == DateTime.Today.Date);
                 var headList = new List<SellOrderModel>();
                 var detailList = new List<SellOrderDetailModel>();
                 foreach (var item in orders)

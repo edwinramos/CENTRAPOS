@@ -201,5 +201,25 @@ namespace WEBPOS.Controllers
 
             return Json(new { orderTotal = total }, JsonRequestBehavior.AllowGet);
         }
+        
+        public ActionResult UserSellOrderByGroupPartial()
+        {
+            return PartialView(new DeUserSellOrder());
+        }
+
+        public ActionResult UserSellOrderByGroupInsert(string userCode, string groupCode)
+        {
+            foreach (var order in BlSellOrder.ReadByGroupCode(groupCode))
+            {
+                var model = new DeUserSellOrder
+                {
+                    UserCode = userCode,
+                    SellOrderId = order.SellOrderId
+                };
+                BlUserSellOrder.Save(model);
+            }           
+
+            return null;
+        }
     }
 }

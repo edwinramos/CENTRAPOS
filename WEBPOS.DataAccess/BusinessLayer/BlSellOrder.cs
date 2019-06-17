@@ -20,6 +20,11 @@ namespace WEBPOS.DataAccess.BusinessLayer
             var dl = new DlSellOrder();
             return dl.ReadAllQueryable();
         }
+        public static IQueryable<DeSellOrder> ReadByGroupCode(string groupCode)
+        {
+            var dl = new DlSellOrder();
+            return dl.ReadByGroupCode(groupCode);
+        }
         public static IEnumerable<DeSellOrder> Read(DeSellOrder obj)
         {
             var dl = new DlSellOrder();

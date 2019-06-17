@@ -586,19 +586,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2014 13:57:34</publishTime>
     </File>
     <File Include="bin/WEBPOS.DataAccess.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/17/2019 00:21:10</publishTime>
     </File>
     <File Include="bin/WEBPOS.DataAccess.dll.config">
       <publishTime>10/26/2018 15:00:19</publishTime>
     </File>
     <File Include="bin/WEBPOS.DataAccess.pdb">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/17/2019 00:21:10</publishTime>
     </File>
     <File Include="bin/WEBPOS.dll">
-      <publishTime>06/11/2019 16:53:25</publishTime>
+      <publishTime>06/17/2019 00:21:23</publishTime>
     </File>
     <File Include="bin/WEBPOS.pdb">
-      <publishTime>06/11/2019 16:53:25</publishTime>
+      <publishTime>06/17/2019 00:21:23</publishTime>
     </File>
     <File Include="bin/zh-CHS/Microsoft.ReportViewer.Common.resources.dll">
       <publishTime>09/17/2018 17:37:48</publishTime>
@@ -1732,10 +1732,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/03/2018 12:28:32</publishTime>
     </File>
     <File Include="Views/BusinessPartner/BusinessPartnerDetail.cshtml">
-      <publishTime>03/27/2019 19:14:24</publishTime>
+      <publishTime>06/16/2019 20:58:41</publishTime>
     </File>
     <File Include="Views/BusinessPartner/Index.cshtml">
       <publishTime>11/02/2018 19:51:13</publishTime>
+    </File>
+    <File Include="Views/BusinessPartnerGroup/BusinessPartnerGroupEditPartial.cshtml">
+      <publishTime>06/16/2019 18:19:27</publishTime>
+    </File>
+    <File Include="Views/BusinessPartnerGroup/Index.cshtml">
+      <publishTime>06/16/2019 18:19:27</publishTime>
     </File>
     <File Include="Views/Department/DepartmentEditPartial.cshtml">
       <publishTime>10/29/2018 13:04:35</publishTime>
@@ -1783,7 +1789,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/11/2019 16:17:44</publishTime>
     </File>
     <File Include="Views/Pos/Index.cshtml">
-      <publishTime>06/11/2019 16:35:10</publishTime>
+      <publishTime>06/12/2019 19:36:34</publishTime>
     </File>
     <File Include="Views/Pos/ItemInfoPartial.cshtml">
       <publishTime>01/08/2019 19:47:10</publishTime>
@@ -1837,7 +1843,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/15/2019 00:14:54</publishTime>
     </File>
     <File Include="Views/Shared/_BaseLayout.cshtml">
-      <publishTime>05/29/2019 18:36:33</publishTime>
+      <publishTime>06/16/2019 21:06:29</publishTime>
     </File>
     <File Include="Views/Store/Index.cshtml">
       <publishTime>06/11/2019 16:25:43</publishTime>
@@ -1873,7 +1879,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2019 15:29:12</publishTime>
     </File>
     <File Include="Views/UserSellOrder/Index.cshtml">
-      <publishTime>05/30/2019 15:37:05</publishTime>
+      <publishTime>06/16/2019 23:57:02</publishTime>
+    </File>
+    <File Include="Views/UserSellOrder/UserSellOrderByGroupPartial.cshtml">
+      <publishTime>06/16/2019 23:32:49</publishTime>
     </File>
     <File Include="Views/UserSellOrder/UserSellOrderEditPartial.cshtml">
       <publishTime>05/22/2019 16:57:30</publishTime>

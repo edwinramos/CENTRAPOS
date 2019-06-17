@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLayer\BlBusinessPartnerContact.cs" />
+    <Compile Include="BusinessLayer\BlBusiessPartnerGroup.cs" />
     <Compile Include="BusinessLayer\BlPosClosureDetail.cs" />
     <Compile Include="BusinessLayer\BlUserSellOrder.cs" />
     <Compile Include="BusinessLayer\BlUserMobileProfile.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="DataEntities\DeBusinessPartnerContact.cs" />
     <Compile Include="DataEntities\DeDepartment.cs" />
     <Compile Include="DataEntities\DeBusinessPartner.cs" />
+    <Compile Include="DataEntities\DeBusinessPartnerGroup.cs" />
     <Compile Include="DataEntities\DePaymentType.cs" />
     <Compile Include="DataEntities\DeUserSellOrder.cs" />
     <Compile Include="DataEntities\DeSellOrderDetail.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="DataEntities\DePrice.cs" />
     <Compile Include="DataEntities\DeItem.cs" />
     <Compile Include="DataEntities\DePriceList.cs" />
+    <Compile Include="DataLayer\DlBusinessPartnerGroup.cs" />
     <Compile Include="DataLayer\DlPosClosureDetail.cs" />
     <Compile Include="DataLayer\DlUserSellOrder.cs" />
     <Compile Include="DataLayer\DlUserMobileProfile.cs" />
@@ -174,6 +177,10 @@
     <Compile Include="Migrations\201905221210238_UserSellOrder_State.Designer.cs">
       <DependentUpon>201905221210238_UserSellOrder_State.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906162203512_BusinessPartnerGroup.cs" />
+    <Compile Include="Migrations\201906162203512_BusinessPartnerGroup.Designer.cs">
+      <DependentUpon>201906162203512_BusinessPartnerGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ItemSearchResult.cs" />
     <Compile Include="Utils\CookiesUtilityDL.cs" />
@@ -217,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905221210238_UserSellOrder_State.resx">
       <DependentUpon>201905221210238_UserSellOrder_State.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906162203512_BusinessPartnerGroup.resx">
+      <DependentUpon>201906162203512_BusinessPartnerGroup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

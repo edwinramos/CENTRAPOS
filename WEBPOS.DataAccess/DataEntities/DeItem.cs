@@ -27,6 +27,7 @@ namespace WEBPOS.DataAccess.DataEntities
         public string UnitMeasureCode { get; set; }
         public string DepartmentCode { get; set; }
         public string Barcode { get; set; }
+        public bool IsVoided { get; set; }
         public ShotageLevels ShotageLevel { get; set; }
 
         [ForeignKey("TaxCode")]

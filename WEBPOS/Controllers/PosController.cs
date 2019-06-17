@@ -211,12 +211,15 @@ namespace WEBPOS.Controllers
                 foreach (var obj in model)
                 {
                     var item = BlItem.ReadByCode(obj.ItemCode);
-                    var itemPrice = BlPrice.ReadByCode(item.ItemCode, obj.PriceListCode);
-                    double vatPrice = obj.SellPrice;
-                    if (itemPrice != null)
-                        vatPrice = itemPrice.SellPrice + (itemPrice.SellPrice * (item.Tax.TaxPercent / 100));
+                    if (obj.TaxPercent >= 0)
+                    {
+                        var itemPrice = BlPrice.ReadByCode(item.ItemCode, obj.PriceListCode);
+                        double vatPrice = obj.SellPrice;
+                        if (itemPrice != null)
+                            vatPrice = itemPrice.SellPrice + (itemPrice.SellPrice * (item.Tax.TaxPercent / 100));
 
-                    obj.VatPrice = vatPrice - obj.Discount;
+                        obj.VatPrice = vatPrice - obj.Discount;
+                    }
                 }
 
                 return Json(new { draw = model, recordsFiltered = model.Count(), recordsTotal = model.Count(), data = model });
@@ -555,5 +558,69 @@ namespace WEBPOS.Controllers
         }
 
         #endregion
+
+        public ActionResult ItemsGiftLoadData(string id, string storeCode)
+        {
+            try
+            {
+                var draw = Request.Form.GetValues("draw").FirstOrDefault();
+                var start = Request.Form.GetValues("start").FirstOrDefault();
+                var length = Request.Form.GetValues("length").FirstOrDefault();
+                var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+                var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+                var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+
+                int pageSize = length != null ? Convert.ToInt32(length) : 0;
+                int skip = start != null ? Convert.ToInt32(start) : 0;
+
+                var warehouseCode = BlStore.ReadByCode(storeCode)?.WarehouseCode ?? "";
+
+                if (CookiesUtility.ReadCookieAsString("UserCode") == null || string.IsNullOrEmpty(CookiesUtility.ReadCookieAsString("UserCode")))
+                    return RedirectToAction("LogIn", "User");
+
+                var list = BlItem.ReadSearch(searchValue, id, warehouseCode);
+
+                var model = list.ToList();
+
+                var data = model.Skip(skip).Take(pageSize).ToList();
+
+                return Json(new { draw = model, recordsFiltered = model.Count(), recordsTotal = model.Count(), data = data });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public ActionResult ItemGift(string itemCode, string priceListCode, double quantity)
+        {
+            if (CookiesUtility.ReadCookieAsString("UserCode") == null || string.IsNullOrEmpty(CookiesUtility.ReadCookieAsString("UserCode")))
+                return RedirectToAction("LogIn", "User");
+
+            var list = HttpContext.Cache["PosGridList"] as List<PosGridModel>;
+
+            var item = BlItem.ReadByCode(itemCode);
+            if (item != null)
+            {
+                var newItem = new PosGridModel
+                {
+                    ItemCode = item.ItemCode,
+                    ItemDescription = item.ItemDescription,
+                    VatPrice = 0,
+                    SellPrice = 0,
+                    PriceListCode = priceListCode,
+                    PriceListDescription = "",
+                    Quantity = quantity,
+                    TaxDescription = item.Tax.TaxDescription,
+                    TaxCode = item.Tax.TaxCode,
+                    TaxPercent = -1,
+                    Barcode = item.Barcode
+                };
+                newItem.Total = newItem.Quantity * newItem.VatPrice;
+                list.Add(newItem);
+            }
+            HttpContext.Cache["PosGridList"] = list;
+            return Json(new { TotalItems = list.Sum(x => x.Quantity), TotalValue = list.Sum(x => x.Total) }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -209,6 +209,7 @@
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\PosController.cs" />
     <Compile Include="Controllers\PaymentTypeController.cs" />
+    <Compile Include="Controllers\BusinessPartnerGroupController.cs" />
     <Compile Include="Controllers\UserSellOrderController.cs" />
     <Compile Include="Controllers\UserMobileProfileController.cs" />
     <Compile Include="Controllers\SellOrderController.cs" />
@@ -767,6 +768,9 @@
     <Content Include="Views\UserMobileProfile\ProfileEditPartial.cshtml" />
     <Content Include="Views\UserSellOrder\Index.cshtml" />
     <Content Include="Views\UserSellOrder\UserSellOrderEditPartial.cshtml" />
+    <Content Include="Views\BusinessPartnerGroup\Index.cshtml" />
+    <Content Include="Views\BusinessPartnerGroup\BusinessPartnerGroupEditPartial.cshtml" />
+    <Content Include="Views\UserSellOrder\UserSellOrderByGroupPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

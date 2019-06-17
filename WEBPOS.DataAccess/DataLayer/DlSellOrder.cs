@@ -20,6 +20,17 @@ namespace WEBPOS.DataAccess.DataLayer
         {
             return context.SellOrders;
         }
+        public IQueryable<DeSellOrder> ReadByGroupCode(string groupCode)
+        {
+            var queryString = $@"SELECT *
+FROM srSellOrder A INNER JOIN srBusinessPartner B
+ON A.ClientCode = B.BusinessPartnerCode
+JOIN srUserSellOrder C
+ON A.SellOrderId != C.SellOrderId
+WHERE A.IsClosed = 0 AND B.BusinessPartnerGroupCode = '{groupCode}'";
+
+            return context.Database.SqlQuery<DeSellOrder>(queryString).AsQueryable();
+        }
         public IEnumerable<DeSellOrder> Read(DeSellOrder obj)
         {
             var data = context.SellOrders.ToList();

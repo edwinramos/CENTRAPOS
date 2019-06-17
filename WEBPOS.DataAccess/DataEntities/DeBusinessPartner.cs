@@ -17,6 +17,7 @@ namespace WEBPOS.DataAccess.DataEntities
         public string BusinessPartnerDescription { get; set; }
         public string RNC { get; set; }
         public string PriceListCode { get; set; }
+        public string BusinessPartnerGroupCode { get; set; }
 
         [ForeignKey("PriceListCode")]
         public virtual DePriceList PriceList { get; set; }
@@ -24,7 +25,7 @@ namespace WEBPOS.DataAccess.DataEntities
         //[ForeignKey("BusinessPartnerCode")]
         //public virtual IEnumerable<DeBusinessPartnerContact> BusinessPartnerContacts { get; set; }
 
-        //[ForeignKey("BusinessPartnerCode")]
-        //public virtual IEnumerable<DeItem> Items { get; set; }
+        [ForeignKey("BusinessPartnerGroupCode")]
+        public virtual DeBusinessPartnerGroup BusinessPartnerGroup { get; set; }
     }
 }

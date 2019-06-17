@@ -40,6 +40,7 @@ namespace WEBPOS.DataAccess.DataLayer
             {
                 val.BusinessPartnerDescription = obj.BusinessPartnerDescription;
                 val.BusinessPartnerType = obj.BusinessPartnerType;
+                val.BusinessPartnerGroupCode = obj.BusinessPartnerGroupCode;
                 val.PriceListCode = obj.PriceListCode;
                 val.RNC = obj.RNC;
 

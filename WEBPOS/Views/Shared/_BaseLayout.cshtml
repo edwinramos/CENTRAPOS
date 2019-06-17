@@ -116,6 +116,7 @@
                             <span class="opener">Ventas</span>
                             <ul>
                                 <li><a href="#" onclick=onActionClick('@Url.Action("Index", "BusinessPartner" , new { bsType="C" })');>Clientes</a></li>
+                                <li><a href="#" onclick=onActionClick('@Url.Action("Index", "BusinessPartnerGroup")');>Grupos</a></li>
                                 <li><a href="#" onclick=onActionClick('@Url.Action("Index", "StorePos" )')>Terminales</a></li>
                                 <li><a href="#" onclick=onActionClick('@Url.Action("Index", "SellTransaction" )')>Ventas Efectuadas</a></li>
                                 <li><a href="#" onclick=onActionClick('@Url.Action("Index", "PosClosure" )')>Cierres de Caja</a></li>
@@ -129,6 +130,7 @@
                             <ul>
                                 <li><a href='#' onclick=onActionClick('@Url.Action("Index", "UserMobileProfile" )');>Configuración Movil</a></li>
                                 <li><a href='#' onclick=onActionClick('@Url.Action("Index", "UserSellOrder" )');>Asignar ordenes</a></li>
+                                <li><a href='#' onclick=onActionClick('@Url.Action("UploadedOrders", "SellOrder" )');>Seguimiento de ordenes (Pendiente)</a></li>
                             </ul>
                         </li>
                     </ul>
