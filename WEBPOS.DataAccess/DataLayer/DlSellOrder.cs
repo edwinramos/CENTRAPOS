@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
+using WEBPOS.DataAccess.Models;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
@@ -20,14 +21,22 @@ namespace WEBPOS.DataAccess.DataLayer
         {
             return context.SellOrders;
         }
+        public IQueryable<SoldQuantityModel> GetSoldQtyByDate(string userCode, DateTime dateFrom, DateTime dateTo)
+        {
+            var queryString = $@"SELECT '{userCode}' UserCode, '{dateFrom.ToString("yyyy-MM-dd")}' FromDate, '{dateTo.ToString("yyyy-MM-dd")}' ToDate, SUM(B.Quantity) Quantity, B.ItemDescription
+FROM srSellOrder A inner join srSellOrderDetail B
+ON A.SellOrderId = B.SellOrderId
+where A.UpdateUser = '{userCode}' AND A.DocDateTime BETWEEN '{dateFrom.ToString("yyyy-MM-dd")}' AND '{dateTo.ToString("yyyy-MM-dd")}'
+GROUP BY B.ItemDescription";
+
+            return context.Database.SqlQuery<SoldQuantityModel>(queryString).AsQueryable();
+        }
         public IQueryable<DeSellOrder> ReadByGroupCode(string groupCode)
         {
             var queryString = $@"SELECT *
 FROM srSellOrder A INNER JOIN srBusinessPartner B
 ON A.ClientCode = B.BusinessPartnerCode
-JOIN srUserSellOrder C
-ON A.SellOrderId != C.SellOrderId
-WHERE A.IsClosed = 0 AND B.BusinessPartnerGroupCode = '{groupCode}'";
+WHERE A.IsClosed = 0 AND B.BusinessPartnerGroupCode = '{groupCode}' AND A.SellOrderId NOT IN (select SellOrderId from srUserSellOrder)";
 
             return context.Database.SqlQuery<DeSellOrder>(queryString).AsQueryable();
         }

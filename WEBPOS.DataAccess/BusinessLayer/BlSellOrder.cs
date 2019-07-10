@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.DataLayer;
+using WEBPOS.DataAccess.Models;
 
 namespace WEBPOS.DataAccess.BusinessLayer
 {
@@ -24,6 +25,11 @@ namespace WEBPOS.DataAccess.BusinessLayer
         {
             var dl = new DlSellOrder();
             return dl.ReadByGroupCode(groupCode);
+        }
+        public static IQueryable<SoldQuantityModel> GetSoldQtyByDate(string userCode, DateTime dateFrom, DateTime dateTo)
+        {
+            var dl = new DlSellOrder();
+            return dl.GetSoldQtyByDate(userCode, dateFrom, dateTo);
         }
         public static IEnumerable<DeSellOrder> Read(DeSellOrder obj)
         {

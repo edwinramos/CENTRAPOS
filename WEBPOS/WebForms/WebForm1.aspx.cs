@@ -176,14 +176,16 @@ namespace WEBPOS.WebForms
             reportParameters.Add(paymentType);
             reportParameters.Add(paymentValue);
             reportParameters.Add(paymentRest);
-            if (head.DocType == DocType.CreditoFiscal)
-            {
-                clientRNC = new ReportParameter("ClientRNC", "", true);
-                clientName
-                    = new ReportParameter("ClientName", "", true);
-                reportParameters.Add(clientRNC);
-                reportParameters.Add(clientName);
-            }
+            reportParameters.Add(clientRNC);
+            reportParameters.Add(clientName);
+            //if (head.DocType == DocType.CreditoFiscal)
+            //{
+            //    clientRNC = new ReportParameter("ClientRNC", "", true);
+            //    clientName
+            //        = new ReportParameter("ClientName", "", true);
+            //    reportParameters.Add(clientRNC);
+            //    reportParameters.Add(clientName);
+            //}
             reportParameters.Add(sequenceDueDate);
             reportParameters.Add(header);
 

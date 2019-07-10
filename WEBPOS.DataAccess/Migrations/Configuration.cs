@@ -15,7 +15,7 @@ namespace WEBPOS.DataAccess.Migrations
 
         protected override void Seed(WEBPOS.DataAccess.WEBPOSContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            AutomaticMigrationDataLossAllowed = true;
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.

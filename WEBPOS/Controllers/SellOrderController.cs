@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
+using WEBPOS.DataAccess.Models;
 using WEBPOS.Models;
 using WEBPOS.Utils;
 
@@ -323,7 +324,7 @@ namespace WEBPOS.Controllers
 
         #region Uploaded Orders
 
-        public ActionResult UploadedSellOrderLoadData(string userCode, DateTime fromDate, DateTime toDate)
+        public ActionResult UploadedSellOrderLoadData(string userCode, string dateFrom, string dateTo)
         {
             try
             {
@@ -340,24 +341,14 @@ namespace WEBPOS.Controllers
                 int recordsTotal = 0;
 
                 // Getting all Customer data    
-                var model = BlSellOrder.ReadAllQueryable().Where(x=>x.UpdateUser == userCode && (x.DocDateTime >= fromDate && x.DocDateTime <= toDate)).OrderByDescending(x => x.DocDateTime).Select(x => new
-                {
-                    x.SellOrderId,
-                    x.DocDateTime,
-                    State = x.IsClosed ? "Cerrado" : "Abierto",
-                    Customer = x.ClientDescription,
-                    x.DocTotal
-                });
+                var fromDate = Convert.ToDateTime(dateFrom);
+                var toDate = Convert.ToDateTime(dateTo);
+                var model = BlSellOrder.GetSoldQtyByDate(userCode, fromDate, toDate);
 
-                //Sorting    
-                //if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
-                //{
-                //    model = model.OrderBy(sortColumn + " " + sortColumnDir);
-                //}
                 //Search
                 if (!string.IsNullOrEmpty(searchValue))
                 {
-                    model = model.Where(m => m.Customer.ToUpper().Contains(searchValue.ToUpper()));
+                    model = model.Where(m => m.ItemDescription.ToUpper().Contains(searchValue.ToUpper()) || m.Quantity.ToString().Contains(searchValue));
                 }
 
                 //total number of rows count     
@@ -370,7 +361,14 @@ namespace WEBPOS.Controllers
             }
             catch (Exception ex)
             {
-                throw;
+                var draw = Request.Form.GetValues("draw").FirstOrDefault();
+                var start = Request.Form.GetValues("start").FirstOrDefault();
+                var length = Request.Form.GetValues("length").FirstOrDefault();
+                var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+                var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+                var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+
+                return Json(new { draw = draw, recordsFiltered = 0, recordsTotal = 0, data = new List<SoldQuantityModel>() });
             }
         }
 

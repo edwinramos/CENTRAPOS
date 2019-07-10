@@ -181,7 +181,16 @@
     <Compile Include="Migrations\201906162203512_BusinessPartnerGroup.Designer.cs">
       <DependentUpon>201906162203512_BusinessPartnerGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906221738189_Update.cs" />
+    <Compile Include="Migrations\201906221738189_Update.Designer.cs">
+      <DependentUpon>201906221738189_Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906221803092_Updates.cs" />
+    <Compile Include="Migrations\201906221803092_Updates.Designer.cs">
+      <DependentUpon>201906221803092_Updates.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\SoldQuantityModel.cs" />
     <Compile Include="Models\ItemSearchResult.cs" />
     <Compile Include="Utils\CookiesUtilityDL.cs" />
     <Compile Include="Utils\EncryptionUtility.cs" />
@@ -227,6 +236,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906162203512_BusinessPartnerGroup.resx">
       <DependentUpon>201906162203512_BusinessPartnerGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906221738189_Update.resx">
+      <DependentUpon>201906221738189_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906221803092_Updates.resx">
+      <DependentUpon>201906221803092_Updates.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

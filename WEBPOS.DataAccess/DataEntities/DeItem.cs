@@ -28,7 +28,7 @@ namespace WEBPOS.DataAccess.DataEntities
         public string DepartmentCode { get; set; }
         public string Barcode { get; set; }
         public bool IsVoided { get; set; }
-        public ShotageLevels ShotageLevel { get; set; }
+        public ShortageLevels ShortageLevel { get; set; }
 
         [ForeignKey("TaxCode")]
         public virtual DeTax Tax { get; set; }
@@ -50,7 +50,7 @@ namespace WEBPOS.DataAccess.DataEntities
         //public virtual IEnumerable<DeSellTransactionDetail> SellTransactionDetails { get; set; }
     }
 
-    public enum ShotageLevels
+    public enum ShortageLevels
     {
         NONE = 0,
         ALERT = 1,

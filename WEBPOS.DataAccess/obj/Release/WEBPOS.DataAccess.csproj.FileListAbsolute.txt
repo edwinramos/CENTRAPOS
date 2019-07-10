@@ -36,3 +36,5 @@ C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataA
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.Migrations.UserSellOrder.resources
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.Migrations.UserSellOrder_State.resources
 C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.Migrations.BusinessPartnerGroup.resources
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.Migrations.Update.resources
+C:\Users\Edwin\Documents\REPOS\WEBPOS\WEBPOS.DataAccess\obj\Release\WEBPOS.DataAccess.Migrations.Updates.resources

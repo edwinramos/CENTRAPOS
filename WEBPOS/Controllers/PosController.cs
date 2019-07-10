@@ -196,7 +196,7 @@ namespace WEBPOS.Controllers
             }
 
             #endregion
-            return Json(new { NCF = head.NCF,TransactionNumber = head.TransactionNumber, StoreCode = head.StoreCode, PosCode = head.PosCode }, JsonRequestBehavior.AllowGet);
+            return Json(new { NCF = head.NCF, TransactionNumber = head.TransactionNumber, StoreCode = head.StoreCode, PosCode = head.PosCode }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult LoadData()
@@ -370,7 +370,18 @@ namespace WEBPOS.Controllers
             var viewer = new ReportViewer();
             var list = HttpContext.Cache["PosGridList"] as List<PosGridModel>;
             var posCode = CookiesUtility.ReadCookieAsString("PosCode")?.ToString() ?? "";
-            return PartialView(new PaymentModel { StoreCode = storeCode, PosCode = posCode, PriceListCode = priceListCode, PaymentTypeCode = BlPaymentType.ReadAllQueryable().FirstOrDefault().PaymentTypeCode, PayedAmount = list.Sum(x => x.Total), Rest = 0, Total = list.Sum(x => x.Total), DocType = DocType.ConsumidorFinal });
+            ModelState.Clear();
+            var model = new PaymentModel
+            {
+                StoreCode = storeCode,
+                PosCode = posCode,
+                PriceListCode = priceListCode,
+                PaymentTypeCode = BlPaymentType.ReadAllQueryable().FirstOrDefault().PaymentTypeCode, PayedAmount = list.Sum(x => x.Total),
+                Rest = 0,
+                Total = list.Sum(x => x.Total),
+                DocType = DocType.ConsumidorFinal
+            };
+            return PartialView(model);
         }
 
         public ActionResult NewQuantityPartial()

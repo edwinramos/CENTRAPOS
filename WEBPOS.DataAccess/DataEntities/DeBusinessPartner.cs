@@ -18,7 +18,7 @@ namespace WEBPOS.DataAccess.DataEntities
         public string RNC { get; set; }
         public string PriceListCode { get; set; }
         public string BusinessPartnerGroupCode { get; set; }
-
+        public bool IsVoided { get; set; }
         [ForeignKey("PriceListCode")]
         public virtual DePriceList PriceList { get; set; }
 

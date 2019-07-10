@@ -11,12 +11,12 @@
                 <div class="modal-body col-md-12">
                     <table>
                         @{
-                            var list = WEBPOS.DataAccess.BusinessLayer.BlItem.ReadAllQueryable().Where(x=>x.ShotageLevel != WEBPOS.DataAccess.DataEntities.ShotageLevels.NONE);
+                            var list = WEBPOS.DataAccess.BusinessLayer.BlItem.ReadAllQueryable().Where(x=>x.ShortageLevel != WEBPOS.DataAccess.DataEntities.ShortageLevels.NONE);
                             foreach (var obj in list)
                             {
                                 <tr>
                                     <td><a href="@Url.Action("ItemDetail", "Item", new { id = obj.ItemCode })" target="_blank"><strong><h4>@obj.ItemDescription</h4></strong></a></td>
-                                    <td><p>*Este producto esta escaso con nivel de prioridad: @Convert.ToInt32(obj.ShotageLevel)</p></td>
+                                    <td><p>*Este producto esta escaso con nivel de prioridad: @Convert.ToInt32(obj.ShortageLevel)</p></td>
                                 </tr>
                             }
                         }

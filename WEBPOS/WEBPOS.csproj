@@ -771,6 +771,7 @@
     <Content Include="Views\BusinessPartnerGroup\Index.cshtml" />
     <Content Include="Views\BusinessPartnerGroup\BusinessPartnerGroupEditPartial.cshtml" />
     <Content Include="Views\UserSellOrder\UserSellOrderByGroupPartial.cshtml" />
+    <Content Include="Views\SellOrder\UploadedOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

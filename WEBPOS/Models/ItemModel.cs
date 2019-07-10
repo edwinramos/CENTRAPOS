@@ -19,7 +19,7 @@ namespace WEBPOS.Models
         public string UnitMeasureCode { get; set; }
         public string DepartmentCode { get; set; }
         public string Barcode { get; set; }
-
+        public bool IsVoided { get; set; }
         public bool canEdit { get; set; }
     }
 }
