@@ -58,7 +58,8 @@ namespace WEBPOS.WebForms
                 }
             }
 
-            ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/SellOrderReport.rdlc");
+            //ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/SellOrderReport.rdlc");
+            ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/SellOrderReportSmall.rdlc");
 
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportDataSource RDS = new ReportDataSource("DataSet1", res);
@@ -122,15 +123,31 @@ namespace WEBPOS.WebForms
                 res.Add(obj);
                 if (obj.DiscountOnItem > 0)
                 {
-                    res.Add(new DeSellTransactionDetail
+                    switch (obj.DiscountType)
                     {
-                        ItemCode = obj.ItemCode,
-                        ItemDescription = "   ",
-                        Quantity = -1,
-                        SellPrice = 0,
-                        BasePrice = obj.DiscountOnItem,
-                        TotalValue = (-1) * obj.DiscountOnItem
-                    });
+                        case 1:
+                            res.Add(new DeSellTransactionDetail
+                            {
+                                ItemCode = obj.ItemCode,
+                                ItemDescription = "   ",
+                                Quantity = -1,
+                                SellPrice = 0,
+                                BasePrice = obj.DiscountOnItem * obj.Quantity,
+                                TotalValue = (-1) * (obj.DiscountOnItem * obj.Quantity)
+                            });
+                            break;
+                        case 0:
+                            res.Add(new DeSellTransactionDetail
+                            {
+                                ItemCode = obj.ItemCode,
+                                ItemDescription = "   ",
+                                Quantity = -1,
+                                SellPrice = 0,
+                                BasePrice = obj.DiscountOnItem,
+                                TotalValue = (-1) * obj.DiscountOnItem
+                            });
+                            break;
+                    }
                 }
             }
 
@@ -161,6 +178,7 @@ namespace WEBPOS.WebForms
             var clientRNC = new ReportParameter("ClientRNC", client?.RNC != null ? ("RNC CLIENTE: " + client.RNC) : "", true);
             var clientName = new ReportParameter("ClientName", client?.BusinessPartnerDescription != null ? ("NOMBRE: " + client.BusinessPartnerDescription) : "", true);
             var header = new ReportParameter("Header", head.NCF.Contains("B02") ? "FACTURA PARA CONSUMIDOR FINAL" : "FACTURA PARA CREDITO FISCAL", true);
+            var clientGroup = new ReportParameter("ClientGroup", head.NCF.Contains("B02") ? "" : (("GRUPO CLIENTE: " + client.BusinessPartnerGroup?.BusinessPartnerGroupDescription ?? "")), true);
 
             ReportParameterCollection reportParameters = new ReportParameterCollection();
             reportParameters.Add(posOperator);
@@ -187,6 +205,7 @@ namespace WEBPOS.WebForms
             //    reportParameters.Add(clientName);
             //}
             reportParameters.Add(sequenceDueDate);
+            reportParameters.Add(clientGroup);
             reportParameters.Add(header);
 
             ReportViewer1.LocalReport.SetParameters(reportParameters);

@@ -778,40 +778,6 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox21">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>RNC: </Value>
-                    <Style />
-                  </TextRun>
-                  <TextRun>
-                    <Value>=Parameters!RNC.Value</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox21</rd:DefaultName>
-            <Top>6.40289cm</Top>
-            <Left>0.24553cm</Left>
-            <Height>0.6cm</Height>
-            <Width>8.52745cm</Width>
-            <ZIndex>10</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Textbox Name="Textbox30">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
@@ -837,7 +803,7 @@
             <Left>0.24553cm</Left>
             <Height>0.6cm</Height>
             <Width>8.49422cm</Width>
-            <ZIndex>11</ZIndex>
+            <ZIndex>10</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -869,7 +835,7 @@
             <Left>0.24553cm</Left>
             <Height>0.6cm</Height>
             <Width>8.56067cm</Width>
-            <ZIndex>12</ZIndex>
+            <ZIndex>11</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -881,11 +847,11 @@
             </Style>
           </Textbox>
           <Line Name="Line1">
-            <Top>10.93349cm</Top>
+            <Top>10.29849cm</Top>
             <Left>0.2123cm</Left>
             <Height>0cm</Height>
             <Width>8.56067cm</Width>
-            <ZIndex>13</ZIndex>
+            <ZIndex>12</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -912,7 +878,7 @@
             <Left>0.2123cm</Left>
             <Height>0.6cm</Height>
             <Width>8.56067cm</Width>
-            <ZIndex>14</ZIndex>
+            <ZIndex>13</ZIndex>
             <Visibility>
               <Hidden>=IIF(Parameters!ClientRNC.Value="", True, False)</Hidden>
             </Visibility>
@@ -946,7 +912,7 @@
             <Left>0.2123cm</Left>
             <Height>0.6cm</Height>
             <Width>8.56067cm</Width>
-            <ZIndex>15</ZIndex>
+            <ZIndex>14</ZIndex>
             <Visibility>
               <Hidden>=IIF(Parameters!ClientName.Value="", True, False)</Hidden>
             </Visibility>
@@ -980,11 +946,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox30</rd:DefaultName>
-            <Top>7.04875cm</Top>
+            <Top>6.4455cm</Top>
             <Left>0.24553cm</Left>
             <Height>0.6cm</Height>
             <Width>8.54406cm</Width>
-            <ZIndex>16</ZIndex>
+            <ZIndex>15</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1014,11 +980,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox21</rd:DefaultName>
-            <Top>8.9437cm</Top>
+            <Top>8.34045cm</Top>
             <Left>0.19569cm</Left>
             <Height>0.6cm</Height>
             <Width>8.54406cm</Width>
-            <ZIndex>17</ZIndex>
+            <ZIndex>16</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1048,11 +1014,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox38</rd:DefaultName>
-            <Top>8.31984cm</Top>
+            <Top>7.71659cm</Top>
             <Left>0.19569cm</Left>
             <Height>0.6cm</Height>
             <Width>8.54406cm</Width>
-            <ZIndex>18</ZIndex>
+            <ZIndex>17</ZIndex>
             <Visibility>
               <Hidden>=IIF(Parameters!NIF.Value="", True, False)</Hidden>
             </Visibility>
@@ -1085,11 +1051,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox21</rd:DefaultName>
-            <Top>9.58956cm</Top>
+            <Top>8.98631cm</Top>
             <Left>0.19569cm</Left>
             <Height>0.6cm</Height>
             <Width>8.54406cm</Width>
-            <ZIndex>19</ZIndex>
+            <ZIndex>18</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1119,7 +1085,7 @@
             <Left>0.24553cm</Left>
             <Height>0.52063cm</Height>
             <Width>8.51084cm</Width>
-            <ZIndex>20</ZIndex>
+            <ZIndex>19</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1131,11 +1097,11 @@
             </Style>
           </Textbox>
           <Line Name="Line2">
-            <Top>10.22823cm</Top>
+            <Top>9.62498cm</Top>
             <Left>0.24553cm</Left>
             <Height>0cm</Height>
             <Width>8.56067cm</Width>
-            <ZIndex>21</ZIndex>
+            <ZIndex>20</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -1161,11 +1127,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox21</rd:DefaultName>
-            <Top>10.22484cm</Top>
+            <Top>9.62159cm</Top>
             <Left>0.19569cm</Left>
             <Height>0.6cm</Height>
             <Width>8.54406cm</Width>
-            <ZIndex>22</ZIndex>
+            <ZIndex>21</ZIndex>
             <Visibility>
               <Hidden>=IIF(Parameters!SequenceDueDate.Value="", True, False)</Hidden>
             </Visibility>
@@ -1186,7 +1152,7 @@
             <Left>0.29537cm</Left>
             <Height>3.53412cm</Height>
             <Width>8.44438cm</Width>
-            <ZIndex>23</ZIndex>
+            <ZIndex>22</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1198,7 +1164,7 @@
             <Left>8.78407cm</Left>
             <Height>0cm</Height>
             <Width>-8.53854cm</Width>
-            <ZIndex>24</ZIndex>
+            <ZIndex>23</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -1220,11 +1186,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox39</rd:DefaultName>
-            <Top>7.68403cm</Top>
+            <Top>7.08078cm</Top>
             <Left>0.24553cm</Left>
             <Height>0.6cm</Height>
             <Width>8.56067cm</Width>
-            <ZIndex>25</ZIndex>
+            <ZIndex>24</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1258,7 +1224,41 @@
             <Left>0.24553cm</Left>
             <Height>0.6cm</Height>
             <Width>8.56067cm</Width>
+            <ZIndex>25</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox47">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!ClientGroup.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox38</rd:DefaultName>
+            <Top>10.29215cm</Top>
+            <Left>0.22892cm</Left>
+            <Height>0.6cm</Height>
+            <Width>8.56067cm</Width>
             <ZIndex>26</ZIndex>
+            <Visibility>
+              <Hidden>=IIF(Parameters!ClientGroup.Value = "", True, False)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1413,6 +1413,12 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="ClientGroup">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -1503,6 +1509,11 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>4</RowIndex>
           <ParameterName>OperatorName</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>4</RowIndex>
+          <ParameterName>ClientGroup</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

@@ -41,6 +41,7 @@ namespace WEBPOS.DataAccess.DataEntities
         public double BasePrice { get; set; }
         public double SellPrice { get; set; }
         public double DiscountOnItem { get; set; }
+        public int DiscountType { get; set; }
         public double Quantity { get; set; }
         public double RowValue { get; set; }
 

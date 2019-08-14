@@ -152,8 +152,16 @@
                                 DESCUENTO
                             </button>
 
+                            <button onclick="totalDiscount()" type="button" class="button">
+                                DESCUENTO TOTAL
+                            </button>
+
                             <button onclick="gifts()" type="button" class="button">
                                 REGALAR
+                            </button>
+
+                            <button onclick="printLastReceipt()" type="button" class="button">
+                                IMPRIMIR ULTIMA FACTURA
                             </button>
 
                             <button onclick="posClosure()" type="button" class="button">
@@ -724,12 +732,12 @@
 
                 },
                 success: function (result) {
-                    if (result != null) {
+                    if (result != null) {    
                         clearAll();
                         $('#myModal').modal('hide');
-                        var _this = this;
+                        //var _this = this;
                         var url = "WebForms/WebForm1.aspx?TransactionNumber=" + result.NCF + "&StoreCode=" + '@Model.StoreCode' + "&PosCode=" + result.PosCode + "&isSellTransaction=true";
-                        var windowObj = window.open(url, '_blank');
+                        var windowObj = window.open(url, 'print_tab');
                         windowObj.focus();
                         windowObj.print();
                         //setTimeout(function () { windowObj.close(); }, 20000);
@@ -799,6 +807,18 @@
             });
     }
 
+    function totalDiscount() {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("TotalDiscountsPartial", "Pos")',
+            data: { },
+            success: function (data) {
+                $('#modalContainer').html(data);
+                $('#myModal').modal('show');
+            }
+        });
+    }
+
     function discount() {
         if (selectedRow != null) {
              $.ajax({
@@ -818,21 +838,65 @@
         $('#myItemGiftModal').modal('show');
     }
 
-    function saveDiscount()
-    {
+    function saveDiscount() {
         var result = $("#Result").val();
         $.ajax({
-                type: "POST",
-                url: '@Url.Action("SetDiscounts", "Pos")',
-                data: { itemCode: selectedRow.ItemCode, result: result },
-                success: function (data) {
-                    table.ajax.reload();
-                    $('#selectedItemInfo').html(null);
-                    $("#generalTotalItems").text(data.TotalItems.toFixed(2));
-                    $("#generalTotalSum").text("RD$ " + data.TotalValue.toFixed(2));
-                    $('#myModal').modal('hide');
-                }
-            });
+            type: "POST",
+            url: '@Url.Action("SetDiscounts", "Pos")',
+            data: { itemCode: selectedRow.ItemCode, result: result, discType: $('#DiscountType').val() },
+            success: function (data) {
+                table.ajax.reload();
+                $('#selectedItemInfo').html(null);
+                $("#generalTotalItems").text(data.TotalItems.toFixed(2));
+                $("#generalTotalSum").text("RD$ " + data.TotalValue.toFixed(2));
+                $('#myModal').modal('hide');
+            }
+        });
+    }
+
+    function saveTotalDiscount() {
+        var discType = $("#DiscountType").val();
+        var discount = $("#DiscountAmount").val();
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("SetTotalDiscounts", "Pos")',
+            data: { discount: discount, discType: discType },
+            success: function (data) {
+                table.ajax.reload();
+                $('#selectedItemInfo').html(null);
+                $("#generalTotalItems").text(data.TotalItems.toFixed(2));
+                $("#generalTotalSum").text("RD$ " + data.TotalValue.toFixed(2));
+                $('#myModal').modal('hide');
+            }
+        });
+    }
+
+    function onTotalDiscountAmountChanged() {
+        var discountType = $('#DiscountType').val();
+        var price = $('#ItemPrice').val();
+        var discountAmount = $('#DiscountAmount').val();
+        var maxDiscAmt = @Model.MaxDiscAmount;
+        var maxDiscPer = @Model.MaxDiscPercent;
+
+        if (discountType == 0) {
+            if (maxDiscPer > 0 && discountAmount > maxDiscPer) {
+                toastr.info('El limite de descuento porcentual de la tienda es: ' + maxDiscPer + '%', 'Descuento excedido');
+                $('#DiscountAmount').val(0);
+                discountAmount = 0
+            }
+            var m = price * ((discountAmount) / 100);
+            var res = price - (m);
+            $('#Result').val(res);
+
+        } else {
+            if (maxDiscAmt > 0 && discountAmount > maxDiscAmt) {
+                toastr.info('El limite de descuento de la tienda es: ' + maxDiscAmt, 'Descuento excedido');
+                $('#DiscountAmount').val(0);
+                discountAmount = 0;
+            }
+            discountAmount = discountAmount;
+            $('#Result').val(price - discountAmount);
+        }
     }
 
     function onDiscountAmountChanged() {
@@ -946,8 +1010,27 @@
         });
     }
 
-    function onItemsFormSubmit() {
+    function printLastReceipt() {
+        $.ajax({
+            url: '@Url.Action("PrintLastRecept", "Pos")',
+            async: true,
+            dataType: 'json',
+            data: {posCode:'@Model.StorePosCode', storeCode: '@Model.StoreCode'},
+                beforeSend: function () {
 
+                },
+                complete: function () {
+
+                },
+                success: function (result) {
+                    if (result != null) {    
+                        var url = "WebForms/WebForm1.aspx?TransactionNumber=" + result.NCF + "&StoreCode=" + '@Model.StoreCode' + "&PosCode=" + result.PosCode + "&isSellTransaction=true";
+                        var windowObj = window.open(url, 'print_tab');
+                        windowObj.focus();
+                        windowObj.print();
+                    }
+                }
+            });
     }
 
     function logOut() {

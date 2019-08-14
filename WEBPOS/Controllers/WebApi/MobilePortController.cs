@@ -243,22 +243,34 @@ namespace WEBPOS.Controllers.WebApi
         public IHttpActionResult GetCustomers([FromUri] string password)
         {
             var res = new Response();
-            if (password == BlTable.Read(new DeTable { KeyFixed = "ServerPassword" }).FirstOrDefault().KeyVariable)
+            try
             {
-                res = new Response
+                if (password == BlTable.Read(new DeTable { KeyFixed = "ServerPassword" }).FirstOrDefault().KeyVariable)
                 {
-                    IsSuccess = true,
-                    Message = RequestStateMessage.SUCCESS.ToString(),
-                    ResponseData = JsonConvert.SerializeObject(BlBusinessPartner.ReadAllQueryable().Where(x => x.BusinessPartnerType == "C").Select(x => new
+                    res = new Response
                     {
-                        x.BusinessPartnerCode,
-                        x.BusinessPartnerDescription,
-                        x.RNC,
-                        x.PriceListCode
-                    })).ToString()
-                };
+                        IsSuccess = true,
+                        Message = RequestStateMessage.SUCCESS.ToString(),
+                        ResponseData = JsonConvert.SerializeObject(BlBusinessPartner.ReadAllQueryable().Where(x => x.BusinessPartnerType == "C").Select(x => new
+                        {
+                            x.BusinessPartnerCode,
+                            x.BusinessPartnerDescription,
+                            x.RNC,
+                            x.PriceListCode
+                        })).ToString()
+                    };
+                }
+                else
+                {
+                    res = new Response
+                    {
+                        IsSuccess = false,
+                        Message = RequestStateMessage.FAILURE.ToString(),
+                        ResponseData = null
+                    };
+                }
             }
-            else
+            catch (Exception ex)
             {
                 res = new Response
                 {
@@ -267,7 +279,6 @@ namespace WEBPOS.Controllers.WebApi
                     ResponseData = null
                 };
             }
-
             return Ok(res);
         }
 
@@ -330,7 +341,7 @@ namespace WEBPOS.Controllers.WebApi
             var res = new Response();
             if (password == BlTable.Read(new DeTable { KeyFixed = "ServerPassword" }).FirstOrDefault().KeyVariable)
             {
-                var orders = BlSellOrder.ReadAllQueryable().Where(x => x.UpdateUser == userCode && x.DocDateTime.Date == DateTime.Today.Date);
+                var orders = BlSellOrder.ReadAllQueryable().Where(x => x.UpdateUser == userCode && x.DocDateTime.Year == DateTime.Today.Year && x.DocDateTime.Month == DateTime.Today.Month && x.DocDateTime.Day == DateTime.Today.Day);
                 var headList = new List<SellOrderModel>();
                 var detailList = new List<SellOrderDetailModel>();
                 foreach (var item in orders)

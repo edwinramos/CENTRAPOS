@@ -189,6 +189,10 @@
     <Compile Include="Migrations\201906221803092_Updates.Designer.cs">
       <DependentUpon>201906221803092_Updates.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908060327582_SellTransactionDetail_Update.cs" />
+    <Compile Include="Migrations\201908060327582_SellTransactionDetail_Update.Designer.cs">
+      <DependentUpon>201908060327582_SellTransactionDetail_Update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SoldQuantityModel.cs" />
     <Compile Include="Models\ItemSearchResult.cs" />
@@ -242,6 +246,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906221803092_Updates.resx">
       <DependentUpon>201906221803092_Updates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908060327582_SellTransactionDetail_Update.resx">
+      <DependentUpon>201908060327582_SellTransactionDetail_Update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

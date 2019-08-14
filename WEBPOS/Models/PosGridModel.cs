@@ -20,5 +20,6 @@ namespace WEBPOS.Models
         public double TaxPercent { get; set; }
         public double VatPrice { get; set; }
         public double Total { get; set; }
+        public int DiscountType { get; set; }
     }
 }

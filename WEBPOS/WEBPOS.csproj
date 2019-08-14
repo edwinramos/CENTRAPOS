@@ -464,6 +464,7 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Images\CentraIcon.ico" />
     <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\logo_login.png" />
     <Content Include="Content\logInMain.css" />
     <Content Include="Content\main.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -772,6 +773,7 @@
     <Content Include="Views\BusinessPartnerGroup\BusinessPartnerGroupEditPartial.cshtml" />
     <Content Include="Views\UserSellOrder\UserSellOrderByGroupPartial.cshtml" />
     <Content Include="Views\SellOrder\UploadedOrders.cshtml" />
+    <Content Include="Views\Pos\TotalDiscountsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -839,6 +841,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Reports\PosClosureReport.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reports\SellOrderReportSmall.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

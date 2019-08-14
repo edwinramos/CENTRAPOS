@@ -38,7 +38,18 @@ namespace WEBPOS.Controllers
             if (terminal == null)
                 return RedirectToAction("SelectTerminal", "User", new { userType = usr.UserType, forPos = true });
 
-            HttpContext.Cache["PosGridList"] = new List<PosGridModel>();
+            try
+            {
+                var dic = HttpContext.Cache["PosGridList"] as Dictionary<string, List<PosGridModel>>;
+                dic[CookiesUtility.ReadCookieAsString("UserCode")] = new List<PosGridModel>();
+            }
+            catch (Exception ex)
+            {
+                var dic = new Dictionary<string, List<PosGridModel>>();
+                dic.Add(CookiesUtility.ReadCookieAsString("UserCode"), new List<PosGridModel>());
+                HttpContext.Cache["PosGridList"] = dic;
+            }
+
             var store = BlStore.ReadByCode(terminal.StoreCode);
 
             var posClosure = BlPosClosureHead.Read(new DePosClosureHead
@@ -67,7 +78,8 @@ namespace WEBPOS.Controllers
             if (CookiesUtility.ReadCookieAsString("UserCode") == null || string.IsNullOrEmpty(CookiesUtility.ReadCookieAsString("UserCode")))
                 return RedirectToAction("LogIn", "User");
 
-            var list = HttpContext.Cache["PosGridList"] as List<PosGridModel>;
+            var dic = HttpContext.Cache["PosGridList"] as Dictionary<string, List<PosGridModel>>;
+            var list = dic[CookiesUtility.ReadCookieAsString("UserCode")];
 
             var items = BlItem.ReadAllQueryable().Where(x => x.ItemCode == text || x.ItemDescription.ToUpper() == text.ToUpper() || x.Barcode == text);
             if (items.Count() == 1)
@@ -93,7 +105,8 @@ namespace WEBPOS.Controllers
                         TaxDescription = item.Tax.TaxDescription,
                         TaxCode = item.Tax.TaxCode,
                         TaxPercent = item.Tax.TaxPercent,
-                        Barcode = item.Barcode
+                        Barcode = item.Barcode,
+                        DiscountType = 0
                     };
                     newItem.Total = newItem.Quantity * newItem.VatPrice;
                     list.Add(newItem);
@@ -110,13 +123,15 @@ namespace WEBPOS.Controllers
                     }
                 }
             }
-            HttpContext.Cache["PosGridList"] = list;
+            dic[CookiesUtility.ReadCookieAsString("UserCode")] = list;
+            HttpContext.Cache["PosGridList"] = dic;
             return Json(new { TotalItems = list.Sum(x => x.Quantity), TotalValue = list.Sum(x => x.Total), isSingle = (items.ToList().Count() == 1) }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult SaveTransaction(PaymentModel model)
         {
-            var list = HttpContext.Cache["PosGridList"] as List<PosGridModel>;
+            var dic = HttpContext.Cache["PosGridList"] as Dictionary<string, List<PosGridModel>>;
+            var list = dic[CookiesUtility.ReadCookieAsString("UserCode")];
 
             #region Saving
             var head = new DeSellTransactionHead
@@ -131,7 +146,7 @@ namespace WEBPOS.Controllers
                 TransactionDateTime = DateTime.Now,
                 DocType = model.DocType,
                 IsPrinted = false,
-                TotalDiscount = list.Sum(x => x.Discount)
+                TotalDiscount = list.Sum(x => x.Discount * x.Quantity)
             };
 
             BlSellTransactionHead.Save(head);
@@ -155,6 +170,7 @@ namespace WEBPOS.Controllers
                     StoreCode = head.StoreCode,
                     PosCode = head.PosCode,
                     DiscountOnItem = item.Discount,
+                    DiscountType = item.DiscountType,
                     RowNumber = BlSellTransactionDetail.GetNextRowNumberNumber(head.StoreCode, head.PosCode, head.TransactionNumber, head.TransactionDateTime)
                 };
                 BlSellTransactionDetail.Save(detail);
@@ -199,6 +215,12 @@ namespace WEBPOS.Controllers
             return Json(new { NCF = head.NCF, TransactionNumber = head.TransactionNumber, StoreCode = head.StoreCode, PosCode = head.PosCode }, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult PrintLastRecept(string storeCode, string posCode)
+        {
+            var head = BlSellTransactionHead.ReadAllQueryable().LastOrDefault(x => x.PosCode == posCode && x.StoreCode == storeCode);
+            return Json(new { NCF = head.NCF, StoreCode = head.StoreCode, PosCode = head.PosCode }, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult LoadData()
         {
             try
@@ -206,7 +228,8 @@ namespace WEBPOS.Controllers
                 if (CookiesUtility.ReadCookieAsString("UserCode") == null || string.IsNullOrEmpty(CookiesUtility.ReadCookieAsString("UserCode")))
                     return RedirectToAction("LogIn", "User");
 
-                var model = HttpContext.Cache["PosGridList"] as List<PosGridModel>;
+                var dic = HttpContext.Cache["PosGridList"] as Dictionary<string, List<PosGridModel>>;
+                var model = dic[CookiesUtility.ReadCookieAsString("UserCode")];
 
                 foreach (var obj in model)
                 {
@@ -235,7 +258,9 @@ namespace WEBPOS.Controllers
             if (CookiesUtility.ReadCookieAsString("UserCode") == null || string.IsNullOrEmpty(CookiesUtility.ReadCookieAsString("UserCode")))
                 return RedirectToAction("LogIn", "User");
 
-            HttpContext.Cache["PosGridList"] = new List<PosGridModel>();
+            var dic = HttpContext.Cache["PosGridList"] as Dictionary<string, List<PosGridModel>>;
+            dic[CookiesUtility.ReadCookieAsString("UserCode")] = new List<PosGridModel>();
+            HttpContext.Cache["PosGridList"] = dic;
             return null;
         }
 
@@ -262,7 +287,8 @@ namespace WEBPOS.Controllers
             if (!string.IsNullOrEmpty(priceListCode) && priceListCode != "0")
                 priceList = BlPriceList.ReadAllQueryable().FirstOrDefault(x => x.PriceListCode == priceListCode);
 
-            var list = HttpContext.Cache["PosGridList"] as List<PosGridModel>;
+            var dic = HttpContext.Cache["PosGridList"] as Dictionary<string, List<PosGridModel>>;
+            var list = dic[CookiesUtility.ReadCookieAsString("UserCode")];
             foreach (var obj in list)
             {
                 obj.SellPrice = BlPrice.ReadByCode(obj.ItemCode, priceListCode)?.SellPrice ?? 0;
@@ -270,7 +296,8 @@ namespace WEBPOS.Controllers
                 obj.PriceListCode = priceList.PriceListCode;
                 obj.Total = obj.Quantity * obj.VatPrice;
             }
-            HttpContext.Cache["PosGridList"] = list;
+            dic[CookiesUtility.ReadCookieAsString("UserCode")] = list;
+            HttpContext.Cache["PosGridList"] = dic;
             return Json(new { PriceListCode = priceList.PriceListCode, PriceListDescription = priceList.PriceListDescription, TotalItems = list.Sum(x => x.Quantity), TotalValue = list.Sum(x => x.Total) }, JsonRequestBehavior.AllowGet);
         }
 
@@ -286,7 +313,8 @@ namespace WEBPOS.Controllers
         public JsonResult GetCustomers(string bpCode)
         {
             var client = new DeBusinessPartner();
-            var list = HttpContext.Cache["PosGridList"] as List<PosGridModel>;
+            var dic = HttpContext.Cache["PosGridList"] as Dictionary<string, List<PosGridModel>>;
+            var list = dic[CookiesUtility.ReadCookieAsString("UserCode")];
 
             if (!string.IsNullOrEmpty(bpCode))
                 client = BlBusinessPartner.ReadAllQueryable().FirstOrDefault(x => x.BusinessPartnerCode == bpCode);
@@ -368,7 +396,8 @@ namespace WEBPOS.Controllers
                 return RedirectToAction("LogIn", "User");
 
             var viewer = new ReportViewer();
-            var list = HttpContext.Cache["PosGridList"] as List<PosGridModel>;
+            var dic = HttpContext.Cache["PosGridList"] as Dictionary<string, List<PosGridModel>>;
+            var list = dic[CookiesUtility.ReadCookieAsString("UserCode")];
             var posCode = CookiesUtility.ReadCookieAsString("PosCode")?.ToString() ?? "";
             ModelState.Clear();
             var model = new PaymentModel
@@ -376,7 +405,8 @@ namespace WEBPOS.Controllers
                 StoreCode = storeCode,
                 PosCode = posCode,
                 PriceListCode = priceListCode,
-                PaymentTypeCode = BlPaymentType.ReadAllQueryable().FirstOrDefault().PaymentTypeCode, PayedAmount = list.Sum(x => x.Total),
+                PaymentTypeCode = BlPaymentType.ReadAllQueryable().FirstOrDefault().PaymentTypeCode,
+                PayedAmount = list.Sum(x => x.Total),
                 Rest = 0,
                 Total = list.Sum(x => x.Total),
                 DocType = DocType.ConsumidorFinal
@@ -394,17 +424,20 @@ namespace WEBPOS.Controllers
 
         public JsonResult RemoveItem(string itemCode)
         {
-            var list = HttpContext.Cache["PosGridList"] as List<PosGridModel>;
+            var dic = HttpContext.Cache["PosGridList"] as Dictionary<string, List<PosGridModel>>;
+            var list = dic[CookiesUtility.ReadCookieAsString("UserCode")];
             var item = list.FirstOrDefault(x => x.ItemCode == itemCode);
             list.Remove(item);
 
-            HttpContext.Cache["PosGridList"] = list;
+            dic[CookiesUtility.ReadCookieAsString("UserCode")] = list;
+            HttpContext.Cache["PosGridList"] = dic;
             return Json(new { TotalItems = list.Sum(x => x.Quantity), TotalValue = list.Sum(x => x.Total) }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult ChangeQuantity(string itemCode, double quantity)
         {
-            var list = HttpContext.Cache["PosGridList"] as List<PosGridModel>;
+            var dic = HttpContext.Cache["PosGridList"] as Dictionary<string, List<PosGridModel>>;
+            var list = dic[CookiesUtility.ReadCookieAsString("UserCode")];
             var itm = list.FirstOrDefault(x => x.ItemCode == itemCode);
             itm.Quantity = quantity;
 
@@ -413,7 +446,8 @@ namespace WEBPOS.Controllers
                 item.Total = item.Quantity * item.VatPrice;
             }
 
-            HttpContext.Cache["PosGridList"] = list;
+            dic[CookiesUtility.ReadCookieAsString("UserCode")] = list;
+            HttpContext.Cache["PosGridList"] = dic;
             return Json(new { TotalItems = list.Sum(x => x.Quantity), TotalValue = list.Sum(x => x.Total) }, JsonRequestBehavior.AllowGet);
         }
 
@@ -422,7 +456,8 @@ namespace WEBPOS.Controllers
             if (CookiesUtility.ReadCookieAsString("UserCode") == null || string.IsNullOrEmpty(CookiesUtility.ReadCookieAsString("UserCode")))
                 return RedirectToAction("LogIn", "User");
 
-            var list = HttpContext.Cache["PosGridList"] as List<PosGridModel>;
+            var dic = HttpContext.Cache["PosGridList"] as Dictionary<string, List<PosGridModel>>;
+            var list = dic[CookiesUtility.ReadCookieAsString("UserCode")];
             var item = list.FirstOrDefault(x => x.ItemCode == itemCode);
             var model = new DiscountsModel
             {
@@ -435,11 +470,70 @@ namespace WEBPOS.Controllers
             return PartialView(model);
         }
 
-        public JsonResult SetDiscounts(string itemCode, double result)
+        public ActionResult TotalDiscountsPartial()
         {
-            var list = HttpContext.Cache["PosGridList"] as List<PosGridModel>;
-            //var itm = list.FirstOrDefault(x => x.ItemCode == model.ItemCode);
-            //itm.Discount = model.Result;
+            if (CookiesUtility.ReadCookieAsString("UserCode") == null || string.IsNullOrEmpty(CookiesUtility.ReadCookieAsString("UserCode")))
+                return RedirectToAction("LogIn", "User");
+
+            var dic = HttpContext.Cache["PosGridList"] as Dictionary<string, List<PosGridModel>>;
+            var list = dic[CookiesUtility.ReadCookieAsString("UserCode")];
+
+            var model = new DiscountsModel
+            {
+                DiscountAmount = 0,
+                ItemPrice = list.Sum(x => x.VatPrice * x.Quantity)
+            };
+            return PartialView(model);
+        }
+
+        public JsonResult SetTotalDiscounts(double discount, int discType)
+        {
+            var dic = HttpContext.Cache["PosGridList"] as Dictionary<string, List<PosGridModel>>;
+            var list = dic[CookiesUtility.ReadCookieAsString("UserCode")];
+            var totalQty = list.Sum(x => x.Quantity);
+            var totalPrice = list.Sum(x => x.VatPrice);
+
+            foreach (var item in list)
+            {
+                var obj = BlItem.ReadByCode(item.ItemCode);
+                var itemPrice = BlPrice.ReadByCode(item.ItemCode, item.PriceListCode);
+                double vatPrice = 0;
+                if (itemPrice != null)
+                    vatPrice = itemPrice.SellPrice + (itemPrice.SellPrice * (obj.Tax.TaxPercent / 100));
+
+                if (discount == 0)
+                {
+                    item.Discount = 0;
+                    item.VatPrice = vatPrice;
+                }
+                else
+                {
+                    double discountedValue = 0;
+                    switch (discType)
+                    {
+                        case 0://Percentage
+                            discountedValue = vatPrice * (discount / 100);
+                            break;
+                        case 1://Amount
+                            discountedValue = (discount / totalQty);
+                            break;
+                    }
+                    item.DiscountType = discType;
+                    item.Discount = discountedValue;
+                }
+                item.Total = item.Quantity * (item.VatPrice - item.Discount);
+            }
+
+            dic[CookiesUtility.ReadCookieAsString("UserCode")] = list;
+            HttpContext.Cache["PosGridList"] = dic;
+
+            return Json(new { TotalItems = list.Sum(x => x.Quantity), TotalValue = list.Sum(x => x.Total) }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SetDiscounts(string itemCode, double result, int discType)
+        {
+            var dic = HttpContext.Cache["PosGridList"] as Dictionary<string, List<PosGridModel>>;
+            var list = dic[CookiesUtility.ReadCookieAsString("UserCode")];
 
             foreach (var item in list)
             {
@@ -450,6 +544,7 @@ namespace WEBPOS.Controllers
                     vatPrice = itemPrice.SellPrice + (itemPrice.SellPrice * (obj.Tax.TaxPercent / 100));
                 if (item.ItemCode == itemCode)
                 {
+                    item.DiscountType = discType;
                     if (result == 0)
                     {
                         item.Discount = 0;
@@ -462,7 +557,8 @@ namespace WEBPOS.Controllers
                 item.Total = item.Quantity * (item.VatPrice - item.Discount);
             }
 
-            HttpContext.Cache["PosGridList"] = list;
+            dic[CookiesUtility.ReadCookieAsString("UserCode")] = list;
+            HttpContext.Cache["PosGridList"] = dic;
             return Json(new { TotalItems = list.Sum(x => x.Quantity), TotalValue = list.Sum(x => x.Total) }, JsonRequestBehavior.AllowGet);
         }
 
@@ -486,7 +582,7 @@ namespace WEBPOS.Controllers
 
                 posClosure.EndDateTime = DateTime.Now;
 
-                var sales = BlSellTransactionHead.ReadAllQueryable().Where(x=> x.TransactionDateTime >= posClosure.StartDateTime && x.UpdateUser == usr.UserCode);
+                var sales = BlSellTransactionHead.ReadAllQueryable().Where(x => x.TransactionDateTime >= posClosure.StartDateTime && x.UpdateUser == usr.UserCode);
 
                 foreach (var sale in sales)
                 {
@@ -518,12 +614,12 @@ namespace WEBPOS.Controllers
             {
                 BeginAmount = quantity,
                 StartDateTime = DateTime.Now,
-                EndDateTime = new DateTime(1900,1,1),
+                EndDateTime = new DateTime(1900, 1, 1),
                 StoreCode = storeCode,
                 StorePosCode = storePosCode,
                 UserCode = CookiesUtility.ReadCookieAsString("UserCode").ToString()
             };
-            
+
             BlPosClosureHead.Save(posClosure);
             return null;
         }
@@ -608,7 +704,8 @@ namespace WEBPOS.Controllers
             if (CookiesUtility.ReadCookieAsString("UserCode") == null || string.IsNullOrEmpty(CookiesUtility.ReadCookieAsString("UserCode")))
                 return RedirectToAction("LogIn", "User");
 
-            var list = HttpContext.Cache["PosGridList"] as List<PosGridModel>;
+            var dic = HttpContext.Cache["PosGridList"] as Dictionary<string, List<PosGridModel>>;
+            var list = dic[CookiesUtility.ReadCookieAsString("UserCode")];
 
             var item = BlItem.ReadByCode(itemCode);
             if (item != null)
@@ -630,7 +727,8 @@ namespace WEBPOS.Controllers
                 newItem.Total = newItem.Quantity * newItem.VatPrice;
                 list.Add(newItem);
             }
-            HttpContext.Cache["PosGridList"] = list;
+            dic[CookiesUtility.ReadCookieAsString("UserCode")] = list;
+            HttpContext.Cache["PosGridList"] = dic;
             return Json(new { TotalItems = list.Sum(x => x.Quantity), TotalValue = list.Sum(x => x.Total) }, JsonRequestBehavior.AllowGet);
         }
     }
