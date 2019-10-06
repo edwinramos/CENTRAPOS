@@ -138,8 +138,8 @@
     }
 
     function onPriceListEdit(id) {
-        var url = '@Url.Action("UserEditPartial","User", new { id = "XXX" })';
-        url = url.replace("XXX", id);
+        var url = '@Url.Action("UserEditPartial","User")?id='+id;
+        
         $('#modalContainer').load(url, function () {
             $('#myModal').modal('show');
             $('#UserCode').prop('readonly', true);

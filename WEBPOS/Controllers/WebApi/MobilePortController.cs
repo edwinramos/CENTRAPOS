@@ -26,13 +26,13 @@ namespace WEBPOS.Controllers.WebApi
                 try
                 {
                     var jsonObject = await Request.Content.ReadAsStringAsync();
-                    var model = JsonConvert.DeserializeObject<Tuple<SellOrderModel, List<SellOrderDetailModel>>>(jsonObject); 
+                    var model = JsonConvert.DeserializeObject<Tuple<SellOrderModel, List<SellOrderDetailModel>>>(jsonObject);
 
                     var head = model.Item1;
                     var detail = model.Item2;
 
                     head.SellOrderId = 0;
-                    
+
                     var objHead = Mapper.Map<DeSellOrder>(head);
                     objHead.UpdateUser = userCode;
                     BlSellOrder.Save(objHead);
@@ -47,7 +47,7 @@ namespace WEBPOS.Controllers.WebApi
                         BlSellOrderDetail.Save(obj);
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     return BadRequest(ex.Message);
                 }
@@ -77,9 +77,9 @@ namespace WEBPOS.Controllers.WebApi
                     objHead.UpdateUser = userCode;
                     BlSellOrder.Save(objHead);
 
-                    foreach (var item in BlSellOrderDetail.ReadAllQueryable().Where(x=>x.SellOrderId == objHead.SellOrderId))
+                    foreach (var item in BlSellOrderDetail.ReadAllQueryable().Where(x => x.SellOrderId == objHead.SellOrderId))
                     {
-                        BlSellOrderDetail.Delete(item );
+                        BlSellOrderDetail.Delete(item);
                     }
 
                     foreach (var item in detail)
@@ -240,18 +240,20 @@ namespace WEBPOS.Controllers.WebApi
 
         [HttpGet]
         [Route("mob/customers")]
-        public IHttpActionResult GetCustomers([FromUri] string password)
+        public IHttpActionResult GetCustomers([FromUri] string password, [FromUri] string userCode)
         {
             var res = new Response();
             try
             {
+                var userMobileProfile = BlUserMobileProfile.Read(new DeUserMobileProfile { UserCode = userCode })?.FirstOrDefault();
                 if (password == BlTable.Read(new DeTable { KeyFixed = "ServerPassword" }).FirstOrDefault().KeyVariable)
                 {
+                    var customers = BlBusinessPartner.ReadAllQueryable().Where(x => x.BusinessPartnerType == "C" && x.BusinessPartnerGroupCode == userMobileProfile.Param1);
                     res = new Response
                     {
                         IsSuccess = true,
                         Message = RequestStateMessage.SUCCESS.ToString(),
-                        ResponseData = JsonConvert.SerializeObject(BlBusinessPartner.ReadAllQueryable().Where(x => x.BusinessPartnerType == "C").Select(x => new
+                        ResponseData = JsonConvert.SerializeObject(customers.Select(x => new
                         {
                             x.BusinessPartnerCode,
                             x.BusinessPartnerDescription,

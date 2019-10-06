@@ -170,7 +170,7 @@ namespace WEBPOS.WebForms
             var nif = new ReportParameter("NIF", store.NIF, true);
             var pNcf = new ReportParameter("NCF", head.NCF, true);
             var tel = new ReportParameter("Telephone", store.Telephone ?? "", true);
-            var total = new ReportParameter("Total", "RD$" + detail.Sum(x => x.TotalValue - x.DiscountOnItem).ToString("n2"), true);
+            var netTotal = new ReportParameter("NetTotal", "RD$" + detail.Sum(x => x.TotalValue - x.DiscountOnItem).ToString("n2"), true);
             var paymentType = new ReportParameter("PaymentType", BlPaymentType.ReadAll().FirstOrDefault(x => x.PaymentTypeCode == headPayment.PaymentTypeCode).PaymentTypeDescription, true);
             var paymentValue = new ReportParameter("PaymentValue", "RD$" + headPayment.PaymentValue.ToString("n2"), true);
             var paymentRest = new ReportParameter("PaymentRest", "RD$" + (headPayment.PaymentValue - head.TotalValue).ToString("n2"), true);
@@ -179,6 +179,10 @@ namespace WEBPOS.WebForms
             var clientName = new ReportParameter("ClientName", client?.BusinessPartnerDescription != null ? ("NOMBRE: " + client.BusinessPartnerDescription) : "", true);
             var header = new ReportParameter("Header", head.NCF.Contains("B02") ? "FACTURA PARA CONSUMIDOR FINAL" : "FACTURA PARA CREDITO FISCAL", true);
             var clientGroup = new ReportParameter("ClientGroup", head.NCF.Contains("B02") ? "" : (("GRUPO CLIENTE: " + client.BusinessPartnerGroup?.BusinessPartnerGroupDescription ?? "")), true);
+
+            var total = new ReportParameter("Total", "RD$" + (detail.Sum(x => x.Quantity * x.BasePrice) + head.TotalDiscount).ToString("n2"), true);
+            var vatTotal = new ReportParameter("VatTotal", "RD$" + detail.Sum(x => (x.SellPrice - x.BasePrice) * x.Quantity).ToString("n2"), true);
+            var discountTotal = new ReportParameter("DiscTotal", "RD$" + head.TotalDiscount.ToString("n2"), true);
 
             ReportParameterCollection reportParameters = new ReportParameterCollection();
             reportParameters.Add(posOperator);
@@ -196,6 +200,9 @@ namespace WEBPOS.WebForms
             reportParameters.Add(paymentRest);
             reportParameters.Add(clientRNC);
             reportParameters.Add(clientName);
+            reportParameters.Add(netTotal);
+            reportParameters.Add(vatTotal);
+            reportParameters.Add(discountTotal);
             //if (head.DocType == DocType.CreditoFiscal)
             //{
             //    clientRNC = new ReportParameter("ClientRNC", "", true);

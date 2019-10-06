@@ -63,6 +63,19 @@
                             @Html.DropDownListFor(m => m.MobileProfileType, selectList);
                         }
                     </div>
+                    <div class="form-group col-md-4">
+                        @Html.Label("Grupo")
+                        @{
+                            List<SelectListItem> groupList = new List<SelectListItem>();
+
+                            var upList = WEBPOS.DataAccess.BusinessLayer.BlBusinessPartnerGroup.ReadAll();
+                            foreach (var ob in upList)
+                            {
+                                groupList.Add(new SelectListItem { Text = ob.BusinessPartnerGroupCode + " | " + ob.BusinessPartnerGroupDescription, Value = ob.BusinessPartnerGroupCode });
+                            }
+                        }
+                        @Html.DropDownListFor(model => model.Param1, groupList, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <a class="btn btn-default" data-dismiss="modal">Cerrar</a>
