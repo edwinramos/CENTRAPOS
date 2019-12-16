@@ -16,7 +16,7 @@ namespace WEBPOS.DataAccess.DataLayer
         {
             return context.UnitMeasures.ToList();
         }
-        public IEnumerable<DeUnitMeasure> ReadAllQueryable()
+        public IQueryable<DeUnitMeasure> ReadAllQueryable()
         {
             return context.UnitMeasures;
         }

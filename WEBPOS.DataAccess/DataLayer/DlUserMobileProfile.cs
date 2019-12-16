@@ -16,7 +16,7 @@ namespace WEBPOS.DataAccess.DataLayer
         {
             return context.UserMobileProfiles.ToList();
         }
-        public IEnumerable<DeUserMobileProfile> ReadAllQueryable()
+        public IQueryable<DeUserMobileProfile> ReadAllQueryable()
         {
             return context.UserMobileProfiles;
         }

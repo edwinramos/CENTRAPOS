@@ -20,10 +20,10 @@ namespace WEBPOS.DataAccess.BusinessLayer
             var dl = new DlUserMobileProfile();
             return dl.ReadByCode(userCode, mobileProfileCode);
         }
-        public static IEnumerable<DeUserMobileProfile> ReadAllQueryable()
+        public static IQueryable<DeUserMobileProfile> ReadAllQueryable()
         {
             var dl = new DlUserMobileProfile();
-            return dl.ReadAll();
+            return dl.ReadAllQueryable();
         }
         public static IEnumerable<DeUserMobileProfile> Read(DeUserMobileProfile obj)
         {

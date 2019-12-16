@@ -16,7 +16,7 @@ namespace WEBPOS.DataAccess.DataLayer
         {
             return context.PosClosureDetails.ToList();
         }
-        public IEnumerable<DePosClosureDetail> ReadAllQueryable()
+        public IQueryable<DePosClosureDetail> ReadAllQueryable()
         {
             return context.PosClosureDetails;
         }

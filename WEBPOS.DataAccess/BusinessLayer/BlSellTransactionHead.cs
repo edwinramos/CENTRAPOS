@@ -15,10 +15,10 @@ namespace WEBPOS.DataAccess.BusinessLayer
             var dl = new DlSellTransactionHead();
             return dl.ReadAll();
         }
-        public static IEnumerable<DeSellTransactionHead> ReadAllQueryable()
+        public static IQueryable<DeSellTransactionHead> ReadAllQueryable()
         {
             var dl = new DlSellTransactionHead();
-            return dl.ReadAll();
+            return dl.ReadAllQueryable();
         }
         public static IEnumerable<DeSellTransactionHead> Read(DeSellTransactionHead obj)
         {
@@ -66,7 +66,21 @@ namespace WEBPOS.DataAccess.BusinessLayer
 
 
             string str = count.ToString().PadLeft(8, '0');
-            string prefix = docType == DocType.CreditoFiscal ? "B01" : "B02";
+            //string prefix = docType == DocType.CreditoFiscal ? "B01" : "B02";
+            string prefix = "";
+
+            switch (docType)
+            {
+                case DocType.CreditoFiscal:
+                    prefix = "B01";
+                    break;
+                case DocType.ConsumidorFinal:
+                    prefix = "B02";
+                    break;
+                case DocType.Gubernamental:
+                    prefix = "B15";
+                    break;
+            }
 
             if (list.Any())
             {

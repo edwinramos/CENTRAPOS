@@ -16,7 +16,7 @@ namespace WEBPOS.DataAccess.DataLayer
         {
             return context.UserSellOrders.ToList();
         }
-        public IEnumerable<DeUserSellOrder> ReadAllQueryable()
+        public IQueryable<DeUserSellOrder> ReadAllQueryable()
         {
             return context.UserSellOrders;
         }

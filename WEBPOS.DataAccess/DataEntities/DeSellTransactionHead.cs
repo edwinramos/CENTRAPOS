@@ -47,6 +47,7 @@ namespace WEBPOS.DataAccess.DataEntities
     public enum DocType
     {
         CreditoFiscal = 0,
-        ConsumidorFinal = 1
+        ConsumidorFinal = 1,
+        Gubernamental = 2
     }
 }

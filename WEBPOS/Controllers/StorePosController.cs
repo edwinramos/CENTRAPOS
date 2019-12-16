@@ -37,7 +37,7 @@ namespace WEBPOS.Controllers
                 // Getting all Customer data    
                 var model = new List<StorePosModel>();
 
-                foreach (var x in BlStorePos.ReadAll())
+                foreach (var x in BlStorePos.ReadAllQueryable())
                 {
                     var storeDesc = BlStore.ReadByCode(x.StoreCode)?.StoreDescription ?? "";
                     model.Add(new StorePosModel
@@ -59,7 +59,7 @@ namespace WEBPOS.Controllers
                 //total number of rows count     
                 recordsTotal = model.Count();
                 //Paging     
-                var data = model.Skip(skip).Take(pageSize).ToList();
+                var data = model.ToList().Skip(skip).Take(pageSize);
                 //Returning Json Data    
                 return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
 

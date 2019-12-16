@@ -15,7 +15,7 @@ namespace WEBPOS.DataAccess.BusinessLayer
             var dl = new DlStorePos();
             return dl.ReadAll();
         }
-        public static IEnumerable<DeStorePos> ReadAllQueryable()
+        public static IQueryable<DeStorePos> ReadAllQueryable()
         {
             var dl = new DlStorePos();
             return dl.ReadAllQueryable();

@@ -19,10 +19,11 @@ namespace WEBPOS.Controllers
         // GET: Item
         public ActionResult Index()
         {
-            if (CookiesUtility.ReadCookieAsString("UserCode") == null || string.IsNullOrEmpty(CookiesUtility.ReadCookieAsString("UserCode")))
+            var userCode = CookiesUtility.ReadCookieAsString("UserCode");
+            if (userCode == null || string.IsNullOrEmpty(userCode))
                 return RedirectToAction("LogIn", "User");
 
-            var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == CookiesUtility.ReadCookieAsString("UserCode").ToString());
+            var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == userCode);
             ViewBag.IsEditing = user.IsEditing;
             return PartialView();
         }
@@ -56,13 +57,13 @@ namespace WEBPOS.Controllers
                 //Search    
                 if (!string.IsNullOrEmpty(searchValue))
                 {
-                    model = model.Where(m => m.ItemDescription.ToUpper().Contains(searchValue.ToUpper())).ToList();
+                    model = model.Where(m => m.ItemDescription.ToUpper().Contains(searchValue.ToUpper())).AsQueryable();
                 }
 
                 //total number of rows count     
                 recordsTotal = model.Count();
                 //Paging     
-                var data = model.Skip(skip).Take(pageSize).ToList();
+                var data = model.ToList().Skip(skip).Take(pageSize);
                 //Returning Json Data    
                 return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
 
@@ -75,6 +76,7 @@ namespace WEBPOS.Controllers
 
         public ActionResult ItemDetail(string id)
         {
+            var userCode = CookiesUtility.ReadCookieAsString("UserCode");
             var model = new ItemModel { ItemCode = BlItem.GetNextItemCode() };
 
             //if (id == "0")
@@ -82,7 +84,7 @@ namespace WEBPOS.Controllers
             if (id != "0")
                 model = Mapper.Map<ItemModel>(BlItem.Read(new DeItem { ItemCode = id }).FirstOrDefault());
 
-            var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == CookiesUtility.ReadCookieAsString("UserCode").ToString());
+            var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == userCode);
             model.canEdit = user.IsEditing;
             return View(model);
         }
@@ -269,7 +271,7 @@ namespace WEBPOS.Controllers
                 //total number of rows count     
                 recordsTotal = model.Count();
                 //Paging     
-                var data = model.Skip(skip).Take(pageSize).ToList();
+                var data = model.ToList().Skip(skip).Take(pageSize);
                 //Returning Json Data    
                 return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
 
@@ -289,7 +291,8 @@ namespace WEBPOS.Controllers
 
         public ActionResult PriceEditPartial(string itemCode, string priceListCode)
         {
-            var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == CookiesUtility.ReadCookieAsString("UserCode").ToString());
+            var userCode = CookiesUtility.ReadCookieAsString("UserCode");
+            var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == userCode);
             ViewBag.IsEditing = user.IsEditing;
 
             if (string.IsNullOrEmpty(priceListCode) || priceListCode == "0")
@@ -341,7 +344,7 @@ namespace WEBPOS.Controllers
                 //total number of rows count     
                 recordsTotal = model.Count();
                 //Paging     
-                var data = model.Skip(skip).Take(pageSize).ToList();
+                var data = model.ToList().Skip(skip).Take(pageSize);
                 //Returning Json Data    
                 return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
 
@@ -361,7 +364,8 @@ namespace WEBPOS.Controllers
 
         public ActionResult WarehouseEditPartial(string itemCode, string warehouseCode)
         {
-            var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == CookiesUtility.ReadCookieAsString("UserCode").ToString());
+            var userCode = CookiesUtility.ReadCookieAsString("UserCode");
+            var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == userCode);
             ViewBag.IsEditing = user.IsEditing;
 
             if (string.IsNullOrEmpty(warehouseCode) || warehouseCode == "0")

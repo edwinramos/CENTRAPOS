@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
+using WEBPOS.Models;
 
 namespace WEBPOS.Controllers
 {
@@ -33,15 +34,29 @@ namespace WEBPOS.Controllers
                 int recordsTotal = 0;
 
                 // Getting all Customer data    
-                var model = BlSellTransactionHead.ReadAllQueryable().OrderByDescending(x=>x.TransactionDateTime).Select(x=> new
+                var model = new List<SellTransactionHeadModel>();
+                foreach (var item in BlSellTransactionHead.ReadAllQueryable())
                 {
-                    x.TransactionNumber,
-                    x.NCF,
-                    x.TransactionDateTime,
-                    Customer = BlBusinessPartner.ReadAllQueryable().FirstOrDefault(p=>p.BusinessPartnerCode == x.CustomerCode)?.BusinessPartnerDescription ?? "",
-                    StorePosCode = x.PosCode,//BlStorePos.ReadAllQueryable().FirstOrDefault(p=>p.StorePosCode == x.PosCode)?.StorePosDescription ?? "",
-                    x.TotalValue
-                });
+                    var client = BlBusinessPartner.ReadAllQueryable().FirstOrDefault(p => p.BusinessPartnerCode == item.CustomerCode)?.BusinessPartnerDescription ?? "";
+                    model.Add(new SellTransactionHeadModel
+                    {
+                        TransactionNumber = item.TransactionNumber,
+                        NCF = item.NCF,
+                        TransactionDateTime = item.TransactionDateTime,
+                        Customer = client,
+                        StorePosCode = item.PosCode,
+                        TotalValue = item.TotalValue
+                    });
+                }
+                //var model = BlSellTransactionHead.ReadAllQueryable().Select(x => new
+                //{
+                //    x.TransactionNumber,
+                //    x.NCF,
+                //    x.TransactionDateTime,
+                //    Customer = BlBusinessPartner.ReadAllQueryable().FirstOrDefault(p => p.BusinessPartnerCode == (x.CustomerCode ?? "")).BusinessPartnerDescription ?? "",
+                //    StorePosCode = x.PosCode,//BlStorePos.ReadAllQueryable().FirstOrDefault(p=>p.StorePosCode == x.PosCode)?.StorePosDescription ?? "",
+                //    x.TotalValue
+                //});
 
                 //Sorting    
                 //if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
@@ -51,13 +66,13 @@ namespace WEBPOS.Controllers
                 //Search
                 if (!string.IsNullOrEmpty(searchValue))
                 {
-                    model = model.Where(m => m.NCF.ToUpper().Contains(searchValue.ToUpper()));
+                    model = model.Where(m => m.NCF.ToUpper().Contains(searchValue.ToUpper())).ToList();
                 }
 
                 //total number of rows count     
                 recordsTotal = model.Count();
                 //Paging     
-                var data = model.Skip(skip).Take(pageSize).ToList();
+                var data = model.ToList().OrderByDescending(x => x.TransactionDateTime).Skip(skip).Take(pageSize);
                 //Returning Json Data    
                 return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
 

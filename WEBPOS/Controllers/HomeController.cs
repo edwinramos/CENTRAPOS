@@ -15,10 +15,11 @@ namespace WEBPOS.Controllers
     {
         public ActionResult Index()
         {
-            if (CookiesUtility.ReadCookieAsString("UserCode") == null || string.IsNullOrEmpty(CookiesUtility.ReadCookieAsString("UserCode")))
+            var userCode = CookiesUtility.ReadCookieAsString("UserCode");
+            if (userCode == null || string.IsNullOrEmpty(userCode))
                 return RedirectToAction("LogIn", "User");
             
-            var usr = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == CookiesUtility.ReadCookieAsString("UserCode").ToString());
+            var usr = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == userCode.ToString());
             if(usr.UserType == UserType.CAJERO)
                 return RedirectToAction("Index", "Pos");
 
@@ -56,7 +57,6 @@ namespace WEBPOS.Controllers
                       select record;
 
             var dataByDay = actualWeek
-    .Where(o => o.TransactionDateTime.DayOfWeek >= DayOfWeek.Monday)
     .AsEnumerable() // After this everything uses LINQ to Objects and is executed locally, not on your SQL server
     .GroupBy(o => o.TransactionDateTime.DayOfWeek)
     .Select(g => new { DayOfWeek = g.Key, Value = g.Sum(x=>x.TotalValue) })
@@ -89,7 +89,7 @@ namespace WEBPOS.Controllers
             dt.Columns.Add("Week", System.Type.GetType("System.String"));
             dt.Columns.Add("Total", System.Type.GetType("System.Int32"));
 
-            var list = BlSellTransactionHead.ReadAllQueryable();
+            var list = BlSellTransactionHead.ReadAllQueryable().ToList();
 
             var date = DateTime.Today;
 

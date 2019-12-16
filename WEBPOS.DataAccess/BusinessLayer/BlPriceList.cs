@@ -15,10 +15,10 @@ namespace WEBPOS.DataAccess.BusinessLayer
             var dl = new DlPriceList();
             return dl.ReadAll();
         }
-        public static IEnumerable<DePriceList> ReadAllQueryable()
+        public static IQueryable<DePriceList> ReadAllQueryable()
         {
             var dl = new DlPriceList();
-            return dl.ReadAll();
+            return dl.ReadAllQueryable();
         }
         public static IEnumerable<DePriceList> Read(DePriceList obj)
         {

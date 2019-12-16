@@ -16,7 +16,7 @@ namespace WEBPOS.DataAccess.DataLayer
         {
             return context.PaymentTypes.ToList();
         }
-        public IEnumerable<DePaymentType> ReadAllQueryable()
+        public IQueryable<DePaymentType> ReadAllQueryable()
         {
             return context.PaymentTypes;
         }

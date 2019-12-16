@@ -15,10 +15,10 @@ namespace WEBPOS.DataAccess.BusinessLayer
             var dl = new DlPaymentType();
             return dl.ReadAll();
         }
-        public static IEnumerable<DePaymentType> ReadAllQueryable()
+        public static IQueryable<DePaymentType> ReadAllQueryable()
         {
             var dl = new DlPaymentType();
-            return dl.ReadAll();
+            return dl.ReadAllQueryable();
         }
         public static IEnumerable<DePaymentType> Read(DePaymentType obj)
         {

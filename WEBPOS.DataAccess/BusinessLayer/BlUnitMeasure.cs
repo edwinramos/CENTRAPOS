@@ -15,10 +15,10 @@ namespace WEBPOS.DataAccess.BusinessLayer
             var dl = new DlUnitMeasure();
             return dl.ReadAll();
         }
-        public static IEnumerable<DeUnitMeasure> ReadAllQueryable()
+        public static IQueryable<DeUnitMeasure> ReadAllQueryable()
         {
             var dl = new DlUnitMeasure();
-            return dl.ReadAll();
+            return dl.ReadAllQueryable();
         }
         public static IEnumerable<DeUnitMeasure> Read(DeUnitMeasure obj)
         {

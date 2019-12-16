@@ -16,7 +16,7 @@ namespace WEBPOS.DataAccess.DataLayer
         {
             return context.BusinessPartnerGroups.ToList();
         }
-        public IEnumerable<DeBusinessPartnerGroup> ReadAllQueryable()
+        public IQueryable<DeBusinessPartnerGroup> ReadAllQueryable()
         {
             return context.BusinessPartnerGroups;
         }

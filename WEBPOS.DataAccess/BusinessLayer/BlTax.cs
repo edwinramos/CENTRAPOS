@@ -15,10 +15,10 @@ namespace WEBPOS.DataAccess.BusinessLayer
             var dl = new DlTax();
             return dl.ReadAll();
         }
-        public static IEnumerable<DeTax> ReadAllQueryable()
+        public static IQueryable<DeTax> ReadAllQueryable()
         {
             var dl = new DlTax();
-            return dl.ReadAll();
+            return dl.ReadAllQueryable();
         }
         public static DeTax ReadByValue(double value)
         {

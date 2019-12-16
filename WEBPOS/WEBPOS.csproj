@@ -266,6 +266,8 @@
     <Compile Include="Models\PosGridModel.cs" />
     <Compile Include="Models\PaymentModel.cs" />
     <Compile Include="Models\SecurityModel.cs" />
+    <Compile Include="Models\PosClosureModel.cs" />
+    <Compile Include="Models\SellTransactionHeadModel.cs" />
     <Compile Include="Models\SellOrderModel.cs" />
     <Compile Include="Models\SellOrderDetailModel.cs" />
     <Compile Include="Models\PriceModel.cs" />

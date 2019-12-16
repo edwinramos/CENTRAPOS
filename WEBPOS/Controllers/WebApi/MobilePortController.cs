@@ -157,7 +157,7 @@ namespace WEBPOS.Controllers.WebApi
                         x.ItemCode,
                         x.ItemDescription,
                         x.Barcode,
-                        TaxValue = BlTax.ReadAllQueryable().FirstOrDefault(m => m.TaxCode == x.TaxCode)?.TaxPercent ?? 0,
+                        TaxValue = BlTax.ReadAllQueryable().FirstOrDefault(m => m.TaxCode == x.TaxCode).TaxPercent,
                         x.DepartmentCode
                     })).ToString()
                 };

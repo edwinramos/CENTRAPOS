@@ -17,10 +17,10 @@ namespace WEBPOS.DataAccess.DataLayer
         {
             return context.Items.ToList();
         }
-        public IEnumerable<DeItem> ReadAllQueryable()
+        public IQueryable<DeItem> ReadAllQueryable()
         {
             var queryString = $@"SELECT * FROM srItem";
-            return context.Database.SqlQuery<DeItem>(queryString);
+            return context.Items;
         }
         public IEnumerable<ItemSearchResult> ReadSearch(string param, string plCode, string whCode)
         {

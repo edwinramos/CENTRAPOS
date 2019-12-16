@@ -59,7 +59,7 @@ namespace WEBPOS.Controllers
                 //total number of rows count     
                 recordsTotal = model.Count();
                 //Paging     
-                var data = model.Skip(skip).Take(pageSize).ToList();
+                var data = model.ToList().Skip(skip).Take(pageSize);
                 //Returning Json Data    
                 return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
 
@@ -75,7 +75,7 @@ namespace WEBPOS.Controllers
             model.ClientDescription = BlBusinessPartner.ReadAllQueryable().FirstOrDefault(x => x.BusinessPartnerCode == model.ClientCode).BusinessPartnerDescription;
 
             var detail = BlSellOrderDetail.ReadAllQueryable().Where(x => x.SellOrderId == model.SellOrderId);
-            model.VatSum = detail.Sum(x => x.VatValue);
+            model.VatSum = detail.Sum(x => x.VatValue * x.Quantity);
             model.TotalDiscount = detail.Sum(x => x.DiscountValue);
             model.DocTotal = detail.Sum(x => x.TotalRowValue - x.DiscountValue);
 
@@ -221,7 +221,7 @@ namespace WEBPOS.Controllers
                 //total number of rows count     
                 recordsTotal = model.Count();
                 //Paging     
-                var data = model.Skip(skip).Take(pageSize).ToList();
+                var data = model.ToList().Skip(skip).Take(pageSize);
                 //Returning Json Data    
                 return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
 
@@ -312,7 +312,7 @@ namespace WEBPOS.Controllers
 
                 var model = list.ToList();
 
-                var data = model.Skip(skip).Take(pageSize).ToList();
+                var data = model.ToList().Skip(skip).Take(pageSize);
 
                 return Json(new { draw = model, recordsFiltered = model.Count(), recordsTotal = model.Count(), data = data });
             }
@@ -354,7 +354,7 @@ namespace WEBPOS.Controllers
                 //total number of rows count     
                 recordsTotal = model.Count();
                 //Paging     
-                var data = model.Skip(skip).Take(pageSize).ToList();
+                var data = model.ToList().Skip(skip).Take(pageSize);
                 //Returning Json Data    
                 return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
 

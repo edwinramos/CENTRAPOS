@@ -41,7 +41,8 @@
                         @Html.Label("Tipo de Usuario")
 
                         @{
-                            var usr = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == CookiesUtility.ReadCookieAsString("UserCode").ToString());
+                            var userCode = CookiesUtility.ReadCookieAsString("UserCode");
+                            var usr = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == userCode);
                             if (usr.UserType == WEBPOS.DataAccess.DataEntities.UserType.GERENTE)
                             {
                                 var selectList = Enum.GetValues(typeof(WEBPOS.DataAccess.DataEntities.UserType))

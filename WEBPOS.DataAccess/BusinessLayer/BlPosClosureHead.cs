@@ -15,10 +15,10 @@ namespace WEBPOS.DataAccess.BusinessLayer
             var dl = new DlPosClosureHead();
             return dl.ReadAll();
         }
-        public static IEnumerable<DePosClosureHead> ReadAllQueryable()
+        public static IQueryable<DePosClosureHead> ReadAllQueryable()
         {
             var dl = new DlPosClosureHead();
-            return dl.ReadAll();
+            return dl.ReadAllQueryable();
         }
         public static IEnumerable<DePosClosureHead> Read(DePosClosureHead obj)
         {

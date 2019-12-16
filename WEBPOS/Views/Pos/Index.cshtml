@@ -732,24 +732,19 @@
 
                 },
                 success: function (result) {
-                    if (result != null) {    
+                    if (result != null) { 
+
+                        if (result.hasNoClient) {
+                            toastr.info('Por favor seleccione un cliente para imprimir esta factura.');
+                            $('#myModal').modal('hide');
+                            return;
+                        }
                         clearAll();
                         $('#myModal').modal('hide');
-                        //var _this = this;
                         var url = "WebForms/WebForm1.aspx?TransactionNumber=" + result.NCF + "&StoreCode=" + '@Model.StoreCode' + "&PosCode=" + result.PosCode + "&isSellTransaction=true";
                         var windowObj = window.open(url, 'print_tab');
                         windowObj.focus();
                         windowObj.print();
-                        //setTimeout(function () { windowObj.close(); }, 20000);
-                        //var frame = $('#printIFrame');
-                        //frame.attr('src', url);
-                        //frame[0].contentWindow.focus();
-
-                        //if (firstPrint)
-                        //    setTimeout(function () { frame[0].contentWindow.print(); }, 11000);
-                        //else
-                        //    setTimeout(function () { frame[0].contentWindow.print(); }, 5000);
-
                         firstPrint = false;
                     }
                 }

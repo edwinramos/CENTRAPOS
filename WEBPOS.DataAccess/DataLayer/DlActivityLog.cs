@@ -14,7 +14,7 @@ namespace WEBPOS.DataAccess.DataLayer
         {
             return context.ActivityLoges.ToList();
         }
-        public IEnumerable<DeActivityLog> ReadAllQueryable()
+        public IQueryable<DeActivityLog> ReadAllQueryable()
         {
             return context.ActivityLoges;
         }

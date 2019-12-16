@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
+using WEBPOS.Models;
 using WEBPOS.Utils;
 
 namespace WEBPOS.Controllers
@@ -36,17 +37,32 @@ namespace WEBPOS.Controllers
                 int skip = start != null ? Convert.ToInt32(start) : 0;
                 int recordsTotal = 0;
 
-                // Getting all Customer data    
-                var model = BlPosClosureHead.ReadAllQueryable().OrderByDescending(x=>x.StartDateTime).Select(x=> new
+                // Getting all Customer data
+                var model = new List<PosClosureModel>();
+                foreach (var item in BlPosClosureHead.ReadAllQueryable())
                 {
-                    x.PosClosureHeadId,
-                    x.StartDateTime,
-                    x.EndDateTime,
-                    x.BeginAmount,
-                    x.UserCode,
-                    Estado = (x.EndDateTime.Date == new DateTime(1900, 1, 1)) ? "Abierto" : "Cerrado",
-                    x.Total
-                });
+                    model.Add(new PosClosureModel
+                    {
+                        PosClosureHeadId = item.PosClosureHeadId,
+                        StartDateTime = item.StartDateTime,
+                        EndDateTime = item.EndDateTime,
+                        BeginAmount = item.BeginAmount,
+                        UserCode = item.UserCode,
+                        Estado = (item.EndDateTime.Date == new DateTime(1900, 1, 1)) ? "Abierto" : "Cerrado",
+                        Total = item.Total
+                    });
+                }
+
+                //var model = BlPosClosureHead.ReadAllQueryable().Select(x=> new
+                //{
+                //    x.PosClosureHeadId,
+                //    x.StartDateTime,
+                //    x.EndDateTime,
+                //    x.BeginAmount,
+                //    x.UserCode,
+                //    Estado = (x.EndDateTime.Date == new DateTime(1900, 1, 1)) ? "Abierto" : "Cerrado",
+                //    x.Total
+                //});
 
                 //Sorting    
                 //if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
@@ -56,13 +72,13 @@ namespace WEBPOS.Controllers
                 //Search
                 if (!string.IsNullOrEmpty(searchValue))
                 {
-                    model = model.Where(m => m.UserCode.ToUpper().Contains(searchValue.ToUpper()));
+                    model = model.OrderByDescending(x => x.StartDateTime).Where(m => m.UserCode.ToUpper().Contains(searchValue.ToUpper())).ToList();
                 }
 
                 //total number of rows count     
                 recordsTotal = model.Count();
                 //Paging     
-                var data = model.Skip(skip).Take(pageSize).ToList();
+                var data = model.ToList().Skip(skip).Take(pageSize);
                 //Returning Json Data    
                 return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
 
@@ -75,6 +91,7 @@ namespace WEBPOS.Controllers
 
         public ActionResult CloseTurn(int posClosureId)
         {
+            var userCode = CookiesUtility.ReadCookieAsString("UserCode");
             var deviceId = Request.UserHostName;
             try
             {
@@ -83,7 +100,7 @@ namespace WEBPOS.Controllers
             }
             catch (Exception ex) { }
 
-            var usr = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == CookiesUtility.ReadCookieAsString("UserCode").ToString());
+            var usr = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == userCode);
             var terminal = BlStorePos.ReadAllQueryable().FirstOrDefault(x => x.DeviceId == deviceId);
             var store = BlStore.ReadByCode(terminal.StoreCode);
 

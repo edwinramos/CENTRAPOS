@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using Microsoft.Reporting.WebForms;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
@@ -39,10 +36,11 @@ namespace WEBPOS.WebForms
             var detail = BlSellOrderDetail.ReadAllQueryable().Where(x => x.SellOrderId == sellOrderId);
             var client = BlBusinessPartner.ReadAllQueryable().FirstOrDefault(x => x.BusinessPartnerCode == sellOrder.ClientCode);
 
-
+            var total = detail.Sum(x => x.TotalRowValue);
             var res = new List<DeSellOrderDetail>();
             foreach (var obj in detail)
             {
+                obj.TotalRowValue = obj.TotalRowValue - (obj.VatValue * obj.Quantity);
                 res.Add(obj);
                 if (obj.DiscountValue > 0)
                 {
@@ -75,6 +73,7 @@ namespace WEBPOS.WebForms
             var rnc = new ReportParameter("RNC", store.RNC, true);
             var tel = new ReportParameter("Telephone", store.Telephone ?? "", true);
             var clientName = new ReportParameter("ClientName", client?.BusinessPartnerDescription != null ? (client.BusinessPartnerDescription) : "", true);
+            var totalValue = new ReportParameter("Total", "RD$" + total.ToString(), true);
 
             ReportParameterCollection reportParameters = new ReportParameterCollection();
             reportParameters.Add(transactionDate);
@@ -84,6 +83,7 @@ namespace WEBPOS.WebForms
             reportParameters.Add(rnc);
             reportParameters.Add(tel);
             reportParameters.Add(clientName);
+            reportParameters.Add(totalValue);
 
             ReportViewer1.LocalReport.SetParameters(reportParameters);
 
@@ -120,6 +120,7 @@ namespace WEBPOS.WebForms
             var res = new List<DeSellTransactionDetail>();
             foreach (var obj in detail)
             {
+                obj.TotalValue = obj.TotalValue - ((obj.SellPrice - obj.BasePrice) * obj.Quantity);
                 res.Add(obj);
                 if (obj.DiscountOnItem > 0)
                 {
@@ -161,6 +162,17 @@ namespace WEBPOS.WebForms
 
             var store = BlStore.ReadAll().FirstOrDefault();
 
+            var headerStr = head.NCF.Contains("B02") ? "FACTURA PARA CONSUMIDOR FINAL" : "FACTURA PARA CREDITO FISCAL";
+
+            if (head.NCF.Contains("B02"))
+                headerStr = "FACTURA PARA CONSUMIDOR FINAL";
+
+            if (head.NCF.Contains("B01"))
+                headerStr = "FACTURA PARA CREDITO FISCAL";
+
+            if (head.NCF.Contains("B15"))
+                headerStr = "FACTURA GUBERNAMENTAL";
+
             var posOperator = new ReportParameter("OperatorName", (user.Name + " " + user.LastName), true);
             var transactionDate = new ReportParameter("TransactionDate", head.TransactionDateTime.ToString("dd/MM/yyyy hh:mm:ss").ToUpper(), true);
             var transactionNumber = new ReportParameter("TransactionNumber", head.TransactionNumber.ToString(), true);
@@ -177,10 +189,11 @@ namespace WEBPOS.WebForms
             var sequenceDueDate = new ReportParameter("SequenceDueDate", head.NCF.Contains("B02") ? "" : ("FECHA DE VENCIMIENTO: " + store.SequenceDueDate.ToString("dd/MM/yyyy")), true);
             var clientRNC = new ReportParameter("ClientRNC", client?.RNC != null ? ("RNC CLIENTE: " + client.RNC) : "", true);
             var clientName = new ReportParameter("ClientName", client?.BusinessPartnerDescription != null ? ("NOMBRE: " + client.BusinessPartnerDescription) : "", true);
-            var header = new ReportParameter("Header", head.NCF.Contains("B02") ? "FACTURA PARA CONSUMIDOR FINAL" : "FACTURA PARA CREDITO FISCAL", true);
+            var header = new ReportParameter("Header", headerStr, true);
             var clientGroup = new ReportParameter("ClientGroup", head.NCF.Contains("B02") ? "" : (("GRUPO CLIENTE: " + client.BusinessPartnerGroup?.BusinessPartnerGroupDescription ?? "")), true);
 
-            var total = new ReportParameter("Total", "RD$" + (detail.Sum(x => x.Quantity * x.BasePrice) + head.TotalDiscount).ToString("n2"), true);
+            var subTotal = new ReportParameter("SubTotal", "RD$" + (detail.Sum(x => x.TotalValue) + head.TotalDiscount).ToString("n2"), true);
+            var total = new ReportParameter("Total", "RD$" + (detail.Sum(x => x.TotalValue) + head.TotalDiscount + detail.Sum(x => (x.SellPrice - x.BasePrice) * x.Quantity)).ToString("n2"), true);
             var vatTotal = new ReportParameter("VatTotal", "RD$" + detail.Sum(x => (x.SellPrice - x.BasePrice) * x.Quantity).ToString("n2"), true);
             var discountTotal = new ReportParameter("DiscTotal", "RD$" + head.TotalDiscount.ToString("n2"), true);
 
@@ -203,6 +216,7 @@ namespace WEBPOS.WebForms
             reportParameters.Add(netTotal);
             reportParameters.Add(vatTotal);
             reportParameters.Add(discountTotal);
+            reportParameters.Add(subTotal);
             //if (head.DocType == DocType.CreditoFiscal)
             //{
             //    clientRNC = new ReportParameter("ClientRNC", "", true);

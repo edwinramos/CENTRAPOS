@@ -365,14 +365,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Price">
+                        <Textbox Name="PriceBefDiscounts">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Price.Value</Value>
+                                  <Value>=Fields!PriceBefDiscounts.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <Format>'RD$'#,0.00;('$'#,0.00)</Format>
@@ -384,7 +384,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Price</rd:DefaultName>
+                          <rd:DefaultName>PriceBefDiscounts</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -457,7 +457,7 @@
             <Top>5.54249cm</Top>
             <Left>0.09525cm</Left>
             <Height>1.2cm</Height>
-            <Width>9.65361cm</Width>
+            <Width>9.65362cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -503,7 +503,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!TotalRowValue.Value)-Sum(Fields!VatValue.Value)</Value>
+                    <Value>=Sum(Fields!TotalRowValue.Value)</Value>
                     <Style>
                       <Format>'RD$'#,0.00;('$'#,0.00)</Format>
                     </Style>
@@ -571,7 +571,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!VatValue.Value)</Value>
+                    <Value>=Sum(Fields!VatValue.Value * Fields!Quantity.Value)</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                       <Format>'RD$'#,0.00;('$'#,0.00)</Format>
@@ -638,7 +638,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!TotalRowValue.Value)</Value>
+                    <Value>=Parameters!Total.Value</Value>
                     <Style>
                       <Format>'RD$'#,0.00;('$'#,0.00)</Format>
                     </Style>
@@ -1115,11 +1115,17 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="Total">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>4</NumberOfRows>
+      <NumberOfRows>5</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -1160,6 +1166,11 @@
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>3</RowIndex>
           <ParameterName>NIF</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>4</RowIndex>
+          <ParameterName>Total</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

@@ -153,6 +153,7 @@ namespace WEBPOS.Controllers
 
         public ActionResult LoadData()
         {
+            var userCode = CookiesUtility.ReadCookieAsString("UserCode");
             try
             {
                 var draw = Request.Form.GetValues("draw").FirstOrDefault();
@@ -176,7 +177,7 @@ namespace WEBPOS.Controllers
                     a.Name
                 });
 
-                var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == CookiesUtility.ReadCookieAsString("UserCode").ToString());
+                var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == userCode.ToString());
                 if (user.UserType != UserType.ADMINISTRADOR)
                     model = model.Where(x=>x.UserType != UserType.ADMINISTRADOR.ToString());
                 //Sorting    
@@ -193,7 +194,7 @@ namespace WEBPOS.Controllers
                 //total number of rows count     
                 recordsTotal = model.Count();
                 //Paging     
-                var data = model.Skip(skip).Take(pageSize).ToList();
+                var data = model.ToList().Skip(skip).Take(pageSize);
                 //Returning Json Data    
                 return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
 

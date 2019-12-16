@@ -19,7 +19,8 @@ namespace WEBPOS.Controllers
         // GET: Pos
         public ActionResult Index()
         {
-            if (CookiesUtility.ReadCookieAsString("UserCode") == null || string.IsNullOrEmpty(CookiesUtility.ReadCookieAsString("UserCode")))
+            var userCode = CookiesUtility.ReadCookieAsString("UserCode");
+            if (userCode == null || string.IsNullOrEmpty(userCode))
                 return RedirectToAction("LogIn", "User");
 
             var deviceId = Request.UserHostName;
@@ -31,7 +32,7 @@ namespace WEBPOS.Controllers
             catch (Exception ex) { }
 
             var terminal = BlStorePos.ReadAllQueryable().FirstOrDefault(x => x.DeviceId == deviceId);
-            var usr = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == CookiesUtility.ReadCookieAsString("UserCode").ToString());
+            var usr = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == userCode);
 
             ViewBag.UserName = usr.Name + " " + usr.LastName;
 
@@ -46,7 +47,7 @@ namespace WEBPOS.Controllers
             catch (Exception ex)
             {
                 var dic = new Dictionary<string, List<PosGridModel>>();
-                dic.Add(CookiesUtility.ReadCookieAsString("UserCode"), new List<PosGridModel>());
+                dic.Add(userCode, new List<PosGridModel>());
                 HttpContext.Cache["PosGridList"] = dic;
             }
 
@@ -148,6 +149,10 @@ namespace WEBPOS.Controllers
                 IsPrinted = false,
                 TotalDiscount = list.Sum(x => x.Discount * x.Quantity)
             };
+            if (model.DocType != DocType.ConsumidorFinal && string.IsNullOrEmpty(model.CustomerCode))
+            {
+                return Json(new { hasNoClient = true }, JsonRequestBehavior.AllowGet);
+            }
 
             BlSellTransactionHead.Save(head);
 
@@ -368,7 +373,13 @@ namespace WEBPOS.Controllers
 
                 foreach (var obj in BlBusinessPartner.ReadAllQueryable().Where(x => x.BusinessPartnerType == "C"))
                 {
-                    model.Add(new BusinessPartnerModel { PriceListCode = obj.PriceListCode, PriceListDescription = obj.PriceList.PriceListDescription, BusinessPartnerCode = obj.BusinessPartnerCode, BusinessPartnerDescription = obj.BusinessPartnerDescription });
+                    model.Add(new BusinessPartnerModel
+                    {
+                        PriceListCode = obj.PriceListCode,
+                        PriceListDescription = BlPriceList.ReadAllQueryable().FirstOrDefault(x => x.PriceListCode == obj.PriceListCode).PriceListDescription,
+                        BusinessPartnerCode = obj.BusinessPartnerCode,
+                        BusinessPartnerDescription = obj.BusinessPartnerDescription
+                    });
                 }
 
                 if (!string.IsNullOrEmpty(searchValue))
@@ -379,7 +390,7 @@ namespace WEBPOS.Controllers
                 //total number of rows count     
                 recordsTotal = model.Count();
                 //Paging     
-                var data = model.Skip(skip).Take(pageSize).ToList();
+                var data = model.ToList().Skip(skip).Take(pageSize);
                 //Returning Json Data    
                 return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
 
@@ -649,7 +660,7 @@ namespace WEBPOS.Controllers
 
                 var model = list.ToList();
 
-                var data = model.Skip(skip).Take(pageSize).ToList();
+                var data = model.ToList().Skip(skip).Take(pageSize);
 
                 return Json(new { draw = model, recordsFiltered = model.Count(), recordsTotal = model.Count(), data = data });
             }
@@ -689,7 +700,7 @@ namespace WEBPOS.Controllers
 
                 var model = list.ToList();
 
-                var data = model.Skip(skip).Take(pageSize).ToList();
+                var data = model.ToList().Skip(skip).Take(pageSize);
 
                 return Json(new { draw = model, recordsFiltered = model.Count(), recordsTotal = model.Count(), data = data });
             }

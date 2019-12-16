@@ -15,10 +15,10 @@ namespace WEBPOS.DataAccess.BusinessLayer
             var dl = new DlActivityLog();
             return dl.ReadAll();
         }
-        public static IEnumerable<DeActivityLog> ReadAllQueryable()
+        public static IQueryable<DeActivityLog> ReadAllQueryable()
         {
             var dl = new DlActivityLog();
-            return dl.ReadAll();
+            return dl.ReadAllQueryable();
         }
         
         public static void Save(DeActivityLog obj)

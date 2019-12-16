@@ -16,7 +16,7 @@ namespace WEBPOS.DataAccess.DataLayer
         {
             return context.Stores.ToList();
         }
-        public IEnumerable<DeStore> ReadAllQueryable()
+        public IQueryable<DeStore> ReadAllQueryable()
         {
             return context.Stores;
         }

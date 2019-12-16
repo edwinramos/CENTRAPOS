@@ -408,7 +408,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1277,7 +1276,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Parameters!Total.Value</Value>
+                    <Value>=Parameters!SubTotal.Value</Value>
                     <Style>
                       <Format>'RD$'#,0.00;('$'#,0.00)</Format>
                     </Style>
@@ -1379,7 +1378,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Total</Value>
+                    <Value>Total sin impuestos</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -1388,9 +1387,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox31</rd:DefaultName>
             <Top>14.25081cm</Top>
-            <Left>3.52101cm</Left>
+            <Left>2.64788cm</Left>
             <Height>0.6cm</Height>
-            <Width>2.33539cm</Width>
+            <Width>3.20852cm</Width>
             <ZIndex>30</ZIndex>
             <Style>
               <Border>
@@ -1654,6 +1653,12 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="SubTotal">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -1764,6 +1769,11 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>5</RowIndex>
           <ParameterName>DiscTotal</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>5</RowIndex>
+          <ParameterName>SubTotal</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

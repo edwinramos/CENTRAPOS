@@ -15,10 +15,10 @@ namespace WEBPOS.DataAccess.BusinessLayer
             var dl = new DlPosClosureDetail();
             return dl.ReadAll();
         }
-        public static IEnumerable<DePosClosureDetail> ReadAllQueryable()
+        public static IQueryable<DePosClosureDetail> ReadAllQueryable()
         {
             var dl = new DlPosClosureDetail();
-            return dl.ReadAll();
+            return dl.ReadAllQueryable();
         }
         public static IEnumerable<DePosClosureDetail> Read(DePosClosureDetail obj)
         {
