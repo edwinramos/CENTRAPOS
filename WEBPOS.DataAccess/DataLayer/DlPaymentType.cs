@@ -6,23 +6,24 @@ using System.Threading.Tasks;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
+using WEBPOS.DataAccess.Repository;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
-    public class DlPaymentType
+    public class DlPaymentType : BaseRepository<WEBPOSContext, DePaymentType>
     {
-        private WEBPOSContext context = new WEBPOSContext();
+        public DlPaymentType(WEBPOSContext context = null) : base(context) { }
         public IEnumerable<DePaymentType> ReadAll()
         {
-            return context.PaymentTypes.ToList();
+            return Context.PaymentTypes.ToList();
         }
         public IQueryable<DePaymentType> ReadAllQueryable()
         {
-            return context.PaymentTypes;
+            return Context.PaymentTypes;
         }
         public IEnumerable<DePaymentType> Read(DePaymentType obj)
         {
-            var data = context.PaymentTypes.ToList();
+            var data = Context.PaymentTypes.ToList();
 
             if (!string.IsNullOrEmpty(obj.PaymentTypeCode))
                 data = data.Where(x=>x.PaymentTypeCode == obj.PaymentTypeCode).ToList();
@@ -35,7 +36,7 @@ namespace WEBPOS.DataAccess.DataLayer
 
         public void Save(DePaymentType obj)
         {
-            var val = context.PaymentTypes.FirstOrDefault(x => x.PaymentTypeCode == obj.PaymentTypeCode);
+            var val = Context.PaymentTypes.FirstOrDefault(x => x.PaymentTypeCode == obj.PaymentTypeCode);
             if (val != null)
             {
                 val.PaymentTypeDescription = obj.PaymentTypeDescription;
@@ -48,23 +49,23 @@ namespace WEBPOS.DataAccess.DataLayer
             }
             else
             {
-                context.PaymentTypes.Add(obj);
+                Context.PaymentTypes.Add(obj);
                 var activity = new DeActivityLog
                 {
                     ActivityMessage = string.Format(ActivityLogHelper.GetActivityText(LogActivities.CREATE), "Tipo de Pago", obj.PaymentTypeCode)
                 };
                 BlActivityLog.Save(activity);
             }
-            context.SaveChanges();
+            Context.SaveChanges();
         }
 
         public void Delete(string PaymentTypeCode)
         {
-            var obj = context.PaymentTypes.FirstOrDefault(x=>x.PaymentTypeCode == PaymentTypeCode);
+            var obj = Context.PaymentTypes.FirstOrDefault(x=>x.PaymentTypeCode == PaymentTypeCode);
             if(obj != null)
             {
-                context.PaymentTypes.Remove(obj);
-                context.SaveChanges();
+                Context.PaymentTypes.Remove(obj);
+                Context.SaveChanges();
                 var activity = new DeActivityLog
                 {
                     ActivityMessage = string.Format(ActivityLogHelper.GetActivityText(LogActivities.DELETE), "Tipo de Pago", obj.PaymentTypeCode)

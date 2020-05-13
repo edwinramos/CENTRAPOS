@@ -167,6 +167,7 @@ namespace WEBPOS.Controllers
                     Quantity = item.Quantity,
                     RowValue = item.Total,
                     TaxCode = item.TaxCode,
+                    TaxPercent = BlTax.ReadByCode(item.TaxCode).TaxPercent,
                     PriceListCode = item.PriceListCode,
                     TotalValue = item.Total + item.Discount,
                     Barcode = item.Barcode,
@@ -222,7 +223,8 @@ namespace WEBPOS.Controllers
 
         public JsonResult PrintLastRecept(string storeCode, string posCode)
         {
-            var head = BlSellTransactionHead.ReadAllQueryable().LastOrDefault(x => x.PosCode == posCode && x.StoreCode == storeCode);
+            //var head = BlSellTransactionHead.ReadAllQueryable().LastOrDefault(x => x.PosCode == posCode && x.StoreCode == storeCode);
+            var head = BlSellTransactionHead.ReadAllQueryable($"PosCode = '{posCode}' AND StoreCode = '{storeCode}'").LastOrDefault();
             return Json(new { NCF = head.NCF, StoreCode = head.StoreCode, PosCode = head.PosCode }, JsonRequestBehavior.AllowGet);
         }
 
@@ -584,8 +586,8 @@ namespace WEBPOS.Controllers
                     deviceId = computer_name[0];
                 }
                 catch (Exception ex) { }
-
-                var usr = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == CookiesUtility.ReadCookieAsString("UserCode").ToString());
+                var userCode = CookiesUtility.ReadCookieAsString("UserCode");
+                var usr = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == userCode);
                 var terminal = BlStorePos.ReadAllQueryable().FirstOrDefault(x => x.DeviceId == deviceId);
                 var store = BlStore.ReadByCode(terminal.StoreCode);
 
@@ -593,8 +595,8 @@ namespace WEBPOS.Controllers
 
                 posClosure.EndDateTime = DateTime.Now;
 
-                var sales = BlSellTransactionHead.ReadAllQueryable().Where(x => x.TransactionDateTime >= posClosure.StartDateTime && x.UpdateUser == usr.UserCode);
-
+                //var sales = BlSellTransactionHead.ReadAllQueryable().Where(x => x.TransactionDateTime >= posClosure.StartDateTime && x.UpdateUser == userCode);
+                var sales = BlSellTransactionHead.ReadAllQueryable($"TransactionDateTime >= '{posClosure.StartDateTime.ToString("yyyy-MM-dd HH:mm:ss")}' AND UpdateUser = '{userCode}'");
                 foreach (var sale in sales)
                 {
                     BlPosClosureDetail.Save(new DePosClosureDetail

@@ -1,0 +1,193 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Store";
+}
+
+@model WEBPOS.DataAccess.DataEntities.DeStore
+
+@using (Html.BeginForm("StoreManage", "Store", FormMethod.Post, new { id = "storeForm", onkeydown = "return (event.keyCode!=13);" }))
+{
+    @Html.HiddenFor(m => m.StoreCode)
+    
+    <br />
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse1">Datos de Tienda</a>
+                </h4>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse">
+                &nbsp;
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.Label("Descripción")
+                                @Html.EditorFor(model => model.StoreDescription, new { htmlAttributes = new { @class = "form-control" } })
+                                <br />
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.Label("Secuencia de Credito Fiscal")
+                                @Html.EditorFor(model => model.NCFSequence1, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.Label("Ciudad")
+                                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                                <br />
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.Label("Secuencia de Consumidor Final")
+                                @Html.EditorFor(model => model.NCFSequence2, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.Label("RNC")
+                                @Html.EditorFor(model => model.RNC, new { htmlAttributes = new { @class = "form-control" } })
+                                <br />
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.Label("Telefono")
+                                @Html.EditorFor(model => model.Telephone, new { htmlAttributes = new { @class = "form-control" } })
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.Label("NIF")
+                                @Html.EditorFor(model => model.NIF, new { htmlAttributes = new { @class = "form-control" } })
+                                <br />
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.Label("Direccion(Calle, Numero)")
+                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.Label("Lista de Precio")
+                                @{
+                                    List<SelectListItem> list = new List<SelectListItem>();
+                                    foreach (var ob in WEBPOS.DataAccess.BusinessLayer.BlPriceList.ReadAll())
+                                    {
+                                        list.Add(new SelectListItem { Text = ob.PriceListCode + " | " + ob.PriceListDescription, Value = ob.PriceListCode });
+                                    }
+                                }
+                                @Html.DropDownListFor(model => model.PriceListCode, list, new { htmlAttributes = new { @class = "form-control" } })
+                                <br />
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.Label("Vencimento de Secuencia")
+                                @Html.EditorFor(model => model.SequenceDueDate, new { htmlAttributes = new { @class = "form-control datepicker", data_format = "dd/mm/yyyy" } })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.Label("Almacen")
+                                @{
+                                    List<SelectListItem> whslist = new List<SelectListItem>();
+                                    foreach (var ob in WEBPOS.DataAccess.BusinessLayer.BlWarehouse.ReadAll())
+                                    {
+                                        whslist.Add(new SelectListItem { Text = ob.WarehouseCode + " | " + ob.WarehouseDescription, Value = ob.WarehouseCode });
+                                    }
+                                }
+                                @Html.DropDownListFor(model => model.WarehouseCode, whslist, new { htmlAttributes = new { @class = "form-control" } })
+                                <br />
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse2">Restricciones de Tienda</a>
+                </h4>
+            </div>
+            <div id="collapse2" class="panel-collapse collapse">
+                &nbsp;
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        @Html.Label("Descuento maximo porcentual(%)")
+                        @Html.TextBoxFor(m => m.MaxDiscPercent, new { @class = "form-control", @type = "number", @min = "0" })
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        @Html.Label("Descuento maximo por monto")
+                        @Html.TextBoxFor(m => m.MaxDiscAmount, new { @class = "form-control", @type = "number", @min = "0" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-default" type="button" onclick="onStoreSave()">Guardar</button>
+}
+<script>
+    function onStoreSave(s, e) {
+        var form = $("#storeForm")[0];
+        var data = $("#storeForm").serialize();
+
+        $.ajax({
+            url: form.action,
+            type: form.method,
+            data: data,
+            beforeSend: function () {
+
+            },
+            complete: function () {
+
+            },
+            success: function (result) {
+                location.reload();
+                toastr.success('', 'Guardado');
+            }
+        });
+    }
+    $(function () { // will trigger when the document is ready
+        $('.datepicker').datepicker({ dateFormat: 'd/M/yy' }); //Initialise any date pickers
+    });
+</script>

@@ -38,7 +38,7 @@ namespace WEBPOS.Controllers
                 {
                     x.UserCode,
                     x.SellOrderId,
-                    Total = BlSellOrder.ReadAllQueryable().FirstOrDefault(p => p.SellOrderId == x.SellOrderId).DocTotal,
+                    Total = BlSellOrder.ReadAllQueryable($"SellOrderId = {x.SellOrderId}").FirstOrDefault().DocTotal,
                     State = BlUserSellOrder.ReadByCode(x.UserCode, x.SellOrderId).UserOrderState.ToString()
                 });
 
@@ -89,7 +89,7 @@ namespace WEBPOS.Controllers
                 {
                     x.UserCode,
                     x.SellOrderId,
-                    Total = BlSellOrder.ReadAllQueryable().FirstOrDefault(p => p.SellOrderId == x.SellOrderId).DocTotal,
+                    Total = BlSellOrder.ReadAllQueryable($"SellOrderId = {x.SellOrderId}").FirstOrDefault().DocTotal,
                     State = BlUserSellOrder.ReadByCode(x.UserCode, x.SellOrderId).UserOrderState.ToString(),
                     x.LastUpdate
                 });
@@ -141,7 +141,7 @@ namespace WEBPOS.Controllers
                 {
                     x.UserCode,
                     x.SellOrderId,
-                    Total = BlSellOrder.ReadAllQueryable().FirstOrDefault(p => p.SellOrderId == x.SellOrderId).DocTotal,
+                    Total = BlSellOrder.ReadAllQueryable($"SellOrderId = {x.SellOrderId}").FirstOrDefault().DocTotal,
                     State = BlUserSellOrder.ReadByCode(x.UserCode, x.SellOrderId).UserOrderState.ToString(),
                     x.LastUpdate
                 });
@@ -195,7 +195,7 @@ namespace WEBPOS.Controllers
         public JsonResult GetSellOrderInfo(int sellOrderId)
         {
             double total = 0;
-            var pl = BlSellOrder.ReadAllQueryable().FirstOrDefault(x => x.SellOrderId == sellOrderId);
+            var pl = BlSellOrder.ReadAllQueryable($"SellOrderId = {sellOrderId}").FirstOrDefault();
             if (pl != null)
                 total = pl.DocTotal;
 

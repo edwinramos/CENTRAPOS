@@ -36,6 +36,7 @@ namespace WEBPOS.Controllers
                 int recordsTotal = 0;
 
                 // Getting all Customer data    
+                //var model = BlSellOrder.ReadAllQueryable($"DATEPART(YEAR, DocDateTime) = {DateTime.Today.Year}").OrderByDescending(x=>x.DocDateTime).Select(x=> new
                 var model = BlSellOrder.ReadAllQueryable().OrderByDescending(x=>x.DocDateTime).Select(x=> new
                 {
                     x.SellOrderId,
@@ -74,7 +75,7 @@ namespace WEBPOS.Controllers
         {
             model.ClientDescription = BlBusinessPartner.ReadAllQueryable().FirstOrDefault(x => x.BusinessPartnerCode == model.ClientCode).BusinessPartnerDescription;
 
-            var detail = BlSellOrderDetail.ReadAllQueryable().Where(x => x.SellOrderId == model.SellOrderId);
+            var detail = BlSellOrderDetail.ReadAllQueryable($"SellOrderId = {model.SellOrderId}");
             model.VatSum = detail.Sum(x => x.VatValue * x.Quantity);
             model.TotalDiscount = detail.Sum(x => x.DiscountValue);
             model.DocTotal = detail.Sum(x => x.TotalRowValue - x.DiscountValue);
@@ -95,8 +96,8 @@ namespace WEBPOS.Controllers
         {
             try
             {
-                var obj = BlSellOrder.ReadAllQueryable().FirstOrDefault(x => x.SellOrderId == id);
-                var list = BlSellOrderDetail.ReadAllQueryable().Where(x => x.SellOrderId == obj.SellOrderId);
+                var obj = BlSellOrder.ReadAllQueryable($"SellOrderId = {id}").FirstOrDefault();
+                var list = BlSellOrderDetail.ReadAllQueryable($"SellOrderId = {obj.SellOrderId}");
 
                 var head = new DeSellTransactionHead
                 {
@@ -167,7 +168,7 @@ namespace WEBPOS.Controllers
                 }
 
                 obj.IsClosed = true;
-                var detail = BlSellOrderDetail.ReadAllQueryable().Where(x => x.SellOrderId == obj.SellOrderId);
+                var detail = BlSellOrderDetail.ReadAllQueryable($"SellOrderId = {obj.SellOrderId}");
                 obj.VatSum = detail.Sum(x => x.VatValue);
                 obj.TotalDiscount = detail.Sum(x => x.DiscountValue);
                 obj.DocTotal = detail.Sum(x => x.TotalRowValue);
@@ -187,7 +188,7 @@ namespace WEBPOS.Controllers
             {
                 return View(new DeSellOrder { SellOrderId = 0, DocDateTime = DateTime.Today, ClosedDateTime = new DateTime(1900,1,1) });
             }
-            var model = BlSellOrder.ReadAllQueryable().FirstOrDefault(x => x.SellOrderId == id);
+            var model = BlSellOrder.ReadAllQueryable($"SellOrderId = {id}").FirstOrDefault();
             return View(model);
         }
 
@@ -234,7 +235,7 @@ namespace WEBPOS.Controllers
 
         public ActionResult SellOrderDetailManage(DeSellOrderDetail model)
         {
-            var order = BlSellOrder.ReadAllQueryable().FirstOrDefault(x=>x.SellOrderId == model.SellOrderId);
+            var order = BlSellOrder.ReadAllQueryable($"SellOrderId = {model.SellOrderId}").FirstOrDefault();
             var item = BlItem.ReadByCode(model.ItemCode);
             var itemPrice = BlPrice.ReadAllQueryable().FirstOrDefault(x => x.ItemCode == model.ItemCode && x.PriceListCode == order.PriceListCode);
 
@@ -251,7 +252,7 @@ namespace WEBPOS.Controllers
         {
             var model = new DeSellOrderDetail { SellOrderId = sellOrderId, WarehouseCode = whsCode, Quantity = 1 };
 
-            var obj = BlSellOrderDetail.ReadAllQueryable().Where(x => x.SellOrderId == sellOrderId && x.LineNumber == lineNumber);
+            var obj = BlSellOrderDetail.ReadAllQueryable($"SellOrderId = {sellOrderId} AND LineNumber = {lineNumber}");
             if (obj.Any())
                 model = obj.FirstOrDefault();
 
@@ -285,7 +286,7 @@ namespace WEBPOS.Controllers
 
         public JsonResult GetOrderTotals(int sellOrderId)
         {
-            var list = BlSellOrderDetail.ReadAllQueryable().Where(x=>x.SellOrderId == sellOrderId);
+            var list = BlSellOrderDetail.ReadAllQueryable($"SellOrderId = {sellOrderId}");
             
             return Json(new { totalDiscount = list.Sum(x=>x.DiscountValue), docTotal = list.Sum(x=>x.TotalRowValue), taxSum = list.Sum(x=>x.VatValue) }, JsonRequestBehavior.AllowGet);
         }

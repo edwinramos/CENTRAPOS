@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using CentraPos.DataAccess.DataEntities;
+
+namespace CentraPos.Models
+{
+    public class DiscountsModel
+    {
+        public string ItemCode { get; set; }
+        public double ItemPrice { get; set; }
+        public double DiscountAmount { get; set; }
+        public double Result { get; set; }
+        public double Quantity { get; set; }
+        public DiscountType DiscountType { get; set; }
+    }
+
+    public enum DiscountType
+    {
+        Porcentual = 0,
+        Monto = 1
+    }
+}

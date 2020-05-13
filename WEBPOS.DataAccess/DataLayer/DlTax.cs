@@ -6,31 +6,32 @@ using System.Threading.Tasks;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
+using WEBPOS.DataAccess.Repository;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
-    public class DlTax
+    public class DlTax : BaseRepository<WEBPOSContext, DeTax>
     {
-        private WEBPOSContext context = new WEBPOSContext();
+        public DlTax(WEBPOSContext context = null) : base(context) { }
         public IEnumerable<DeTax> ReadAll()
         {
-            return context.Taxes.ToList();
+            return Context.Taxes.ToList();
         }
         public IQueryable<DeTax> ReadAllQueryable()
         {
-            return context.Taxes;
+            return Context.Taxes;
         }
         public DeTax ReadByCode(string taxCode)
         {
-            return context.Taxes.FirstOrDefault(x => x.TaxCode == taxCode);
+            return Context.Taxes.FirstOrDefault(x => x.TaxCode == taxCode);
         }
         public DeTax ReadByValue(double value)
         {
-            return context.Taxes.FirstOrDefault(x => x.TaxPercent == value);
+            return Context.Taxes.FirstOrDefault(x => x.TaxPercent == value);
         }
         public IEnumerable<DeTax> Read(DeTax obj)
         {
-            var data = context.Taxes.ToList();
+            var data = Context.Taxes.ToList();
 
             if (!string.IsNullOrEmpty(obj.TaxCode))
                 data = data.Where(x=>x.TaxCode == obj.TaxCode).ToList();
@@ -43,7 +44,7 @@ namespace WEBPOS.DataAccess.DataLayer
 
         public void Save(DeTax obj)
         {
-            var val = context.Taxes.FirstOrDefault(x => x.TaxCode == obj.TaxCode);
+            var val = Context.Taxes.FirstOrDefault(x => x.TaxCode == obj.TaxCode);
             if (val != null)
             {
                 val.TaxDescription = obj.TaxDescription;
@@ -56,23 +57,23 @@ namespace WEBPOS.DataAccess.DataLayer
             }
             else
             {
-                context.Taxes.Add(obj);
+                Context.Taxes.Add(obj);
                 var activity = new DeActivityLog
                 {
                     ActivityMessage = string.Format(ActivityLogHelper.GetActivityText(LogActivities.CREATE), "Impuesto", obj.TaxCode)
                 };
                 BlActivityLog.Save(activity);
             }
-            context.SaveChanges();
+            Context.SaveChanges();
         }
 
         public void Delete(string TaxCode)
         {
-            var obj = context.Taxes.FirstOrDefault(x=>x.TaxCode == TaxCode);
+            var obj = Context.Taxes.FirstOrDefault(x=>x.TaxCode == TaxCode);
             if(obj != null)
             {
-                context.Taxes.Remove(obj);
-                context.SaveChanges();
+                Context.Taxes.Remove(obj);
+                Context.SaveChanges();
                 var activity = new DeActivityLog
                 {
                     ActivityMessage = string.Format(ActivityLogHelper.GetActivityText(LogActivities.DELETE), "Impuesto", obj.TaxCode)

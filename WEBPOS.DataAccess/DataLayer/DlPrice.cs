@@ -6,29 +6,30 @@ using System.Threading.Tasks;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
+using WEBPOS.DataAccess.Repository;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
-    public class DlPrice
+    public class DlPrice : BaseRepository<WEBPOSContext, DePrice>
     {
-        private WEBPOSContext context = new WEBPOSContext();
+        public DlPrice(WEBPOSContext context = null) : base(context) { }
         public IEnumerable<DePrice> ReadAll()
         {
-            return context.Prices.ToList();
+            return Context.Prices.ToList();
         }
         public IQueryable<DePrice> ReadAllQueryable()
         {
-            return context.Prices;
+            return Context.Prices;
         }
 
         public DePrice ReadByCode(string itemCode, string priceListCode)
         {
-            return context.Prices.FirstOrDefault(x=>x.ItemCode == itemCode && x.PriceListCode == priceListCode);
+            return Context.Prices.FirstOrDefault(x=>x.ItemCode == itemCode && x.PriceListCode == priceListCode);
         }
 
         public IEnumerable<DePrice> Read(DePrice obj)
         {
-            var data = context.Prices.ToList();
+            var data = Context.Prices.ToList();
 
             if (!string.IsNullOrEmpty(obj.ItemCode))
                 data = data.Where(x => x.ItemCode == obj.ItemCode).ToList();
@@ -44,7 +45,7 @@ namespace WEBPOS.DataAccess.DataLayer
 
         public void Save(DePrice obj)
         {
-            var val = context.Prices.FirstOrDefault(x => x.ItemCode == obj.ItemCode && x.PriceListCode == obj.PriceListCode);
+            var val = Context.Prices.FirstOrDefault(x => x.ItemCode == obj.ItemCode && x.PriceListCode == obj.PriceListCode);
             if (val != null)
             {
                 val.SellPrice = obj.SellPrice;
@@ -57,23 +58,23 @@ namespace WEBPOS.DataAccess.DataLayer
             }
             else
             {
-                context.Prices.Add(obj);
+                Context.Prices.Add(obj);
                 var activity = new DeActivityLog
                 {
                     ActivityMessage = string.Format(ActivityLogHelper.GetActivityText(LogActivities.CREATE), "Precio", obj.ItemCode + "|" + obj.PriceListCode)
                 };
                 BlActivityLog.Save(activity);
             }
-            context.SaveChanges();
+            Context.SaveChanges();
         }
 
         public void Delete(string itemCode, string priceListCode)
         {
-            var obj = context.Prices.FirstOrDefault(x=> x.ItemCode == itemCode && x.PriceListCode == priceListCode);
+            var obj = Context.Prices.FirstOrDefault(x=> x.ItemCode == itemCode && x.PriceListCode == priceListCode);
             if(obj != null)
             {
-                context.Prices.Remove(obj);
-                context.SaveChanges();
+                Context.Prices.Remove(obj);
+                Context.SaveChanges();
 
                 var activity = new DeActivityLog
                 {

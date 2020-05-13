@@ -6,23 +6,24 @@ using System.Threading.Tasks;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
+using WEBPOS.DataAccess.Repository;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
-    public class DlPosClosureDetail
+    public class DlPosClosureDetail : BaseRepository<WEBPOSContext, DePosClosureDetail>
     {
-        private WEBPOSContext context = new WEBPOSContext();
+        public DlPosClosureDetail(WEBPOSContext context = null) : base(context) { }
         public IEnumerable<DePosClosureDetail> ReadAll()
         {
-            return context.PosClosureDetails.ToList();
+            return Context.PosClosureDetails.ToList();
         }
         public IQueryable<DePosClosureDetail> ReadAllQueryable()
         {
-            return context.PosClosureDetails;
+            return Context.PosClosureDetails;
         }
         public IEnumerable<DePosClosureDetail> Read(DePosClosureDetail obj)
         {
-            var data = context.PosClosureDetails.ToList();
+            var data = Context.PosClosureDetails.ToList();
 
             if (obj.PosClosureHeadId != 0)
                 data = data.Where(x => x.PosClosureHeadId == obj.PosClosureHeadId).ToList();
@@ -38,14 +39,14 @@ namespace WEBPOS.DataAccess.DataLayer
 
         public void Save(DePosClosureDetail obj)
         {
-            context.PosClosureDetails.Add(obj);
+            Context.PosClosureDetails.Add(obj);
             //var activity = new DeActivityLog
             //{
             //    ActivityMessage = string.Format(ActivityLogHelper.GetActivityText(LogActivities.CREATE), "Cierre de caja", obj.PosCode + "|" + obj.TransactionNumber)
             //};
             //BlActivityLog.Save(activity);
 
-            context.SaveChanges();
+            Context.SaveChanges();
         }
     }
 }

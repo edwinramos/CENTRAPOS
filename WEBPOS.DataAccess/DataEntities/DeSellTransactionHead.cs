@@ -40,7 +40,6 @@ namespace WEBPOS.DataAccess.DataEntities
         public bool IsPrinted { get; set; }
 
         public DocType DocType { get; set; }
-
         public virtual DeStore Store { get; set; }
     }
 

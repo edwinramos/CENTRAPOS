@@ -196,6 +196,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SoldQuantityModel.cs" />
     <Compile Include="Models\ItemSearchResult.cs" />
+    <Compile Include="Repository\BaseRepository.cs" />
+    <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Utils\CookiesUtilityDL.cs" />
     <Compile Include="Utils\EncryptionUtility.cs" />
     <Compile Include="WEBPOSContext.cs" />

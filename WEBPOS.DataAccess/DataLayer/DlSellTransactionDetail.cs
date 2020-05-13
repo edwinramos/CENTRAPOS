@@ -4,23 +4,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WEBPOS.DataAccess.DataEntities;
+using WEBPOS.DataAccess.Repository;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
-    public class DlSellTransactionDetail
+    public class DlSellTransactionDetail : BaseRepository<WEBPOSContext, DeSellTransactionDetail>
     {
-        private WEBPOSContext context = new WEBPOSContext();
+        public DlSellTransactionDetail(WEBPOSContext context = null) : base(context) { }
         public IEnumerable<DeSellTransactionDetail> ReadAll()
         {
-            return context.SellTransactionDetails.ToList();
+            return Context.SellTransactionDetails.ToList();
+        }
+        public IEnumerable<DeSellTransactionDetail> ReadAllQueryableCustom(string filters)
+        {
+            var queryString = $@"SELECT *
+FROM srSellTransactionDetail
+WHERE {filters}";
+            return Context.Database.SqlQuery<DeSellTransactionDetail>(queryString);
         }
         public IQueryable<DeSellTransactionDetail> ReadAllQueryable()
         {
-            return context.SellTransactionDetails;
+            return Context.SellTransactionDetails;
         }
         public IEnumerable<DeSellTransactionDetail> Read(DeSellTransactionDetail obj)
         {
-            var data = context.SellTransactionDetails.ToList();
+            var data = Context.SellTransactionDetails.ToList();
             if (!string.IsNullOrEmpty(obj.StoreCode))
                 data = data.Where(x => x.StoreCode == obj.StoreCode).ToList();
 
@@ -35,20 +43,20 @@ namespace WEBPOS.DataAccess.DataLayer
 
         public void Save(DeSellTransactionDetail obj)
         {
-            //var val = context.SellTransactionDetails.FirstOrDefault(x => x.StoreCode == obj.StoreCode && x.StorePosCode == obj.StorePosCode && x.TransactionNumber == obj.TransactionNumber && x.TransactionDateTime == obj.TransactionDateTime);
+            //var val = Context.SellTransactionDetails.FirstOrDefault(x => x.StoreCode == obj.StoreCode && x.StorePosCode == obj.StorePosCode && x.TransactionNumber == obj.TransactionNumber && x.TransactionDateTime == obj.TransactionDateTime);
 
-            context.SellTransactionDetails.Add(obj);
+            Context.SellTransactionDetails.Add(obj);
 
-            context.SaveChanges();
+            Context.SaveChanges();
         }
 
         public void Delete(string storeCode, string posCode, double transactionNumber, double rowNumber, DateTime transactionDateTime)
         {
-            var obj = context.SellTransactionDetails.FirstOrDefault(x => x.StoreCode == storeCode && x.PosCode == posCode && x.TransactionNumber == transactionNumber && x.RowNumber == rowNumber && x.TransactionDateTime == transactionDateTime);
+            var obj = Context.SellTransactionDetails.FirstOrDefault(x => x.StoreCode == storeCode && x.PosCode == posCode && x.TransactionNumber == transactionNumber && x.RowNumber == rowNumber && x.TransactionDateTime == transactionDateTime);
             if (obj != null)
             {
-                context.SellTransactionDetails.Remove(obj);
-                context.SaveChanges();
+                Context.SellTransactionDetails.Remove(obj);
+                Context.SaveChanges();
             }
         }
     }

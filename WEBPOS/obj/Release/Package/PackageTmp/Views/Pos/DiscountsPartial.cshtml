@@ -1,0 +1,41 @@
+﻿@model WEBPOS.Models.DiscountsModel
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("", "", FormMethod.Post, new { id = "paymentForm", onkeydown = "return (event.keyCode!=13);" }))
+{
+    <div class="container form-group">
+        <div class="modal-dialog modal-lg" style="width:50%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal">&times;</a>
+                    <h4 class="modal-title">Descuentos</h4>
+                </div>
+                @Html.HiddenFor(x => x.ItemCode)
+                @Html.HiddenFor(x => x.Quantity)
+                <div class="modal-body col-md-12">
+                    @Html.Label("Tipo de Descuento")
+                    @Html.EnumDropDownListFor(m => m.DiscountType, "", new { @class = "form-control", @onchange = "onDiscountAmountChanged();" })
+                </div>
+                <div class="modal-body col-md-12">
+                    @Html.Label("Precio")
+                    @Html.TextBoxFor(m => m.ItemPrice, null, new { @class = "form-control currency", @readonly = "readonly", @type = "number" })
+                </div>
+                <div class="modal-body col-md-12">
+                    @Html.Label("Cantidad Descontada")
+                    @Html.TextBoxFor(m => m.DiscountAmount, "", new { @class = "form-control", @onchange = "onDiscountAmountChanged();" })
+                </div>
+                <div class="modal-body col-md-12">
+                    @Html.Label("Descuento Final")
+                    @Html.TextBoxFor(m => m.Result, "", new { @class = "form-control", @readonly = "readonly" })
+                </div>
+
+                <div class="modal-footer">
+                    <a class="btn btn-default" data-dismiss="modal">Cerrar</a>
+                    <a class="btn btn-default" onclick=saveDiscount();>Ok</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

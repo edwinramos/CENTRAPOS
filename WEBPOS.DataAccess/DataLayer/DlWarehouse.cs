@@ -6,23 +6,24 @@ using System.Threading.Tasks;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
+using WEBPOS.DataAccess.Repository;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
-    public class DlWarehouse
+    public class DlWarehouse : BaseRepository<WEBPOSContext, DeWarehouse>
     {
-        private WEBPOSContext context = new WEBPOSContext();
+        public DlWarehouse(WEBPOSContext context = null) : base(context) { }
         public IEnumerable<DeWarehouse> ReadAll()
         {
-            return context.Warehouses.ToList();
+            return Context.Warehouses.ToList();
         }
         public IQueryable<DeWarehouse> ReadAllQueryable()
         {
-            return context.Warehouses;
+            return Context.Warehouses;
         }
         public IEnumerable<DeWarehouse> Read(DeWarehouse obj)
         {
-            var data = context.Warehouses.ToList();
+            var data = Context.Warehouses.ToList();
 
             if (!string.IsNullOrEmpty(obj.WarehouseCode))
                 data = data.Where(x=>x.WarehouseCode == obj.WarehouseCode).ToList();
@@ -35,7 +36,7 @@ namespace WEBPOS.DataAccess.DataLayer
 
         public void Save(DeWarehouse obj)
         {
-            var val = context.Warehouses.FirstOrDefault(x => x.WarehouseCode == obj.WarehouseCode);
+            var val = Context.Warehouses.FirstOrDefault(x => x.WarehouseCode == obj.WarehouseCode);
             if (val != null)
             {
                 val.WarehouseDescription = obj.WarehouseDescription;
@@ -47,23 +48,23 @@ namespace WEBPOS.DataAccess.DataLayer
             }
             else
             {
-                context.Warehouses.Add(obj);
+                Context.Warehouses.Add(obj);
                 var activity = new DeActivityLog
                 {
                     ActivityMessage = string.Format(ActivityLogHelper.GetActivityText(LogActivities.CREATE), "Almacen", obj.WarehouseCode)
                 };
                 BlActivityLog.Save(activity);
             }
-            context.SaveChanges();
+            Context.SaveChanges();
         }
 
         public void Delete(string WarehouseCode)
         {
-            var obj = context.Warehouses.FirstOrDefault(x=>x.WarehouseCode == WarehouseCode);
+            var obj = Context.Warehouses.FirstOrDefault(x=>x.WarehouseCode == WarehouseCode);
             if(obj != null)
             {
-                context.Warehouses.Remove(obj);
-                context.SaveChanges();
+                Context.Warehouses.Remove(obj);
+                Context.SaveChanges();
 
                 var activity = new DeActivityLog
                 {

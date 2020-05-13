@@ -6,23 +6,24 @@ using System.Threading.Tasks;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
+using WEBPOS.DataAccess.Repository;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
-    public class DlUnitMeasure
+    public class DlUnitMeasure : BaseRepository<WEBPOSContext, DeUnitMeasure>
     {
-        private WEBPOSContext context = new WEBPOSContext();
+        public DlUnitMeasure(WEBPOSContext context = null) : base(context) { }
         public IEnumerable<DeUnitMeasure> ReadAll()
         {
-            return context.UnitMeasures.ToList();
+            return Context.UnitMeasures.ToList();
         }
         public IQueryable<DeUnitMeasure> ReadAllQueryable()
         {
-            return context.UnitMeasures;
+            return Context.UnitMeasures;
         }
         public IEnumerable<DeUnitMeasure> Read(DeUnitMeasure obj)
         {
-            var data = context.UnitMeasures.ToList();
+            var data = Context.UnitMeasures.ToList();
 
             if (!string.IsNullOrEmpty(obj.UnitMeasureCode))
                 data = data.Where(x=>x.UnitMeasureCode == obj.UnitMeasureCode).ToList();
@@ -35,7 +36,7 @@ namespace WEBPOS.DataAccess.DataLayer
 
         public void Save(DeUnitMeasure obj)
         {
-            var val = context.UnitMeasures.FirstOrDefault(x => x.UnitMeasureCode == obj.UnitMeasureCode);
+            var val = Context.UnitMeasures.FirstOrDefault(x => x.UnitMeasureCode == obj.UnitMeasureCode);
             if (val != null)
             {
                 val.UnitMeasureDescription = obj.UnitMeasureDescription;
@@ -47,7 +48,7 @@ namespace WEBPOS.DataAccess.DataLayer
             }
             else
             {
-                context.UnitMeasures.Add(obj);
+                Context.UnitMeasures.Add(obj);
                 var activity = new DeActivityLog
                 {
                     ActivityMessage = string.Format(ActivityLogHelper.GetActivityText(LogActivities.CREATE), "Unidad de medida", obj.UnitMeasureCode)
@@ -55,16 +56,16 @@ namespace WEBPOS.DataAccess.DataLayer
                 BlActivityLog.Save(activity);
             }
             
-            context.SaveChanges();
+            Context.SaveChanges();
         }
 
         public void Delete(string UnitMeasureCode)
         {
-            var obj = context.UnitMeasures.FirstOrDefault(x=>x.UnitMeasureCode == UnitMeasureCode);
+            var obj = Context.UnitMeasures.FirstOrDefault(x=>x.UnitMeasureCode == UnitMeasureCode);
             if(obj != null)
             {
-                context.UnitMeasures.Remove(obj);
-                context.SaveChanges();
+                Context.UnitMeasures.Remove(obj);
+                Context.SaveChanges();
 
                 var activity = new DeActivityLog
                 {

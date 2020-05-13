@@ -6,23 +6,24 @@ using System.Threading.Tasks;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
+using WEBPOS.DataAccess.Repository;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
-    public class DlPosClosureHead
+    public class DlPosClosureHead : BaseRepository<WEBPOSContext, DePosClosureHead>
     {
-        private WEBPOSContext context = new WEBPOSContext();
+        public DlPosClosureHead(WEBPOSContext context = null) : base(context) { }
         public IEnumerable<DePosClosureHead> ReadAll()
         {
-            return context.PosClosureHeads.ToList();
+            return Context.PosClosureHeads.ToList();
         }
         public IQueryable<DePosClosureHead> ReadAllQueryable()
         {
-            return context.PosClosureHeads;
+            return Context.PosClosureHeads;
         }
         public IEnumerable<DePosClosureHead> Read(DePosClosureHead obj)
         {
-            var data = context.PosClosureHeads.ToList();
+            var data = Context.PosClosureHeads.ToList();
 
             if (obj.PosClosureHeadId != 0)
                 data = data.Where(x => x.PosClosureHeadId == obj.PosClosureHeadId).ToList();
@@ -41,9 +42,9 @@ namespace WEBPOS.DataAccess.DataLayer
 
         public void Save(DePosClosureHead obj)
         {
-            var db = context.PosClosureHeads.FirstOrDefault(x => x.PosClosureHeadId == obj.PosClosureHeadId);
+            var db = Context.PosClosureHeads.FirstOrDefault(x => x.PosClosureHeadId == obj.PosClosureHeadId);
             if (db == null)
-                context.PosClosureHeads.Add(obj);
+                Context.PosClosureHeads.Add(obj);
             else
             {
                 db.StartDateTime = obj.StartDateTime;
@@ -56,7 +57,7 @@ namespace WEBPOS.DataAccess.DataLayer
             //};
             //BlActivityLog.Save(activity);
 
-            context.SaveChanges();
+            Context.SaveChanges();
         }
     }
 }

@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2018
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29409.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WEBPOS", "WEBPOS\WEBPOS.csproj", "{65417330-0BC7-4F51-B4B9-CEFFA0D576FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WEBPOS.DataAccess", "WEBPOS.DataAccess\WEBPOS.DataAccess.csproj", "{6A991101-6089-47C3-B0D4-9482FBF9E81F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CentraPos", "CentraPos\CentraPos.csproj", "{C744D91B-FB97-4416-BF75-FD3BE3B76E93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CentraPos.DataAccess", "CentraPos.DataAccess\CentraPos.DataAccess.csproj", "{144B0741-8020-4BB3-9CBD-2311779448B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{6A991101-6089-47C3-B0D4-9482FBF9E81F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A991101-6089-47C3-B0D4-9482FBF9E81F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A991101-6089-47C3-B0D4-9482FBF9E81F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C744D91B-FB97-4416-BF75-FD3BE3B76E93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C744D91B-FB97-4416-BF75-FD3BE3B76E93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C744D91B-FB97-4416-BF75-FD3BE3B76E93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C744D91B-FB97-4416-BF75-FD3BE3B76E93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{144B0741-8020-4BB3-9CBD-2311779448B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{144B0741-8020-4BB3-9CBD-2311779448B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{144B0741-8020-4BB3-9CBD-2311779448B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{144B0741-8020-4BB3-9CBD-2311779448B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

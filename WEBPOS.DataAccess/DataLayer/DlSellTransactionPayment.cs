@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WEBPOS.DataAccess.DataEntities;
+using WEBPOS.DataAccess.Repository;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
-    public class DlSellTransactionPayment
+    public class DlSellTransactionPayment : BaseRepository<WEBPOSContext, DeSellTransactionPayment>
     {
-        private WEBPOSContext Context = new WEBPOSContext();
+        public DlSellTransactionPayment(WEBPOSContext context = null) : base(context) { }
         public IEnumerable<DeSellTransactionPayment> Read(DeSellTransactionPayment value)
         {
             var query = (from cd in Context.SellTransactionPayments select cd);

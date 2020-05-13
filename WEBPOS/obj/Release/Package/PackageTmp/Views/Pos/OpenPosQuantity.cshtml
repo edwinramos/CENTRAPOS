@@ -1,0 +1,28 @@
+﻿@model WEBPOS.Models.PaymentModel
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("SaveTransaction", "Pos", FormMethod.Post, new { id = "paymentForm", onkeydown = "return (event.keyCode!=13);" }))
+{
+    <div class="container form-group">
+        <div class="modal-dialog modal-lg" style="width:50%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal">&times;</a>
+                    <h4 class="modal-title">Nueva Cantidad</h4>
+                </div>
+                
+                <div class="modal-body col-md-12">
+                    @Html.Label("Cantidad para abrir caja")
+                    @Html.TextBox("OpenPosQuantity", null, new { @class = "form-control currency", @type = "number", min="0" })
+                </div>
+                
+                <div class="modal-footer">
+                    <a class="btn btn-default" data-dismiss="modal">Cerrar</a>
+                    <a class="btn btn-default" onclick=savePosClosureQty();>Ok</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

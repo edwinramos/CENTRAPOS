@@ -1,0 +1,239 @@
+﻿@model WEBPOS.DataAccess.DataEntities.DeBusinessPartner
+
+@{
+    ViewBag.Title = "Detalles de Socio";
+    Layout = "~/Views/Shared/_ActionLayout.cshtml";
+}
+@using (Html.BeginForm("BusinessPartnerManage", "BusinessPartner", FormMethod.Post, new { id = "bsForm" }))
+{
+    @Html.HiddenFor(x => x.BusinessPartnerType)
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.Label("Código")
+                    @Html.EditorFor(model => model.BusinessPartnerCode, new { htmlAttributes = new { @class = "form-control" } })
+                    <br />
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.Label("Lista de Precio")
+                    @{
+                        List<SelectListItem> unitMeasureList = new List<SelectListItem>();
+                        foreach (var ob in WEBPOS.DataAccess.BusinessLayer.BlPriceList.ReadAll())
+                        {
+                            unitMeasureList.Add(new SelectListItem { Text = ob.PriceListCode + " | " + ob.PriceListDescription, Value = ob.PriceListCode });
+                        }
+                    }
+                    @Html.DropDownListFor(model => model.PriceListCode, unitMeasureList, new { htmlAttributes = new { @class = "form-control" } })
+                    <br />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.Label("Descripción")
+                    @Html.EditorFor(model => model.BusinessPartnerDescription, new { htmlAttributes = new { @class = "form-control" } })
+                    <br />
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.Label("RNC")
+                    @Html.EditorFor(model => model.RNC, new { htmlAttributes = new { @class = "form-control" } })
+                    <br />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.Label("Grupo")
+                    @{
+                        List<SelectListItem> groups = new List<SelectListItem>();
+                        groups.Add(new SelectListItem { Text = "NULO", Value = "" });
+                        foreach (var ob in WEBPOS.DataAccess.BusinessLayer.BlBusinessPartnerGroup.ReadAll())
+                        {
+                            groups.Add(new SelectListItem { Text = ob.BusinessPartnerGroupCode + " | " + ob.BusinessPartnerGroupDescription, Value = ob.BusinessPartnerGroupCode });
+                        }
+                    }
+                    @Html.DropDownListFor(model => model.BusinessPartnerGroupCode, groups, new { htmlAttributes = new { @class = "form-control" } })
+                    <br />
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-default" type="submit">Guardar</button>
+}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Contact
+    </div>
+    <div class="panel-body">
+
+        <div style="width:90%; margin:0 auto;">
+            @{ if (!string.IsNullOrEmpty(Model.BusinessPartnerDescription))
+                {
+                    <a href='#' class='btn btn-primary new' onclick=onBPContactNew('0');>Nuevo Contacto</a>
+                }
+            }
+            <table id="bpContactGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Titulo</th>
+                        <th>Telefono 1</th>
+                        <th>Telefono 2</th>
+                        <th>Email</th>
+                        <th>Detalles</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div id="modalContainer"></div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#BusinessPartnerCode").prop('readonly', true);
+        @*if (@Model.BusinessPartnerCode!= "") {
+            $("#BusinessPartnerCode").prop('readonly', true);
+        }*@
+    });
+    var bContactTable = $("#bpContactGrid").DataTable({
+
+        "processing": true, // for show progress bar
+        "serverSide": true, // for process server side
+        "filter": false, // this is for disable filter (search box)
+        "orderMulti": false, // for disable multiple column at once
+        "pageLength": 5,
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+        },
+        "ajax": {
+            "url": "/BusinessPartner/BPContactLoadData/@Model.BusinessPartnerCode",
+            "type": "POST",
+            "datatype": "json"
+        },
+
+        "columnDefs":
+            [{
+                "targets": [0],
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [1],
+                "searchable": false,
+                "orderable": false,
+                "type": "num-fmt"
+            },
+            {
+                "targets": [2],
+                "searchable": false,
+                "orderable": false,
+            },
+            {
+                "targets": [3],
+                "searchable": false,
+                "orderable": false,
+            },
+            {
+                "targets": [4],
+                "searchable": false,
+                "orderable": false,
+            },
+            {
+                "targets": [5],
+                "searchable": false,
+                "orderable": false,
+            }],
+
+        "columns": [
+            { "data": "ContactName", "name": "ContactName", "autoWidth": true },
+            { "data": "ContactTitle", "name": "ContactTitle", "autoWidth": true },
+            { "data": "Telephone1", "name": "Telephone1", "autoWidth": true },
+            { "data": "Telephone2", "name": "Telephone2", "autoWidth": true },
+            { "data": "Email", "name": "Email", "autoWidth": true },
+            {
+                "render": function (data, type, full, meta) { return "<a class='btn btn-info' href='#' onclick=onBPContactEdit('" + full.BusinessPartnerContactCode + "'); >Ver</a>"; }
+            },
+            {
+                data: null, render: function (data, type, row) {
+                    return "<a href='#' class='btn btn-danger' onclick=onBPContactDelete('" + row.BusinessPartnerContactCode + "'); >Eliminar</a>";
+                }
+            },
+        ]
+    });
+
+    function onBPContactDelete(bpContactCode) {
+        if (confirm("¿Seguro que desea eliminar?")) {
+            var url = '@Url.Action("BusinessPartnerContactDelete", "BusinessPartner", new { bpCode = Model.BusinessPartnerCode, bpContactCode = "XX" })';
+            url = url.replace("XX", bpContactCode);
+            $.get(url, function (data) {
+                priceTable.ajax.reload();
+            });
+        }
+    }
+
+    function onBPContactNew(id) {
+        var url = '@Url.Action("BusinessPartnerContactEditPartial", "BusinessPartner", new { bpCode = Model.BusinessPartnerCode, bpContactCode = "0" })';
+
+        $('#modalContainer').load(url, function () {
+            $('#myModal').modal('show');
+        });
+    }
+
+    function onBPContactEdit(id) {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("BusinessPartnerContactEditPartial", "BusinessPartner")',
+            data: { bpCode: '@Model.BusinessPartnerCode', bpContactCode: id },
+            success: function (data) {
+                $('#modalContainer').html(data);
+                $('#myModal').modal('show');
+                $('#BusinessPartnerContactCode').prop('readonly', true);
+            },
+        });
+    }
+
+    function onFormSubmit(s, e) {
+        var form = $("#dataForm")[0];
+        var data = $("#dataForm").serialize();
+
+        $.ajax({
+            url: form.action,
+            type: form.method,
+            data: data,
+            beforeSend: function () {
+
+            },
+            complete: function () {
+
+            },
+            success: function (result) {
+                $('#myModal').modal('hide');
+                toastr.success('', 'Guardado');
+                bContactTable.ajax.reload();
+            }
+        });
+    }
+</script>

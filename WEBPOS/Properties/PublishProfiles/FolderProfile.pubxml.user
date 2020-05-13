@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Published Apps\CENTRAPOS</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Published Apps\WEBPOS</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -52,10 +52,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/23/2017 13:15:20</publishTime>
     </File>
     <File Include="bin/EnvDTE.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/EnvDTE80.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/es/Microsoft.ReportViewer.Common.resources.dll">
       <publishTime>09/17/2018 17:37:48</publishTime>
@@ -190,7 +190,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/16/2017 14:14:32</publishTime>
     </File>
     <File Include="bin/Microsoft.MSXML.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.Common.dll">
       <publishTime>09/17/2018 17:37:46</publishTime>
@@ -223,22 +223,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/06/2016 22:24:20</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Data.Core.dll">
-      <publishTime>02/07/2019 21:57:29</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Data.Framework.dll">
       <publishTime>06/06/2016 22:24:20</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Data.Services.dll">
-      <publishTime>02/07/2019 21:57:29</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Debugger.Interop.11.0.dll">
-      <publishTime>02/07/2019 21:57:29</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Debugger.InteropA.dll">
-      <publishTime>02/07/2019 21:57:29</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Designer.Interfaces.dll">
-      <publishTime>02/07/2019 21:57:29</publishTime>
+      <publishTime>09/24/2015 15:57:22</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Editor.dll">
       <publishTime>06/06/2016 22:24:20</publishTime>
@@ -256,16 +256,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/06/2016 22:24:20</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.ManagedInterfaces.dll">
-      <publishTime>02/07/2019 21:57:29</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.OLE.Interop.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Package.LanguageService.14.0.dll">
       <publishTime>06/06/2016 22:24:20</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.ProjectAggregator.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Shell.14.0.dll">
       <publishTime>06/06/2016 22:24:20</publishTime>
@@ -286,22 +286,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/06/2016 22:24:20</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Shell.Interop.10.0.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Shell.Interop.11.0.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Shell.Interop.8.0.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Shell.Interop.9.0.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Shell.Interop.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.TemplateWizardInterface.dll">
-      <publishTime>02/07/2019 21:57:29</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Text.Data.dll">
       <publishTime>06/06/2016 22:24:20</publishTime>
@@ -316,13 +316,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/06/2016 22:24:20</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.TextManager.Interop.10.0.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.TextManager.Interop.8.0.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.TextManager.Interop.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Threading.dll">
       <publishTime>02/19/2016 22:28:06</publishTime>
@@ -331,10 +331,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/06/2016 22:24:20</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.VSHelp.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.WCFReference.Interop.dll">
-      <publishTime>02/07/2019 21:57:29</publishTime>
+      <publishTime>09/24/2015 15:57:14</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>07/25/2012 11:48:56</publishTime>
@@ -535,7 +535,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/19/2018 14:32:58</publishTime>
     </File>
     <File Include="bin/stdole.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/System.Diagnostics.DiagnosticSource.dll">
       <publishTime>07/19/2017 10:01:30</publishTime>
@@ -574,31 +574,31 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/02/2018 12:20:56</publishTime>
     </File>
     <File Include="bin/VSLangProj.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/VSLangProj2.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/VSLangProj80.dll">
-      <publishTime>01/11/2018 16:34:59</publishTime>
+      <publishTime>03/23/2020 11:42:23</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/23/2014 13:57:34</publishTime>
     </File>
     <File Include="bin/WEBPOS.DataAccess.dll">
-      <publishTime>12/12/2019 00:33:59</publishTime>
+      <publishTime>05/12/2020 20:19:22</publishTime>
     </File>
     <File Include="bin/WEBPOS.DataAccess.dll.config">
       <publishTime>10/26/2018 15:00:19</publishTime>
     </File>
     <File Include="bin/WEBPOS.DataAccess.pdb">
-      <publishTime>12/12/2019 00:33:59</publishTime>
+      <publishTime>05/12/2020 20:19:22</publishTime>
     </File>
     <File Include="bin/WEBPOS.dll">
-      <publishTime>12/16/2019 08:27:02</publishTime>
+      <publishTime>05/12/2020 21:34:05</publishTime>
     </File>
     <File Include="bin/WEBPOS.pdb">
-      <publishTime>12/16/2019 08:27:02</publishTime>
+      <publishTime>05/12/2020 21:34:05</publishTime>
     </File>
     <File Include="bin/zh-CHS/Microsoft.ReportViewer.Common.resources.dll">
       <publishTime>09/17/2018 17:37:48</publishTime>
@@ -1315,7 +1315,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/17/2019 22:04:04</publishTime>
     </File>
     <File Include="DataSets/Model1.edmx.diagram">
-      <publishTime>11/19/2018 11:59:39</publishTime>
+      <publishTime>12/16/2019 14:12:28</publishTime>
     </File>
     <File Include="DBWEBPOSDataSet.xsc">
       <publishTime>11/19/2018 11:55:08</publishTime>
@@ -1384,25 +1384,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/29/2019 18:22:08</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>10/26/2018 13:16:27</publishTime>
+      <publishTime>12/16/2019 14:12:29</publishTime>
     </File>
     <File Include="Reports/FInalConsumerInvoiceReport.rdlc">
       <publishTime>01/09/2019 19:40:37</publishTime>
     </File>
     <File Include="Reports/InvoiceReport.rdlc">
-      <publishTime>11/26/2019 18:01:12</publishTime>
+      <publishTime>12/16/2019 14:12:30</publishTime>
     </File>
     <File Include="Reports/InvoiceReportLogo.rdlc">
-      <publishTime>11/26/2019 18:01:12</publishTime>
+      <publishTime>05/12/2020 21:47:02</publishTime>
     </File>
     <File Include="Reports/PosClosureReport.rdlc">
-      <publishTime>05/30/2019 15:32:13</publishTime>
+      <publishTime>12/16/2019 14:12:30</publishTime>
     </File>
     <File Include="Reports/SellOrderReport.rdlc">
-      <publishTime>05/30/2019 15:32:13</publishTime>
+      <publishTime>12/16/2019 14:12:30</publishTime>
     </File>
     <File Include="Reports/SellOrderReportSmall.rdlc">
-      <publishTime>11/27/2019 18:24:10</publishTime>
+      <publishTime>12/16/2019 14:12:30</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>10/26/2018 13:18:21</publishTime>
@@ -1735,22 +1735,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/19/2018 14:32:58</publishTime>
     </File>
     <File Include="Views/BusinessPartner/BusinessPartnerContactEditPartial.cshtml">
-      <publishTime>03/11/2018 12:28:32</publishTime>
+      <publishTime>12/16/2019 14:12:31</publishTime>
     </File>
     <File Include="Views/BusinessPartner/BusinessPartnerDetail.cshtml">
-      <publishTime>06/16/2019 20:58:41</publishTime>
+      <publishTime>12/16/2019 14:12:31</publishTime>
     </File>
     <File Include="Views/BusinessPartner/Index.cshtml">
       <publishTime>02/11/2018 19:51:13</publishTime>
     </File>
     <File Include="Views/BusinessPartnerGroup/BusinessPartnerGroupEditPartial.cshtml">
-      <publishTime>06/16/2019 18:19:27</publishTime>
+      <publishTime>12/16/2019 14:12:31</publishTime>
     </File>
     <File Include="Views/BusinessPartnerGroup/Index.cshtml">
       <publishTime>06/16/2019 18:19:27</publishTime>
     </File>
     <File Include="Views/Department/DepartmentEditPartial.cshtml">
-      <publishTime>10/29/2018 13:04:35</publishTime>
+      <publishTime>12/16/2019 14:12:31</publishTime>
     </File>
     <File Include="Views/Department/Index.cshtml">
       <publishTime>03/27/2019 19:14:24</publishTime>
@@ -1765,67 +1765,67 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/26/2018 13:16:27</publishTime>
     </File>
     <File Include="Views/Home/EndangeredItemsPartial.cshtml">
-      <publishTime>06/22/2019 13:46:33</publishTime>
+      <publishTime>12/16/2019 14:12:31</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>12/16/2018 14:27:35</publishTime>
     </File>
     <File Include="Views/Item/Index.cshtml">
-      <publishTime>01/04/2019 08:06:25</publishTime>
+      <publishTime>12/16/2019 14:12:31</publishTime>
     </File>
     <File Include="Views/Item/ItemDetail.cshtml">
-      <publishTime>06/22/2019 14:28:40</publishTime>
+      <publishTime>12/16/2019 14:12:31</publishTime>
     </File>
     <File Include="Views/Item/PriceEditPartial.cshtml">
-      <publishTime>03/29/2019 08:53:17</publishTime>
+      <publishTime>12/16/2019 14:12:31</publishTime>
     </File>
     <File Include="Views/Item/WarehouseEditPartial.cshtml">
-      <publishTime>03/29/2019 08:51:10</publishTime>
+      <publishTime>12/16/2019 14:12:32</publishTime>
     </File>
     <File Include="Views/PaymentType/Index.cshtml">
       <publishTime>03/27/2019 19:14:24</publishTime>
     </File>
     <File Include="Views/PaymentType/PaymentTypeEditPartial.cshtml">
-      <publishTime>11/12/2018 21:41:31</publishTime>
+      <publishTime>12/16/2019 14:12:32</publishTime>
     </File>
     <File Include="Views/Pos/CustomerSelectPartial.cshtml">
-      <publishTime>11/11/2018 13:04:51</publishTime>
+      <publishTime>12/16/2019 14:12:32</publishTime>
     </File>
     <File Include="Views/Pos/DiscountsPartial.cshtml">
-      <publishTime>06/11/2019 16:17:44</publishTime>
+      <publishTime>12/16/2019 14:12:32</publishTime>
     </File>
     <File Include="Views/Pos/Index.cshtml">
-      <publishTime>05/11/2019 20:12:46</publishTime>
+      <publishTime>12/24/2019 23:19:02</publishTime>
     </File>
     <File Include="Views/Pos/ItemInfoPartial.cshtml">
       <publishTime>01/08/2019 19:47:10</publishTime>
     </File>
     <File Include="Views/Pos/NewQuantityPartial.cshtml">
-      <publishTime>04/08/2019 08:47:14</publishTime>
+      <publishTime>12/16/2019 14:12:32</publishTime>
     </File>
     <File Include="Views/Pos/OpenPosQuantity.cshtml">
-      <publishTime>02/04/2019 12:04:00</publishTime>
+      <publishTime>12/16/2019 14:12:32</publishTime>
     </File>
     <File Include="Views/Pos/PaymentPartial.cshtml">
-      <publishTime>06/25/2019 11:41:36</publishTime>
+      <publishTime>12/21/2019 10:37:46</publishTime>
     </File>
     <File Include="Views/Pos/PriceListSelectPartial.cshtml">
-      <publishTime>10/11/2018 21:37:33</publishTime>
+      <publishTime>12/16/2019 14:12:32</publishTime>
     </File>
     <File Include="Views/Pos/TotalDiscountsPartial.cshtml">
-      <publishTime>08/05/2019 20:39:32</publishTime>
+      <publishTime>12/16/2019 14:12:32</publishTime>
     </File>
     <File Include="Views/PosClosure/Index.cshtml">
       <publishTime>05/06/2019 21:39:43</publishTime>
     </File>
     <File Include="Views/PosClosure/PosClosurePartial.cshtml">
-      <publishTime>04/07/2019 16:33:29</publishTime>
+      <publishTime>12/16/2019 14:12:32</publishTime>
     </File>
     <File Include="Views/PriceList/Index.cshtml">
       <publishTime>03/27/2019 19:14:24</publishTime>
     </File>
     <File Include="Views/PriceList/PriceListEditPartial.cshtml">
-      <publishTime>10/27/2018 13:56:49</publishTime>
+      <publishTime>12/16/2019 14:12:32</publishTime>
     </File>
     <File Include="Views/Security/Index.cshtml">
       <publishTime>03/27/2019 19:27:19</publishTime>
@@ -1834,91 +1834,91 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/27/2019 19:14:24</publishTime>
     </File>
     <File Include="Views/SellOrder/SellOrderDetail.cshtml">
-      <publishTime>05/09/2019 13:05:38</publishTime>
+      <publishTime>12/16/2019 14:12:32</publishTime>
     </File>
     <File Include="Views/SellOrder/SellOrderDetailPartial.cshtml">
-      <publishTime>04/11/2019 18:25:07</publishTime>
+      <publishTime>12/16/2019 14:12:32</publishTime>
     </File>
     <File Include="Views/SellOrder/UploadedOrders.cshtml">
-      <publishTime>06/18/2019 15:53:18</publishTime>
+      <publishTime>12/16/2019 14:12:32</publishTime>
     </File>
     <File Include="Views/SellTransaction/Index.cshtml">
       <publishTime>04/04/2019 18:11:51</publishTime>
     </File>
     <File Include="Views/SellTransaction/SellTransactionPartial.cshtml">
-      <publishTime>12/12/2018 21:07:53</publishTime>
+      <publishTime>12/16/2019 14:12:32</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
-      <publishTime>01/09/2019 19:25:19</publishTime>
+      <publishTime>12/16/2019 14:12:32</publishTime>
     </File>
     <File Include="Views/Shared/_ActionLayout.cshtml">
-      <publishTime>05/15/2019 00:14:54</publishTime>
+      <publishTime>12/16/2019 14:12:32</publishTime>
     </File>
     <File Include="Views/Shared/_BaseLayout.cshtml">
-      <publishTime>11/27/2019 17:23:46</publishTime>
+      <publishTime>12/21/2019 10:31:49</publishTime>
     </File>
     <File Include="Views/Store/Index.cshtml">
-      <publishTime>06/18/2019 15:31:25</publishTime>
+      <publishTime>12/16/2019 14:12:33</publishTime>
     </File>
     <File Include="Views/StorePos/Index.cshtml">
       <publishTime>05/07/2019 20:45:58</publishTime>
     </File>
     <File Include="Views/StorePos/StorePosEditPartial.cshtml">
-      <publishTime>11/15/2018 22:49:47</publishTime>
+      <publishTime>12/16/2019 14:12:33</publishTime>
     </File>
     <File Include="Views/Tax/Index.cshtml">
       <publishTime>03/27/2019 19:14:24</publishTime>
     </File>
     <File Include="Views/Tax/TaxEditPartial.cshtml">
-      <publishTime>10/29/2018 12:32:39</publishTime>
+      <publishTime>12/16/2019 14:12:33</publishTime>
     </File>
     <File Include="Views/User/Index.cshtml">
       <publishTime>09/25/2019 21:32:45</publishTime>
     </File>
     <File Include="Views/User/LogIn.cshtml">
-      <publishTime>05/08/2019 21:27:42</publishTime>
+      <publishTime>12/16/2019 14:12:33</publishTime>
     </File>
     <File Include="Views/User/SelectTerminal.cshtml">
-      <publishTime>11/17/2018 18:26:02</publishTime>
+      <publishTime>12/16/2019 14:12:33</publishTime>
     </File>
     <File Include="Views/User/UserEditPartial.cshtml">
-      <publishTime>12/13/2019 22:34:02</publishTime>
+      <publishTime>12/16/2019 14:12:33</publishTime>
     </File>
     <File Include="Views/UserMobileProfile/Index.cshtml">
-      <publishTime>06/11/2019 15:55:04</publishTime>
+      <publishTime>12/16/2019 14:12:33</publishTime>
     </File>
     <File Include="Views/UserMobileProfile/ProfileEditPartial.cshtml">
-      <publishTime>10/04/2019 10:14:17</publishTime>
+      <publishTime>12/16/2019 14:12:33</publishTime>
     </File>
     <File Include="Views/UserSellOrder/Index.cshtml">
       <publishTime>06/16/2019 23:57:02</publishTime>
     </File>
     <File Include="Views/UserSellOrder/UserSellOrderByGroupPartial.cshtml">
-      <publishTime>06/16/2019 23:32:49</publishTime>
+      <publishTime>12/16/2019 14:12:33</publishTime>
     </File>
     <File Include="Views/UserSellOrder/UserSellOrderEditPartial.cshtml">
-      <publishTime>05/22/2019 16:57:30</publishTime>
+      <publishTime>12/16/2019 14:12:33</publishTime>
     </File>
     <File Include="Views/Warehouse/Index.cshtml">
       <publishTime>02/11/2018 20:02:49</publishTime>
     </File>
     <File Include="Views/Warehouse/WarehouseEditPartial.cshtml">
-      <publishTime>10/29/2018 00:18:45</publishTime>
+      <publishTime>12/16/2019 14:12:33</publishTime>
     </File>
     <File Include="Views/Web.config">
-      <publishTime>03/25/2019 07:51:28</publishTime>
+      <publishTime>12/16/2019 14:12:34</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
       <publishTime>03/11/2018 00:25:47</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/11/2019 19:24:19</publishTime>
+      <publishTime>12/20/2019 08:34:16</publishTime>
     </File>
     <File Include="WebForms/ClosureWebForm.aspx">
-      <publishTime>02/04/2019 20:20:55</publishTime>
+      <publishTime>12/16/2019 14:12:34</publishTime>
     </File>
     <File Include="WebForms/WebForm1.aspx">
-      <publishTime>04/04/2019 15:54:17</publishTime>
+      <publishTime>12/16/2019 14:12:34</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBWEBPOSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="srSellTransactionDetail">
+    <Key>
+      <PropertyRef Name="StoreCode" />
+      <PropertyRef Name="PosCode" />
+      <PropertyRef Name="TransactionDateTime" />
+      <PropertyRef Name="TransactionNumber" />
+      <PropertyRef Name="RowNumber" />
+    </Key>
+    <Property Name="StoreCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PosCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TransactionDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TransactionNumber" Type="Double" Nullable="false" />
+    <Property Name="RowNumber" Type="Double" Nullable="false" />
+    <Property Name="ItemCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ItemDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Barcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TaxCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TaxPercent" Type="Double" Nullable="false" />
+    <Property Name="BasePrice" Type="Double" Nullable="false" />
+    <Property Name="SellPrice" Type="Double" Nullable="false" />
+    <Property Name="Quantity" Type="Double" Nullable="false" />
+    <Property Name="RowValue" Type="Double" Nullable="false" />
+    <Property Name="PriceListCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="TotalValue" Type="Double" Nullable="false" />
+    <Property Name="IsPrinted" Type="Boolean" Nullable="false" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdateUser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="StorePos_StoreCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="StorePos_StorePosCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="DBWEBPOSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="srSellTransactionDetail" EntityType="Self.srSellTransactionDetail" />
+  </EntityContainer>
+</Schema>

@@ -35,6 +35,7 @@ namespace WEBPOS.Controllers
 
                 // Getting all Customer data    
                 var model = new List<SellTransactionHeadModel>();
+                //foreach (var item in BlSellTransactionHead.ReadAllQueryable($"DATEPART(YEAR, TransactionDateTime) = {DateTime.Today.Year}"))
                 foreach (var item in BlSellTransactionHead.ReadAllQueryable())
                 {
                     var client = BlBusinessPartner.ReadAllQueryable().FirstOrDefault(p => p.BusinessPartnerCode == item.CustomerCode)?.BusinessPartnerDescription ?? "";
@@ -85,7 +86,7 @@ namespace WEBPOS.Controllers
 
         public ActionResult SellTransactionDetail(int id)
         {
-            BlSellTransactionHead.ReadAllQueryable().FirstOrDefault(x=>x.TransactionNumber == id);
+            BlSellTransactionHead.ReadAllQueryable($"TransactionNumber = {id}").FirstOrDefault();
 
             return null;
         }

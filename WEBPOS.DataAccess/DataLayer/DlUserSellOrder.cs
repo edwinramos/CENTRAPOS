@@ -6,29 +6,30 @@ using System.Threading.Tasks;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
+using WEBPOS.DataAccess.Repository;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
-    public class DlUserSellOrder
+    public class DlUserSellOrder : BaseRepository<WEBPOSContext, DeUserSellOrder>
     {
-        private WEBPOSContext context = new WEBPOSContext();
+        public DlUserSellOrder(WEBPOSContext context = null) : base(context) { }
         public IEnumerable<DeUserSellOrder> ReadAll()
         {
-            return context.UserSellOrders.ToList();
+            return Context.UserSellOrders.ToList();
         }
         public IQueryable<DeUserSellOrder> ReadAllQueryable()
         {
-            return context.UserSellOrders;
+            return Context.UserSellOrders;
         }
 
         public DeUserSellOrder ReadByCode(string userCode, int sellOrderId)
         {
-            return context.UserSellOrders.FirstOrDefault(x=>x.UserCode == userCode && x.SellOrderId == sellOrderId);
+            return Context.UserSellOrders.FirstOrDefault(x=>x.UserCode == userCode && x.SellOrderId == sellOrderId);
         }
 
         public IEnumerable<DeUserSellOrder> Read(DeUserSellOrder obj)
         {
-            var data = context.UserSellOrders.ToList();
+            var data = Context.UserSellOrders.ToList();
 
             if (!string.IsNullOrEmpty(obj.UserCode))
                 data = data.Where(x => x.UserCode == obj.UserCode).ToList();
@@ -41,25 +42,25 @@ namespace WEBPOS.DataAccess.DataLayer
 
         public void Save(DeUserSellOrder obj)
         {
-            var val = context.UserSellOrders.FirstOrDefault(x => x.UserCode == obj.UserCode && x.SellOrderId == obj.SellOrderId);
+            var val = Context.UserSellOrders.FirstOrDefault(x => x.UserCode == obj.UserCode && x.SellOrderId == obj.SellOrderId);
             if (val != null)
             {
                 val.UserOrderState = obj.UserOrderState;
             }
             else
             {
-                context.UserSellOrders.Add(obj);
+                Context.UserSellOrders.Add(obj);
             }
-            context.SaveChanges();
+            Context.SaveChanges();
         }
 
         public void Delete(string userCode, int sellOrderId)
         {
-            var obj = context.UserSellOrders.FirstOrDefault(x => x.UserCode == userCode && x.SellOrderId == sellOrderId);
+            var obj = Context.UserSellOrders.FirstOrDefault(x => x.UserCode == userCode && x.SellOrderId == sellOrderId);
             if (obj != null)
             {
-                context.UserSellOrders.Remove(obj);
-                context.SaveChanges();
+                Context.UserSellOrders.Remove(obj);
+                Context.SaveChanges();
 
                 //var activity = new DeActivityLog
                 //{

@@ -6,23 +6,24 @@ using System.Threading.Tasks;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
+using WEBPOS.DataAccess.Repository;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
-    public class DlDepartment
+    public class DlDepartment : BaseRepository<WEBPOSContext, DeDepartment>
     {
-        private WEBPOSContext context = new WEBPOSContext();
+        public DlDepartment(WEBPOSContext context = null) : base(context) { }
         public IEnumerable<DeDepartment> ReadAll()
         {
-            return context.Departments.ToList();
+            return Context.Departments.ToList();
         }
         public IQueryable<DeDepartment> ReadAllQueryable()
         {
-            return context.Departments;
+            return Context.Departments;
         }
         public IEnumerable<DeDepartment> Read(DeDepartment obj)
         {
-            var data = context.Departments.ToList();
+            var data = Context.Departments.ToList();
 
             if (!string.IsNullOrEmpty(obj.DepartmentCode))
                 data = data.Where(x=>x.DepartmentCode == obj.DepartmentCode).ToList();
@@ -35,7 +36,7 @@ namespace WEBPOS.DataAccess.DataLayer
 
         public void Save(DeDepartment obj)
         {
-            var val = context.Departments.FirstOrDefault(x => x.DepartmentCode == obj.DepartmentCode);
+            var val = Context.Departments.FirstOrDefault(x => x.DepartmentCode == obj.DepartmentCode);
             if (val != null)
             {
                 val.DepartmentDescription = obj.DepartmentDescription;
@@ -48,7 +49,7 @@ namespace WEBPOS.DataAccess.DataLayer
             }
             else
             {
-                context.Departments.Add(obj);
+                Context.Departments.Add(obj);
 
                 var activity = new DeActivityLog
                 {
@@ -56,16 +57,16 @@ namespace WEBPOS.DataAccess.DataLayer
                 };
                 BlActivityLog.Save(activity);
             }
-            context.SaveChanges();
+            Context.SaveChanges();
         }
 
         public void Delete(string DepartmentCode)
         {
-            var obj = context.Departments.FirstOrDefault(x=>x.DepartmentCode == DepartmentCode);
+            var obj = Context.Departments.FirstOrDefault(x=>x.DepartmentCode == DepartmentCode);
             if(obj != null)
             {
-                context.Departments.Remove(obj);
-                context.SaveChanges();
+                Context.Departments.Remove(obj);
+                Context.SaveChanges();
 
                 var activity = new DeActivityLog
                 {

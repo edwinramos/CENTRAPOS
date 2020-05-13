@@ -6,23 +6,24 @@ using System.Threading.Tasks;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
+using WEBPOS.DataAccess.Repository;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
-    public class DlBusinessPartnerGroup
+    public class DlBusinessPartnerGroup : BaseRepository<WEBPOSContext, DeBusinessPartnerGroup>
     {
-        private WEBPOSContext context = new WEBPOSContext();
+        public DlBusinessPartnerGroup(WEBPOSContext context = null) : base(context) { }
         public IEnumerable<DeBusinessPartnerGroup> ReadAll()
         {
-            return context.BusinessPartnerGroups.ToList();
+            return Context.BusinessPartnerGroups.ToList();
         }
         public IQueryable<DeBusinessPartnerGroup> ReadAllQueryable()
         {
-            return context.BusinessPartnerGroups;
+            return Context.BusinessPartnerGroups;
         }
         public IEnumerable<DeBusinessPartnerGroup> Read(DeBusinessPartnerGroup obj)
         {
-            var data = context.BusinessPartnerGroups.ToList();
+            var data = Context.BusinessPartnerGroups.ToList();
 
             if (!string.IsNullOrEmpty(obj.BusinessPartnerGroupCode))
                 data = data.Where(x=>x.BusinessPartnerGroupCode == obj.BusinessPartnerGroupCode).ToList();
@@ -35,7 +36,7 @@ namespace WEBPOS.DataAccess.DataLayer
 
         public void Save(DeBusinessPartnerGroup obj)
         {
-            var val = context.BusinessPartnerGroups.FirstOrDefault(x => x.BusinessPartnerGroupCode == obj.BusinessPartnerGroupCode);
+            var val = Context.BusinessPartnerGroups.FirstOrDefault(x => x.BusinessPartnerGroupCode == obj.BusinessPartnerGroupCode);
             if (val != null)
             {
                 val.BusinessPartnerGroupDescription = obj.BusinessPartnerGroupDescription;
@@ -48,23 +49,23 @@ namespace WEBPOS.DataAccess.DataLayer
             }
             else
             {
-                context.BusinessPartnerGroups.Add(obj);
+                Context.BusinessPartnerGroups.Add(obj);
                 var activity = new DeActivityLog
                 {
                     ActivityMessage = string.Format(ActivityLogHelper.GetActivityText(LogActivities.CREATE), "Tipo de Pago", obj.BusinessPartnerGroupCode)
                 };
                 BlActivityLog.Save(activity);
             }
-            context.SaveChanges();
+            Context.SaveChanges();
         }
 
         public void Delete(string BusinessPartnerGroupCode)
         {
-            var obj = context.BusinessPartnerGroups.FirstOrDefault(x=>x.BusinessPartnerGroupCode == BusinessPartnerGroupCode);
+            var obj = Context.BusinessPartnerGroups.FirstOrDefault(x=>x.BusinessPartnerGroupCode == BusinessPartnerGroupCode);
             if(obj != null)
             {
-                context.BusinessPartnerGroups.Remove(obj);
-                context.SaveChanges();
+                Context.BusinessPartnerGroups.Remove(obj);
+                Context.SaveChanges();
                 var activity = new DeActivityLog
                 {
                     ActivityMessage = string.Format(ActivityLogHelper.GetActivityText(LogActivities.DELETE), "Tipo de Pago", obj.BusinessPartnerGroupCode)

@@ -1,0 +1,31 @@
+﻿@using (Html.BeginForm("", "", FormMethod.Post, new { id = "dataEndangeredItemsForm" }))
+{
+    <div class="container form-group">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal">&times;</a>
+                    <h4 class="modal-title">Articulos Escasos</h4>
+                </div>
+
+                <div class="modal-body col-md-12">
+                    <table>
+                        @{
+                            var list = WEBPOS.DataAccess.BusinessLayer.BlItem.ReadAllQueryable().Where(x=>x.ShortageLevel != WEBPOS.DataAccess.DataEntities.ShortageLevels.NONE);
+                            foreach (var obj in list)
+                            {
+                                <tr>
+                                    <td><a href="@Url.Action("ItemDetail", "Item", new { id = obj.ItemCode })" target="_blank"><strong><h4>@obj.ItemDescription</h4></strong></a></td>
+                                    <td><p>*Este producto esta escaso con nivel de prioridad: @Convert.ToInt32(obj.ShortageLevel)</p></td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-default" data-dismiss="modal">Cerrar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

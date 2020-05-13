@@ -7,20 +7,21 @@ using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
 using WEBPOS.DataAccess.Models;
+using WEBPOS.DataAccess.Repository;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
-    public class DlItem
+    public class DlItem : BaseRepository<WEBPOSContext, DeItem>
     {
-        private WEBPOSContext context = new WEBPOSContext();
+        public DlItem(WEBPOSContext context = null) : base(context) { }
         public IEnumerable<DeItem> ReadAll()
         {
-            return context.Items.ToList();
+            return Context.Items.ToList();
         }
         public IQueryable<DeItem> ReadAllQueryable()
         {
             var queryString = $@"SELECT * FROM srItem";
-            return context.Items;
+            return Context.Items;
         }
         public IEnumerable<ItemSearchResult> ReadSearch(string param, string plCode, string whCode)
         {
@@ -29,15 +30,15 @@ FROM srItem A
 INNER JOIN srPrice B ON A.ItemCode = B.ItemCode
 INNER JOIN srItemWarehouse C ON A.ItemCode = C.ItemCode
 WHERE (A.ItemCode like '%{param}%' OR A.ItemDescription like '%{param}%') AND (B.PriceListCode = '{whCode}' AND C.WarehouseCode = '{plCode}')";
-            return context.Database.SqlQuery<ItemSearchResult>(queryString);
+            return Context.Database.SqlQuery<ItemSearchResult>(queryString);
         }
         public DeItem ReadByCode(string itemCode)
         {
-            return context.Items.FirstOrDefault(x => x.ItemCode == itemCode);
+            return Context.Items.FirstOrDefault(x => x.ItemCode == itemCode);
         }
         public IEnumerable<DeItem> Read(DeItem obj)
         {
-            var data = context.Items.ToList();
+            var data = Context.Items.ToList();
 
             if (!string.IsNullOrEmpty(obj.ItemCode))
                 data = data.Where(x=>x.ItemCode == obj.ItemCode).ToList();
@@ -53,7 +54,7 @@ WHERE (A.ItemCode like '%{param}%' OR A.ItemDescription like '%{param}%') AND (B
 
         public void Save(DeItem obj)
         {
-            var val = context.Items.FirstOrDefault(x => x.ItemCode == obj.ItemCode);
+            var val = Context.Items.FirstOrDefault(x => x.ItemCode == obj.ItemCode);
             if (val != null)
             {
                 val.ItemDescription = obj.ItemDescription;
@@ -71,7 +72,7 @@ WHERE (A.ItemCode like '%{param}%' OR A.ItemDescription like '%{param}%') AND (B
             }
             else
             {
-                context.Items.Add(obj);
+                Context.Items.Add(obj);
 
                 var activity = new DeActivityLog
                 {
@@ -79,28 +80,28 @@ WHERE (A.ItemCode like '%{param}%' OR A.ItemDescription like '%{param}%') AND (B
                 };
                 BlActivityLog.Save(activity);
             }
-            context.SaveChanges();
+            Context.SaveChanges();
         }
 
         public void Delete(string itemCode)
         {
-            var obj = context.Items.FirstOrDefault(x=>x.ItemCode == itemCode);
+            var obj = Context.Items.FirstOrDefault(x=>x.ItemCode == itemCode);
             if(obj != null)
             {
                 foreach (var price in new DlPrice().Read(new DePrice { ItemCode = itemCode }))
                 {
-                    context.Prices.Remove(price);
+                    Context.Prices.Remove(price);
                 }
-                context.SaveChanges();
+                Context.SaveChanges();
 
                 foreach (var warehouse in new DlItemWarehouse().Read(new DeItemWarehouse { ItemCode = itemCode }))
                 {
-                    context.ItemWarehouses.Remove(warehouse);
+                    Context.ItemWarehouses.Remove(warehouse);
                 }
-                context.SaveChanges();
+                Context.SaveChanges();
 
-                context.Items.Remove(obj);
-                context.SaveChanges();
+                Context.Items.Remove(obj);
+                Context.SaveChanges();
 
                 var activity = new DeActivityLog
                 {

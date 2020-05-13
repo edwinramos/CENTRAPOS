@@ -6,23 +6,24 @@ using System.Threading.Tasks;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
+using WEBPOS.DataAccess.Repository;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
-    public class DlBusinessPartnerContact
+    public class DlBusinessPartnerContact : BaseRepository<WEBPOSContext, DeBusinessPartnerContact>
     {
-        private WEBPOSContext context = new WEBPOSContext();
+        public DlBusinessPartnerContact(WEBPOSContext context = null) : base(context) { }
         public IEnumerable<DeBusinessPartnerContact> ReadAll()
         {
-            return context.BusinessPartnerContacts.ToList();
+            return Context.BusinessPartnerContacts.ToList();
         }
         public IQueryable<DeBusinessPartnerContact> ReadAllQueryable()
         {
-            return context.BusinessPartnerContacts;
+            return Context.BusinessPartnerContacts;
         }
         public IEnumerable<DeBusinessPartnerContact> Read(DeBusinessPartnerContact obj)
         {
-            var data = context.BusinessPartnerContacts.ToList();
+            var data = Context.BusinessPartnerContacts.ToList();
 
             if (!string.IsNullOrEmpty(obj.BusinessPartnerCode))
                 data = data.Where(x => x.BusinessPartnerCode == obj.BusinessPartnerCode).ToList();
@@ -38,7 +39,7 @@ namespace WEBPOS.DataAccess.DataLayer
 
         public void Save(DeBusinessPartnerContact obj)
         {
-            var val = context.BusinessPartnerContacts.FirstOrDefault(x => x.BusinessPartnerCode == obj.BusinessPartnerCode && x.BusinessPartnerContactCode == obj.BusinessPartnerContactCode);
+            var val = Context.BusinessPartnerContacts.FirstOrDefault(x => x.BusinessPartnerCode == obj.BusinessPartnerCode && x.BusinessPartnerContactCode == obj.BusinessPartnerContactCode);
             if (val != null)
             {
                 val.ContactName = obj.ContactName;
@@ -55,23 +56,23 @@ namespace WEBPOS.DataAccess.DataLayer
             }
             else
             {
-                context.BusinessPartnerContacts.Add(obj);
+                Context.BusinessPartnerContacts.Add(obj);
                 var activity = new DeActivityLog
                 {
                     ActivityMessage = string.Format(ActivityLogHelper.GetActivityText(LogActivities.CREATE), "Contacto de Socio", obj.BusinessPartnerCode + "|" + obj.BusinessPartnerContactCode)
                 };
                 BlActivityLog.Save(activity);
             }
-            context.SaveChanges();
+            Context.SaveChanges();
         }
 
         public void Delete(string businessPartnerCode, string businessPartnerContactCode)
         {
-            var obj = context.BusinessPartnerContacts.FirstOrDefault(x=> x.BusinessPartnerCode == businessPartnerCode && x.BusinessPartnerContactCode == businessPartnerContactCode);
+            var obj = Context.BusinessPartnerContacts.FirstOrDefault(x=> x.BusinessPartnerCode == businessPartnerCode && x.BusinessPartnerContactCode == businessPartnerContactCode);
             if(obj != null)
             {
-                context.BusinessPartnerContacts.Remove(obj);
-                context.SaveChanges();
+                Context.BusinessPartnerContacts.Remove(obj);
+                Context.SaveChanges();
 
                 var activity = new DeActivityLog
                 {

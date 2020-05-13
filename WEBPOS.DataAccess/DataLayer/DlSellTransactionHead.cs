@@ -6,23 +6,31 @@ using System.Threading.Tasks;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
+using WEBPOS.DataAccess.Repository;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
-    public class DlSellTransactionHead
+    public class DlSellTransactionHead : BaseRepository<WEBPOSContext, DeSellTransactionHead>
     {
-        private WEBPOSContext context = new WEBPOSContext();
+        public DlSellTransactionHead(WEBPOSContext context = null) : base(context) { }
         public IEnumerable<DeSellTransactionHead> ReadAll()
         {
-            return context.SellTransactionHeads.ToList();
+            return Context.SellTransactionHeads.ToList();
+        }
+        public IEnumerable<DeSellTransactionHead> ReadAllQueryableCustom(string filters)
+        {
+            var queryString = $@"SELECT *
+FROM srSellTransactionHead
+WHERE {filters}";
+            return Context.Database.SqlQuery<DeSellTransactionHead>(queryString);
         }
         public IQueryable<DeSellTransactionHead> ReadAllQueryable()
         {
-            return context.SellTransactionHeads;
+            return Context.SellTransactionHeads;
         }
         public IEnumerable<DeSellTransactionHead> Read(DeSellTransactionHead obj)
         {
-            var data = context.SellTransactionHeads.ToList();
+            var data = Context.SellTransactionHeads.ToList();
             if (!string.IsNullOrEmpty(obj.StoreCode))
                 data = data.Where(x => x.StoreCode == obj.StoreCode).ToList();
 
@@ -37,27 +45,27 @@ namespace WEBPOS.DataAccess.DataLayer
 
         public void Save(DeSellTransactionHead obj)
         {
-            context.SellTransactionHeads.Add(obj);
+            Context.SellTransactionHeads.Add(obj);
             var activity = new DeActivityLog
             {
                 ActivityMessage = string.Format(ActivityLogHelper.GetActivityText(LogActivities.CREATE), "Transacción", obj.PosCode + "|" + obj.TransactionNumber)
             };
             BlActivityLog.Save(activity);
 
-            context.SaveChanges();
+            Context.SaveChanges();
         }
 
         public void Delete(string storeCode, string posCode, double transactionNumber, DateTime transactionDateTime)
         {
-            var obj = context.SellTransactionHeads.FirstOrDefault(x => x.StoreCode == storeCode && x.PosCode == posCode && x.TransactionNumber == transactionNumber && x.TransactionDateTime == transactionDateTime);
+            var obj = Context.SellTransactionHeads.FirstOrDefault(x => x.StoreCode == storeCode && x.PosCode == posCode && x.TransactionNumber == transactionNumber && x.TransactionDateTime == transactionDateTime);
             if (obj != null)
             {
-                context.SellTransactionHeads.Remove(obj);
-                context.SaveChanges();
+                Context.SellTransactionHeads.Remove(obj);
+                Context.SaveChanges();
 
                 var activity = new DeActivityLog
                 {
-                    ActivityMessage = string.Format(ActivityLogHelper.GetActivityText(LogActivities.DELETE), "Transacción", obj.PosCode+"|"+obj.TransactionNumber)
+                    ActivityMessage = string.Format(ActivityLogHelper.GetActivityText(LogActivities.DELETE), "Transacción", obj.PosCode + "|" + obj.TransactionNumber)
                 };
                 BlActivityLog.Save(activity);
             }

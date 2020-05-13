@@ -11,7 +11,6 @@ namespace WEBPOS.DataAccess.DataEntities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-        
         public string ActivityMessage { get; set; }
     }
 }

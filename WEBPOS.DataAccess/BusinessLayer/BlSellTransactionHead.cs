@@ -15,6 +15,11 @@ namespace WEBPOS.DataAccess.BusinessLayer
             var dl = new DlSellTransactionHead();
             return dl.ReadAll();
         }
+        public static IEnumerable<DeSellTransactionHead> ReadAllQueryable(string filters)
+        {
+            var dl = new DlSellTransactionHead();
+            return dl.ReadAllQueryableCustom(filters);
+        }
         public static IQueryable<DeSellTransactionHead> ReadAllQueryable()
         {
             var dl = new DlSellTransactionHead();
@@ -24,7 +29,6 @@ namespace WEBPOS.DataAccess.BusinessLayer
         {
             var dl = new DlSellTransactionHead();
             obj.NCF = "B020000000X";
-
 
             return dl.Read(obj);
         }
@@ -43,7 +47,8 @@ namespace WEBPOS.DataAccess.BusinessLayer
 
         public static double GetNextTransactionNumber(string storeCode, string posCode)
         {
-            var list = ReadAllQueryable().Where(x => x.StoreCode == storeCode && x.PosCode == posCode);
+            //var list = ReadAllQueryable().Where(x => x.StoreCode == storeCode && x.PosCode == posCode);
+            var list = ReadAllQueryable($"StoreCode = '{storeCode}' AND PosCode = '{posCode}'");
             var count = list.Count() + 1;
             double str = count;
 
@@ -58,7 +63,8 @@ namespace WEBPOS.DataAccess.BusinessLayer
 
         public static string GetNextNCF(DocType docType)
         {
-            var list = ReadAllQueryable().Where(x => x.DocType == docType);
+            //var list = ReadAllQueryable().Where(x => x.DocType == docType);
+            var list = ReadAllQueryable($"DocType = {(int)docType}");
             var count = list.Count() + 1;
             
             if (!list.Any())

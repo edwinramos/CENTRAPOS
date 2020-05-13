@@ -1,0 +1,54 @@
+﻿@model WEBPOS.DataAccess.DataEntities.DeUserSellOrder
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("UserSellOrderManage", "UserSellOrder", FormMethod.Post, new { id = "dataForm" }))
+{
+    <div class="container form-group">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal">&times;</a>
+                    <h4 class="modal-title">Asignar orden</h4>
+                </div>
+
+                <div class="modal-body col-md-12">
+                    <div class="form-group col-md-4">
+                        @Html.Label("Usuario")
+                        @{
+                            List<SelectListItem> userList = new List<SelectListItem>();
+                            var upList = WEBPOS.DataAccess.BusinessLayer.BlUserMobileProfile.ReadAll().Where(x=>x.MobileProfileType == WEBPOS.DataAccess.DataEntities.MobileProfileType.TRANSPORTISTA).Select(x=>x.UserCode);
+                            var uList = WEBPOS.DataAccess.BusinessLayer.BlUser.ReadAll().Where(x=>upList.Contains(x.UserCode));
+                            foreach (var ob in uList)
+                            {
+                                userList.Add(new SelectListItem { Text = ob.UserCode + " | " + ob.Name + " " + ob.LastName, Value = ob.UserCode });
+                            }
+                        }
+                        @Html.DropDownListFor(model => model.UserCode, userList, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.Label("Orden|Cliente|Total")
+                        @{
+                            List<SelectListItem> orders = new List<SelectListItem>();
+                            var excludedIds = WEBPOS.DataAccess.BusinessLayer.BlUserSellOrder.ReadAllQueryable().Select(x => x.SellOrderId);
+                            foreach (var ob in WEBPOS.DataAccess.BusinessLayer.BlSellOrder.ReadAllQueryable().Where(x=>!x.IsClosed && !excludedIds.Contains(x.SellOrderId)))
+                            {
+                                orders.Add(new SelectListItem { Text = ob.SellOrderId + " | " + ob.ClientDescription + " | RD$" + ob.DocTotal.ToString("n2"), Value = ob.SellOrderId.ToString() });
+                            }
+                        }
+                        @Html.DropDownListFor(model => model.SellOrderId, orders, new { htmlAttributes = new { @class = "form-control", onchange = "onOrderChange(this.value)" } })
+                    </div>
+                    @*<div class="form-group col-md-4">
+                        @Html.Label("Total de Orden")
+                        @Html.TextBox("OrderTotal", null, new { @class = "form-control", @type = "number", @readonly = "readonly" })
+                    </div>*@
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-default" data-dismiss="modal">Cerrar</a>
+                    <a class="btn btn-default" onclick=onFormSubmit();>Guardar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

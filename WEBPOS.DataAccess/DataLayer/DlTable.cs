@@ -6,23 +6,24 @@ using System.Threading.Tasks;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
+using WEBPOS.DataAccess.Repository;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
-    public class DlTable
+    public class DlTable : BaseRepository<WEBPOSContext, DeTable>
     {
-        private WEBPOSContext context = new WEBPOSContext();
+        public DlTable(WEBPOSContext context = null) : base(context) { }
         public IEnumerable<DeTable> ReadAll()
         {
-            return context.Tables.ToList();
+            return Context.Tables.ToList();
         }
         public IQueryable<DeTable> ReadAllQueryable()
         {
-            return context.Tables;
+            return Context.Tables;
         }
         public IEnumerable<DeTable> Read(DeTable obj)
         {
-            var data = context.Tables.ToList();
+            var data = Context.Tables.ToList();
 
             if (!string.IsNullOrEmpty(obj.KeyFixed))
                 data = data.Where(x=>x.KeyFixed == obj.KeyFixed).ToList();
@@ -35,7 +36,7 @@ namespace WEBPOS.DataAccess.DataLayer
 
         public void Save(DeTable obj)
         {
-            var val = context.Tables.FirstOrDefault(x => x.KeyFixed == obj.KeyFixed);
+            var val = Context.Tables.FirstOrDefault(x => x.KeyFixed == obj.KeyFixed);
             if (val != null)
             {
                 val.KeyFixed = obj.KeyFixed;
@@ -48,23 +49,23 @@ namespace WEBPOS.DataAccess.DataLayer
             }
             else
             {
-                context.Tables.Add(obj);
+                Context.Tables.Add(obj);
                 var activity = new DeActivityLog
                 {
                     ActivityMessage = string.Format(ActivityLogHelper.GetActivityText(LogActivities.CREATE), "Tabla", obj.KeyFixed)
                 };
                 BlActivityLog.Save(activity);
             }
-            context.SaveChanges();
+            Context.SaveChanges();
         }
 
         public void Delete(string keyFixed)
         {
-            var obj = context.Tables.FirstOrDefault(x=>x.KeyFixed == keyFixed);
+            var obj = Context.Tables.FirstOrDefault(x=>x.KeyFixed == keyFixed);
             if(obj != null)
             {
-                context.Tables.Remove(obj);
-                context.SaveChanges();
+                Context.Tables.Remove(obj);
+                Context.SaveChanges();
                 var activity = new DeActivityLog
                 {
                     ActivityMessage = string.Format(ActivityLogHelper.GetActivityText(LogActivities.DELETE), "Impuesto", obj.KeyFixed)

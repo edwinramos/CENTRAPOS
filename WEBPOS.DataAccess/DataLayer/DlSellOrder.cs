@@ -7,19 +7,27 @@ using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
 using WEBPOS.DataAccess.Models;
+using WEBPOS.DataAccess.Repository;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
-    public class DlSellOrder
+    public class DlSellOrder : BaseRepository<WEBPOSContext, DeSellOrder>
     {
-        private WEBPOSContext context = new WEBPOSContext();
+        public DlSellOrder(WEBPOSContext context = null) : base(context) { }
         public IEnumerable<DeSellOrder> ReadAll()
         {
-            return context.SellOrders.ToList();
+            return Context.SellOrders.ToList();
+        }
+        public IEnumerable<DeSellOrder> ReadAllQueryableCustom(string filters)
+        {
+            var queryString = $@"SELECT *
+FROM srSellOrder
+WHERE {filters}";
+            return Context.Database.SqlQuery<DeSellOrder>(queryString);
         }
         public IQueryable<DeSellOrder> ReadAllQueryable()
         {
-            return context.SellOrders;
+            return Context.SellOrders;
         }
         public IQueryable<SoldQuantityModel> GetSoldQtyByDate(string userCode, DateTime dateFrom, DateTime dateTo)
         {
@@ -29,7 +37,7 @@ ON A.SellOrderId = B.SellOrderId
 where A.UpdateUser = '{userCode}' AND A.DocDateTime BETWEEN '{dateFrom.ToString("yyyy-MM-dd")}' AND '{dateTo.ToString("yyyy-MM-dd")}'
 GROUP BY B.ItemDescription";
 
-            return context.Database.SqlQuery<SoldQuantityModel>(queryString).AsQueryable();
+            return Context.Database.SqlQuery<SoldQuantityModel>(queryString).AsQueryable();
         }
         public IQueryable<DeSellOrder> ReadByGroupCode(string groupCode)
         {
@@ -38,11 +46,11 @@ FROM srSellOrder A INNER JOIN srBusinessPartner B
 ON A.ClientCode = B.BusinessPartnerCode
 WHERE A.IsClosed = 0 AND B.BusinessPartnerGroupCode = '{groupCode}' AND A.SellOrderId NOT IN (select SellOrderId from srUserSellOrder)";
 
-            return context.Database.SqlQuery<DeSellOrder>(queryString).AsQueryable();
+            return Context.Database.SqlQuery<DeSellOrder>(queryString).AsQueryable();
         }
         public IEnumerable<DeSellOrder> Read(DeSellOrder obj)
         {
-            var data = context.SellOrders.ToList();
+            var data = Context.SellOrders.ToList();
             if (!string.IsNullOrEmpty(obj.StoreCode))
                 data = data.Where(x => x.StoreCode == obj.StoreCode).ToList();
 
@@ -54,10 +62,10 @@ WHERE A.IsClosed = 0 AND B.BusinessPartnerGroupCode = '{groupCode}' AND A.SellOr
 
         public void Save(DeSellOrder obj)
         {
-            var old = context.SellOrders.FirstOrDefault(x => x.SellOrderId == obj.SellOrderId);
+            var old = Context.SellOrders.FirstOrDefault(x => x.SellOrderId == obj.SellOrderId);
             if (old == null)
             {
-                context.SellOrders.Add(obj);
+                Context.SellOrders.Add(obj);
 
                 var activity = new DeActivityLog
                 {
@@ -92,16 +100,16 @@ WHERE A.IsClosed = 0 AND B.BusinessPartnerGroupCode = '{groupCode}' AND A.SellOr
                 BlActivityLog.Save(activity);
             }
 
-            context.SaveChanges();
+            Context.SaveChanges();
         }
 
         public void Delete(int sellOrderId)
         {
-            var obj = context.SellOrders.FirstOrDefault(x => x.SellOrderId == sellOrderId);
+            var obj = Context.SellOrders.FirstOrDefault(x => x.SellOrderId == sellOrderId);
             if (obj != null)
             {
-                context.SellOrders.Remove(obj);
-                context.SaveChanges();
+                Context.SellOrders.Remove(obj);
+                Context.SaveChanges();
 
                 var activity = new DeActivityLog
                 {

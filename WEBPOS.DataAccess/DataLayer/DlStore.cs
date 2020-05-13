@@ -6,27 +6,28 @@ using System.Threading.Tasks;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
+using WEBPOS.DataAccess.Repository;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
-    public class DlStore
+    public class DlStore : BaseRepository<WEBPOSContext, DeStore>
     {
-        private WEBPOSContext context = new WEBPOSContext();
+        public DlStore(WEBPOSContext context = null) : base(context) { }
         public IEnumerable<DeStore> ReadAll()
         {
-            return context.Stores.ToList();
+            return Context.Stores.ToList();
         }
         public IQueryable<DeStore> ReadAllQueryable()
         {
-            return context.Stores;
+            return Context.Stores;
         }
         public DeStore ReadByCode(string StoreCode)
         {
-            return context.Stores.FirstOrDefault(x => x.StoreCode == StoreCode);
+            return Context.Stores.FirstOrDefault(x => x.StoreCode == StoreCode);
         }
         public IEnumerable<DeStore> Read(DeStore obj)
         {
-            var data = context.Stores.ToList();
+            var data = Context.Stores.ToList();
 
             if (!string.IsNullOrEmpty(obj.StoreCode))
                 data = data.Where(x=>x.StoreCode == obj.StoreCode).ToList();
@@ -39,7 +40,7 @@ namespace WEBPOS.DataAccess.DataLayer
 
         public void Save(DeStore obj)
         {
-            var val = context.Stores.FirstOrDefault(x => x.StoreCode == obj.StoreCode);
+            var val = Context.Stores.FirstOrDefault(x => x.StoreCode == obj.StoreCode);
             if (val != null)
             {
                 val.StoreDescription = obj.StoreDescription;
@@ -64,7 +65,7 @@ namespace WEBPOS.DataAccess.DataLayer
             }
             else
             {
-                context.Stores.Add(obj);
+                Context.Stores.Add(obj);
 
                 var activity = new DeActivityLog
                 {
@@ -72,21 +73,21 @@ namespace WEBPOS.DataAccess.DataLayer
                 };
                 BlActivityLog.Save(activity);
             }
-            context.SaveChanges();
+            Context.SaveChanges();
         }
 
         public void Delete(string StoreCode)
         {
-            var obj = context.Stores.FirstOrDefault(x=>x.StoreCode == StoreCode);
+            var obj = Context.Stores.FirstOrDefault(x=>x.StoreCode == StoreCode);
             if(obj != null)
             {
                 foreach (var store in Read(new DeStore { StoreCode = StoreCode }))
                 {
-                    context.Stores.Remove(store);
+                    Context.Stores.Remove(store);
                 }
 
-                context.Stores.Remove(obj);
-                context.SaveChanges();
+                Context.Stores.Remove(obj);
+                Context.SaveChanges();
 
                 var activity = new DeActivityLog
                 {

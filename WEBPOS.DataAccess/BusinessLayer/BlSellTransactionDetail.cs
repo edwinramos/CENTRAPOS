@@ -15,6 +15,11 @@ namespace WEBPOS.DataAccess.BusinessLayer
             var dl = new DlSellTransactionDetail();
             return dl.ReadAll();
         }
+        public static IEnumerable<DeSellTransactionDetail> ReadAllQueryable(string filters)
+        {
+            var dl = new DlSellTransactionDetail();
+            return dl.ReadAllQueryableCustom(filters);
+        }
         public static IQueryable<DeSellTransactionDetail> ReadAllQueryable()
         {
             var dl = new DlSellTransactionDetail();
@@ -40,7 +45,8 @@ namespace WEBPOS.DataAccess.BusinessLayer
 
         public static double GetNextRowNumberNumber(string storeCode, string posCode, double transactionNumber, DateTime transactionDateTime)
         {
-            var list = ReadAllQueryable().Where(x => x.StoreCode == storeCode && x.PosCode == posCode && x.TransactionNumber == transactionNumber);
+            //var list = ReadAllQueryable().Where(x => x.StoreCode == storeCode && x.PosCode == posCode && x.TransactionNumber == transactionNumber);
+            var list = ReadAllQueryable($"StoreCode = '{storeCode}' AND PosCode = '{posCode}' AND TransactionNumber = {transactionNumber}");
             var count = list.Count() + 1;
             double str = count;
 

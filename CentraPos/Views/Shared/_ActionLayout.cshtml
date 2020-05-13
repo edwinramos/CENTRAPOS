@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>CentraPos</title>
+    <meta charset="utf-8" />
+    <link href='@Url.Content("~/Content/Images/logo.png")' rel="icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/responsive.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+
+                <!-- Header -->
+                <header id="header">
+                    <strong>CentraPos</strong>
+                    <ul class="icons">
+                        <li><a href="@Url.Action("UserLogout", "User")" class="icon fa-sign-out"><span class="label">Salir</span></a></li>
+                        @*<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                            <li><a href="#" class="icon fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+                            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+                            <li><a href="#" class="icon fa-medium"><span class="label">Medium</span></a></li>*@
+                    </ul>
+                </header>
+
+                @RenderBody()
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    @*<script src="~/Scripts/jquery.min.js"></script>*@
+    @*<script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/browser.min.js"></script>
+    <script src="~/Scripts/breakpoints.min.js"></script>
+    <script src="~/Scripts/util.js"></script>
+    <script src="~/Scripts/main.js"></script>*@
+</body>
+</html>
+<script>
+    $("form").keypress(function (e) {
+        // Check if it is the enter key
+
+        if (e.which == 13) {
+            var n = $("input:text").length;
+            // If so, prevent the default behavior
+            $(':focus').blur();
+            // If so, prevent the default behavior
+            e.preventDefault();
+        }
+    });
+</script>

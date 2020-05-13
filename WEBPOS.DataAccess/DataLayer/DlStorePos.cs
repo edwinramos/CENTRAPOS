@@ -6,23 +6,24 @@ using System.Threading.Tasks;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
+using WEBPOS.DataAccess.Repository;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
-    public class DlStorePos
+    public class DlStorePos : BaseRepository<WEBPOSContext, DeStorePos>
     {
-        private WEBPOSContext context = new WEBPOSContext();
+        public DlStorePos(WEBPOSContext context = null) : base(context) { }
         public IEnumerable<DeStorePos> ReadAll()
         {
-            return context.StorePoses.ToList();
+            return Context.StorePoses.ToList();
         }
         public IQueryable<DeStorePos> ReadAllQueryable()
         {
-            return context.StorePoses;
+            return Context.StorePoses;
         }
         public IEnumerable<DeStorePos> Read(DeStorePos obj)
         {
-            var data = context.StorePoses.ToList();
+            var data = Context.StorePoses.ToList();
 
             if (!string.IsNullOrEmpty(obj.StoreCode))
                 data = data.Where(x => x.StoreCode == obj.StoreCode).ToList();
@@ -35,7 +36,7 @@ namespace WEBPOS.DataAccess.DataLayer
 
         public void Save(DeStorePos obj)
         {
-            var val = context.StorePoses.FirstOrDefault(x => x.StorePosCode == obj.StorePosCode);
+            var val = Context.StorePoses.FirstOrDefault(x => x.StorePosCode == obj.StorePosCode);
             if (val != null)
             {
                 val.StorePosDescription = obj.StorePosDescription;
@@ -50,23 +51,23 @@ namespace WEBPOS.DataAccess.DataLayer
             }
             else
             {
-                context.StorePoses.Add(obj);
+                Context.StorePoses.Add(obj);
                 var activity = new DeActivityLog
                 {
                     ActivityMessage = string.Format(ActivityLogHelper.GetActivityText(LogActivities.CREATE), "Terminal", obj.StorePosCode)
                 };
                 BlActivityLog.Save(activity);
             }
-            context.SaveChanges();
+            Context.SaveChanges();
         }
 
         public void Delete(string storeCode, string storePosCode)
         {
-            var obj = context.StorePoses.FirstOrDefault(x=> x.StoreCode == storeCode && x.StorePosCode == storePosCode);
+            var obj = Context.StorePoses.FirstOrDefault(x=> x.StoreCode == storeCode && x.StorePosCode == storePosCode);
             if(obj != null)
             {
-                context.StorePoses.Remove(obj);
-                context.SaveChanges();
+                Context.StorePoses.Remove(obj);
+                Context.SaveChanges();
 
                 var activity = new DeActivityLog
                 {

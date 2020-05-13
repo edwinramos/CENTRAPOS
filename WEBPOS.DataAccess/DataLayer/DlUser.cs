@@ -8,23 +8,24 @@ using System.Threading.Tasks;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
+using WEBPOS.DataAccess.Repository;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
-    public class DlUser
+    public class DlUser : BaseRepository<WEBPOSContext, DeUnitMeasure>
     {
-        private WEBPOSContext context = new WEBPOSContext();
+        public DlUser(WEBPOSContext context = null) : base(context) { }
         public IEnumerable<DeUser> ReadAll()
         {
-            return context.Users.ToList();
+            return Context.Users.ToList();
         }
         public IQueryable<DeUser> ReadAllQueryable()
         {
-            return context.Users;
+            return Context.Users;
         }
         public IEnumerable<DeUser> Read(DeUser obj)
         {
-            var data = context.Users.ToList();
+            var data = Context.Users.ToList();
 
             if (!string.IsNullOrEmpty(obj.UserCode))
                 data = data.Where(x=>x.UserCode == obj.UserCode).ToList();
@@ -34,7 +35,7 @@ namespace WEBPOS.DataAccess.DataLayer
 
         public void Save(DeUser obj)
         {
-            var val = context.Users.FirstOrDefault(x => x.UserCode == obj.UserCode);
+            var val = Context.Users.FirstOrDefault(x => x.UserCode == obj.UserCode);
             var activity = new DeActivityLog();
             if (val != null)
             {
@@ -52,7 +53,7 @@ namespace WEBPOS.DataAccess.DataLayer
             }
             else
             {
-                context.Users.Add(obj);
+                Context.Users.Add(obj);
                 activity = new DeActivityLog
                 {
                     ActivityMessage = string.Format(ActivityLogHelper.GetActivityText(LogActivities.CREATE), "Usuario", obj.UserCode)
@@ -60,16 +61,16 @@ namespace WEBPOS.DataAccess.DataLayer
             }
 
             BlActivityLog.Save(activity);
-            context.SaveChanges();
+            Context.SaveChanges();
         }
 
         public void Delete(string userCode)
         {
-            var obj = context.Users.FirstOrDefault(x=>x.UserCode == userCode);
+            var obj = Context.Users.FirstOrDefault(x=>x.UserCode == userCode);
             if(obj != null)
             {
-                context.Users.Remove(obj);
-                context.SaveChanges();
+                Context.Users.Remove(obj);
+                Context.SaveChanges();
 
                 var activity = new DeActivityLog
                 {

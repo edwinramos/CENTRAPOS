@@ -70,15 +70,16 @@ namespace WEBPOS.Controllers
                 //    model = model.OrderBy(sortColumn + " " + sortColumnDir);
                 //}
                 //Search
+                model = model.OrderByDescending(x => x.StartDateTime).ToList();
                 if (!string.IsNullOrEmpty(searchValue))
                 {
-                    model = model.OrderByDescending(x => x.StartDateTime).Where(m => m.UserCode.ToUpper().Contains(searchValue.ToUpper())).ToList();
+                    model = model.Where(m => m.UserCode.ToUpper().Contains(searchValue.ToUpper())).ToList();
                 }
 
                 //total number of rows count     
                 recordsTotal = model.Count();
                 //Paging     
-                var data = model.ToList().Skip(skip).Take(pageSize);
+                var data = model.Skip(skip).Take(pageSize);
                 //Returning Json Data    
                 return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
 
@@ -108,7 +109,8 @@ namespace WEBPOS.Controllers
 
             posClosure.EndDateTime = new DateTime(posClosure.StartDateTime.Year, posClosure.StartDateTime.Month, posClosure.StartDateTime.Day, 23, 59, 50);
 
-            var sales = BlSellTransactionHead.ReadAllQueryable().Where(x => x.TransactionDateTime >= posClosure.StartDateTime && x.TransactionDateTime <= posClosure.EndDateTime && x.UpdateUser == usr.UserCode);
+            //var sales = BlSellTransactionHead.ReadAllQueryable().Where(x => x.TransactionDateTime >= posClosure.StartDateTime && x.TransactionDateTime <= posClosure.EndDateTime && x.UpdateUser == usr.UserCode);
+            var sales = BlSellTransactionHead.ReadAllQueryable($"TransactionDateTime >= '{posClosure.StartDateTime.ToString("yyyy-MM-dd HH:mm:ss")}' AND TransactionDateTime <= '{posClosure.EndDateTime.ToString("yyyy-MM-dd HH:mm:ss")}' AND UpdateUser = '{usr.UserCode}'");
 
             foreach (var sale in sales)
             {

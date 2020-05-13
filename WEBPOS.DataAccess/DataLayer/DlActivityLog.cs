@@ -4,34 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WEBPOS.DataAccess.DataEntities;
+using WEBPOS.DataAccess.Repository;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
-    public class DlActivityLog
+    public class DlActivityLog : BaseRepository<WEBPOSContext, DeActivityLog>
     {
-        private WEBPOSContext context = new WEBPOSContext();
+        public DlActivityLog(WEBPOSContext context = null) : base(context) { }
         public IEnumerable<DeActivityLog> ReadAll()
         {
-            return context.ActivityLoges.ToList();
+            return Context.ActivityLoges.ToList();
         }
         public IQueryable<DeActivityLog> ReadAllQueryable()
         {
-            return context.ActivityLoges;
+            return Context.ActivityLoges;
         }
 
         public void Save(DeActivityLog obj)
         {
-            context.ActivityLoges.Add(obj);
-            context.SaveChanges();
+            Context.ActivityLoges.Add(obj);
+            Context.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            var obj = context.ActivityLoges.FirstOrDefault(x => x.ID== id);
+            var obj = Context.ActivityLoges.FirstOrDefault(x => x.ID== id);
             if (obj != null)
             {
-                context.ActivityLoges.Remove(obj);
-                context.SaveChanges();
+                Context.ActivityLoges.Remove(obj);
+                Context.SaveChanges();
             }
         }
     }

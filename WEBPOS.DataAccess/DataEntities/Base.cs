@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace WEBPOS.DataAccess.DataEntities
 {
-    public class Base
+    public class Base : IDisposable
     {
+        public WEBPOSContext context = new WEBPOSContext();
         public DateTime LastUpdate { get; set; }
         public string UpdateUser { get; set; }
+        public void Dispose()
+        {
+            context.Dispose();
+        }
     }
 }

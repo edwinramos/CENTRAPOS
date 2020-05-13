@@ -32,8 +32,8 @@ namespace WEBPOS.WebForms
             var storeCode = queryString[1].Split('=')[1];
             var posCode = queryString[2].Split('=')[1];
 
-            var sellOrder = BlSellOrder.ReadAllQueryable().FirstOrDefault(x => x.SellOrderId == sellOrderId);
-            var detail = BlSellOrderDetail.ReadAllQueryable().Where(x => x.SellOrderId == sellOrderId);
+            var sellOrder = BlSellOrder.ReadAllQueryable($"SellOrderId = {sellOrderId}").FirstOrDefault();
+            var detail = BlSellOrderDetail.ReadAllQueryable($"SellOrderId = {sellOrderId}");
             var client = BlBusinessPartner.ReadAllQueryable().FirstOrDefault(x => x.BusinessPartnerCode == sellOrder.ClientCode);
 
             var total = detail.Sum(x => x.TotalRowValue);
@@ -47,7 +47,7 @@ namespace WEBPOS.WebForms
                     res.Add(new DeSellOrderDetail
                     {
                         ItemCode = obj.ItemCode,
-                        ItemDescription = "("+obj.ItemDescription+")",
+                        ItemDescription = "(" + obj.ItemDescription + ")",
                         Quantity = -1,
                         Price = (-1) * obj.DiscountValue,
                         PriceBefDiscounts = obj.PriceBefDiscounts,
@@ -67,7 +67,7 @@ namespace WEBPOS.WebForms
             var store = BlStore.ReadAll().FirstOrDefault();
 
             var transactionDate = new ReportParameter("DocDateTime", sellOrder.DocDateTime.ToString("dd/MM/yyyy"), true);
-            var transactionNumber = new ReportParameter("SellOrderId", sellOrder.SellOrderId.ToString().PadLeft(7,'0'), true);
+            var transactionNumber = new ReportParameter("SellOrderId", sellOrder.SellOrderId.ToString().PadLeft(7, '0'), true);
             var storeName = new ReportParameter("StoreName", store.StoreDescription, true);
             var storeAddress = new ReportParameter("StoreAddress", $"{store.Address}, {store.City}", true);
             var rnc = new ReportParameter("RNC", store.RNC, true);
@@ -111,16 +111,26 @@ namespace WEBPOS.WebForms
             var storeCode = queryString[1].Split('=')[1];
             var posCode = queryString[2].Split('=')[1];
 
-            var head = BlSellTransactionHead.ReadAll().FirstOrDefault(x => x.NCF == ncf && x.StoreCode == storeCode && x.PosCode == posCode);
-            var detail = BlSellTransactionDetail.ReadAll().Where(x => x.TransactionNumber == head.TransactionNumber && x.StoreCode == head.StoreCode && x.PosCode == head.PosCode);
+            var head = BlSellTransactionHead.ReadAllQueryable($"NCF = '{ncf}' AND StoreCode = '{storeCode}' AND PosCode = '{posCode}'").FirstOrDefault();
+            var detail = BlSellTransactionDetail.ReadAllQueryable($"TransactionNumber = {head.TransactionNumber} AND StoreCode = '{head.StoreCode}' AND PosCode = '{posCode}'");
             var headPayment = BlSellTransactionPayment.ReadByCode(head.TransactionNumber, head.TransactionDateTime, head.StoreCode, head.PosCode);
             var client = BlBusinessPartner.ReadAllQueryable().FirstOrDefault(x => x.BusinessPartnerCode == head.CustomerCode);
             var user = BlUser.ReadAllQueryable().FirstOrDefault(x => x.UserCode == head.UpdateUser);
 
             var res = new List<DeSellTransactionDetail>();
+            double vatTotals = 0;
             foreach (var obj in detail)
             {
-                obj.TotalValue = obj.TotalValue - ((obj.SellPrice - obj.BasePrice) * obj.Quantity);
+                var taxPercent = BlTax.ReadByCode(obj.TaxCode).TaxPercent / 100;
+                //obj.TotalValue = obj.TotalValue - ((obj.SellPrice - obj.BasePrice) * obj.Quantity);
+                if (taxPercent > 0)
+                {
+                    obj.TaxPercent = obj.Quantity * (obj.BasePrice * taxPercent);
+                    vatTotals += obj.TaxPercent;
+                }
+                else
+                    obj.TaxPercent = 0;
+
                 res.Add(obj);
                 if (obj.DiscountOnItem > 0)
                 {
@@ -134,7 +144,8 @@ namespace WEBPOS.WebForms
                                 Quantity = -1,
                                 SellPrice = 0,
                                 BasePrice = obj.DiscountOnItem * obj.Quantity,
-                                TotalValue = (-1) * (obj.DiscountOnItem * obj.Quantity)
+                                TotalValue = (-1) * (obj.DiscountOnItem * obj.Quantity),
+                                TaxPercent = 0
                             });
                             break;
                         case 0:
@@ -145,15 +156,16 @@ namespace WEBPOS.WebForms
                                 Quantity = -1,
                                 SellPrice = 0,
                                 BasePrice = obj.DiscountOnItem,
-                                TotalValue = (-1) * obj.DiscountOnItem
+                                TotalValue = (-1) * obj.DiscountOnItem,
+                                TaxPercent = 0
                             });
                             break;
                     }
                 }
             }
 
-            ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/InvoiceReport.rdlc");
-            //ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/InvoiceReportLogo.rdlc");
+            //ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/InvoiceReport.rdlc");
+            ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/InvoiceReportLogo.rdlc");
 
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportDataSource RDS = new ReportDataSource("DataSet1", res);
@@ -192,9 +204,9 @@ namespace WEBPOS.WebForms
             var header = new ReportParameter("Header", headerStr, true);
             var clientGroup = new ReportParameter("ClientGroup", head.NCF.Contains("B02") ? "" : (("GRUPO CLIENTE: " + client.BusinessPartnerGroup?.BusinessPartnerGroupDescription ?? "")), true);
 
-            var subTotal = new ReportParameter("SubTotal", "RD$" + (detail.Sum(x => x.TotalValue) + head.TotalDiscount).ToString("n2"), true);
+            var subTotal = new ReportParameter("SubTotal", "RD$" + (detail.Sum(x => x.SellPrice)).ToString("n2"), true);
             var total = new ReportParameter("Total", "RD$" + (detail.Sum(x => x.TotalValue) + head.TotalDiscount + detail.Sum(x => (x.SellPrice - x.BasePrice) * x.Quantity)).ToString("n2"), true);
-            var vatTotal = new ReportParameter("VatTotal", "RD$" + detail.Sum(x => (x.SellPrice - x.BasePrice) * x.Quantity).ToString("n2"), true);
+            var vatTotal = new ReportParameter("VatTotal", "RD$" + vatTotals.ToString("n2"), true);
             var discountTotal = new ReportParameter("DiscTotal", "RD$" + head.TotalDiscount.ToString("n2"), true);
 
             ReportParameterCollection reportParameters = new ReportParameterCollection();

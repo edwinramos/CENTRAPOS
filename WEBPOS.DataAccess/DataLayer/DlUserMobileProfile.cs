@@ -6,29 +6,30 @@ using System.Threading.Tasks;
 using WEBPOS.DataAccess.BusinessLayer;
 using WEBPOS.DataAccess.DataEntities;
 using WEBPOS.DataAccess.Helpers;
+using WEBPOS.DataAccess.Repository;
 
 namespace WEBPOS.DataAccess.DataLayer
 {
-    public class DlUserMobileProfile
+    public class DlUserMobileProfile : BaseRepository<WEBPOSContext, DeUserMobileProfile>
     {
-        private WEBPOSContext context = new WEBPOSContext();
+        public DlUserMobileProfile(WEBPOSContext context = null) : base(context) { }
         public IEnumerable<DeUserMobileProfile> ReadAll()
         {
-            return context.UserMobileProfiles.ToList();
+            return Context.UserMobileProfiles.ToList();
         }
         public IQueryable<DeUserMobileProfile> ReadAllQueryable()
         {
-            return context.UserMobileProfiles;
+            return Context.UserMobileProfiles;
         }
 
         public DeUserMobileProfile ReadByCode(string userCode, MobileProfileType mobileProfileCode)
         {
-            return context.UserMobileProfiles.FirstOrDefault(x => x.UserCode == userCode && x.MobileProfileType == mobileProfileCode);
+            return Context.UserMobileProfiles.FirstOrDefault(x => x.UserCode == userCode && x.MobileProfileType == mobileProfileCode);
         }
 
         public IEnumerable<DeUserMobileProfile> Read(DeUserMobileProfile obj)
         {
-            var data = context.UserMobileProfiles.ToList();
+            var data = Context.UserMobileProfiles.ToList();
 
             if (!string.IsNullOrEmpty(obj.UserCode))
                 data = data.Where(x => x.UserCode == obj.UserCode).ToList();
@@ -43,7 +44,7 @@ namespace WEBPOS.DataAccess.DataLayer
 
         public void Save(DeUserMobileProfile obj)
         {
-            var val = context.UserMobileProfiles.FirstOrDefault(x => x.UserCode == obj.UserCode && x.UserCode == obj.UserCode);
+            var val = Context.UserMobileProfiles.FirstOrDefault(x => x.UserCode == obj.UserCode && x.UserCode == obj.UserCode);
             if (val != null)
             {
                 val.MobileProfileType = obj.MobileProfileType;
@@ -51,18 +52,18 @@ namespace WEBPOS.DataAccess.DataLayer
                 val.Param2 = obj.Param2;
             }
             else
-                context.UserMobileProfiles.Add(obj);
+                Context.UserMobileProfiles.Add(obj);
 
-            context.SaveChanges();
+            Context.SaveChanges();
         }
 
         public void Delete(string userCode, MobileProfileType mobileProfileCode)
         {
-            var obj = context.UserMobileProfiles.FirstOrDefault(x => x.UserCode == userCode && x.MobileProfileType == mobileProfileCode);
+            var obj = Context.UserMobileProfiles.FirstOrDefault(x => x.UserCode == userCode && x.MobileProfileType == mobileProfileCode);
             if (obj != null)
             {
-                context.UserMobileProfiles.Remove(obj);
-                context.SaveChanges();
+                Context.UserMobileProfiles.Remove(obj);
+                Context.SaveChanges();
             }
         }
     }

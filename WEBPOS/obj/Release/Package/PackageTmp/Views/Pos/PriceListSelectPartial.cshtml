@@ -1,0 +1,34 @@
+﻿@model IEnumerable<WEBPOS.DataAccess.DataEntities.DePriceList>
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("GetPriceList", "Pos", FormMethod.Post, new { id = "priceListForm", onkeydown = "return (event.keyCode!=13);" }))
+{
+    <div class="container form-group">
+        <div class="modal-dialog modal-lg" style="width:50%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal">&times;</a>
+                    <h4 class="modal-title">Selecciona Lista de Precio</h4>
+                </div>
+
+                <div class="modal-body col-md-12">
+                    @{
+                        foreach (var obj in Model)
+                        {
+                            <div class="col-4 col-12-small">
+                                <input type="radio" id="@obj.PriceListCode" name="priceListCode" value="@obj.PriceListCode">
+                                @Html.Label(obj.PriceListDescription, new { @for = obj.PriceListCode })
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-default" data-dismiss="modal">Cerrar</a>
+                    <a class="btn btn-default" onclick=onPriceListFormSubmit();>Ok</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

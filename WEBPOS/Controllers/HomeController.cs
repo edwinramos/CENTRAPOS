@@ -45,9 +45,9 @@ namespace WEBPOS.Controllers
             dt.Columns.Add("Dia", System.Type.GetType("System.String"));
             dt.Columns.Add("Total", System.Type.GetType("System.Int32"));
 
-            var list = BlSellTransactionHead.ReadAllQueryable();
-
             var date = DateTime.Today;
+            var list = BlSellTransactionHead.ReadAllQueryable($"DATEPART(YEAR, TransactionDateTime) = {date.Year} AND DATEPART(MONTH, TransactionDateTime) = {date.Month}");
+
             DateTime start = date.Date.AddDays(-(int)date.DayOfWeek), // prev sunday 00:00
        end = start.AddDays(7);
 
@@ -89,9 +89,9 @@ namespace WEBPOS.Controllers
             dt.Columns.Add("Week", System.Type.GetType("System.String"));
             dt.Columns.Add("Total", System.Type.GetType("System.Int32"));
 
-            var list = BlSellTransactionHead.ReadAllQueryable().ToList();
-
             var date = DateTime.Today;
+
+            var list = BlSellTransactionHead.ReadAllQueryable($"DATEPART(YEAR, TransactionDateTime) = {date.Year} AND DATEPART(MONTH, TransactionDateTime) = {date.Month}");
 
             var actualWeek = from record in list
                              where record.TransactionDateTime.Month == date.Month// exclude end
@@ -139,10 +139,8 @@ namespace WEBPOS.Controllers
             dt.Columns.Add("Mes", System.Type.GetType("System.String"));
             dt.Columns.Add("Total", System.Type.GetType("System.Int32"));
 
-            var list = BlSellTransactionHead.ReadAllQueryable();
-
             var date = DateTime.Today;
-            
+            var list = BlSellTransactionHead.ReadAllQueryable($"DATEPART(YEAR, TransactionDateTime) = {date.Year}");
 
             var actualYear = from record in list
                              where record.TransactionDateTime.Year == date.Year// exclude end

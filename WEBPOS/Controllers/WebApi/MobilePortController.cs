@@ -77,7 +77,7 @@ namespace WEBPOS.Controllers.WebApi
                     objHead.UpdateUser = userCode;
                     BlSellOrder.Save(objHead);
 
-                    foreach (var item in BlSellOrderDetail.ReadAllQueryable().Where(x => x.SellOrderId == objHead.SellOrderId))
+                    foreach (var item in BlSellOrderDetail.ReadAllQueryable($"SellOrderId = {objHead.SellOrderId}"))
                     {
                         BlSellOrderDetail.Delete(item);
                     }
@@ -302,7 +302,7 @@ namespace WEBPOS.Controllers.WebApi
                     var obj = Mapper.Map<SellOrderModel>(item);
                     headList.Add(obj);
 
-                    foreach (var detail in BlSellOrderDetail.ReadAllQueryable().Where(x => x.SellOrderId == item.SellOrderId))
+                    foreach (var detail in BlSellOrderDetail.ReadAllQueryable($"SellOrderId = {item.SellOrderId}"))
                     {
                         var objDetail = Mapper.Map<SellOrderDetailModel>(detail);
                         detailList.Add(objDetail);
@@ -343,7 +343,8 @@ namespace WEBPOS.Controllers.WebApi
             var res = new Response();
             if (password == BlTable.Read(new DeTable { KeyFixed = "ServerPassword" }).FirstOrDefault().KeyVariable)
             {
-                var orders = BlSellOrder.ReadAllQueryable().Where(x => x.UpdateUser == userCode && x.DocDateTime.Year == DateTime.Today.Year && x.DocDateTime.Month == DateTime.Today.Month && x.DocDateTime.Day == DateTime.Today.Day);
+                //var orders = BlSellOrder.ReadAllQueryable().Where(x => x.UpdateUser == userCode && x.DocDateTime.Year == DateTime.Today.Year && x.DocDateTime.Month == DateTime.Today.Month && x.DocDateTime.Day == DateTime.Today.Day);
+                var orders = BlSellOrder.ReadAllQueryable($"UpdateUser = '{userCode}' AND DATEPART(YEAR, DocDateTime) = {DateTime.Today.Year} AND DATEPART(MONTH, DocDateTime) = {DateTime.Today.Month} AND DATEPART(DAY, DocDateTime) = {DateTime.Today.Day}");
                 var headList = new List<SellOrderModel>();
                 var detailList = new List<SellOrderDetailModel>();
                 foreach (var item in orders)
@@ -351,7 +352,7 @@ namespace WEBPOS.Controllers.WebApi
                     var obj = Mapper.Map<SellOrderModel>(item);
                     headList.Add(obj);
 
-                    foreach (var detail in BlSellOrderDetail.ReadAllQueryable().Where(x => x.SellOrderId == item.SellOrderId))
+                    foreach (var detail in BlSellOrderDetail.ReadAllQueryable($"SellOrderId = {item.SellOrderId}"))
                     {
                         var objDetail = Mapper.Map<SellOrderDetailModel>(detail);
                         detailList.Add(objDetail);
@@ -425,8 +426,8 @@ namespace WEBPOS.Controllers.WebApi
         {
             try
             {
-                var obj = BlSellOrder.ReadAllQueryable().FirstOrDefault(x => x.SellOrderId == id);
-                var list = BlSellOrderDetail.ReadAllQueryable().Where(x => x.SellOrderId == obj.SellOrderId);
+                var obj = BlSellOrder.ReadAllQueryable($"SellOrderId = {id}").FirstOrDefault();
+                var list = BlSellOrderDetail.ReadAllQueryable($"SellOrderId = {id}");
 
                 var head = new DeSellTransactionHead
                 {
@@ -497,7 +498,7 @@ namespace WEBPOS.Controllers.WebApi
                 }
 
                 obj.IsClosed = true;
-                var detail = BlSellOrderDetail.ReadAllQueryable().Where(x => x.SellOrderId == obj.SellOrderId);
+                var detail = BlSellOrderDetail.ReadAllQueryable($"SellOrderId = {obj.SellOrderId}");
                 obj.VatSum = detail.Sum(x => x.VatValue);
                 obj.TotalDiscount = detail.Sum(x => x.DiscountValue);
                 obj.DocTotal = detail.Sum(x => x.TotalRowValue);

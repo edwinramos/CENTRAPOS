@@ -12,7 +12,7 @@ namespace WEBPOS.Utils
     {
         private const int Keysize = 256;
         private const int DerivationIterations = 1000;
-        private const string defualtPassPhrase = "CentraPos";
+        private const string defualtPassPhrase = "WEBPOS";
         private const string initVector = "pemgail9uzpgzl88";
 
         public static string Encrypt(string plainText)

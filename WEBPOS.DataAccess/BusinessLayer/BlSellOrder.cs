@@ -16,6 +16,11 @@ namespace WEBPOS.DataAccess.BusinessLayer
             var dl = new DlSellOrder();
             return dl.ReadAll();
         }
+        public static IEnumerable<DeSellOrder> ReadAllQueryable(string filters)
+        {
+            var dl = new DlSellOrder();
+            return dl.ReadAllQueryableCustom(filters);
+        }
         public static IQueryable<DeSellOrder> ReadAllQueryable()
         {
             var dl = new DlSellOrder();
