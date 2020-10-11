@@ -36,11 +36,12 @@ namespace WEBPOS.DataAccess.DataLayer
 
         public void Save(DeTable obj)
         {
-            var val = Context.Tables.FirstOrDefault(x => x.KeyFixed == obj.KeyFixed);
+            var val = Context.Tables.FirstOrDefault(x => x.KeyFixed == obj.KeyFixed && x.KeyVariable == obj.KeyVariable);
             if (val != null)
             {
                 val.KeyFixed = obj.KeyFixed;
                 val.KeyVariable = obj.KeyVariable;
+                val.Value = obj.Value;
                 var activity = new DeActivityLog
                 {
                     ActivityMessage = string.Format(ActivityLogHelper.GetActivityText(LogActivities.UPDATE), "Tabla", obj.KeyFixed)

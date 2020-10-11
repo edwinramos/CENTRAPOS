@@ -33,7 +33,7 @@
 
                 <!-- Header -->
                 <header id="header">
-                    <strong>WEBPOS</strong>
+                    <strong>CentraPOS</strong>
                     <ul class="icons">
                         <li><a href="@Url.Action("UserLogout", "User")" class="icon fa-user-circle"> @ViewBag.UserName</a></li>
                         @*<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
@@ -78,7 +78,7 @@
     padding: 0;
 ">
                     <header class="major">
-                        <h2>WEBPOS</h2>
+                        <h2>CENTRAPOS</h2>
                     </header>
                     <ul>
                         <li><a href="#" onclick=onActionClick('@Url.Action("Charts", "Home" )');>Inicio</a></li>
@@ -93,7 +93,7 @@
                                         <li><a href='#' onclick=onActionClick('@Url.Action("Index", "User" )');>Usuarios</a></li>
                                     }
                                 }
-
+                                @*<li><a href='#' onclick=onActionClick('@Url.Action("Index", "EcommerceConfig" )');>Configuracion E-Commerce</a></li>*@
                             </ul>
                         </li>
                         <li>
@@ -120,11 +120,11 @@
                                 <li><a href="#" onclick=onActionClick('@Url.Action("Index", "StorePos" )')>Terminales</a></li>
                                 <li><a href="#" onclick=onActionClick('@Url.Action("Index", "SellTransaction" )')>Ventas Efectuadas</a></li>
                                 <li><a href="#" onclick=onActionClick('@Url.Action("Index", "PosClosure" )')>Cierres de Caja</a></li>
-                                @*<li><a href="#" onclick=onActionClick('@Url.Action("Index", "SellOrder" )')>Cotizaciones</a></li>*@
+                                <li><a href="#" onclick=onActionClick('@Url.Action("Index", "SellOrder" )')>Cotizaciones</a></li>
                                 <li><a href="@Url.Action("Index", "Pos" )" target="_blank">Punto de Venta</a></li>
                             </ul>
                         </li>
-                        @*<li></li>
+                        <li></li>
                         <li>
                             <span class="opener">Opciones para Moviles</span>
                             <ul>
@@ -132,7 +132,7 @@
                                 <li><a href='#' onclick=onActionClick('@Url.Action("Index", "UserSellOrder" )');>Asignar ordenes</a></li>
                                 <li><a href='#' onclick=onActionClick('@Url.Action("UploadedOrders", "SellOrder" )');>Seguimiento de ordenes</a></li>
                             </ul>
-                        </li>*@
+                        </li>
                     </ul>
                 </nav>
 

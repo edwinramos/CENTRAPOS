@@ -1,0 +1,69 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Listas de Precio";
+}
+
+
+
+@model List<WEBPOS.DataAccess.DataEntities.DeTable>
+    @{ 
+        var ip = Model.FirstOrDefault(x => x.KeyVariable == "EcommerceIP").Value;
+        var password = Model.FirstOrDefault(x => x.KeyVariable == "EcommercePassword").Value;
+    }
+<div class="panel panel-default" style="width: 100%; padding: 10px; margin: 10px">
+    <div id="Tabs" role="tabpanel">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            @*<li class="active"><a href="#profiles" aria-controls="profiles" role="tab" data-toggle="tab">Perfiles</a></li>*@
+            <li class="active">
+                <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">
+                    Configuración
+                </a>
+            </li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content" style="padding-top: 20px">
+            <div role="tabpanel" class="tab-pane active" id="settings">
+
+                <div class="modal-body col-md-12">
+                    <div class="form-group col-md-4">
+                        @Html.Label("Direccion IP")
+                        @Html.TextBox("ipAddress", ip, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.Label("Contraseña")
+                        @Html.TextBox("password", password, new { @class = "form-control", @type = "password" })
+                        @*<span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>*@
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-default" onclick=onFormSubmit();>Guardar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div id="modalContainer"></div>
+</div>
+<script>
+    function onFormSubmit(s, e)
+    {
+        $.ajax({
+            url: '@Url.Action("PostData", "EcommerceConfig")',
+            data: { ip: $('#ipAddress').val(), password: $('#password').val()},
+            beforeSend: function () {
+
+            },
+            complete: function () {
+
+            },
+            success: function (result) {
+                //$('#myModal').modal('hide');
+                toastr.success('', 'Guardado');
+                //table.ajax.reload();
+            }
+        });
+    }
+</script>

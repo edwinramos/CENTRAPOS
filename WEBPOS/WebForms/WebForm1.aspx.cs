@@ -204,7 +204,7 @@ namespace WEBPOS.WebForms
             var header = new ReportParameter("Header", headerStr, true);
             var clientGroup = new ReportParameter("ClientGroup", head.NCF.Contains("B02") ? "" : (("GRUPO CLIENTE: " + client.BusinessPartnerGroup?.BusinessPartnerGroupDescription ?? "")), true);
 
-            var subTotal = new ReportParameter("SubTotal", "RD$" + (detail.Sum(x => x.SellPrice)).ToString("n2"), true);
+            var subTotal = new ReportParameter("SubTotal", "RD$" + (detail.Sum(x => x.TotalValue - x.DiscountOnItem) + vatTotals).ToString("n2"), true);
             var total = new ReportParameter("Total", "RD$" + (detail.Sum(x => x.TotalValue) + head.TotalDiscount + detail.Sum(x => (x.SellPrice - x.BasePrice) * x.Quantity)).ToString("n2"), true);
             var vatTotal = new ReportParameter("VatTotal", "RD$" + vatTotals.ToString("n2"), true);
             var discountTotal = new ReportParameter("DiscTotal", "RD$" + head.TotalDiscount.ToString("n2"), true);
