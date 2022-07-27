@@ -52,7 +52,7 @@
                     @{
                         var selectList = Enum.GetValues(typeof(DocType))
                         .Cast<DocType>()
-                        .Where(e => e != DocType.Gubernamental)
+                        //.Where(e => e != DocType.Gubernamental)
                         .Select(e => new SelectListItem
                         {
                             Value = ((int)e).ToString(),

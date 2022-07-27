@@ -564,7 +564,21 @@ namespace WEBPOS.Controllers
                         item.VatPrice = vatPrice;
                     }
                     else
-                        item.Discount = item.VatPrice - result;
+                    {
+                        double discountedValue = 0;
+                        switch (discType)
+                        {
+                            case 0://Percentage
+                                discountedValue = item.VatPrice * (result / 100);
+                                break;
+                            case 1://Amount
+                                discountedValue = (result / 1);
+                                break;
+                        }
+                        item.DiscountType = discType;
+                        item.Discount = discountedValue;
+                    }
+                    //item.Discount = item.VatPrice - result;
                 }
 
                 item.Total = item.Quantity * (item.VatPrice - item.Discount);

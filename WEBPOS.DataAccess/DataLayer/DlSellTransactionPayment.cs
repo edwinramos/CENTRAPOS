@@ -39,7 +39,7 @@ namespace WEBPOS.DataAccess.DataLayer
         {
             return Context.SellTransactionPayments.FirstOrDefault(
                 x => x.TransactionNumber == transactionNumber &&
-                x.TransactionDateTime == transactionDateTime &&
+                //x.TransactionDateTime == transactionDateTime &&
                 x.StoreCode == storeCode &&
                 x.PosCode == posCode);
         }

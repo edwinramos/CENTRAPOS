@@ -174,15 +174,19 @@ namespace WEBPOS.WebForms
 
             var store = BlStore.ReadAll().FirstOrDefault();
 
-            var headerStr = head.NCF.Contains("B02") ? "FACTURA PARA CONSUMIDOR FINAL" : "FACTURA PARA CREDITO FISCAL";
+            var creditoFiscal = BlTable.Read(new DeTable { KeyFixed = "NCFCreditoFiscal" }).FirstOrDefault();
+            var consumidorFinal = BlTable.Read(new DeTable { KeyFixed = "NCFConsumidorFinal" }).FirstOrDefault();
+            var gubernamental = BlTable.Read(new DeTable { KeyFixed = "NCFGubernamental" }).FirstOrDefault();
 
-            if (head.NCF.Contains("B02"))
+            var headerStr = head.NCF.Contains(consumidorFinal.Value) ? "FACTURA PARA CONSUMIDOR FINAL" : "FACTURA PARA CREDITO FISCAL";
+
+            if (head.NCF.Contains(consumidorFinal.Value))
                 headerStr = "FACTURA PARA CONSUMIDOR FINAL";
 
-            if (head.NCF.Contains("B01"))
+            if (head.NCF.Contains(creditoFiscal.Value))
                 headerStr = "FACTURA PARA CREDITO FISCAL";
 
-            if (head.NCF.Contains("B15"))
+            if (head.NCF.Contains(gubernamental.Value))
                 headerStr = "FACTURA GUBERNAMENTAL";
 
             var posOperator = new ReportParameter("OperatorName", (user.Name + " " + user.LastName), true);
@@ -198,11 +202,11 @@ namespace WEBPOS.WebForms
             var paymentType = new ReportParameter("PaymentType", BlPaymentType.ReadAll().FirstOrDefault(x => x.PaymentTypeCode == headPayment.PaymentTypeCode).PaymentTypeDescription, true);
             var paymentValue = new ReportParameter("PaymentValue", "RD$" + headPayment.PaymentValue.ToString("n2"), true);
             var paymentRest = new ReportParameter("PaymentRest", "RD$" + (headPayment.PaymentValue - head.TotalValue).ToString("n2"), true);
-            var sequenceDueDate = new ReportParameter("SequenceDueDate", head.NCF.Contains("B02") ? "" : ("FECHA DE VENCIMIENTO: " + store.SequenceDueDate.ToString("dd/MM/yyyy")), true);
+            var sequenceDueDate = new ReportParameter("SequenceDueDate", head.NCF.Contains(consumidorFinal.Value) ? "" : ("FECHA DE VENCIMIENTO: " + store.SequenceDueDate.ToString("dd/MM/yyyy")), true);
             var clientRNC = new ReportParameter("ClientRNC", client?.RNC != null ? ("RNC CLIENTE: " + client.RNC) : "", true);
             var clientName = new ReportParameter("ClientName", client?.BusinessPartnerDescription != null ? ("NOMBRE: " + client.BusinessPartnerDescription) : "", true);
             var header = new ReportParameter("Header", headerStr, true);
-            var clientGroup = new ReportParameter("ClientGroup", head.NCF.Contains("B02") ? "" : (("GRUPO CLIENTE: " + client.BusinessPartnerGroup?.BusinessPartnerGroupDescription ?? "")), true);
+            var clientGroup = new ReportParameter("ClientGroup", head.NCF.Contains(consumidorFinal.Value) ? "" : (("GRUPO CLIENTE: " + client.BusinessPartnerGroup?.BusinessPartnerGroupDescription ?? "")), true);
 
             var subTotal = new ReportParameter("SubTotal", "RD$" + (detail.Sum(x => x.TotalValue - x.DiscountOnItem) + vatTotals).ToString("n2"), true);
             var total = new ReportParameter("Total", "RD$" + (detail.Sum(x => x.TotalValue) + head.TotalDiscount + detail.Sum(x => (x.SellPrice - x.BasePrice) * x.Quantity)).ToString("n2"), true);

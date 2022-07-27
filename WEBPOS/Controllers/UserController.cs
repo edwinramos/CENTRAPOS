@@ -22,12 +22,36 @@ namespace WEBPOS.Controllers
 
         public ActionResult LogIn()
         {
+            var creditoFiscal = new DeTable { KeyFixed = "NCFCreditoFiscal" };
+            if (!BlTable.Read(creditoFiscal).Any())
+            {
+                creditoFiscal.KeyVariable = "B01";
+                creditoFiscal.Value = "0";
+                BlTable.Save(creditoFiscal);
+            }
+
+            var consumidorFinal = new DeTable { KeyFixed = "NCFConsumidorFinal" };
+            if (!BlTable.Read(consumidorFinal).Any())
+            {
+                consumidorFinal.KeyVariable = "B02";
+                consumidorFinal.Value = "0";
+                BlTable.Save(consumidorFinal);
+            }
+
+            var gubernamental = new DeTable { KeyFixed = "NCFGubernamental" };
+            if (!BlTable.Read(gubernamental).Any())
+            {
+                gubernamental.KeyVariable = "B15";
+                gubernamental.Value = "0";
+                BlTable.Save(gubernamental);
+            }
+
             if (!string.IsNullOrEmpty(CookiesUtility.ReadCookieAsString("UserCode")))
                 return RedirectToAction("Index", "Home");
 
             var obj = BlTable.ReadAllQueryable().FirstOrDefault(x => x.KeyFixed == "ServerName");
             var serverId = System.Environment.MachineName;
-            
+
             if (obj != null)
             {
                 if (obj.KeyVariable != serverId)
@@ -41,7 +65,7 @@ namespace WEBPOS.Controllers
             }
             else
                 BlTable.Save(new DeTable { KeyFixed = "ServerName", KeyVariable = serverId });
-            
+
             return View();
         }
 
