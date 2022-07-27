@@ -34,7 +34,13 @@ namespace WEBPOS.Controllers
                 int recordsTotal = 0;
 
                 // Getting all Customer data    
-                var model = BlTax.ReadAllQueryable();
+                var model = BlTax.ReadAllQueryable().Select(x=>new 
+                {
+                    x.TaxCode,
+                    x.TaxDescription,
+                    x.TaxPercent,
+                    x.LastUpdate
+                });
 
                 //Sorting    
                 //if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))

@@ -34,7 +34,12 @@ namespace WEBPOS.Controllers
                 int recordsTotal = 0;
 
                 // Getting all Customer data    
-                var model = BlPaymentType.ReadAllQueryable();
+                var model = BlPaymentType.ReadAllQueryable().Select(x=> new
+                {
+                    x.PaymentTypeCode,
+                    x.PaymentTypeDescription,
+                    x.LastUpdate
+                });
 
                 //Sorting    
                 //if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))

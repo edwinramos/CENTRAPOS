@@ -34,7 +34,12 @@ namespace WEBPOS.Controllers
                 int recordsTotal = 0;
 
                 // Getting all Customer data    
-                var model = BlDepartment.ReadAllQueryable();
+                var model = BlDepartment.ReadAllQueryable().Select(x => new
+                {
+                    x.DepartmentCode,
+                    x.DepartmentDescription,
+                    x.LastUpdate
+                });
 
                 //Sorting    
                 //if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
